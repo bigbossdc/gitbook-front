@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './Fluffs/assets/css/demos/photo.css';
-
+import Calendar from './Calendar'
 
 class Navigation extends Component {
     render() {
@@ -30,25 +30,36 @@ class Navigation extends Component {
                 </div>
                </div>
               </li>
+             
               <li>
                <small className="text-muted"><a href="photo_profile_two.html">My Repository <em className="fa fa-angle-right pull-right"></em></a> </small><br/>
               
                <small className="text-muted"><a href="photo_followers.html">My Schedule <em className="fa fa-angle-right pull-right"></em></a> </small><br/>
                <small className="text-muted"><a href="photo_followers.html">My Commit <em className="fa fa-angle-right pull-right"></em></a> </small><br/>
-               <br></br>
-               <br></br>
-               <br></br>
-               <br></br>
-               <br></br>
-               <br></br>
-               <br></br>
-               <br></br>
-               
-                                
-              </li>                    
+                <br></br>
+             
+              </li> 
+              
+  
+
+
+
+
+
              </ul>
-            </aside>				
+            </aside>
+
+            <div className="col-lg-12"> 
+              <Calendar></Calendar>
+              </div>				
            </div>
+              
+         
+
+             
+         
+
+           
         );
     }
 }

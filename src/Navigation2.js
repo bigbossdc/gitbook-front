@@ -18,6 +18,7 @@ class Navigation2 extends Component {
             {/* 친구 리스트 */}
             <div className="trending-box">
                 <div className="row">
+                  
                    <div className="col-lg-4">
                    <a href="/"><img src="assets/img/users/7.jpg" className="img-responsive" alt="Image"/></a>
                    </div>
@@ -32,7 +33,7 @@ class Navigation2 extends Component {
        
                 <div className="row">
                    <div className="col-lg-4">
-                   <a href="/"><img src="assets/img/users/1.jpg" className="img-responsive" alt="Image"/></a>
+                   <a href="/"><img src="assets/img/users/7.jpg" className="img-responsive" alt="Image"/></a>
                    </div>
                    <div className="col-lg-4">
                    <a href="/"><img src="assets/img/users/2.jpg" className="img-responsive" alt="Image"/></a>

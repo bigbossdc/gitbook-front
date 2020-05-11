@@ -10,7 +10,7 @@ class Header extends Component {
        
         return(
            <header className="tr-header" >
-               <nav className="navbar navbar-default">
+               <nav className="navbar navbar-default" >
                     <div className="container-fluid">
 	                    <div className="navbar-header">
                          <a className="navbar-brand" href="index.html"> GitBook</a>
