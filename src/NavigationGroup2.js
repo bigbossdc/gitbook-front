@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import './Fluffs/assets/css/demos/photo.css';
 
 
 class Navigation2 extends Component {
@@ -10,7 +10,7 @@ class Navigation2 extends Component {
                  <div className="trending-box">
                     <div className="row">
                         <div className="col-lg-4">
-                        <a href="/"> <h4 style={{fontFamily: " 'Varela Round', sans-serif"}}><strong>친구 목록</strong></h4></a>
+                        <a href="/"> <h4 style={{fontFamily: " 'Varela Round', sans-serif"}}><strong>맴버 목록</strong></h4></a>
                         </div>
                     </div>
             </div>

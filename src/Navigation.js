@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './Fluffs/assets/css/demos/photo.css';
+
 import Calendar from './Calendar'
 
 class Navigation extends Component {
