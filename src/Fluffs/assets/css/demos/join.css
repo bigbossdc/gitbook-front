@@ -23,15 +23,15 @@
     position: relative;
   }
  .chk_info input[type="radio"] + label { 
-   display: inline-block; 
-   position: relative; 
+   display: inline-block;
+   position: relative;
    padding-left: 10px; 
    margin-right: 20px;
    color: #ffffff;
-   cursor: pointer; 
+   cursor: pointer;
    -webkit-user-select: none; 
-   -moz-user-select: none; 
-   -ms-user-select: none; 
+   -moz-user-select: none;
+   -ms-user-select: none;
  }
 
 /*아이디, 비밀번호 찾기*/
