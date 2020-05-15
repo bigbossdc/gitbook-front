@@ -4,30 +4,35 @@ import Header from './Header';
 import Header2 from './Header2';
 import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
-import TimelineItem from './TimelineItem';
+
+import MainCalendar from './MainCalendar'; 
 
 
-class MyTimelinePage extends Component {
+
+
+class MyCalendarPage extends Component {
+
+  
+
   render() {
     
+
+
     return (
-      <div className="App" >
+      <div className="App">
        <Header></Header>
-       <Header2 name="Group"></Header2>
+       <Header2 name="MyTimeline"></Header2>
        <section className="profile-two">
        <div className="container-fluid">
         <div className="row">
               <Navigation></Navigation>  {/** 네비게이션 */}
 
               {/** 두번째 섹션 */}
-              <div className="col-lg-6" style={{backgroundColor: "#00b",marginTop:"1px"}}>
-              
-              <TimelineItem></TimelineItem>
-              <TimelineItem></TimelineItem>
-              <TimelineItem></TimelineItem>
-              <TimelineItem></TimelineItem>
+              <div className="col-lg-6">
+              <MainCalendar onModal={(open)=> this.setState(open)}  onDayClick={(day) => this.setState({ day })}></MainCalendar>
+              </div>
 
-              </div>{/** 두번째 섹션 */}
+              {/** 두번째 섹션 */}
               {/** 세번째 섹션 */}
               <Navigation2></Navigation2>
               {/** 세번째 섹션 */}
@@ -41,4 +46,4 @@ class MyTimelinePage extends Component {
 
 }
 
-export default MyTimelinePage;
+export default MyCalendarPage;

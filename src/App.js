@@ -6,27 +6,21 @@ import RepositoryListPage from './RepositoryListPage';
 import FriendSearchList from './FriendSearchList';
 import UploadPage from './UploadPage';
 
+/////////////////////////////////////////////////////////////////////
+
+import MyCalendarPage from './MyCalendarPage'
+import ErrorPage from './ErrorPage'
+
+
 class App extends Component {
   render() {
     
     return (
       <div className="App" >
-      
 
-
-
-      <UploadPage/>
-      <FriendSearchList/>
-      <RepositoryPage/>
-      <RepositoryWritePage/>
-      <RepositoryListPage/>
-      
-      
-      
       </div>
     );
   }
-
 }
 
 export default App;
