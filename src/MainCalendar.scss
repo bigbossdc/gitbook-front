@@ -1,0 +1,355 @@
+.react-daypicker-root {
+  padding: 10px;
+  height : 750px 
+}
+  .react-daypicker-root abbr {
+    padding-left: 150%;
+    border-bottom: 0;
+    text-decoration: none; }
+
+    .react-daypicker-root .button-div{
+      height:50px;
+      width: 220px;
+      margin: auto;
+    }
+
+    .react-daypicker-root .tr{
+      border-bottom: solid 2px #88898A;
+    }
+  
+
+  .react-daypicker-root td{
+    padding: 5px;
+    width: 40px; 
+    font-size: medium; 
+    
+  }
+
+.sunday{
+  color: red;
+  }
+
+.saturday {
+  color:blue
+}
+  .react-daypicker-root .header {
+    display: flex;
+    flex-direction: row;
+    
+  }
+  .react-daypicker-root .previous-month,
+  .react-daypicker-root .next-month {
+    color: #9b9b9b;
+    cursor: pointer;
+    padding: 5px;
+    user-select: none;
+    width: 40px; }
+    .react-daypicker-root .previous-month:hover,
+    .react-daypicker-root .next-month:hover {
+      color: #000; }
+  .react-daypicker-root .next-month {
+    text-align: right; }
+  .react-daypicker-root .month-year {
+    flex: 2;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Varela Round", sans-serif;
+    font-size: x-large;
+    background-color: #88898A;
+    border-radius: 10px;
+    color:white;
+  }
+  .react-daypicker-root .day {
+    cursor: pointer;}
+    .react-daypicker-root .day:hover:not(.empty) {
+      background-color: #eee; }
+    .react-daypicker-root .day.active {
+      background-color: #ddd; }
+    .react-daypicker-root .day.empty {
+      cursor: default;}
+    .react-daypicker-root .day.today {
+      font-weight: bold; }
+
+
+    .react-daypicker-root .total-table{
+      font-family: "Varela Round", sans-serif;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+    }
+    .react-daypicker-root .table-border{
+      height: 80%;
+      width: 100%;
+      border: solid 2px #88898A;
+      
+    }
+    .react-daypicker-root .index-repository, .react-daypicker-root .index-todo-list{
+      width:100px;
+      height: 30px;
+      color:#88898A;
+     
+      border-radius: 7px;
+      text-align:center;
+      font-family: "Varela Round", sans-serif;
+      border:0;
+      outline: 0;
+      margin : auto;
+      font-size: medium;
+    }
+
+    .react-daypicker-root .index-todo-list-todo{
+      width:100px;
+      height: 30px;
+      background:#545654;
+      color:white;
+      border-radius: 7px;
+      text-align:center;
+      font-family: "Varela Round", sans-serif;
+      border:1.5px solid #545654;
+      outline: 0;
+      margin : auto;
+      font-size: 20px !important;
+    }
+
+    .react-daypicker-root .index-repository-list{
+      width:100px;
+      height: 30px;
+      background:#545654;
+      color:white;
+      border-radius: 7px;
+      text-align:center;
+      font-family: "Varela Round", sans-serif;
+      border:1.5px solid #545654;
+      outline: 0;
+      margin : auto;
+      font-size: 20px !important;
+    }
+
+    .react-daypicker-root .index-todo-list, .react-daypicker-root .index-todo-list-todo{
+      margin-left: 10px;
+    }
+    
+    .react-daypicker-root .index-todo-list:hover, .react-daypicker-root .index-repository:hover{
+      font-family: "Varela Round", sans-serif;
+      font-size: 20px !important;
+      background:#545654;
+      color:white;
+      border:1.5px solid #545654;
+    }
+   
+
+  
+
+
+   /* ==========================================================================
+   Modal Styles
+   ========================================================================== */  
+
+
+
+   .modal-body{
+     width: 348px;
+     height: 500px;
+   }
+
+   .row{
+     width: 100%;
+     height: 100%;
+   }
+
+.dialog-title{
+  font-family: 'Abhaya Libre', serif;
+  font-size: 1.2em;
+  color: #88898a !important;
+}
+
+.modal-dialog{
+  width: 830px;	
+  height: 450px !important;
+}
+.modal-image img{
+  width: 600px !important;	
+  height: 540px !important;	
+}
+
+.img-poster{
+  margin-bottom: 10px;	
+  border-bottom: solid 1px #f4f4f4;
+  padding-bottom: 5px;	
+}
+
+.modal-meta-top{
+  width: 350px;
+}
+
+.modal-meta-top .img-poster img {
+  height: 34px;
+  width: 34px;
+  float: left !important;
+  margin-right: 10px;
+  border: 4px solid #f4f4f4;
+}
+.modal-meta-top .img-poster a{
+  font-family: 'Abhaya Libre', serif;	
+  font-size: 14px;	
+  color: #88898a !important;	
+}
+.modal-meta-top .img-poster span {
+  font-family: 'Abhaya Libre', serif;
+  color: #aaa;
+  font-size: 12px;
+}
+.modal-meta-top .img-poster a.kafe-btn-mint-small {
+  font-family: 'Abhaya Libre', serif; 	
+  margin-left: 0px;
+  color: #fff !important;
+  border-radius: 3px;  
+}
+
+
+.img-comment-list {
+  list-style: none;  
+  padding: 0px 10px 30px 0px;
+  margin-left: 10px;
+  height: 390px !important;
+  overflow-y: scroll;	
+}
+.img-comment-list li {
+    margin-top: 5px 0px 10px 0px;
+}
+.img-comment-list li > div {
+    display:table-cell;
+}
+.img-comment-list .comment-img {
+  float: left !important;	
+  margin-right: 10px !important;
+  margin-top: 5px;
+}
+.img-comment-list img {
+  width: 22px;
+  height: 22px;
+}
+.img-comment-list li a{
+  font-family: 'Abhaya Libre', serif;	
+  font-size: 15px;	
+  color: #88898a !important;	
+}
+.img-comment-list p {
+  font-family: 'Abhaya Libre', serif;
+  margin: 0;
+  font-size: 18px;
+  color: #848484;
+}
+.img-comment-list span {
+  font-family: 'Abhaya Libre', serif;
+  font-size: 0.8em; 
+  color: #aaa;
+}
+
+.img-poster clearfix
+.modal-meta-bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: solid 1px #f4f4f4;
+    height: 30px;
+	display: block;
+}
+.modal-meta-bottom ul{
+  margin: 0px !important;
+  padding: 0px !important;
+  font-size: 0px !important;
+}
+.modal-meta-bottom li{
+  list-style: none;	
+  padding: 0px !important;
+  margin: 0px !important;
+  font-size: 0px !important;
+}
+.modal-meta-bottom li a.modal-like i{
+  font-size: 14px !important;
+  color: #e16a70 !important;
+  margin-right: 4px;
+  margin-left: 10px;
+}
+.modal-meta-bottom li a.modal-comment i{
+  font-size: 14px !important;
+  color: #848484 !important;
+  margin-right: 4px;
+}
+.modal-meta-bottom li span.modal-one{
+  margin-right: 10px;	
+  color: #e16a70 !important;
+}
+.modal-meta-bottom li span{
+  font-family: 'Abhaya Libre', serif;	
+  font-size: 14px !important;
+  color: #848484;
+}
+.modal-meta-bottom li a:hover{
+  color: #e16a70 !important;
+}
+.modal-meta-bottom .thumb-xs{
+  display: inline-block;
+  text-align: center;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+.modal-meta-bottom .thumb-xs img{
+  width: 25px;
+  height: 25px;  
+}
+.modal-meta-bottom .comment-body {
+  float: right !important;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+.modal-meta-bottom .comment-body input{
+  width: 100%;
+}
+
+
+
+
+/* ==========================================================================
+   Media Queries for Modal
+   ========================================================================== */
+   
+/* Desktop */
+@media (max-width: 1024px){
+}
+
+@media (max-width: 992px){
+	.modal-dialog{
+	  width: 700px;	
+	}	
+    .modal-content {
+        border-radius: 0;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+	.img-poster{
+	  padding-top: 5px;	
+	}	
+}
+
+/* Tablets */
+@media (max-width: 800px){
+}
+
+@media (max-width: 768px){
+	.modal-dialog{
+	  width: 600px;	
+	}	
+	.modal-image img{
+	  height: auto !important;	
+	}
+	.img-poster{
+	  padding-top: 5px;	
+	}	
+}
+
+
+
+    
+    

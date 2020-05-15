@@ -9,14 +9,21 @@ import FindPasswordAuth from "./FindPasswordAuth";
 import FindPasswordChange from "./FindPasswordChange";
 import MyProfilePage from "./MyProfilePage";
 
+/////////////////////////////////////////////////////////////////////
+
+import MyCalendarPage from './MyCalendarPage'
+import ErrorPage from './ErrorPage'
+
+
 class App extends Component {
-	render() {
-		return (
-			<div className="App">
-				<MyProfilePage />
-			</div>
-		);
-	}
+  render() {
+    
+    return (
+      <div className="App" >
+         <MyCalendarPage/>
+      </div>
+    );
+  }
 }
 
 export default App;
