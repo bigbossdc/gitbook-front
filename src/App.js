@@ -8,7 +8,7 @@ import UploadPage from './UploadPage';
 import Join from './Join';
 import FindId from './FindID';
 import Group from './Group';
-import Group2 from './Group2';
+import Group2 from './Group2;
 
 /////////////////////////////////////////////////////////////////////
 
