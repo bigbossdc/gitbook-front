@@ -13,7 +13,7 @@ class MyTimelinePage extends Component {
     return (
       <div className="App" >
        <Header></Header>
-       <Header2 name="MyTimeline"></Header2>
+       <Header2 name="Group"></Header2>
        <section className="profile-two">
        <div className="container-fluid">
         <div className="row">
@@ -23,9 +23,11 @@ class MyTimelinePage extends Component {
               <div className="col-lg-6" style={{backgroundColor: "#00b",marginTop:"1px"}}>
               
               <TimelineItem></TimelineItem>
+              <TimelineItem></TimelineItem>
+              <TimelineItem></TimelineItem>
+              <TimelineItem></TimelineItem>
 
-              </div>
-              {/** 두번째 섹션 */}
+              </div>{/** 두번째 섹션 */}
               {/** 세번째 섹션 */}
               <Navigation2></Navigation2>
               {/** 세번째 섹션 */}
