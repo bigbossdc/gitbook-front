@@ -1,0 +1,54 @@
+
+
+.RepositoryPage a {
+    color:black;
+    font-family:  'Varela Round', sans-serif;
+    margin:4px;
+}
+
+.RepositoryPage a :hover{
+    color:#0FC19E;
+    
+}
+
+.RepositoryPage h2 {
+  display: inline;
+  font-size :1.7em;
+}
+.RepositoryPage p{
+    font-size :1.2em;
+    margin:4px;
+   
+    min-height: 60px;
+    border-radius: 5px;
+}
+
+.RepositoryPage.cardbox-heading{
+    background-color:#F4F4F4;
+}
+
+.RepositoryPage .button1{
+    color:#FFFFFF ;
+    background-color:#0FC19E;
+    border-radius:  5px 0px 0px 5px;
+    border-right: 0px;
+   
+}
+.RepositoryPage .button1:focus{
+    outline: none;
+}
+
+.textarea1{
+   width: 70%;
+   height: 24px;
+    color: black;
+   margin :0px 0 -8px 0;
+   resize: none;
+   overflow:hidden;
+   border-left: 0px;
+   border-radius:  0px 5px 5px 0px;
+}
+
+.textarea1:focus{
+    outline: none;
+}

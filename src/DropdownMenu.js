@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './Fluffs/assets/css/demos/photo.css';
+
 
 
 class DropdownMenu extends Component {

@@ -1,19 +1,28 @@
 import React, {Component} from 'react';
 import MyTimeLinePage from './MyTimeLinePage';
-
-import {BrowserRouter as Router, Route} from "react-router-dom";
-import Join from './Join';
-import FindID from './FindID';
-import FindPassword from './FindPassword';
-import FindPasswordAuth from './FindPasswordAuth';
-import FindPasswordChange from './FindPasswordChange'
+import RepositoryWritePage from './RepositoryWritePage';
+import RepositoryPage from './RepositoryPage';
+import RepositoryListPage from './RepositoryListPage';
+import FriendSearchList from './FriendSearchList';
+import UploadPage from './UploadPage';
 
 class App extends Component {
   render() {
     
     return (
       <div className="App" >
-      <MyTimeLinePage></MyTimeLinePage>
+      
+
+
+
+      <UploadPage/>
+      <FriendSearchList/>
+      <RepositoryPage/>
+      <RepositoryWritePage/>
+      <RepositoryListPage/>
+      
+      
+      
       </div>
     );
   }

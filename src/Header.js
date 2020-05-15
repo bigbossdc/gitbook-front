@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import './Fluffs/assets/css/demos/photo.css';
 import Slim from './Slim';
 import DropdownMenu from './DropdownMenu';
 
