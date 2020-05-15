@@ -683,8 +683,7 @@ a.navbar-brand:hover {
     position: relative;
     display: block;
 }
-.cardbox .cardbox-item img{
-}
+
 .img-responsive{
     display: block;
     max-width: 100%;
@@ -769,6 +768,7 @@ a.navbar-brand:hover {
    Modal Styles
    ========================================================================== */  
 .modal-dialog{
+  position: absolute;
   width: 830px;	
   height: 450px !important;
 }

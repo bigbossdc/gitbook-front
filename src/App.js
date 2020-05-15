@@ -8,16 +8,21 @@ import FindPassword from './FindPassword';
 import FindPasswordAuth from './FindPasswordAuth';
 import FindPasswordChange from './FindPasswordChange'
 
+/////////////////////////////////////////////////////////////////////
+
+import MyCalendarPage from './MyCalendarPage'
+import ErrorPage from './ErrorPage'
+
+
 class App extends Component {
   render() {
     
     return (
       <div className="App" >
-      <MyTimeLinePage></MyTimeLinePage>
+         <MyCalendarPage/>
       </div>
     );
   }
-
 }
 
 export default App;
