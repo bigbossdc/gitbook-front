@@ -4,10 +4,12 @@ import Header from './Header';
 import Header2 from './Header2';
 import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
-import TimelineItem from './TimelineItem';
+import GroupList from './GroupList';
+import GroupInfo from './GroupInfo';
+import GroupRegist from './GroupRegist';
 
-
-class MyTimelinePage extends Component {
+{/*My Navigation 사용하는 그룹 관련 페이지 - 그룹 요청 페이지, 그룹 정보 페이지*/}
+class Group extends Component {
   render() {
     
     return (
@@ -20,14 +22,11 @@ class MyTimelinePage extends Component {
               <Navigation></Navigation>  {/** 네비게이션 */}
 
               {/** 두번째 섹션 */}
-              <div className="col-lg-6" style={{marginTop:"1px"}}>
-              
-              <TimelineItem></TimelineItem>
-              <TimelineItem></TimelineItem>
-              <TimelineItem></TimelineItem>
-              <TimelineItem></TimelineItem>
+              <div className="col-lg-6" style={{background: "#f4f4f4",marginTop:"1px"}}>
+              <GroupInfo></GroupInfo>
 
-              </div>{/** 두번째 섹션 */}
+              </div>
+              {/** 두번째 섹션 */}
               {/** 세번째 섹션 */}
               <Navigation2></Navigation2>
               {/** 세번째 섹션 */}
@@ -41,4 +40,4 @@ class MyTimelinePage extends Component {
 
 }
 
-export default MyTimelinePage;
+export default Group;
