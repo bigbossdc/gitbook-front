@@ -24,7 +24,6 @@ function Calendar() {
               )
             })
           }
-        
         </div>
       )
     }
@@ -33,7 +32,7 @@ function Calendar() {
   return (
     <div className="Calendar">
       
-      <div className="body">
+      <div className="body" >
         <div className="row">
           <div className="box">
             <span className="text">SUN</span>
