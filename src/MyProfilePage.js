@@ -8,6 +8,7 @@ import ProfileAndAccount from "./ProfileAndAccount"
 
 class MyProfilePage extends Component {
 	render() {
+		console.log("called MyProfilePage...");
 		return (
 			<Fragment>
 				<Header></Header>

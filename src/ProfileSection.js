@@ -33,6 +33,7 @@ export default class ProfileSection extends Component {
 	};
 
 	render() {
+		console.log("called ProfileSection...");
 		return (
 			<aside id="leftsidebar" className="sidebar">
 				<ul className="list">

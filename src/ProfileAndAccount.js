@@ -4,30 +4,45 @@ import "./Fluffs/assets/css/ProfileAndAccount_tab.css";
 import ProfileSection from "./ProfileSection";
 import AccountSettingSection from "./AccountSettingSection";
 
+const tabMenu = {
+	profile: <ProfileSection />,
+	account: <AccountSettingSection />,
+};
+
 export default class ProfileAndAccount extends Component {
 	constructor() {
 		super(...arguments);
+
 		this.state = {
 			currentTab: "profile",
-			currentTabObj: <ProfileSection/>
 		};
 	}
-	
+
+	onChangeTab = (event) => {
+		let tabName = event.target.name;
+		if (tabName !== this.state.currentTab) {
+			this.setState({
+				currentTab: tabName,
+			});
+		}
+	};
 
 	render() {
+		console.log("called ProfileAndAccount...");
 		return (
 			<div className="banner-content" style={{ marginTop: "0px" }}>
 				<div className="tab">
-					<button className="tablinks" onClick={ () => this.setState({currentTab: "profile", currentTabObj: <ProfileSection/>}) }>
+					<button className="tablinks" name="profile" onClick={this.onChangeTab.bind(this)}>
 						Profile
 					</button>
-					<button className="tablinks" onClick={ () => this.setState({currentTab: "account", currentTabObj: <AccountSettingSection/>}) }>
+					<button className="tablinks" name="account" onClick={this.onChangeTab.bind(this)}>
 						Account
 					</button>
 				</div>
-				<br/><br/>
+				<br />
+				<br />
 
-				{this.state.currentTabObj}
+				{tabMenu[this.state.currentTab]}
 			</div>
 		);
 	}
