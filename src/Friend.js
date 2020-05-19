@@ -4,7 +4,7 @@ import Header from './Header';
 import Header2 from './Header2';
 import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
-import GroupList from './GroupList';
+import FriendList from './FriendList';
 import GroupInfo from './GroupInfo';
 import GroupRegist from './GroupRegist';
 
@@ -15,7 +15,7 @@ class Group extends Component {
     return (
       <div className="App" >
        <Header></Header>
-       <Header2 name="Group"></Header2>
+       <Header2 name="Friend"></Header2>
        <section className="profile-two">
        <div className="container-fluid">
         <div className="row">
@@ -25,8 +25,7 @@ class Group extends Component {
               <div className="col-lg-6" style={{background: "#f4f4f4",marginTop:"1px"}}>
               {/* <GroupInfo></GroupInfo>
               <GroupRegist></GroupRegist> */}
-              <GroupList></GroupList>
-            
+              <FriendList></FriendList>
 
 
               </div>

@@ -21,8 +21,7 @@ class GroupSetting extends Component {
 
         return(  
             <div>
-                <GroupHeaderImg></GroupHeaderImg>
-                <div className="tab">
+                <div className="gtab">
                     <button className="tablinks" onClick={() => this.setState({currentTabObj : <GroupSettingInfo/>})}>기본정보관리</button>
                     <button className="tablinks" onClick={() => this.setState({currentTabObj : <GroupSettingAddUser/>})}>맴버추가관리</button>
                     <button className="tablinks" onClick={() => this.setState({currentTabObj : <GroupSettingDeleteUser/>})}>맴버탈퇴관리</button>

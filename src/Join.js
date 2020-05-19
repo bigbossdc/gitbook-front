@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 import './Fluffs/assets/css/demos/photo.css';
 import './Fluffs/assets/css/demos/join.css';
 
@@ -6,26 +7,22 @@ const calYear = [];
 const calMonth = [];
 const calDay = [];
 
-for(var i = 1900; i <= 2020; i++) {
+for(let i = 1900; i <= 2020; i++) {
   calYear.push(<option value={i}>{i}</option>);
 }
-for(var i = 1; i <= 12; i++) {
+for(let i = 1; i <= 12; i++) {
   calMonth.push(<option value={i}>{i}</option>);
 }
-for(var i = 1; i <= 31; i++) {
+for(let i = 1; i <= 31; i++) {
   calDay.push(<option value={i}>{i}</option>);
 }
-
 
 
 class join extends Component {
   
     render() {
         return(
-          <section className="login">
-            <div className="container">
-              <div className="banner-content">
-                <h1><i className="fa fa-smile"></i> GitBook </h1>
+              <div>
                 <form method="post" className="form-signin">                 
                   <div className="form-group-join">
                     <input name="email" type="text" className="form-control-join-email" placeholder="이메일"/>
@@ -71,15 +68,13 @@ class join extends Component {
                       <label for="gender">여자</label>
                     </div>
                   </div>
-
-                  <button className="kafe-btn kafe-btn-mint btn-block" type="submit" name="subm">가입하기</button>
+                  {/*나중에 가입완료 안내 다이얼로그 필요*/}
+                  <Link to="/find/join/success"><button className="kafe-btn kafe-btn-mint btn-block" type="submit" name="subm">가입하기</button></Link>
                   <br/>
-                  <a className="btn btn-dark " href="photo_login.html" role="button" style={{marginTop:"10px"}}>이미 GitBook회원이신가요? 지금 로그인 하기</a><br/>
+                  <Link to="/find" className="btn btn-dark " role="button" style={{marginTop:"10px"}}>이미 GitBook회원이신가요? 지금 로그인 하기</Link><br/>
                 
                 </form>
               </div>
-            </div>
-            </section>
         );
     }
 }

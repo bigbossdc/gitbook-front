@@ -11,7 +11,7 @@ class GroupInfo extends Component {
             <GroupHeaderImg></GroupHeaderImg>
             <div className="group-req">
                 <div className="group-master-area">                
-                    <img className="img-fluid img-circle abc" src="assets/img/users/13.jpeg" alt="Image"></img>            
+                    <img className="img-fluid img-circle abc" src="/assets/img/users/13.jpeg" alt="Image"></img>            
                     <span>
                         <h4>안녕하세요! GibBook그룹에 오신것을 환영합니다!!<br/>
                             여기는 개발자들을 위한 공간입니다.<br/>

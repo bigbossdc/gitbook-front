@@ -264,7 +264,7 @@ export default class MainCalendar extends Component {
          </button>
    
           <div className="img-poster clearfix">
-           <a href=""><img className="img-responsive img-circle" src="assets/img/users/18.jpg" alt="Image"></img></a>
+           <a href=""><img className="img-responsive img-circle" src="/assets/img/users/18.jpg" alt="Image"></img></a>
            <strong><a style={{fontSize:25}}>2020-05-14</a></strong>
            <br></br>
            <br/>

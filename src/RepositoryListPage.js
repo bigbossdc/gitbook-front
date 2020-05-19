@@ -4,7 +4,7 @@ import Header from './Header';
 import Header2 from './Header2';
 import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
-import RepositoryListItem from './RepositoryListItem';
+import RepositoryListItem from './GroupRepositoryListItem';
 
 
 

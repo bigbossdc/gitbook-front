@@ -44,7 +44,7 @@ export default class AccountSettingBeforeAuth extends Component {
 	render() {
 		return (
 			<div className="form-signin">
-				<img src="assets/img/users/1.jpg" className="img-responsive img-circle" alt="User" style={{ margin: "0 auto", width: "50%", height: "50%" }} />
+				<img src="/assets/img/users/1.jpg" className="img-responsive img-circle" alt="User" style={{ margin: "0 auto", width: "50%", height: "50%" }} />
 				<br />
 				<br />
 				<h1 style={{ color: "black", fontFamily: "Varlera Round" }}>재인증 필요</h1>
