@@ -15,10 +15,10 @@ class NavigationGroup extends Component {
                   <div className="user-info">
                     <div className="image">
                   <a href="photo_profile_two.html">
-                    <img src="assets/img/users/13.jpeg" className="img-responsive img-circle" alt="User"></img>
+                    <img src="/assets/img/users/13.jpeg" className="img-responsive img-circle" alt="User"></img>
                   </a>
                      {/*그룹 관리자만 나오는 아이콘 - 설정페이지*/}
-                    <Link to="/setting"><i class="fas fa-cog fa-2x"/></Link>
+                    <Link to="/group/setting"><i class="fas fa-cog fa-2x"/></Link>
                
                     </div>
                 <div className="detail">
@@ -37,10 +37,10 @@ class NavigationGroup extends Component {
               </li>
              
               <li>
-               <small className="text-muted"><a href="photo_profile_two.html">Group Repository <em className="fa fa-angle-right pull-right"></em></a> </small><br/>
-              
-               <small className="text-muted"><a href="photo_followers.html">Group Schedule <em className="fa fa-angle-right pull-right"></em></a> </small><br/>
-               <small className="text-muted"><a href="photo_followers.html">Group Commit <em className="fa fa-angle-right pull-right"></em></a> </small><br/>
+               <Link to="/group"><small className="text-muted">Group Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
+               <Link to="/group/repository"><small className="text-muted">Group Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
+               <Link to="/group/schedule"><small className="text-muted">Group Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
+               <Link to="/group/commit"><small className="text-muted">Group Commit <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
                 <br></br>
              
               </li> 

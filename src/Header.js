@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom'
 import Slim from './Slim';
 import DropdownMenu from './DropdownMenu';
 
@@ -8,11 +9,12 @@ class Header extends Component {
     render() {
        
         return(
-           <header className="tr-header" >
+           <header className="tr-header"style={{position:"fixed", width:"100%",zIndex:"100" }}>
                <nav className="navbar navbar-default" >
                     <div className="container-fluid">
 	                    <div className="navbar-header">
-                         <a className="navbar-brand" href="index.html"> GitBook</a>
+							{/* 메인페이지로 링크 변경 필요 */}
+                         <Link to="/main" className="navbar-brand" href="index.html"> GitBook</Link>
                         </div> {/* /navbar-header */}
                         
                         <div className="navbar-right">
@@ -64,7 +66,7 @@ class Header extends Component {
 
            <li className="dropdown mega-avatar">
 		  <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-		   <span className="avatar w-32"><img src="assets/img/users/2.jpg" className="img-resonsive img-circle" width="25" height="25" alt="..."></img></span>
+		   <span className="avatar w-32"><img src="/assets/img/users/2.jpg" className="img-resonsive img-circle" width="25" height="25" alt="..."></img></span>
 		  
 		   <span className="hidden-xs" style={{fontFamily: " 'Varela Round', sans-serif",marginLeft:"10px"}}>
 			<strong>

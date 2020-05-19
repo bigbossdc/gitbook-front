@@ -5,7 +5,7 @@ import Header2 from './Header2';
 import NavigationGroup from './NavigationGroup';
 import NavigationGroup2 from './NavigationGroup2';
 import TimelineItem from './TimelineItem';
-import GroupHeaderImg from './GroupHeaderImg';
+
 
 
 class GroupTimeLinePage extends Component {
@@ -13,7 +13,6 @@ class GroupTimeLinePage extends Component {
     
     return (
       <div>
-              <GroupHeaderImg></GroupHeaderImg>
               <TimelineItem></TimelineItem>
               <TimelineItem></TimelineItem>
               <TimelineItem></TimelineItem>
