@@ -32,12 +32,20 @@ class GroupRouter extends Component {
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{background: "#fff",marginTop:"1px"}}>             
                   <GroupHeaderImg></GroupHeaderImg>
-                  <Route exact path="/group" component={GroupTimeLinePage}/>
+                  {/* <Route exact path="/group" component={GroupTimeLinePage}/>
                   <Route exact path="/group/setting" component={GroupSetting}/>
                   <Route exact path="/group/repository" component={GroupRepositoryListPage}/>
                   <Route exact path="/group/repository/detail" component={GroupRepositoryPage}/>
                   <Route exact path="/group/repository/write" component={GroupRepositoryWritePage}/>
-                  <Route exact path="/group/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
+                  <Route exact path="/group/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/> */}
+
+
+                  <Route  path="/group" exact component={GroupTimeLinePage}/>
+                  <Route  path="/group/setting" exact component={GroupSetting}/>
+                  <Route  path="/group/repository" exact component={GroupRepositoryListPage}/>
+                  <Route  path="/group/repository/detail" exact component={GroupRepositoryPage}/>
+                  <Route  path="/group/repository/write" exact component={GroupRepositoryWritePage}/>
+                  <Route  path="/group/schedule"  exact component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
 
                   </div>
               

@@ -14,7 +14,7 @@ export default class ProfileSection extends Component {
 		};
 	}
 
-	onStatusChange = (event) => {
+	onStatusChange(event){
 		let name = event.target.name;
 		if(name === 'nickname'){
 			this.setState({

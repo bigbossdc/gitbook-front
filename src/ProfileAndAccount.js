@@ -18,7 +18,7 @@ export default class ProfileAndAccount extends Component {
 		};
 	}
 
-	onChangeTab = (event) => {
+	onChangeTab(event){
 		let tabName = event.target.name;
 		if (tabName !== this.state.currentTab) {
 			this.setState({

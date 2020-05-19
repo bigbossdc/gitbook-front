@@ -52,7 +52,18 @@ class App extends Component {
       <Group2></Group2> */}
       
       {/* <MyCalendarPage></MyCalendarPage> */}
-      <Route exact path={['/']} component={FindRouter}></Route>
+      
+      
+      {/* <Route exact path={['/']} component={FindRouter}></Route>
+      <Route path={['/find']} component={FindRouter}></Route>
+      <Route path="/main" component={MainRouter}></Route>
+      <Route path="/my" component={MyRouter}></Route>
+      <Route path="/mygroup" component={MyGroupRouter}></Route>
+      <Route path="/myfriend" component={MyFriendRouter}></Route>
+      <Route path="/group" component={GroupRouter}></Route> */}
+
+
+      <Route path={['/']} exact component={FindRouter}></Route>
       <Route path={['/find']} component={FindRouter}></Route>
       <Route path="/main" component={MainRouter}></Route>
       <Route path="/my" component={MyRouter}></Route>
