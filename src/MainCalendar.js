@@ -113,7 +113,7 @@ export default class MainCalendar extends Component {
     return DAYS_SHORT[dayOfWeek];
   }
 
-  previousMonth = () => {
+  previousMonth (){
     const { month, year } = this.state;
 
     this.setState({

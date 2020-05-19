@@ -7,7 +7,7 @@ import "./RepositoryPage.css";
 import RepositoryTable from "./RepositoryTable";
 
 class GroupRepositoryPage extends Component {
-  copyToClipboard = (e) => {
+  copyToClipboard(e){
     this.textArea.select();
     document.execCommand("copy");
     e.target.focus();
