@@ -35,7 +35,7 @@ class Header2 extends Component {
                 </div>
 	   
                 <div className={(this.props.name === "Friend" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>
-                <Link to="/myfriend" className="nav-icon" href="photo_profile.html"><em className="fa fa-user"></em>
+                <Link to="/myfriend" className="nav-icon"><em className="fa fa-user"></em>
                     <span>Friend</span>
                 </Link>
                 </div>

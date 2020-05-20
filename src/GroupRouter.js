@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Router } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Header from './Header';
 import Header2 from './Header2';
 import NavigationGroup from './NavigationGroup';
 import NavigationGroup2 from './NavigationGroup2';
-import GroupInfo from './GroupInfo';
 import GroupSetting from './GroupSetting';
 import GroupTimeLinePage from './GroupTimeLinePage';
-import {render} from 'react-dom';
-import GroupRegist from './GroupRegist';
 import MainCalendar from './MainCalendar';
 import GroupHeaderImg from './GroupHeaderImg';
 import GroupRepositoryListPage from './GroupRepositoryListPage';
@@ -32,13 +29,6 @@ class GroupRouter extends Component {
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{background: "#fff",marginTop:"1px"}}>             
                   <GroupHeaderImg></GroupHeaderImg>
-                  {/* <Route exact path="/group" component={GroupTimeLinePage}/>
-                  <Route exact path="/group/setting" component={GroupSetting}/>
-                  <Route exact path="/group/repository" component={GroupRepositoryListPage}/>
-                  <Route exact path="/group/repository/detail" component={GroupRepositoryPage}/>
-                  <Route exact path="/group/repository/write" component={GroupRepositoryWritePage}/>
-                  <Route exact path="/group/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/> */}
-
 
                   <Route  path="/group" exact component={GroupTimeLinePage}/>
                   <Route  path="/group/setting" exact component={GroupSetting}/>

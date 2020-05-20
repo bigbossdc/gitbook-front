@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import './Fluffs/assets/css/demos/photo.css';
+import {Link} from "react-router-dom";
 import './Fluffs/assets/css/demos/group.css';
 
 
@@ -12,7 +12,7 @@ class FriendListJoinItem extends Component {
                     <div className="media"> 
                         <img src="assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
-                                <p><h4><b>에옹이</b></h4></p>
+                                <Link to="/my"><p><h4><b>에옹이</b></h4></p></Link>
                                 <h5>전유진 (yjin@naver.com)</h5>
                                 <div className="btn_group"> 
                                     <a className="kafe-btn kafe-btn-mint">메시지</a>

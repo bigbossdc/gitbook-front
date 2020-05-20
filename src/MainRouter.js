@@ -18,8 +18,8 @@ class MainRouter extends Component {
                 <div className="followers-box full-width">
 
                   {/** 두번째 섹션 */}
-                  <Route exact path="/main" component={MainTimelineList} />
-                  <Route exact path="/main/friendsearch" component={FriendSearchList}/>
+                  <Route path="/user/auth" component={MainTimelineList} />
+                  <Route path="/main/friendsearch" exact component={FriendSearchList}/>
 
                 </div>
               </div>

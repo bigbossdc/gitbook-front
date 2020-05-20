@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import "./Fluffs/assets/css/demos/photo.css";
+
 import AccountSettingBeforeAuth from "./AccountSettingBeforeAuth";
 import AccountSettingAfterAuth from "./AccountSettingAfterAuth";
 

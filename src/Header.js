@@ -14,7 +14,7 @@ class Header extends Component {
                     <div className="container-fluid">
 	                    <div className="navbar-header">
 							{/* 메인페이지로 링크 변경 필요 */}
-                         <Link to="/main" className="navbar-brand" href="index.html"> GitBook</Link>
+                         <Link to="/user/auth" className="navbar-brand" href="index.html"> GitBook</Link>
                         </div> {/* /navbar-header */}
                         
                         <div className="navbar-right">
@@ -31,20 +31,20 @@ class Header extends Component {
                         
                         
                         
-                            <li className="dropdown notification-list">
-		                        <a className="nav-link dropdown-toggle" datatoggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-			                        <i className="fa fa-bell noti-icon" style={{display:"inline-block"}}></i>
-			                            <span className="badge badge-danger badge-pill noti-icon-badge">4</span>
-			                    </a>
-			                    <div className="dropdown-menu dropdown-menu-right dropdown-lg">
-             
-			                         <div className="dropdown-item noti-title">
-			                             <h6 className="m-0">
-			                                 <span className="pull-right">
-			                                 <a href="" className="text-dark"><small>Clear All</small></a> 
-			                                  </span>Notification
-			                            </h6>
-			                        </div>
+		<li className="dropdown notification-list">
+			  <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+				<i className="fa fa-bell noti-icon" style={{display:"inline-block"}}></i>
+					<span className="badge badge-danger badge-pill noti-icon-badge">4</span>
+			</a>
+			<div className="dropdown-menu dropdown-menu-right dropdown-lg">
+
+					<div className="dropdown-item noti-title">
+						<h6 className="m-0">
+							<span className="pull-right">
+							<a href="" className="text-dark"><small>Clear All</small></a> 
+							</span>Notification
+					</h6>
+				</div>
 
 
 
