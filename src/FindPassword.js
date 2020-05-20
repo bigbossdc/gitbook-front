@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-import './Fluffs/assets/css/demos/photo.css';
-import './Fluffs/assets/css/demos/join.css';
+
 
 class FindPassword extends Component {
     render() {

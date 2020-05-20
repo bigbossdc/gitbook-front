@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-import Header from "./Header";
-import Header2 from "./Header2";
-import Navigation from "./Navigation";
-import Navigation2 from "./Navigation2";
 import "./RepositoryPage.css";
 import RepositoryTable from "./RepositoryTable";
 
@@ -12,6 +8,9 @@ class MyRepositoryPage extends Component {
     document.execCommand("copy");
     e.target.focus();
   };
+  copyfuntion(textarea){
+    this.textArea = textarea
+  }
 
   render() {
     return (
@@ -72,7 +71,7 @@ class MyRepositoryPage extends Component {
             <div>
               {document.queryCommandSupported("copy") && (
                 <div style={{ display: "inline" }}>
-                  <button className="button1" onClick={this.copyToClipboard}>
+                  <button className="button1" onClick={this.copyToClipboard.bind(this)}>
                     Copy
                   </button>
                 </div>
@@ -80,7 +79,10 @@ class MyRepositoryPage extends Component {
               <form style={{ display: "inline" }}>
                 <textarea
                   className="textarea1"
-                  ref={(textarea) => (this.textArea = textarea)}
+                  ref={(textarea) => (this.textArea = textarea)
+
+                  
+                  }
                   value="http://www.naver.com1231231/"
                 />
               </form>

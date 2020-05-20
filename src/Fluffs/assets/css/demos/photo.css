@@ -9,10 +9,19 @@
 /* ------------------------------------------------------------------- */
 /* Import Section
 ---------------------------------------------------------------------- */
-@import url("/gitbook-front/src/Fluffs/assets/css/base.css");				/* Default Reset, Typography, Forms, etc. */
-@import url("/gitbook-front/src/Fluffs/assets/css/bootstrap.min.css");			/* Bootstrap 3.3.7 */
-@import url("/gitbook-front/src/Fluffs/assets/css/fontawesome-all.min.css");		/* Font-awesome 5.0.10 */
+/* @import url("/gitbook-front/src/Fluffs/assets/css/base.css");				
+@import url("/gitbook-front/src/Fluffs/assets/css/bootstrap.min.css");			
+@import url("/gitbook-front/src/Fluffs/assets/css/fontawesome-all.min.css");		
 @import url("/assets/css/skins/skin_two.css");	
+*/
+
+@import url("/gitbook06/assets/css/base.css");			
+@import url("/gitbook06/assets/css/bootstrap.min.css");		
+@import url("/gitbook06/assets/css/fontawesome-all.min.css");	
+@import url("/gitbook06/assets/css/skins/skin_two.css");
+
+
+	
 @import url("http://fonts.googleapis.com/css?family=Montserrat:400,700");
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
 @import url("https://fonts.googleapis.com/css?family=Pacifico");
@@ -2254,7 +2263,7 @@ a.navbar-brand:hover {
    Header Styles
    ========================================================================== */  
 .login {
-  background: linear-gradient( rgba(34,34,34,0.7), rgba(34,34,34,0.7) ), url('../../img/bg/10.jpg') no-repeat center center fixed;
+  background: linear-gradient( rgba(34,34,34,0.7), rgba(34,34,34,0.7) ), url('/gitbook06/assets/img/bg/10.jpg') no-repeat center center fixed;
   background-size: cover;
   background-position: center center;
   -webkit-background-size: cover;

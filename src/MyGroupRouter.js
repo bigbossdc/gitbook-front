@@ -1,22 +1,10 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Router } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Header from './Header';
 import Header2 from './Header2';
 import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
-import MyTimelinePage from './MyTimelinePage';
 import GroupInfo from './GroupInfo';
-import GroupSetting from './GroupSetting';
-import GroupTimeLinePage from './GroupTimeLinePage';
-import {render} from 'react-dom';
-import GroupRegist from './GroupRegist';
-import MainCalendar from './MainCalendar';
-import GroupHeaderImg from './GroupHeaderImg';
-import MyRepositoryListPage from './MyRepositoryListPage';
-import GroupRepositoryWritePage from './GroupRepositoryWritePage';
-import GroupRepositoryPage from './GroupRepositoryPage';
-import MyRepositoryPage from './MyRepositoryPage';
-import MyRepositoryWritePage from './MyRepositoryWritePage';
 import GroupList from './GroupList';
 
 {/*Group Navigation 사용하는 그룹 관련 페이지 - 그룹 타임라인, 그룹 관리*/}
@@ -35,8 +23,8 @@ class MyRouter extends Component {
                 
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{background: "#f4f4f4",marginTop:"1px"}}>             
-                  <Route exact path="/mygroup" component={GroupList}/>
-                  <Route exact path="/mygroup/info" component={GroupInfo}/>
+                  <Route path="/mygroup" exact component={GroupList}/>
+                  <Route path="/mygroup/info" exact component={GroupInfo}/>
                  
                   
                   </div>

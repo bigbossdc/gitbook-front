@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+import './Fluffs/assets/css/demos/photo.css';
+// import "/gitbook06/assets/css/demos/photo.css";
 
 ReactDOM.render(
   <BrowserRouter>

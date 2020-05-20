@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Fluffs/assets/css/demos/photo.css";
+
 
 export default class AccountSettingBeforeAuth extends Component {
 	constructor(props) {

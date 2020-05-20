@@ -1,20 +1,12 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Router } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Header from './Header';
 import Header2 from './Header2';
 import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
 import MyTimelinePage from './MyTimelinePage';
-import GroupInfo from './GroupInfo';
-import GroupSetting from './GroupSetting';
-import GroupTimeLinePage from './GroupTimeLinePage';
-import {render} from 'react-dom';
-import GroupRegist from './GroupRegist';
 import MainCalendar from './MainCalendar';
-import GroupHeaderImg from './GroupHeaderImg';
 import MyRepositoryListPage from './MyRepositoryListPage';
-import GroupRepositoryWritePage from './GroupRepositoryWritePage';
-import GroupRepositoryPage from './GroupRepositoryPage';
 import MyRepositoryPage from './MyRepositoryPage';
 import MyRepositoryWritePage from './MyRepositoryWritePage';
 import ProfileAndAccount from './ProfileAndAccount';
@@ -35,13 +27,13 @@ class MyRouter extends Component {
                 
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{background: "#fff",marginTop:"1px"}}>             
-                  <Route exact path="/my" component={MyTimelinePage}/>
-                  <Route exact path="/my/repository" component={MyRepositoryListPage}/>
-                  <Route exact path="/my/repository/detail" component={MyRepositoryPage}/>
-                  <Route exact path="/my/repository/write" component={MyRepositoryWritePage}/>
-                  <Route exact path="/my/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
-                  <Route exact path="/my/profile" component={ProfileAndAccount} />
-                  <Route exact path="/my/account" component={ProfileAndAccount} />
+                  <Route  path="/my" exact component={MyTimelinePage}/>
+                  <Route  path="/my/repository" exact component={MyRepositoryListPage}/>
+                  <Route  path="/my/repository/detail" component={MyRepositoryPage}/>
+                  <Route  path="/my/repository/write" component={MyRepositoryWritePage}/>
+                  <Route  path="/my/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
+                  <Route  path="/my/profile" component={ProfileAndAccount} />
+                  <Route  path="/my/account" component={ProfileAndAccount} />
                   
                   </div>
               

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import './Fluffs/assets/css/demos/photo.css';
-import './Fluffs/assets/css/demos/group.css';
+
 import FriendListJoinItem from "./FriendListJoinItem";
 
 

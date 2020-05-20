@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
-import "./Fluffs/assets/css/demos/photo.css";
-import "./Fluffs/assets/css/dialogbox.css";
+
 
 export default class DialogBox extends Component {
 	constructor() {
