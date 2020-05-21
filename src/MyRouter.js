@@ -27,13 +27,13 @@ class MyRouter extends Component {
                 
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{background: "#fff",marginTop:"1px"}}>             
-                  <Route  path="/my" exact component={MyTimelinePage}/>
-                  <Route  path="/my/repository" exact component={MyRepositoryListPage}/>
-                  <Route  path="/my/repository/detail" component={MyRepositoryPage}/>
-                  <Route  path="/my/repository/write" component={MyRepositoryWritePage}/>
-                  <Route  path="/my/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
-                  <Route  path="/my/profile" component={ProfileAndAccount} />
-                  <Route  path="/my/account" component={ProfileAndAccount} />
+                  <Route  path="/gitbook/my" exact component={MyTimelinePage}/>
+                  <Route  path="/gitbook/my/repository" exact component={MyRepositoryListPage}/>
+                  <Route  path="/gitbook/my/repository/detail" component={MyRepositoryPage}/>
+                  <Route  path="/gitbook/my/repository/write" component={MyRepositoryWritePage}/>
+                  <Route  path="/gitbook/my/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
+                  <Route  path="/gitbook/my/profile" component={ProfileAndAccount} />
+                  <Route  path="/gitbook/my/account" component={ProfileAndAccount} />
                   
                   </div>
               

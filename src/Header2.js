@@ -11,13 +11,13 @@ class Header2 extends Component {
 	            <div className="d-flex justify-content-between">
                            
                 <div className={(this.props.name === "MyTimeline" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>
-                <Link to="/my" className="nav-icon"><em className="fa fa-home"></em>
+                <Link to="/gitbook/my" className="nav-icon"><em className="fa fa-home"></em>
                 <span>MyTimline</span>
                 </Link>
                 </div>
 	  
                 <div className={(this.props.name === "Group" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>
-                <Link to="/mygroup" className="nav-icon"><em className="fa fa-crosshairs"></em>
+                <Link to="/gitbook/mygroup" className="nav-icon"><em className="fa fa-crosshairs"></em>
                     <span>Group</span>
                 </Link>
                 </div>
@@ -35,7 +35,7 @@ class Header2 extends Component {
                 </div>
 	   
                 <div className={(this.props.name === "Friend" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>
-                <Link to="/myfriend" className="nav-icon"><em className="fa fa-user"></em>
+                <Link to="/gitbook/myfriend" className="nav-icon"><em className="fa fa-user"></em>
                     <span>Friend</span>
                 </Link>
                 </div>

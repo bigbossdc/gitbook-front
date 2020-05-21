@@ -24,7 +24,7 @@ class MyFriendRouter extends Component {
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{background: "#f4f4f4",marginTop:"1px"}}>             
            
-                  <Route  path="/myfriend" exact component={FriendList}/>
+                  <Route  path="/gitbook/myfriend" exact component={FriendList}/>
 
                   </div>
               

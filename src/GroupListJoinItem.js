@@ -11,16 +11,16 @@ class GroupListJoinItem extends Component {
             <ul className="group-list">
                 <li>
                     <div className="media"> 
-                        <img src="/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
-                            <Link to="/group"><p><h4><b>CodingVirus19</b></h4></p></Link>
+                            <Link to="/gitbook/group"><p><h4><b>CodingVirus19</b></h4></p></Link>
                                 <h5>with 준영, 동은, 예은, 상훈</h5>
                             </div> 
                     </div>
                 </li>
                 <li>
                     <div className="media first_child"> 
-                        <img src="/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
                                 <Link to=""><p><h4><b>CodeForest</b></h4></p></Link>
                                 <h5>with 유진, 관우, 지술, 태성</h5>
@@ -29,7 +29,7 @@ class GroupListJoinItem extends Component {
                 </li>    
                 <li>
                     <div className="media first_child"> 
-                        <img src="/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
                             <Link to=""><p><h4><b>AlwaysWithMe</b></h4></p></Link>
                                 <h5>with 길행, 우경, 인효, 해용</h5>
@@ -38,7 +38,7 @@ class GroupListJoinItem extends Component {
                 </li>      
                 <li>
                     <div className="media first_child"> 
-                        <img src="/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
                             <Link to=""><p><h4><b>DouzoneMania</b></h4></p></Link>
                                 <h5>with 준영, 은엽, 정은, 태영</h5>

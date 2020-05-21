@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
 import GroupInfo from './GroupInfo';
 import GroupList from './GroupList';
+import GroupRegist from './GroupRegist';
 
 {/*Group Navigation 사용하는 그룹 관련 페이지 - 그룹 타임라인, 그룹 관리*/}
 class MyRouter extends Component {
@@ -23,8 +24,9 @@ class MyRouter extends Component {
                 
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{background: "#f4f4f4",marginTop:"1px"}}>             
-                  <Route path="/mygroup" exact component={GroupList}/>
-                  <Route path="/mygroup/info" exact component={GroupInfo}/>
+                  <Route path="/gitbook/mygroup" exact component={GroupList}/>
+                  <Route path="/gitbook/mygroup/info" component={GroupInfo}/>
+                  <Route path="/gitbook/mygroup/regist" component={GroupRegist}/>
                  
                   
                   </div>

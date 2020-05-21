@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import GroupRouter from './GroupRouter';
 import MainRouter from './MainRouter';
@@ -15,12 +15,12 @@ class App extends Component {
     return (
       <div className="App" >
       
-        <Route path="/user" component={MainRouter}></Route>
-        <Route path="/my" component={MyRouter}></Route>
-        <Route path="/mygroup" component={MyGroupRouter}></Route>
-        <Route path="/myfriend" component={MyFriendRouter}></Route>
-        <Route path="/group" component={GroupRouter}></Route> 
-
+        <Route path="/gitbook/main" component={MainRouter}></Route>
+        <Route path="/gitbook/my" component={MyRouter}></Route>
+        <Route path="/gitbook/mygroup" component={MyGroupRouter}></Route>
+        <Route path="/gitbook/myfriend" component={MyFriendRouter}></Route>
+        <Route path="/gitbook/group" component={GroupRouter}></Route> 
+        
       </div>
     );
   }

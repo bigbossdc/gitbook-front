@@ -14,7 +14,7 @@ class MyRepositoryListPage extends Component {
                         <i className="fa fa-search"></i>
                       </div>
                   </div>
-                  <Link to="/my/repository/write" className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
+                  <Link to="/gtibook/my/repository/write" className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
                 </div>
                 <hr></hr>
                 
