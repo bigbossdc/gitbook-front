@@ -7,7 +7,7 @@ class FriendSearchItem extends Component {
         <div className="followers-body" style={{ margin: "10px 0px" }}>
           <img
             className="img-responsive img-circle"
-            src="/assets/img/users/1.jpg"
+            src="/gitbook/assets/img/users/1.jpg"
             style={{
               width: "70px",
               height: "70px",

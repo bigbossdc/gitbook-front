@@ -42,7 +42,7 @@ class TimeLineItem extends Component {
 
           <div className="media m-0">
             < div className="d-flex mr-3">
-              <a href="#"><img className="img-responsive img-circle" src="/assets/img/users/1.jpg" alt="User"></img></a>
+              <a href="#"><img className="img-responsive img-circle" src="/gitbook/assets/img/users/1.jpg" alt="User"></img></a>
             </div>
             <div className="media-body">
               <p className="m-0" style={{ fontFamily: " 'Varela Round', sans-serif", fontSize: "1.3em" }}><a className="text-muted" href="/">지존혜딘공듀</a></p>
@@ -57,24 +57,24 @@ class TimeLineItem extends Component {
           {/**<a href="#myModal" data-toggle="modal"> */}
           <div className="row">
             <div className="col-lg-3">
-              <img className="img-responsive" src="/assets/img/users/5.jpg" alt="MaterialImg"></img>
+              <img className="img-responsive" src="/gitbook/assets/img/users/5.jpg" alt="MaterialImg"></img>
             </div>
 
             <div className="col-lg-3">
-              <img className="img-responsive" src="/assets/img/users/5.jpg" alt="MaterialImg"></img>
+              <img className="img-responsive" src="/gitbook/assets/img/users/5.jpg" alt="MaterialImg"></img>
             </div>
 
             <div className="col-lg-3">
-              <img className="img-responsive" src="/assets/img/users/5.jpg" alt="MaterialImg"></img>
+              <img className="img-responsive" src="/gitbook/assets/img/users/5.jpg" alt="MaterialImg"></img>
             </div>
             <div className="col-lg-3">
-              <img className="img-responsive" src="/assets/img/users/5.jpg" alt="MaterialImg"></img>
+              <img className="img-responsive" src="/gitbook/assets/img/users/5.jpg" alt="MaterialImg"></img>
             </div>
             <div className="col-lg-3">
-              <img className="img-responsive" src="/assets/img/users/5.jpg" alt="MaterialImg"></img>
+              <img className="img-responsive" src="/gitbook/assets/img/users/5.jpg" alt="MaterialImg"></img>
             </div>
             <div className="col-lg-3">
-              <img className="img-responsive" src="/assets/img/users/5.jpg" alt="MaterialImg"></img>
+              <img className="img-responsive" src="/gitbook/assets/img/users/5.jpg" alt="MaterialImg"></img>
             </div>
 
           </div>

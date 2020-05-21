@@ -10,9 +10,9 @@ class GroupListRequestItem extends Component {
             <ul className="group-list">
                 <li>
                     <div className="media"> 
-                        <img src="/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
-                                <Link to="/mygroup/info"><p><h4><b>Douzone</b></h4></p></Link>
+                                <Link to="/gitbook/mygroup/info"><p><h4><b>Douzone</b></h4></p></Link>
                                 <h5>Douzone 그룹에서 참여를 원합니다!!</h5>
                                 <div className="btn_group"> 
                                     <a className="kafe-btn kafe-btn-mint">수락</a>
@@ -23,9 +23,9 @@ class GroupListRequestItem extends Component {
                 </li>
                 <li>
                     <div className="media first_child"> 
-                        <img src="/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
-                            <Link to="/mygroup/info"><p><h4><b>GitBook</b></h4></p></Link>
+                            <Link to="/gitbook/mygroup/info"><p><h4><b>GitBook</b></h4></p></Link>
                             <h5>GitBook 그룹에서 참여를 원합니다!!</h5>
                                 <div className="btn_group"> 
                                     <a className="kafe-btn kafe-btn-mint">수락</a>
@@ -36,9 +36,9 @@ class GroupListRequestItem extends Component {
                 </li>    
                 <li>
                     <div className="media first_child"> 
-                        <img src="/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
-                            <Link to="/mygroup/info"><p><h4><b>Mysite</b></h4></p></Link>
+                            <Link to="/gitbook/mygroup/info"><p><h4><b>Mysite</b></h4></p></Link>
                             <h5>Mysite 그룹에서 참여를 원합니다!!</h5>
                                 <div className="btn_group"> 
                                     <a className="kafe-btn kafe-btn-mint">수락</a>
@@ -49,9 +49,9 @@ class GroupListRequestItem extends Component {
                 </li> 
                 <li>
                     <div className="media first_child"> 
-                        <img src="/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
-                            <Link to="/mygroup/info"><p><h4><b>Bit</b></h4></p></Link>
+                            <Link to="/gitbook/mygroup/info"><p><h4><b>Bit</b></h4></p></Link>
                             <h5>Bit 그룹에서 참여를 원합니다!!</h5>
                                 <div className="btn_group"> 
                                     <a className="kafe-btn kafe-btn-mint">수락</a>
@@ -62,9 +62,9 @@ class GroupListRequestItem extends Component {
                 </li> 
                 <li>
                     <div className="media first_child"> 
-                        <img src="/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
-                            <Link to="/mygroup/info"><p><h4><b>kakao</b></h4></p></Link>
+                            <Link to="/gitbook/mygroup/info"><p><h4><b>kakao</b></h4></p></Link>
                             <h5>kakao 그룹에서 참여를 원합니다!!</h5>
                                 <div className="btn_group"> 
                                     <a className="kafe-btn kafe-btn-mint">수락</a>

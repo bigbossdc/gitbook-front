@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 import './Fluffs/assets/css/demos/group.css';
 import GroupListRequestItem from "./GroupListRequestItem";
 
@@ -15,7 +16,7 @@ class GroupListRequest extends Component {
                         <i className="fa fa-search"></i>  
                     </div>
                     <div className="group-add-btn">     
-                        <span>그룹 생성&nbsp;&nbsp;<i className="fa fa-plus a"></i></span>
+                        <Link to="/gitbook/mygroup/regist"><span>그룹 생성&nbsp;&nbsp;<i className="fa fa-plus a"></i></span></Link>
                     </div>
                 </div>
             <section class="notifications">

@@ -14,7 +14,7 @@ class Header extends Component {
                     <div className="container-fluid">
 	                    <div className="navbar-header">
 							{/* 메인페이지로 링크 변경 필요 */}
-                         <Link to="/user/auth" className="navbar-brand" href="index.html"> GitBook</Link>
+                         <Link to="/gitbook/main/timeline" className="navbar-brand" href="index.html"> GitBook</Link>
                         </div> {/* /navbar-header */}
                         
                         <div className="navbar-right">
@@ -66,7 +66,7 @@ class Header extends Component {
 
            <li className="dropdown mega-avatar">
 		  <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-		   <span className="avatar w-32"><img src="/assets/img/users/2.jpg" className="img-resonsive img-circle" width="25" height="25" alt="..."></img></span>
+		   <span className="avatar w-32"><img src="/gitbook/assets/img/users/2.jpg" className="img-resonsive img-circle" width="25" height="25" alt="..."></img></span>
 		  
 		   <span className="hidden-xs" style={{fontFamily: " 'Varela Round', sans-serif",marginLeft:"10px"}}>
 			<strong>
