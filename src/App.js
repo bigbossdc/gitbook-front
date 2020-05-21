@@ -17,6 +17,7 @@ class App extends Component {
     return (
       <div className="App" >
       
+ 
         <Route path="/gitbook/main" component={MainRouter}></Route>
         <Route path="/gitbook/my" component={MyRouter}></Route>
         <Route path="/gitbook/mygroup" component={MyGroupRouter}></Route>

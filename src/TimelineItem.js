@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import CommentItem from './CommentItem'
 import './TimelineItem.css'
-
 
 class TimeLineItem extends Component {
   constructor() {
@@ -15,14 +14,11 @@ class TimeLineItem extends Component {
     this.setState({
       showDetails: !this.state.showDetails
     });
+
   }
-
-
 
   render() {
     return (
-
-
 
       <div className="cardbox">
 
@@ -126,21 +122,9 @@ class TimeLineItem extends Component {
 
         }
 
-
-
-
-
-
-
       </div>
 
-
-
-
-
-
     );
-
 
   }
 }

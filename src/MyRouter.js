@@ -34,6 +34,7 @@ class MyRouter extends Component {
                   <Route  path="/gitbook/my/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
                   <Route  path="/gitbook/my/profile" component={ProfileAndAccount} />
                   <Route  path="/gitbook/my/account" component={ProfileAndAccount} />
+                 
                   
                   </div>
               
