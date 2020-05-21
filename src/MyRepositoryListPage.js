@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import MyRepositoryListItem from './MyRepositoryListItem';
 import data from './datajson/data.json';
-import { relativeTimeThreshold } from 'moment';
+
+
+
+
+
+
 class MyRepositoryListPage extends Component {
   constructor(){
     super(...arguments);
@@ -22,7 +27,7 @@ class MyRepositoryListPage extends Component {
                         <i className="fa fa-search"></i>
                       </div>
                   </div>
-                  <Link to="/gtibook/my/repository/write" className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
+                  <Link to="/gitbook/my/repository/write" className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
                 </div>
                 <hr></hr>
                 {this.state.repositorylist && this.state.repositorylist.map(list => <MyRepositoryListItem

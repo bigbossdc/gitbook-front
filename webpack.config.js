@@ -2,6 +2,7 @@ const path = require('path');
 module.exports = {
     entry: path.resolve('src/index.js'),
     output: {
+        // path: path.resolve('/douzone2020', 'eclipse-workspace', 'gitbook', 'gitbook06', 'src', 'main', 'webapp', 'assets', 'js'),
         path: path.resolve('public'),
         filename: 'bundle.js'
     },
