@@ -4,7 +4,7 @@ import Slim from './Slim';
 import DropdownMenu from './DropdownMenu';
 
 
-const API_URL = 'http://localhost:8080';
+const API_URL = 'http://127.0.0.1:8080';
 const API_HEADERS = {
     'Content-Type': 'application/json'
 }
@@ -19,7 +19,6 @@ class Header extends Component {
     }
 	
     render() {
-   
         return(
            <header className="tr-header"style={{position:"fixed", width:"100%",zIndex:"100" }}>
                <nav className="navbar navbar-default" >
@@ -82,7 +81,7 @@ class Header extends Component {
 		  
 		   <span className="hidden-xs" style={{fontFamily: " 'Varela Round', sans-serif",marginLeft:"10px"}}>
 			<strong>
-            유남길 {this.state.authUser}
+            { this.state.authUser && this.state.authUser.name }
             </strong>
 		   </span>
 		  </a>
@@ -103,16 +102,21 @@ class Header extends Component {
 	}
 	
 	componentDidMount() {
-        fetch(`${API_URL}/main`, {
+        fetch(`${API_URL}/gitbook/user/auth`, {
             method: 'get',
             headers: API_HEADERS
         })
         .then( response => response.json())
-        .then( json => this.setState({
-            authUser: json.data
-        }))
+        .then( json => {
+            console.log(json);
+            console.log('....................................................................................>')
+            this.setState({
+                authUser: json.data
+            });
+        })
         .catch( err => console.error( err ));        
     }
+    
 }
 
 export default Header;
