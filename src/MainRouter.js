@@ -4,19 +4,19 @@ import Header from "./Header";
 import Header2 from "./Header2";
 import FriendSearchList from "./FriendSearchList";
 import MainTimelineList from "./MainTimelineList";
+import axios from "axios";
 
 class MainRouter extends Component {
   render() {
     return (
       <div className="App">
-        <Header></Header>
+        <Header ></Header>
         <Header2></Header2>
         <section className="profile-two" style={{paddingTop:"225px"}}>
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-8 col-lg-offset-2">
                 <div className="followers-box full-width">
-
                   {/** 두번째 섹션 */}
                   <Route path="/gitbook/main/timeline" component={MainTimelineList}/>
                   <Route path="/gitbook/main/friendsearch" exact component={FriendSearchList}/>
@@ -32,6 +32,21 @@ class MainRouter extends Component {
       </div>
     );
   }
+
+
+
+  componentDidMount(){
+    axios.get('/user/auth').then(
+      res=> {
+        
+      }
+    ) 
+  }
+
+
 }
+
+
+
 
 export default MainRouter;

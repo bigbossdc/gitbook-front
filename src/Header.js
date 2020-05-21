@@ -4,10 +4,22 @@ import Slim from './Slim';
 import DropdownMenu from './DropdownMenu';
 
 
+const API_URL = 'http://localhost:8080';
+const API_HEADERS = {
+    'Content-Type': 'application/json'
+}
+
+
 class Header extends Component {
-        
+	constructor() {
+        super(...arguments);
+        this.state = {
+            authUser: null
+        }
+    }
+	
     render() {
-       
+   
         return(
            <header className="tr-header"style={{position:"fixed", width:"100%",zIndex:"100" }}>
                <nav className="navbar navbar-default" >
@@ -70,7 +82,7 @@ class Header extends Component {
 		  
 		   <span className="hidden-xs" style={{fontFamily: " 'Varela Round', sans-serif",marginLeft:"10px"}}>
 			<strong>
-            유남길dddddddddddddddddd
+            유남길 {this.state.authUser}
             </strong>
 		   </span>
 		  </a>
@@ -88,6 +100,18 @@ class Header extends Component {
                 </nav>
            </header>
         );
+	}
+	
+	componentDidMount() {
+        fetch(`${API_URL}/main`, {
+            method: 'get',
+            headers: API_HEADERS
+        })
+        .then( response => response.json())
+        .then( json => this.setState({
+            authUser: json.data
+        }))
+        .catch( err => console.error( err ));        
     }
 }
 
