@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "userNo": 1,
+      "GroupNo": 1,
+      "discription": "1번째 설명입니다",
+      "gitName": "mystie02",
+      "visible":"public"
+    },{
+      "id": 2,
+      "userNo": 1,
+      "GroupNo": 1,
+      "discription": "2번째 설명입니다",
+      "gitName": "mystie02",
+      "visible":"public"
+    },{
+      "id": 3,
+      "userNo": 1,
+      "GroupNo": 1,
+      "discription": "3번째 설명입니다",
+      "gitName": "mystie02",
+      "visible":"public"
+    },{
+      "id": 4,
+      "userNo": 1,
+      "GroupNo": 1,
+      "discription": "4번째 설명입니다",
+      "gitName": "mystie02",
+      "visible": "private"
+    }
+    
+   
+  ]

@@ -15,10 +15,10 @@
 @import url("/assets/css/skins/skin_two.css");	
 */
 
-@import url("/gitbook06/assets/css/base.css");			
-@import url("/gitbook06/assets/css/bootstrap.min.css");		
-@import url("/gitbook06/assets/css/fontawesome-all.min.css");	
-@import url("/gitbook06/assets/css/skins/skin_two.css");
+@import url("/gitbook/assets/css/base.css");			
+@import url("/gitbook/assets/css/bootstrap.min.css");		
+@import url("/gitbook/assets/css/fontawesome-all.min.css");	
+@import url("/gitbook/assets/css/skins/skin_two.css");
 
 
 	
@@ -2263,7 +2263,7 @@ a.navbar-brand:hover {
    Header Styles
    ========================================================================== */  
 .login {
-  background: linear-gradient( rgba(34,34,34,0.7), rgba(34,34,34,0.7) ), url('/gitbook06/assets/img/bg/10.jpg') no-repeat center center fixed;
+  background: linear-gradient( rgba(34,34,34,0.7), rgba(34,34,34,0.7) ), url('/gitbook/assets/img/bg/10.jpg') no-repeat center center fixed;
   background-size: cover;
   background-position: center center;
   -webkit-background-size: cover;

@@ -12,11 +12,10 @@ class MyRepositoryListItem extends Component {
         width: "12px",
         height: "12px",
         borderRadius: "50%",
-        backgroundColor: this.props.color,
+        backgroundColor: (this.props.visible === "public" ) ? "#0FC19E" : "red" ,
         marginRight:"6px",
         marginBottom: "3px"
-        
-      
+
       }
         return(
          
@@ -35,8 +34,9 @@ class MyRepositoryListItem extends Component {
                 <div className="media-body">
                     <span style={k}></span>
                     <Link to="/my/repository/detail" className="text-muted" style={{fontFamily: " 'Varela Round', sans-serif",fontSize:"1.9em",display:"inline-block",marginBottom:"10px"}}>
-                      Mysite06</Link>
-                    <p>이거는 스프링입니다. 데이터베이스입니다. 스프링부트입니다 테스트입니다. 얼마나길지는 모르겠습니다.이게 도대체 얼마나 길까요 저도 몰라요 </p>
+                      {this.props.gitName}</Link>
+                      <p>{this.props.discription}
+                     </p>
                       <small style={{float:"right"}}><span>2020.10.20</span></small>
                 </div>
               </div>

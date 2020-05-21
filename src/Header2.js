@@ -1,8 +1,19 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
 
+const API_URL = 'http://localhost:8080';
+const API_HEADERS = {
+    'Content-Type': 'application/json'
+}
 
 class Header2 extends Component {
+    constructor() {
+        super(...arguments);
+        this.state = {
+            authUser: null
+        }
+    }
+   
     render() {
        
         return(
@@ -45,6 +56,21 @@ class Header2 extends Component {
     </div>
         );
     }
+
+
+
+    componentDidMount() {
+        fetch(`${API_URL}/user/auth`, {
+            method: 'get',
+            headers: API_HEADERS
+        })
+        .then( response => response.json())
+        .then( json => this.setState({
+            authUser: json.data
+        }))
+        .catch( err => console.error( err ));        
+    }
+
 }
 
 export default Header2;
