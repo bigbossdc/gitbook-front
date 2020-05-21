@@ -26,7 +26,7 @@ class Header extends Component {
                     <div className="container-fluid">
 	                    <div className="navbar-header">
 							{/* 메인페이지로 링크 변경 필요 */}
-                         <Link to="/gitbook/main/timeline" className="navbar-brand" href="index.html"> GitBook</Link>
+                         <Link to="/gitbook/main" className="navbar-brand" href="index.html"> GitBook</Link>
                         </div> {/* /navbar-header */}
                         
                         <div className="navbar-right">
