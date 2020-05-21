@@ -50,6 +50,13 @@
     vertical-align: middle;
     margin: 10px;
 }
+.group-add-btn span {
+    color: #3b3b3b;
+    
+}
+.group-add-btn span:hover {
+    color: #0fc19e;
+}
 .a {
     color: #b2b2b2;
     width: 30px;
@@ -114,7 +121,7 @@
     font-Family: 'Varela Round', 'sans-serif'
 }
 .img {
-    background: url('../../img/bg/10.jpg') no-repeat;
+    background: url('/gitbook/assets/img/bg/10.jpg') no-repeat;
     background-size: cover;
     background-position: center center;
     -webkit-background-size: cover;

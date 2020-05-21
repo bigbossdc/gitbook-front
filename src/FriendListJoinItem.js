@@ -10,9 +10,9 @@ class FriendListJoinItem extends Component {
             <ul className="group-list">
                 <li>
                     <div className="media"> 
-                        <img src="assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
-                                <Link to="/my"><p><h4><b>에옹이</b></h4></p></Link>
+                                <Link to="/gitbook/my"><p><h4><b>에옹이</b></h4></p></Link>
                                 <h5>전유진 (yjin@naver.com)</h5>
                                 <div className="btn_group"> 
                                     <a className="kafe-btn kafe-btn-mint">메시지</a>
@@ -23,7 +23,7 @@ class FriendListJoinItem extends Component {
                 </li>
                 <li>
                     <div className="media first_child"> 
-                        <img src="assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
                                 <p><h4><b>우굥쓰</b></h4></p>
                                 <h5>김우경 (kim@google.com)</h5>
@@ -36,7 +36,7 @@ class FriendListJoinItem extends Component {
                 </li>    
                 <li>
                     <div className="media first_child"> 
-                        <img src="assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
                                 <p><h4><b>옌</b></h4></p>
                                 <h5>이예은 (nana@naver.com)</h5>
@@ -49,7 +49,7 @@ class FriendListJoinItem extends Component {
                 </li>      
                 <li>
                     <div className="media first_child"> 
-                        <img src="assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
+                        <img src="/gitbook/assets/img/users/1.jpg" alt="" className="img-responsive img-circle" style={{marginTop:"10px"}}/>  
                             <div className="media_body">
                                 <p><h4><b>쩡쩡</b></h4></p>
                                 <h5>신정은 (jjung@hanmail.net)</h5>

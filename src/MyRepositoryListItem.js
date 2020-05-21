@@ -33,10 +33,13 @@ class MyRepositoryListItem extends Component {
                <div className="media m-0">
                 <div className="media-body">
                     <span style={k}></span>
-                    <Link to="/my/repository/detail" className="text-muted" style={{fontFamily: " 'Varela Round', sans-serif",fontSize:"1.9em",display:"inline-block",marginBottom:"10px"}}>
+
+                    <Link to="/gitbook/my/repository/detail" className="text-muted" style={{fontFamily: " 'Varela Round', sans-serif",fontSize:"1.9em",display:"inline-block",marginBottom:"10px"}}>
                       {this.props.gitName}</Link>
                       <p>{this.props.discription}
                      </p>
+
+
                       <small style={{float:"right"}}><span>2020.10.20</span></small>
                 </div>
               </div>

@@ -8,7 +8,7 @@ class GroupSettingDeleteUserItem extends Component {
         <div class="group-box">
           <div class="suggestions-list">
             <div class="suggestion-body">
-              <img class="img-responsive img-circle" src="/assets/img/users/1.jpg" alt=""/>
+              <img class="img-responsive img-circle" src="/gitbook/assets/img/users/1.jpg" alt=""/>
               <div class="name-box">
                 <h4>Vanessa Wells</h4>
                 <span>@vannessa</span>
@@ -16,7 +16,7 @@ class GroupSettingDeleteUserItem extends Component {
               <span className="invite"><i class="fa fa-minus group-invite"></i></span>
             </div>
             <div class="suggestion-body">
-              <img class="img-responsive img-circle" src="/assets/img/users/2.jpg" alt=""/>
+              <img class="img-responsive img-circle" src="/gitbook/assets/img/users/2.jpg" alt=""/>
               <div class="name-box">
                 <h4>Anthony McCartney</h4>
                 <span>@antony</span>
@@ -24,7 +24,7 @@ class GroupSettingDeleteUserItem extends Component {
               <span className="invite"><i class="fa fa-minus group-invite"></i></span>
             </div>
             <div class="suggestion-body">
-              <img class="img-responsive img-circle" src="/assets/img/users/3.jpg" alt=""/>
+              <img class="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div class="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -32,7 +32,7 @@ class GroupSettingDeleteUserItem extends Component {
               <span className="invite"><i class="fa fa-minus group-invite"></i></span>
             </div>
             <div class="suggestion-body">
-              <img class="img-responsive img-circle" src="/assets/img/users/3.jpg" alt=""/>
+              <img class="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div class="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -40,7 +40,7 @@ class GroupSettingDeleteUserItem extends Component {
               <span className="invite"><i class="fa fa-minus group-invite"></i></span>
             </div>
             <div class="suggestion-body">
-              <img class="img-responsive img-circle" src="/assets/img/users/3.jpg" alt=""/>
+              <img class="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div class="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -48,7 +48,7 @@ class GroupSettingDeleteUserItem extends Component {
               <span className="invite"><i class="fa fa-minus group-invite"></i></span>
             </div>
             <div class="suggestion-body">
-              <img class="img-responsive img-circle" src="/assets/img/users/3.jpg" alt=""/>
+              <img class="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div class="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -56,7 +56,7 @@ class GroupSettingDeleteUserItem extends Component {
               <span className="invite"><i class="fa fa-minus group-invite"></i></span>
             </div>
             <div class="suggestion-body">
-              <img class="img-responsive img-circle" src="/assets/img/users/3.jpg" alt=""/>
+              <img class="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div class="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -64,7 +64,7 @@ class GroupSettingDeleteUserItem extends Component {
               <span className="invite"><i class="fa fa-minus group-invite"></i></span>
             </div>
             <div class="suggestion-body">
-              <img class="img-responsive img-circle" src="/assets/img/users/3.jpg" alt=""/>
+              <img class="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div class="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>

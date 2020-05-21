@@ -12,7 +12,7 @@ class Navigation extends Component {
                 <div className="user-info">
                   <div className="image">
                     <a href="photo_profile_two.html">
-                    <img src="/assets/img/users/1.jpg" className="img-responsive img-circle" alt="User"></img>
+                    <img src="/gitbook/assets/img/users/1.jpg" className="img-responsive img-circle" alt="User"></img>
                     <span className="online-status online"></span>
                     </a>
                   </div>
@@ -29,10 +29,10 @@ class Navigation extends Component {
                </div>
               </li>
               <li>
-               <Link to="/my"><small className="text-muted">my Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-               <Link to="/my/repository"><small className="text-muted">my Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
-               <Link to="/my/schedule"><small className="text-muted">my Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-               <Link to="/my/commit"><small className="text-muted">my Commit <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
+               <Link to="/gitbook/my"><small className="text-muted">my Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
+               <Link to="/gitbook/my/repository"><small className="text-muted">my Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
+               <Link to="/gitbook/my/schedule"><small className="text-muted">my Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
+               <Link to="/gitbook/my/commit"><small className="text-muted">my Commit <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
                <br></br>
               </li> 
              </ul>
