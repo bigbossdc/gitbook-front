@@ -9,15 +9,16 @@ import data from './datajson/data.json';
 
 
 class MyRepositoryListPage extends Component {
-  constructor(){
-    super(...arguments);
+  constructor(props){
+    super(props);
     this.state={
       repositorylist: data
+
     }
   }
   
   render() {
-   
+  
     return (
             <div>
                 <div className = "row">
@@ -27,7 +28,7 @@ class MyRepositoryListPage extends Component {
                         <i className="fa fa-search"></i>
                       </div>
                   </div>
-                  <Link to="/gitbook/my/repository/write" className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
+                  <Link to={`/gitbook/my/${this.props.match.params.userid}/repository/write`} className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
                 </div>
                 <hr></hr>
                 {this.state.repositorylist && this.state.repositorylist.map(list => <MyRepositoryListItem
@@ -38,7 +39,7 @@ class MyRepositoryListPage extends Component {
                   discription={list.discription}
                   gitName={list.gitName}
                   visible={list.visible}
-                
+                  userinfo={this.props.match.params.userid}              
                 />)}
 
 
