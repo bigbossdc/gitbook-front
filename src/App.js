@@ -8,7 +8,8 @@ import UploadPage from './UploadPage';
 import Join from './Join';
 import FindId from './FindID';
 import Group from './Group';
-import Group2 from './Group2;
+import Group2 from './Group2';
+import RepositoryFileViewPage from './RepositoryFileViewPage';
 
 /////////////////////////////////////////////////////////////////////
 
@@ -21,16 +22,8 @@ class App extends Component {
     
     return (
       <div className="App" >
-      <MyTimeLinePage></MyTimeLinePage>
-      <RepositoryWritePage></RepositoryWritePage>
-      <RepositoryPage></RepositoryPage>
-      <RepositoryListPage></RepositoryListPage>
-      <FriendSearchList></FriendSearchList>
-      <MyCalendarPage></MyCalendarPage>
-      <Join></Join>
-      <FindId></FindId>
-      <Group></Group>
-      <Group2></Group2>
+       <RepositoryPage></RepositoryPage>
+      <RepositoryFileViewPage></RepositoryFileViewPage>
       </div>
     );
   }

@@ -4,15 +4,10 @@ import Header2 from './Header2';
 import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
 import './RepositoryPage.css';
-import RepositoryTable from './RepositoryTable'
+import RepositoryFileViewTable from './RepositoryFileViewTable'
 
 
-
-
-
-
-
-class RepositoryPage extends Component {
+class RepositoryFileViewPage extends Component {
   
   
   copyToClipboard = (e) => {
@@ -90,7 +85,9 @@ class RepositoryPage extends Component {
                       <i class="fas fa-folder-plus fa-10x" style={{margin:"3% 40%",display:"inline"}}></i>
                       <p style={{margin:"3% 39%"}}><strong>파일을 추가해 주세요!</strong></p>
                     */}
-                     <RepositoryTable></RepositoryTable>
+                     <RepositoryFileViewTable></RepositoryFileViewTable>
+                    
+                    
                     </div>
                     <br></br>
                   </div>
@@ -117,4 +114,4 @@ class RepositoryPage extends Component {
 
 }
 
-export default RepositoryPage;
+export default RepositoryFileViewPage;
