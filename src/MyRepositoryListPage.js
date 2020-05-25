@@ -34,7 +34,7 @@ class MyRepositoryListPage extends Component {
                       </div>
                   </div>
 
-                  <Link to={`/gitbook/my/${this.props.match.params.userid}/repository/write`} className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
+                  <Link to={`/gitbook/my/${this.props.userid}/repository/write`} className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
 
                 </div>
                 <hr></hr>
@@ -50,7 +50,7 @@ class MyRepositoryListPage extends Component {
                   visible={list.visible}
                   regDate ={list.regDate}
                   list={list}
-                  userinfo={this.props.match.params.userid}              
+                  userinfo={this.props.userid}              
 
                 />)}
 

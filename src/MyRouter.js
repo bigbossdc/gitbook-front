@@ -107,7 +107,7 @@ class MyRouter extends Component {
     
 
   render() {
-
+    console.log("ddd  " + sessionStorage.getItem("authUserId"));
     let whoShowTarget = 'my';
 
     if (this.state.authUser && (typeof this.props.match.params.userid === 'undefined' || this.props.match.params.userid === this.state.authUser.id)) {
@@ -144,7 +144,7 @@ class MyRouter extends Component {
                 <Route
                   path="/gitbook/my/:userid?/repository"
                   exact
-                  render={() => <MyRepositoryListPage repositorylist={this.state.repositorylist}/>}
+                  render={() => <MyRepositoryListPage repositorylist={this.state.repositorylist} userid={this.props.match.params.userid}/>}
                 />
                 <Route
                   path="/gitbook/my/:userid?/repository/detail"
