@@ -4,7 +4,7 @@ import Slim from './Slim';
 import DropdownMenu from './DropdownMenu';
 
 
-const API_URL = 'http://127.0.0.1:8080';
+const API_URL = 'http://localhost:8080';
 const API_HEADERS = {
     'Content-Type': 'application/json'
 }
@@ -77,7 +77,7 @@ class Header extends Component {
 
            <li className="dropdown mega-avatar">
 		  <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-		   <span className="avatar w-32"><img src="/gitbook/assets/img/users/2.jpg" className="img-resonsive img-circle" width="25" height="25" alt="..."></img></span>
+		   <span className="avatar w-32"><img src={ this.state.authUser && this.state.authUser.image } className="img-resonsive img-circle" width="25" height="25" alt="..."></img></span>
 		  
 		   <span className="hidden-xs" style={{fontFamily: " 'Varela Round', sans-serif",marginLeft:"10px"}}>
 			<strong>

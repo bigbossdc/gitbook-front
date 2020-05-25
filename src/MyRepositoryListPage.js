@@ -3,9 +3,10 @@ import {Link} from 'react-router-dom';
 import MyRepositoryListItem from './MyRepositoryListItem';
 
 class MyRepositoryListPage extends Component {
-  constructor(){
-    super(...arguments);
+  constructor(props){
+    super(props);
     this.state={
+
       keyword: ''
     }
   }
@@ -17,6 +18,7 @@ class MyRepositoryListPage extends Component {
   }
   render() {
     const authUserNo=sessionStorage.getItem("authUserNo");
+
     return (
             <div>
                 <div className = "row">
@@ -31,7 +33,9 @@ class MyRepositoryListPage extends Component {
                         <i className="fa fa-search"></i>
                       </div>
                   </div>
-                  <Link to='/gitbook/my/repository/write' className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
+
+                  <Link to={`/gitbook/my/${this.props.match.params.userid}/repository/write`} className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
+
                 </div>
                 <hr></hr>
                 {this.props.repositorylist && this.props.repositorylist
@@ -46,8 +50,8 @@ class MyRepositoryListPage extends Component {
                   visible={list.visible}
                   regDate ={list.regDate}
                   list={list}
-                  
-                
+                  userinfo={this.props.match.params.userid}              
+
                 />)}
 
             </div>      
