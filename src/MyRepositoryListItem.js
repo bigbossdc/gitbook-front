@@ -10,8 +10,8 @@ const API_HEADERS = {
 
 
 class MyRepositoryListItem extends Component {
-  constructor() {
-		super(...arguments);
+  constructor(props) {
+		super(props);
 		this.state = {
 			show: 'none',   // block <---> none
 			title: "",

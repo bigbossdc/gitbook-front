@@ -6,7 +6,7 @@ import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
 import FriendList from './FriendList';
 
-const API_URL = 'http://localhost:8080';
+const API_URL = 'http://127.0.0.1:8080';
 const API_HEADERS = {
     'Content-Type': 'application/json'
 }

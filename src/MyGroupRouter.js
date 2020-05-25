@@ -9,7 +9,7 @@ import GroupList from './GroupList';
 import GroupRegist from './GroupRegist';
 
 {/*Group Navigation 사용하는 그룹 관련 페이지 - 그룹 타임라인, 그룹 관리*/}
-const API_URL = "http://localhost:8080";
+const API_URL = "http://127.0.0.1:8080";
 const API_HEADERS = {
   "Content-Type": "application/json",
 };

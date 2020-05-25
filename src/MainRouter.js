@@ -22,7 +22,7 @@ class MainRouter extends Component {
 
                  {/* <Route path="/gitbook/main" exact component={MainTimelineList }/> */}
                  <Route
-                      path='/gitbook/main'
+                      path={`/gitbook/main/${sessionStorage.getItem("authUserId")}`}
                       render={() => <MainTimelineList/>}/>
 
 

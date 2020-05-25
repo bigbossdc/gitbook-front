@@ -15,14 +15,14 @@ class Header2 extends Component {
     }
    
     render() {
-       
+       console.log("tttt  " + sessionStorage.getItem("authUserId"));
         return(
             <div style={{position:"fixed",paddingTop:"62.97px",zIndex:"99",width:"100%"}}>
             <section className="nav-sec" >
 	            <div className="d-flex justify-content-between">
                            
                 <div className={(this.props.name === "MyTimeline" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>
-                <Link to="/gitbook/my" className="nav-icon"><em className="fa fa-home"></em>
+                <Link to={`/gitbook/my/${ sessionStorage.getItem("authUserId")}`} className="nav-icon"><em className="fa fa-home"></em>
                 <span>MyTimline</span>
                 </Link>
                 </div>
