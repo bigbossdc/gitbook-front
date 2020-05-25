@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
-import "./Fluffs/assets/css/demos/photo.css";
-import "./Fluffs/assets/css/demos/join.css";
-import "./Fluffs/assets/css/ProfileAndAccount_button.css";
+
 import DialogBox from "./DialogBox";
 
 

@@ -8,7 +8,7 @@ class CommentItem extends Component {
             <div className="CommentItem">
            <li >
              <div className="comment-img">
-              <img src="assets/img/users/17.jpeg" className="img-responsive img-circle" alt="Image"/>
+              <img src="/gitbook/assets/img/users/17.jpeg" className="img-responsive img-circle" alt="Image"/>
              </div>
              
               <strong><a href="/">혜딘공듀혜딘공듀혜딘공듀</a></strong>

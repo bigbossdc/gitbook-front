@@ -14,7 +14,7 @@ export default class ProfileSection extends Component {
 		};
 	}
 
-	onStatusChange = (event) => {
+	onStatusChange(event){
 		let name = event.target.name;
 		if(name === 'nickname'){
 			this.setState({
@@ -41,7 +41,7 @@ export default class ProfileSection extends Component {
 						<div className="user-info">
 							<div className="image">
 								<a href="#">
-									<img src="assets/img/users/1.jpg" className="img-responsive img-circle" alt="User" />
+									<img src="/assets/img/users/1.jpg" className="img-responsive img-circle" alt="User" />
 									<span className="online-status online"></span>
 								</a>
 							</div>

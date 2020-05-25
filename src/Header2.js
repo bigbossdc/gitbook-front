@@ -1,29 +1,40 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 
-
+const API_URL = 'http://127.0.0.1:8080';
+const API_HEADERS = {
+    'Content-Type': 'application/json'
+}
 
 class Header2 extends Component {
+    constructor() {
+        super(...arguments);
+        this.state = {
+            authUser: null
+        }
+    }
+   
     render() {
-       
+       console.log("tttt  " + sessionStorage.getItem("authUserId"));
         return(
-            <section className="nav-sec">
+            <div style={{position:"fixed",paddingTop:"62.97px",zIndex:"99",width:"100%"}}>
+            <section className="nav-sec" >
 	            <div className="d-flex justify-content-between">
-                
-                
+                           
                 <div className={(this.props.name === "MyTimeline" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>
-                <a className="nav-icon" href="photo_home.html"><em className="fa fa-home"></em>
+                <Link to={`/gitbook/my/${ sessionStorage.getItem("authUserId")}`} className="nav-icon"><em className="fa fa-home"></em>
                 <span>MyTimline</span>
-                </a>
+                </Link>
                 </div>
 	  
                 <div className={(this.props.name === "Group" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>
-                <a className="nav-icon" href="photo_explore.html"><em className="fa fa-crosshairs"></em>
+                <Link to="/gitbook/mygroup" className="nav-icon"><em className="fa fa-crosshairs"></em>
                     <span>Group</span>
-                </a>
+                </Link>
                 </div>
 	  
                 <div className={(this.props.name === "Upload" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>
-                <a className="nav-icon" href="photo_upload.html"><em className="fa fa-instagram"></em>
+                <a className="nav-icon"><em className="fa fa-instagram"></em>
                     <span>Upload</span>
                 </a>
                 </div>
@@ -35,15 +46,31 @@ class Header2 extends Component {
                 </div>
 	   
                 <div className={(this.props.name === "Friend" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>
-                <a className="nav-icon" href="photo_profile.html"><em className="fa fa-user"></em>
+                <Link to="/gitbook/myfriend" className="nav-icon"><em className="fa fa-user"></em>
                     <span>Friend</span>
-                </a>
+                </Link>
                 </div>
 
 	  </div>
 	</section>	
+    </div>
         );
     }
+
+
+
+    componentDidMount() {
+        fetch(`${API_URL}/user/auth`, {
+            method: 'get',
+            headers: API_HEADERS
+        })
+        .then( response => response.json())
+        .then( json => this.setState({
+            authUser: json.data
+        }))
+        .catch( err => console.error( err ));        
+    }
+
 }
 
 export default Header2;

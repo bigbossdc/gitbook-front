@@ -8,7 +8,7 @@ class GroupSettingAddUserItem extends Component {
         <div className="group-box">
           <div className="suggestions-list">
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/1.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/1.jpg" alt=""/>
               <div className="name-box">
                 <h4>Vanessa Wells</h4>
                 <span>@vannessa</span>
@@ -16,7 +16,7 @@ class GroupSettingAddUserItem extends Component {
               <span className="invite"><i className="fa fa-plus group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/2.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/2.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anthony McCartney</h4>
                 <span>@antony</span>
@@ -24,7 +24,7 @@ class GroupSettingAddUserItem extends Component {
               <span><i className="fa fa-check group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/3.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -32,7 +32,7 @@ class GroupSettingAddUserItem extends Component {
               <span className="invite"><i className="fa fa-plus group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/3.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -40,7 +40,7 @@ class GroupSettingAddUserItem extends Component {
               <span className="invite"><i className="fa fa-plus group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/3.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -48,7 +48,7 @@ class GroupSettingAddUserItem extends Component {
               <span className="invite"><i className="fa fa-plus group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/3.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -56,7 +56,7 @@ class GroupSettingAddUserItem extends Component {
               <span><i className="fa fa-check group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/3.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -64,7 +64,7 @@ class GroupSettingAddUserItem extends Component {
               <span><i className="fa fa-check group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/3.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -72,7 +72,7 @@ class GroupSettingAddUserItem extends Component {
               <span className="invite"><i className="fa fa-plus group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/3.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -80,7 +80,7 @@ class GroupSettingAddUserItem extends Component {
               <span className="invite"><i className="fa fa-plus group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/3.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -88,7 +88,7 @@ class GroupSettingAddUserItem extends Component {
               <span className="invite"><i className="fa fa-plus group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/3.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>
@@ -96,7 +96,7 @@ class GroupSettingAddUserItem extends Component {
               <span className="invite"><i className="fa fa-plus group-invite"></i></span>
             </div>
             <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="assets/img/users/3.jpg" alt=""/>
+              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
               <div className="name-box">
                 <h4>Anna Morgan</h4>
                 <span>@anna</span>

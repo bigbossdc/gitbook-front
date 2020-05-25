@@ -20,38 +20,38 @@ class Navigation2 extends Component {
                 <div className="row">
                   
                    <div className="col-lg-4">
-                   <a href="/"><img src="assets/img/users/7.jpg" className="img-responsive" alt="Image"/></a>
+                   <a href="/"><img src="/gitbook/assets/img/users/7.jpg" className="img-responsive" alt="Image"/></a>
                    </div>
                    <div className="col-lg-4">
-                   <a href="/"><img src="assets/img/users/8.jpg" className="img-responsive" alt="Image"/></a>
+                   <a href="/"><img src="/gitbook/assets/img/users/8.jpg" className="img-responsive" alt="Image"/></a>
                    </div>
                    <div className="col-lg-4">
-                   <a href="/"><img src="assets/img/users/9.jpg" className="img-responsive" alt="Image"/></a>
+                   <a href="/"><img src="/gitbook/assets/img/users/9.jpg" className="img-responsive" alt="Image"/></a>
                    </div>
                    
                 </div>
        
                 <div className="row">
                    <div className="col-lg-4">
-                   <a href="/"><img src="assets/img/users/7.jpg" className="img-responsive" alt="Image"/></a>
+                   <a href="/"><img src="/gitbook/assets/img/users/7.jpg" className="img-responsive" alt="Image"/></a>
                    </div>
                    <div className="col-lg-4">
-                   <a href="/"><img src="assets/img/users/2.jpg" className="img-responsive" alt="Image"/></a>
+                   <a href="/"><img src="/gitbook/assets/img/users/2.jpg" className="img-responsive" alt="Image"/></a>
                    </div>
                    <div className="col-lg-4">
-                   <a href="/"><img src="assets/img/users/3.jpg" className="img-responsive" alt="Image"/></a>
+                   <a href="/"><img src="/gitbook/assets/img/users/3.jpg" className="img-responsive" alt="Image"/></a>
                    </div>
                 </div>
        
                 <div className="row">
                  <div className="col-lg-4">
-                 <a href="/"><img src="assets/img/users/4.jpg" className="img-responsive" alt="Image"/></a>
+                 <a href="/"><img src="/gitbook/assets/img/users/4.jpg" className="img-responsive" alt="Image"/></a>
                  </div>
                  <div className="col-lg-4">
-                 <a href="/"><img src="assets/img/users/5.jpg" className="img-responsive" alt="Image"/></a>
+                 <a href="/"><img src="/gitbook/assets/img/users/5.jpg" className="img-responsive" alt="Image"/></a>
                  </div>
                  <div className="col-lg-4">
-                 <a href="/"><img src="assets/img/users/6.jpg" className="img-responsive" alt="Image"/></a>
+                 <a href="/"><img src="/gitbook/assets/img/users/6.jpg" className="img-responsive" alt="Image"/></a>
                  </div>
                 </div>
             

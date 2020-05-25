@@ -15,9 +15,6 @@ class GroupListJoin extends Component {
                         <input placeholder="Search" type="text"/>
                         <i className="fa fa-search"></i>  
                     </div>
-                    <div className="group-add-btn">     
-                        <span>그룹 생성&nbsp;&nbsp;<i className="fa fa-plus a"></i></span>
-                    </div>
                 </div>
                 <section class="notifications">
                     <GroupListJoinItem></GroupListJoinItem>
