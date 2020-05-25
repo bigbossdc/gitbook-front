@@ -1,19 +1,5 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-import MyTimeLinePage from './MyTimeLinePage';
-import RepositoryWritePage from './RepositoryWritePage';
-import RepositoryPage from './RepositoryPage';
-import RepositoryListPage from './RepositoryListPage';
-import FriendSearchList from './FriendSearchList';
-import UploadPage from './UploadPage';
-import Join from './Join';
-import FindId from './FindID';
-import Group from './Group';
-import Group2 from './Group2';
-import RepositoryFileViewPage from './RepositoryFileViewPage';
-=======
 import { Route } from 'react-router-dom';
->>>>>>> d06f7d56172efdaacef0487bbbc5f3eeed90e8f3
 
 import GroupRouter from './GroupRouter';
 import MainRouter from './MainRouter';
@@ -33,16 +19,11 @@ class App extends Component {
    
     return (
       <div className="App" >
-<<<<<<< HEAD
-       <RepositoryPage></RepositoryPage>
-      <RepositoryFileViewPage></RepositoryFileViewPage>
-=======
         <Route path="/gitbook/main" component={MainRouter}></Route>
         <Route path="/gitbook/my/:userid?" component={MyRouter}></Route>
         <Route path="/gitbook/mygroup" component={MyGroupRouter}></Route>
         <Route path="/gitbook/myfriend" component={MyFriendRouter}></Route>
         <Route path="/gitbook/group" component={GroupRouter}></Route>     
->>>>>>> d06f7d56172efdaacef0487bbbc5f3eeed90e8f3
       </div>
     );
   }
