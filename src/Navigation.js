@@ -3,7 +3,17 @@ import {Link} from "react-router-dom";
 import Calendar from './Calendar'
 
 class Navigation extends Component {
-    render() {
+  constructor() {
+    super(...arguments);
+   
+    this.state = {
+          authUserName: sessionStorage.getItem("authUserGender")
+        
+    }
+
+} 
+  
+  render() {
         return(
             <div className="col-lg-3">
             <aside id="leftsidebar" className="sidebar">		  
@@ -17,7 +27,7 @@ class Navigation extends Component {
                     </a>
                   </div>
                 <div className="detail">
-                 <h4 style={{fontFamily: " 'Varela Round', sans-serif"}}><strong>SZl존혜딘공듀S2</strong></h4>
+        <h4 style={{fontFamily: " 'Varela Round', sans-serif"}}><strong>{this.state.authUserName}</strong></h4>
                     <small  style={{fontFamily: " 'Varela Round', sans-serif"}}>정혜진</small>  
                     <small>(skaska5@naver.com)</small> 
                     <hr></hr>
@@ -43,6 +53,11 @@ class Navigation extends Component {
            </div>
         );
     }
+
+    componentDidMount() {
+     
+      
+  }
 }
 
 export default Navigation;

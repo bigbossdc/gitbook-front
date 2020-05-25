@@ -8,6 +8,7 @@ import axios from "axios";
 
 class MainRouter extends Component {
   render() {
+   
     return (
       <div className="App">
         <Header ></Header>
@@ -18,9 +19,12 @@ class MainRouter extends Component {
               <div className="col-lg-8 col-lg-offset-2">
                 <div className="followers-box full-width">
                   {/** 두번째 섹션 */}
-                  <Route path="/gitbook/main" exact component={MainTimelineList }/>
-                  <Route path="/gitbook/main/friendsearch" exact component={FriendSearchList}/>
+                 {/* <Route path="/gitbook/main" exact component={MainTimelineList }/> */}
+                 <Route
+                      path='/gitbook/main'
+                      render={() => <MainTimelineList/>}/>
 
+                  <Route path="/gitbook/main/friendsearch" exact component={FriendSearchList}/>
                 </div>
               </div>
             </div>
@@ -32,16 +36,7 @@ class MainRouter extends Component {
       </div>
     );
   }
-
-
-
-  componentDidMount(){
-    axios.get('/user/auth').then(
-      res=> {
-        
-      }
-    ) 
-  }
+ 
 
 
 }

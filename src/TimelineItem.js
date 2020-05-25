@@ -7,7 +7,8 @@ class TimeLineItem extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      showDetails: false
+      showDetails: false,
+     
     }
   }
 
@@ -30,8 +31,8 @@ class TimeLineItem extends Component {
 
           {/** 드롭다운 메뉴 */}
           <div className="dropdown pull-right">
-            <button class="btn btn-secondary btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
-              <em class="fa fa-ellipsis-h"></em>
+            <button className="btn btn-secondary btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
+              <em className="fa fa-ellipsis-h"></em>
             </button>
             <div className="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style={{ position: "absolute", transform: "translate3d(-136px, 28px, 0px)", top: "0px", left: "0px", willChange: "transform" }}>
               <a className="dropdown-item" href="#" style={{ fontFamily: " 'Varela Round', sans-serif" }}><strong>비공개 하기</strong></a>
@@ -101,7 +102,7 @@ class TimeLineItem extends Component {
         <div className="cardbox-like">
           <ul>
             <li>
-              <a href=""><i class="fa fa-heart"></i></a><span> 100</span>
+              <a href=""><i className="fa fa-heart"></i></a><span> 100</span>
             </li>
             <li>
               <a title="" className="com" onClick={this.onTitleClick.bind(this)}>
