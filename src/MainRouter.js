@@ -20,7 +20,6 @@ class MainRouter extends Component {
                   {/** 두번째 섹션 */}
 
                   <Route path="/gitbook/main" exact component={MainTimelineList}/>
-
                   <Route path="/gitbook/main/friendsearch" exact component={FriendSearchList}/>
 
                 </div>
@@ -35,20 +34,7 @@ class MainRouter extends Component {
     );
   }
 
-
-
-  componentDidMount(){
-    axios.get('/user/auth').then(
-      res=> {
-        
-      }
-    ) 
-  }
-
-
 }
-
-
 
 
 export default MainRouter;
