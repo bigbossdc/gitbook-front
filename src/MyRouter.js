@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
+
 import Header from "./Header";
 import Header2 from "./Header2";
 import Navigation from "./Navigation";
@@ -11,14 +12,19 @@ import MyRepositoryPage from "./MyRepositoryPage";
 import MyRepositoryWritePage from "./MyRepositoryWritePage";
 import ProfileAndAccount from "./ProfileAndAccount";
 
-const API_URL = "http://localhost:8080";
+
+const API_URL = 'http://127.0.0.1:8080';
 const API_HEADERS = {
-  "Content-Type": "application/json",
-};
+    'Content-Type': 'application/json'
+}
+
+
+
 class MyRouter extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      repositorylist: '',
       friend: "",
       authUser: "",
       userFriends: "",
@@ -30,6 +36,20 @@ class MyRouter extends Component {
   
 
   componentDidMount() {
+    fetch(`${API_URL}/gitbook/Repository/test5/list`, {
+        method: 'get',
+        headers: API_HEADERS
+    })
+    .then( response => response.json())
+    .then( json => {
+        this.setState({
+          //repositorylist: JSON.stringify (json.data)
+          repositorylist: json.data
+           
+        });
+    })
+    .catch( err => console.error( err ));  
+    
     fetch(`${API_URL}/gitbook/user/auth`, {
       method: "get",
       headers: API_HEADERS,
@@ -98,6 +118,7 @@ class MyRouter extends Component {
     }
 
 
+
     return (
       <div className="App">
         <Header></Header>
@@ -107,6 +128,7 @@ class MyRouter extends Component {
         <section className="profile-two" style={{ paddingTop: "225px" }}>
           <div className="container-fluid">
             <div className="row">
+
             {this.state.authUser && (whoShowTarget === 'my' ? <Navigation userinfo={this.state.authUser}></Navigation> : <Navigation userinfo={this.state.friend}></Navigation> )}
 
               {/** 두번째 섹션 */}
@@ -122,16 +144,17 @@ class MyRouter extends Component {
                 <Route
                   path="/gitbook/my/:userid?/repository"
                   exact
-                  component={MyRepositoryListPage}
+                  render={() => <MyRepositoryListPage repositorylist={this.state.repositorylist}/>}
                 />
                 <Route
                   path="/gitbook/my/:userid?/repository/detail"
                   component={MyRepositoryPage}
+
                   
                 />
                 <Route
                   path="/gitbook/my/:userid?/repository/write"
-                  component={MyRepositoryWritePage}
+                  render={() => <MyRepositoryWritePage data="123" repositorylist={this.state.repositorylist}/>}
                 />
                 <Route
                   path="/gitbook/my/:userid?/schedule"

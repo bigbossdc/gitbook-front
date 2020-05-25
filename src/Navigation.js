@@ -8,6 +8,7 @@ const API_HEADERS = {
 }
 
 class Navigation extends Component {
+
       constructor(props) {
         super(props);
         this.state = {
@@ -24,6 +25,7 @@ class Navigation extends Component {
 
     render() {
  
+
         return(
             <div className="col-lg-3">
             <aside id="leftsidebar" className="sidebar">		  
@@ -37,6 +39,7 @@ class Navigation extends Component {
                     </a>
                   </div>
                 <div className="detail">
+
                  <h4 style={{fontFamily: " 'Varela Round', sans-serif"}}>
                     <strong>
                     { this.state.userData.nickname}
@@ -68,6 +71,7 @@ class Navigation extends Component {
            </div>
         );
     }
+
 
     componentDidMount() {
       fetch(`${API_URL}/gitbook/user/auth`, {

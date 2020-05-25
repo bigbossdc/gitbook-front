@@ -14,7 +14,7 @@ class Header extends Component {
 	constructor() {
         super(...arguments);
         this.state = {
-            authUser: null
+            authUser: null    
         }
     }
 	
@@ -81,7 +81,9 @@ class Header extends Component {
 		  
 		   <span className="hidden-xs" style={{fontFamily: " 'Varela Round', sans-serif",marginLeft:"10px"}}>
 			<strong>
-            { this.state.authUser && this.state.authUser.name }
+            { this.state.authUser && this.state.authUser.name  
+              
+            }
             </strong>
 		   </span>
 		  </a>
@@ -108,13 +110,27 @@ class Header extends Component {
         })
         .then( response => response.json())
         .then( json => {
-            console.log(json);
-            console.log('....................................................................................>')
+          sessionStorage.setItem("authUserId",json.data.id)
+          sessionStorage.setItem("authUserName",json.data.name)
+          sessionStorage.setItem("authUserPaasword",json.data.password)
+          sessionStorage.setItem("authUserPhone",json.data.phone)
+          sessionStorage.setItem("authUserGender",json.data.gender)
+          sessionStorage.setItem("authUserNo",json.data.no)
+          sessionStorage.setItem("authUserProfile",json.data.ProfileNo)
+          sessionStorage.setItem("authUserImage",json.data.image)
+          sessionStorage.setItem("authUserJoinDate",json.data.joinDate)
+          sessionStorage.setItem("authUserBirthDay",json.data.birthday)
+          sessionStorage.setItem("authUserNickName",json.data.nickname)
+          sessionStorage.setItem("authUserProfileContents",json.data.Contents)
+        
             this.setState({
                 authUser: json.data
+               
             });
         })
-        .catch( err => console.error( err ));        
+        .catch( err => console.error( err ));  
+        
+       
     }
     
 }

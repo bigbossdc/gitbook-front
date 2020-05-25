@@ -8,6 +8,12 @@ import MyGroupRouter from './MyGroupRouter';
 import MyFriendRouter from './MyFriendRouter';
 
 
+const API_URL = 'http://127.0.0.1:8080';
+const API_HEADERS = {
+    'Content-Type': 'application/json'
+}
+
+
 class App extends Component {
 
   render() {
@@ -23,6 +29,10 @@ class App extends Component {
       </div>
     );
   }
+
+
+
+
 }
 
 export default App;

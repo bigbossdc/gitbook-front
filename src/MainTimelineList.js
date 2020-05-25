@@ -4,7 +4,7 @@ import TimeLineItem from './TimelineItem';
 
 class MainTimelineList extends Component {
   render() {
-
+   
     return (
       <div className="followers-list">
           <TimeLineItem/>
