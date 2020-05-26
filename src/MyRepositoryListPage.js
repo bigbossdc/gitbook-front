@@ -6,7 +6,6 @@ class MyRepositoryListPage extends Component {
   constructor(props){
     super(props);
     this.state={
-
       keyword: ''
     }
   }
@@ -18,7 +17,6 @@ class MyRepositoryListPage extends Component {
   }
   render() {
     const authUserNo=sessionStorage.getItem("authUserNo");
-
     return (
             <div>
                 <div className = "row">
@@ -34,7 +32,10 @@ class MyRepositoryListPage extends Component {
                       </div>
                   </div>
 
-                  <Link to={`/gitbook/my/${this.props.userid}/repository/write`} className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
+                  { (this.props.id == sessionStorage.getItem("authUserId") ) ?
+                  <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`} className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link> : '' 
+                  
+                  }             
 
                 </div>
                 <hr></hr>
@@ -50,9 +51,10 @@ class MyRepositoryListPage extends Component {
                   visible={list.visible}
                   regDate ={list.regDate}
                   list={list}
-                  userinfo={this.props.userid}              
-
+                  path={this.props.id}
+                
                 />)}
+
 
             </div>      
     );

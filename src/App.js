@@ -22,8 +22,9 @@ class App extends Component {
         <Route path="/gitbook/main" component={MainRouter}></Route>
         <Route path="/gitbook/my/:userid?" component={MyRouter}></Route>
         <Route path="/gitbook/mygroup" component={MyGroupRouter}></Route>
-        <Route path="/gitbook/myfriend" component={MyFriendRouter}></Route>
-        <Route path="/gitbook/group" component={GroupRouter}></Route>     
+        <Route path="/gitbook/myfriend/:userid" component={MyFriendRouter}></Route>
+        <Route path="/gitbook/group" component={GroupRouter}></Route> 
+       
       </div>
     );
   }
@@ -57,10 +58,6 @@ class App extends Component {
     
    
 }
-
-
-
-
 }
 
 export default App;

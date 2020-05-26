@@ -10,8 +10,8 @@ const API_HEADERS = {
 
 
 class MyRepositoryListItem extends Component {
-  constructor(props) {
-		super(props);
+  constructor() {
+		super(...arguments);
 		this.state = {
 			show: 'none',   // block <---> none
 			title: "",
@@ -79,7 +79,10 @@ class MyRepositoryListItem extends Component {
                 <div className="media-body">
                     <span style={k}></span>
 
-                    <Link to={`/gitbook/my/${this.props.userinfo}/repository/detail`} className="text-muted" style={{fontFamily: " 'Varela Round', sans-serif",fontSize:"1.9em",display:"inline-block",marginBottom:"10px"}}>
+
+                    <Link to={`/gitbook/my/${this.props.path}/repository/detail`} className="text-muted" style={{fontFamily: " 'Varela Round', sans-serif",fontSize:"1.9em",display:"inline-block",marginBottom:"10px"}}>
+
+                    
                       {this.props.gitName}</Link>
                       <p>{this.props.description}
                      </p>

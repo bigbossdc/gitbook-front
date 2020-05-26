@@ -4,7 +4,7 @@ import Header from "./Header";
 import Header2 from "./Header2";
 import FriendSearchList from "./FriendSearchList";
 import MainTimelineList from "./MainTimelineList";
-import axios from "axios";
+
 
 class MainRouter extends Component {
   render() {
@@ -22,14 +22,10 @@ class MainRouter extends Component {
 
                  {/* <Route path="/gitbook/main" exact component={MainTimelineList }/> */}
                  <Route
-                      path={`/gitbook/main/${sessionStorage.getItem("authUserId")}`}
+                      path='/gitbook/main'
                       render={() => <MainTimelineList/>}/>
 
-
                   <Route path="/gitbook/main" exact component={MainTimelineList}/>
-                  <Route path="/gitbook/main/friendsearch" exact component={FriendSearchList}/>
-
-
                   <Route path="/gitbook/main/friendsearch" exact component={FriendSearchList}/>
                 </div>
               </div>

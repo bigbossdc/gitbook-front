@@ -42,7 +42,7 @@ class FriendpListRequestItem extends Component {
                             <h5>푸우(유남길)님이 친구 요청을 했습니다!!</h5>
                                 <div className="btn_group"> 
                                     <a className="kafe-btn kafe-btn-mint">수락</a>
-                                    <a className="kafe-btn kafe-btn-mint btn-danger" sty>거절</a>
+                                    <a className="kafe-btn kafe-btn-mint btn-danger" >거절</a>
                                 </div>
                             </div> 
                     </div>
