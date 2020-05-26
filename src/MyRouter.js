@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Header from './Header';
 import Header2 from './Header2';
@@ -12,10 +12,12 @@ import MyRepositoryWritePage from './MyRepositoryWritePage';
 import ProfileAndAccount from './ProfileAndAccount';
 import FriendList from './FriendList';
 
+
 const API_URL = 'http://127.0.0.1:8080';
 const API_HEADERS = {
     'Content-Type': 'application/json'
 }
+
 
 
 class MyRouter extends Component {
@@ -46,6 +48,7 @@ callChangePath(id){
   render() {
     
     return (
+
       <div className="App" >
        <Header></Header>
       {(this.state.userid === sessionStorage.getItem("authUserId")) ? <Header2 name="MyTimeline"
@@ -119,6 +122,7 @@ callChangePath(id){
     );
    
   }
+
   componentDidMount() {
   
     fetch(`${API_URL}/gitbook/Repository/${this.state.userid}/list`, {
@@ -134,6 +138,7 @@ callChangePath(id){
     .catch( err => console.error( err ));  
       
 }
+
 }
 
 export default MyRouter;

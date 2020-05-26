@@ -16,6 +16,7 @@ class Header2 extends Component {
 
       
     render() {
+
         return(
             <div style={{position:"fixed",paddingTop:"62.97px",zIndex:"99",width:"100%"}}>
             <section className="nav-sec" >
@@ -24,6 +25,7 @@ class Header2 extends Component {
                 onClick={this.onClickHandler.bind(this)}>
                 <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}`} className="nav-icon"><em className="fa fa-home"></em>
                 <span >MyTimline</span>
+
                 </Link>
                 </div>
 	  

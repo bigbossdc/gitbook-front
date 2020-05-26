@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-import Calendar from './Calendar'
+import Calendar from './Calendar';
+
+const API_URL = 'http://127.0.0.1:8080';
+const API_HEADERS = {
+    'Content-Type': 'application/json'
+}
 
 const API_URL = 'http://127.0.0.1:8080';
 const API_HEADERS = {
@@ -9,6 +14,7 @@ const API_HEADERS = {
 
 
 class Navigation extends Component {
+
   constructor() {
     super(...arguments);
    
@@ -25,7 +31,6 @@ onClickHandler() {
 }
   
   render() {
-   
         return(
             <div className="col-lg-3">
             <aside id="leftsidebar" className="sidebar">		  
@@ -34,16 +39,18 @@ onClickHandler() {
                 <div className="user-info">
                   <div className="image">
                     <a href="photo_profile_two.html">
-                    <img src="/gitbook/assets/img/users/1.jpg" className="img-responsive img-circle" alt="User"></img>
+                    <img src={this.state.userData.image} className="img-responsive img-circle" alt="User"></img>
                     <span className="online-status online"></span>
                     </a>
                   </div>
                 <div className="detail">
+
         <h4 style={{fontFamily: " 'Varela Round', sans-serif"}}><strong>{this.state.userinfo && this.state.userinfo.nickname}</strong></h4>
                     <small  style={{fontFamily: " 'Varela Round', sans-serif"}}>{this.state.userinfo && this.state.userinfo.name}</small>  
                     <small>({this.state.userinfo && this.state.userinfo.id})</small> 
                     <hr></hr>
                     <p style={{fontFamily: " 'Varela Round', sans-serif",margin:"10px"}}>{this.state.userinfo && this.state.userinfo.profileContents} </p>                       
+
                 </div>
                 <div className="row">
                  <div className="col-12"></div>                                
@@ -63,9 +70,6 @@ onClickHandler() {
               <Link to="/gitbook/my/commit"><small className="text-muted">my Commit <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
                 : ''
               }
-
-
-
                <br></br>
               </li> 
              </ul>
@@ -98,5 +102,19 @@ onClickHandler() {
       
   }
 }
-
+    componentDidMount() {
+      fetch(`${API_URL}/gitbook/user/auth`, {
+          method: 'get',
+          headers: API_HEADERS
+      })
+      .then( response => response.json())
+      .then( json => {
+          console.log(json);
+          this.setState({
+              authUser: json.data
+          });
+      })
+      .catch( err => console.error( err ));        
+  }
+}
 export default Navigation;

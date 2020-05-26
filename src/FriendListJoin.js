@@ -3,8 +3,34 @@ import React, { Component } from "react";
 
 import FriendListJoinItem from "./FriendListJoinItem";
 
-
+const API_URL = 'http://localhost:8080';
+const API_HEADERS = {
+    'Content-Type': 'application/json'
+}
 class FriendListJoin extends Component {
+    constructor() {
+        super(...arguments);
+        this.state = {
+            userFriends: null
+        }
+    }
+
+    componentDidMount() {
+        fetch(`${API_URL}/gitbook/user/friend`, {
+            method: 'get',
+            headers: API_HEADERS
+        })
+        .then( response => response.json())
+        .then( json => {
+            console.log(json);
+            console.log('.........>')
+            this.setState({
+                userFriends: json.data
+            });
+        })
+        .catch( err => console.error( err ));        
+    }
+
     render() {
         return(   
          <div>
@@ -17,7 +43,14 @@ class FriendListJoin extends Component {
                     </div>
                 </div>
                 <section class="notifications">
-                    <FriendListJoinItem></FriendListJoinItem>
+                    <ul className="group-list">
+                        { this.state.userFriends && this.state.userFriends.map( list => <FriendListJoinItem 
+                            key={ list.id }
+                            nickname={list.nickname}
+                            name={list.name}
+                            id={list.id}
+                        />) }
+                    </ul>
                 </section>
             </div>
         </div>

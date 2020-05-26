@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import MyRepositoryListItem from './MyRepositoryListItem';
 
 class MyRepositoryListPage extends Component {
-  constructor(){
-    super(...arguments);
+  constructor(props){
+    super(props);
     this.state={
       keyword: ''
     }
@@ -31,10 +31,12 @@ class MyRepositoryListPage extends Component {
                         <i className="fa fa-search"></i>
                       </div>
                   </div>
+
                   { (this.props.id == sessionStorage.getItem("authUserId") ) ?
                   <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`} className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link> : '' 
                   
                   }             
+
                 </div>
                 <hr></hr>
                 {this.props.repositorylist && this.props.repositorylist
@@ -52,6 +54,7 @@ class MyRepositoryListPage extends Component {
                   path={this.props.id}
                 
                 />)}
+
 
             </div>      
     );

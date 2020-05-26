@@ -41,6 +41,7 @@ class Navigation2 extends Component {
                         />)}
                     </div>
                 </div>      
+
             </div>
        
         );
