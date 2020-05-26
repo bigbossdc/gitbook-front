@@ -16,7 +16,7 @@ class FriendListRequest extends Component {
                     </div>
                     
                 </div>
-            <section class="notifications">
+            <section className="notifications">
                 <FriendListRequestItem></FriendListRequestItem>
            </section>
         </div>
