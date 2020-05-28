@@ -3019,9 +3019,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001035, caniuse-lite@^1.0.30001043, caniuse-lite@^1.0.30001061:
-  version "1.0.30001065"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001065.tgz#e8d7fef61cdfd8a7107493ad6bf551a4eb59c68f"
-  integrity sha512-DDxCLgJ266YnAHQv0jS1wdOaihRFF52Zgmlag39sQJVy2H46oROpJp4hITstqhdB8qnHSrKNoAEkQA9L/oYF9A==
+  version "1.0.30001066"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001066.tgz#0a8a58a10108f2b9bf38e7b65c237b12fd9c5f04"
+  integrity sha512-Gfj/WAastBtfxLws0RCh2sDbTK/8rJuSeZMecrSkNGYxPcv7EzblmDGfWQCFEQcSqYE2BRgQiJh8HOD07N5hIw==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -6971,11 +6971,11 @@ jss@10.1.1, jss@^10.0.3:
     tiny-warning "^1.0.2"
 
 jsx-ast-utils@^2.2.1, jsx-ast-utils@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-2.2.3.tgz#8a9364e402448a3ce7f14d357738310d9248054f"
-  integrity sha512-EdIHFMm+1BPynpKOpdPqiOsvnIrInRGJD7bzPZdPkjitQEqpdpUuFpq4T0npZFKTiB3RhWFdGN+oqOJIdhDhQA==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-2.3.0.tgz#edd727794ea284d7fda575015ed1b0cde0289ab6"
+  integrity sha512-3HNoc7nZ1hpZIKB3hJ7BlFRkzCx2BynRtfSwbkqZdpRdvAPsGMnzclPwrvDBS7/lalHTj21NwIeaEpysHBOudg==
   dependencies:
-    array-includes "^3.0.3"
+    array-includes "^3.1.1"
     object.assign "^4.1.0"
 
 killable@^1.0.1:

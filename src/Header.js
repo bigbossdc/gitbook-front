@@ -11,20 +11,34 @@ const API_HEADERS = {
 
 
 class Header extends Component {
-	constructor() {
+    constructor() {
         super(...arguments);
         this.state = {
-            authUser: null    
+            anuthUser: null,
+            keyword:''
         }
     }
-	
+
+    onNotifyKeywordChange(keyword) {
+        this.setState({
+            keyword: keyword
+        })
+    }
+
+    onInputChange(event) {
+        this['onNotifyKeywordChange'](event.target.value);
+    }
+    
+    onResult() {
+        this.props.handlerSubmit.search(this.state.keyword);
+    }
+
     render() {
         return(
            <header className="tr-header"style={{position:"fixed", width:"100%",zIndex:"100" }}>
                <nav className="navbar navbar-default" >
                     <div className="container-fluid">
 	                    <div className="navbar-header">
-							{/* 메인페이지로 링크 변경 필요 */}
                          <Link to="/gitbook/main" className="navbar-brand" href="index.html"> GitBook</Link>
                         </div> {/* /navbar-header */}
                         
@@ -33,15 +47,15 @@ class Header extends Component {
 		                    
                             <li>{/** 검색 창 */}
 		                     <div className="search-dashboard">
-                                 <form  >
-                                  <input placeholder="친구 검색" type="text"></input>
-                                  <button type="submit" ><i className="fa fa-search" style={{display:"inline-block"}}></i></button>
+                                 <form onClick={this.onResult.bind(this)}>
+                                    <input placeholder="친구 검색" onChange={this.onInputChange.bind(this)}></input>
+                                    <Link to="/gitbook/main/friendsearch">
+                                        <button type="submit"><i className="fa fa-search" style={{display:"inline-block"}}></i></button>
+                                    </Link>
                                  </form>
                               </div>							
 		                    </li> {/** 여기까지 검색창 */}
-                        
-                        
-                        
+
 		<li className="dropdown notification-list">
 			  <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 				<i className="fa fa-bell noti-icon" style={{display:"inline-block"}}></i>

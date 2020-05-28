@@ -5,15 +5,17 @@ import FriendListJoin from "./FriendListJoin";
 
 
 class FriendList extends Component {
+
     render() {
         return(   
          <div>
-            <FriendListRequest></FriendListRequest>
+            <FriendListRequest callback={this.props.callback} userinfo={this.props.reqinfo}></FriendListRequest>
             <hr/>
-            <FriendListJoin></FriendListJoin>
+            <FriendListJoin userinfo={this.props.friendinfo}></FriendListJoin>
         </div>
        );
     }
+    
 }
 
 export default FriendList;
