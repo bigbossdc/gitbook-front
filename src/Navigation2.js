@@ -15,8 +15,7 @@ class Navigation2 extends Component {
             friendlist:''
         }
     }
-   
-   
+
     render() {
         //console.log(this.state.userData)
         return(
@@ -33,11 +32,11 @@ class Navigation2 extends Component {
                 <div className="trending-box">
                      <div className="row">
                         {this.state.friendlist && this.state.friendlist.map(list => <Navigation2Item
-                        key={list.id}
-                           id={list.id}
-                            img={list.image}
-                            path={this.props.id}
-                            callChange={this.props.callChange}
+                          key={list.id}
+                          id={list.id}
+                          img={list.image}
+                          path={this.props.id}
+                          callChange={this.props.callChange}
                         />)}
                     </div>
                 </div>      
@@ -46,25 +45,24 @@ class Navigation2 extends Component {
        
         );
     }
+
     componentDidMount() {
-        fetch(`${API_URL}/gitbook/user/friend/list`, {
-          method: 'post',
-          headers: API_HEADERS,
-          body: this.props.id
-      })
-      .then( response => response.json())
-      .then( json => {
-          this.setState({
-             friendlist: json.data    
-          });
-      })
-      .catch( err => console.error( err ));  
-  
-      
-        
-    }
-
-
+      fetch(`${API_URL}/gitbook/user/friend/list`, {
+        method: 'post',
+        headers: API_HEADERS,
+        body: JSON.stringify({
+          id : this.props.id,
+          kind: "친구"
+        })
+    })
+    .then( response => response.json())
+    .then( json => {
+        this.setState({
+          friendlist: json.data    
+        });
+    })
+    .catch( err => console.error( err ));    
+  }
 }
 
 export default Navigation2;

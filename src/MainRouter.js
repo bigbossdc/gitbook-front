@@ -5,13 +5,11 @@ import Header2 from "./Header2";
 import FriendSearchList from "./FriendSearchList";
 import MainTimelineList from "./MainTimelineList";
 
-
 class MainRouter extends Component {
+
   render() {
-   
     return (
       <div className="App">
-        <Header ></Header>
         <Header2></Header2>
         <section className="profile-two" style={{paddingTop:"225px"}}>
           <div className="container-fluid">
@@ -21,12 +19,12 @@ class MainRouter extends Component {
                   {/** 두번째 섹션 */}
 
                  {/* <Route path="/gitbook/main" exact component={MainTimelineList }/> */}
-                 <Route
+                 {/* <Route
                       path='/gitbook/main'
-                      render={() => <MainTimelineList/>}/>
+                      render={() => <MainTimelineList/>}/> */}
 
                   <Route path="/gitbook/main" exact component={MainTimelineList}/>
-                  <Route path="/gitbook/main/friendsearch" exact component={FriendSearchList}/>
+                  <Route path="/gitbook/main/friendsearch" render={() => <FriendSearchList result={this.props.result}/>}/>
                 </div>
               </div>
             </div>
@@ -38,8 +36,6 @@ class MainRouter extends Component {
       </div>
     );
   }
-
-
 }
 
 
