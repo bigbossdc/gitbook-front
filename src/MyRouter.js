@@ -28,6 +28,44 @@ class MyRouter extends Component {
       
     }
   }
+callDeleteRepoList(gitItem){
+    fetch(`${API_URL}/gitbook/Repository/${this.state.userid}/delete`, {
+      method: 'post',
+      headers: API_HEADERS,
+      body: JSON.stringify(gitItem)
+  })
+  .then( response => response.json())
+  .then( json => {
+      this.setState({
+        repositorylist: json.data
+      });
+  })
+  .catch( err => console.error( err ));  
+  
+}
+
+callVisibleHandler(list){
+    fetch(`${API_URL}/gitbook/Repository/${this.state.userid}/update`, {
+      method: 'post',
+      headers: API_HEADERS,
+      body: JSON.stringify(list)
+  })
+  .then( response => response.json())
+  .then( json => {
+      console.log("update:"+json.data)
+      this.setState({
+        repositorylist: json.data
+      });
+  })
+  .catch( err => console.error( err ));  
+  
+}
+
+
+
+
+
+
 callDidmount(){
   this.componentDidMount();
 }
@@ -67,8 +105,6 @@ callChangePath(id){
                   id={ this.state.userid}
                   callmount={{
                     mount: this.callDidmount.bind(this)
-                  
-
                   }}
 
 
@@ -85,8 +121,12 @@ callChangePath(id){
                       render={() => <MyRepositoryListPage 
                       id={this.state.userid}
                       key={this.state.userid+"2"}
-                      
-                      repositorylist={this.state.repositorylist}/>}/>
+                      repositorylist={this.state.repositorylist}
+                      callDelete={{
+                        delete: this.callDeleteRepoList.bind(this),
+                        update: this.callVisibleHandler.bind(this)
+                     }}
+                      />}/>
 
                   <Route
                      path='/gitbook/my/:userid/repository/write'
@@ -95,7 +135,7 @@ callChangePath(id){
                       repositorylist={this.state.repositorylist}/>}/>  
 
                   {/* <Route  path="/gitbook/my/repository/write" component={MyRepositoryWritePage}/> */}
-                  <Route  path="/gitbook/my/:userid/repository/detail" component={MyRepositoryPage}/>
+                  <Route  path="/gitbook/my/:userid/repository/view/:repoName" component={MyRepositoryPage}/>
                   <Route  path="/gitbook/my/:userid/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
                   <Route  path="/gitbook/my/:userid/profile" component={ProfileAndAccount} />
                   <Route  path="/gitbook/my/:userid/account" component={ProfileAndAccount} />

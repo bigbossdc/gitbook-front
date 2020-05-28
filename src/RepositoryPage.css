@@ -4,11 +4,11 @@
     color:black;
     font-family:  'Varela Round', sans-serif;
     margin:4px;
+    
 }
 
 .RepositoryPage a :hover{
     color:#0FC19E;
-    
 }
 
 .RepositoryPage h2 {
@@ -51,4 +51,64 @@
 
 .textarea1:focus{
     outline: none;
+}
+
+.RepositoryFileViewTable{
+    background-color: #f6f8fa;
+    width: 100%;
+    height: 100%;
+    font-family:  'Varela Round', sans-serif;
+    font-size :0.8em;
+    border: 2px solid #0FC19E;
+    border-radius: 5px;
+    word-wrap:break-word;word-break:break-all;
+}
+
+
+.RepositoryFileViewTable .FileViewHeader{
+    background-color: #0FC19E;
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    color: white;
+    border: 2px;
+    outline: 2;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;;
+    padding-left: -5px;
+    font-size: 1.5em;
+}
+
+.RepositoryFileViewTable .FileViewHeader i:hover{
+    color: #000000;
+    transform:scale(1.5);
+    
+
+
+}
+
+.RepositoryFileViewTable .FileViewContents{
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    line-height: 1.5em;
+}
+
+.FileViewContents .FileViewTable .lineNumber{
+    font: bold;
+    color: #0FC19E;
+}
+
+.FileViewContents .FileViewTable .lineNumberContent{
+    padding-left: 10px;
+}
+
+.FileViewContents .FileViewTable .lineNumberContent pre{
+    border: none;
+    margin: 0px;
+    max-height: 24px;
+    padding: 0px;
 }

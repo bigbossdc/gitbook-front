@@ -12,6 +12,7 @@ class Header2 extends Component {
     onClickHandler() {
         this.props.callmount.mount()
         this.props.callmount.change(sessionStorage.getItem("authUserId"))
+        
       }
 
       
