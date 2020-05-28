@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import GroupRouter from './GroupRouter';
 import MainRouter from './MainRouter';
 import MyRouter from './MyRouter';
 import MyGroupRouter from './MyGroupRouter';
 import MyFriendRouter from './MyFriendRouter';
+import Header from './Header';
 
 const API_URL = 'http://127.0.0.1:8080';
 const API_HEADERS = {
@@ -13,18 +14,50 @@ const API_HEADERS = {
 }
 
 class App extends Component {
+  constructor() {
+    super(...arguments);
+    this.state = {
+      keyword:'',
+      result:''
+    }
+  }
+  // Header 친구 검색
+  onSearchSubmit(keyword) {
+    this.setState({
+      keyword: keyword
+    })
+    this.searchResult(keyword);
+  }
 
-  render() {
-    
+  searchResult(keyword) {
+    fetch(`${API_URL}/gitbook/user/friend/search`, {
+      method: 'post',
+      headers: API_HEADERS,
+      body: JSON.stringify({
+        userid: sessionStorage.getItem("authUserId"),
+        keyword: keyword
+      })
+    })
+    .then( response => response.json())
+    .then( json => {
+        this.setState({
+          result : json.data
+        });
+        this.callbackReqFriend();
+    })
+    .catch( err => console.error( err ));   
+  }
+
+  render() {  
     return (
       <div className="App" >
-      
-        <Route path="/gitbook/main" component={MainRouter}></Route>
+        <Header handlerSubmit={{search: this.onSearchSubmit.bind(this)}}></Header>
+        <Route path="/gitbook/main" render={() => <MainRouter result={this.state.result}/>}></Route>
         <Route path="/gitbook/my/:userid?" component={MyRouter}></Route>
         <Route path="/gitbook/mygroup" component={MyGroupRouter}></Route>
-        <Route path="/gitbook/myfriend/:userid" component={MyFriendRouter}></Route>
+        <Route path="/gitbook/myfriend" component={MyFriendRouter}></Route>
         <Route path="/gitbook/group" component={GroupRouter}></Route> 
-        
+       
       </div>
     );
   }
@@ -51,16 +84,12 @@ class App extends Component {
     
         this.setState({
             authUser: json.data
-           
         });
     })
     .catch( err => console.error( err ));  
     
    
 }
-
-
-
 }
 
 export default App;

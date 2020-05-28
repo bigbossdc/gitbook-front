@@ -17,6 +17,7 @@ class Header2 extends Component {
 
       
     render() {
+
         return(
             <div style={{position:"fixed",paddingTop:"62.97px",zIndex:"99",width:"100%"}}>
             <section className="nav-sec" >
@@ -25,6 +26,7 @@ class Header2 extends Component {
                 onClick={this.onClickHandler.bind(this)}>
                 <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}`} className="nav-icon"><em className="fa fa-home"></em>
                 <span >MyTimline</span>
+
                 </Link>
                 </div>
 	  
@@ -48,7 +50,7 @@ class Header2 extends Component {
                 <div className={(this.props.name === "Friend" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}
                
                  >
-                <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/friend`} className="nav-icon"><em className="fa fa-user"></em>
+                <Link to="/gitbook/myfriend" className="nav-icon"><em className="fa fa-user"></em>
                     <span>Friend</span>
                 </Link>
                 </div>

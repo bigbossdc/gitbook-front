@@ -28,7 +28,7 @@ onClickHandler() {
    
         return(
             <div className="col-lg-3">
-            <aside id="leftsidebar" className="sidebar">		  
+            <aside id="leftsidebar" className="sidebar">        
              <ul className="list">
               <li>
                 <div className="user-info">
@@ -72,7 +72,7 @@ onClickHandler() {
             </aside>
             <div className="col-lg-12"> 
               <Calendar></Calendar>
-            </div>				
+            </div>            
            </div>
         );
     }

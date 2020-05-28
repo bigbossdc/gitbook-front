@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import CommentItem from './CommentItem'
 import './TimelineItem.css'
 
-
 class TimeLineItem extends Component {
+  
   constructor() {
     super(...arguments);
     this.state = {
@@ -16,14 +16,13 @@ class TimeLineItem extends Component {
     this.setState({
       showDetails: !this.state.showDetails
     });
+
   }
 
-
-
   render() {
+   
+    
     return (
-
-
 
       <div className="cardbox">
 
@@ -46,7 +45,7 @@ class TimeLineItem extends Component {
               <a href="#"><img className="img-responsive img-circle" src="/gitbook/assets/img/users/1.jpg" alt="User"></img></a>
             </div>
             <div className="media-body">
-              <p className="m-0" style={{ fontFamily: " 'Varela Round', sans-serif", fontSize: "1.3em" }}><a className="text-muted" href="/">지존혜딘공듀</a></p>
+    <p className="m-0" style={{ fontFamily: " 'Varela Round', sans-serif", fontSize: "1.3em" }}><a className="text-muted" href="/"></a></p>
               <small><span>2020-05-12</span></small>
             </div>
           </div>
@@ -127,21 +126,9 @@ class TimeLineItem extends Component {
 
         }
 
-
-
-
-
-
-
       </div>
 
-
-
-
-
-
     );
-
 
   }
 }

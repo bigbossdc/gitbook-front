@@ -5,6 +5,13 @@ import FriendListJoinItem from "./FriendListJoinItem";
 
 
 class FriendListJoin extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userFriends: null
+        }
+    }
+
     render() {
         return(   
          <div>
@@ -17,7 +24,15 @@ class FriendListJoin extends Component {
                     </div>
                 </div>
                 <section class="notifications">
-                    <FriendListJoinItem></FriendListJoinItem>
+                    <ul className="group-list">
+                        { this.props.userinfo && this.props.userinfo.map( list => <FriendListJoinItem 
+                            key={ list.id }
+                            nickname={list.nickname}
+                            name={list.name}
+                            id={list.id}
+                            img={list.image}
+                        />) }
+                    </ul>
                 </section>
             </div>
         </div>
