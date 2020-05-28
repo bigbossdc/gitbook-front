@@ -71,7 +71,7 @@ class App extends Component {
     .then( json => {
       sessionStorage.setItem("authUserId",json.data.id)
       sessionStorage.setItem("authUserName",json.data.name)
-      sessionStorage.setItem("authUserPaasword",json.data.password)
+      sessionStorage.setItem("authUserPassword",json.data.password)
       sessionStorage.setItem("authUserPhone",json.data.phone)
       sessionStorage.setItem("authUserGender",json.data.gender)
       sessionStorage.setItem("authUserNo",json.data.no)

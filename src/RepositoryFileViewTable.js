@@ -2,75 +2,39 @@ import React, { Component } from "react";
 import './RepositoryPage.css';
 
 
-
 class RepositoryFileViewTable extends Component {
+      onClicklist2(e){ 
+        let a = e.target.id.split("/");
+        a.splice(a.length-1,1);
+        this.props.clicklist.newList(a.join("/"))
+      }
 
- 
     render() {
-        return(
-            <div className ='RepositoryFileViewTable'>
-                <div className = 'FileViewHeader'>
-                    src
+        let contents = this.props.contents.split('\n');
+        return (
+            <div className='RepositoryFileViewTable'>
+                <div className='FileViewHeader'>
+                <i id={this.props.callPath} 
+                     onClick={this.onClicklist2.bind(this)} 
+                     className="fas fa-undo-alt"
+                    style={{cursor:"pointer",float:"left",marginLeft:"10px",marginTop:"4px"}}
+                ></i>
+                    {this.props.srcName}
                 </div>
-
-                <div className ='FileViewContents'>
-
-                <table className= 'FileViewTable'>
-                
-                <tr>
-                    <td className='lineNumber' style={{userSelect:"none"}}>1</td>
-                    <td className = 'lineNumberContent'>121212</td>
-                </tr>
-
-                <tr>
-                    <td className='lineNumber' style={{userSelect:"none"}}>2</td>
-                    <td className = 'lineNumberContent'>121212</td>
-                </tr>
-
-                
-
-                <tr>
-                    <td className='lineNumber' style={{userSelect:"none"}}>3</td>
-                    <td className = 'lineNumberContent'>asasasa</td>
-                </tr>
-
-                <tr>
-                    <td className='lineNumber' style={{userSelect:"none"}}>4</td>
-                    <td className = 'lineNumberContent'>asdasdassdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasddasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasddasd</td>
-                </tr>
-
-                <tr>
-                    <td className='lineNumber' style={{userSelect:"none"}}>5</td>
-                    <td className = 'lineNumberContent'>asdasdassdasdasdasdazzz</td>
-                </tr>
-
-
-                <tr>
-                    <td className='lineNumber' style={{userSelect:"none"}}>6</td>
-                    <td className = 'lineNumberContent'>asdasdassdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasddasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasddddddddddddddddasdasdasdasdasdasdasdasdasdasdasdasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasddasd</td>
-                </tr>
-
-                <tr>
-                    <td className='lineNumber' style={{userSelect:"none"}}>7</td>
-                    <td className = 'lineNumberContent'>asdasdassdasdasdasdazzzsdasdasdasdasdasdasdasddasd</td>
-                </tr>
-
-              
-                <tr>
-                    <td className='lineNumber' style={{userSelect:"none"}}>8</td>
-                    <td className = 'lineNumberContent'>a11111111</td>
-                </tr>
-
-                <tr>
-                    <td className='lineNumber' style={{userSelect:"none"}}>9</td>
-                    <td className = 'lineNumberContent'>azzzz</td>
-                </tr>
-
-                </table>
-                
+                <div className='FileViewContents'>
+                    <table className='FileViewTable'>
+                  <pre style={{border:"none"}}>
+                        {contents.map((list, i) =>
+                   
+                                <tr>
+                                <td className='lineNumber' style={{ userSelect: "none" }}>{i + 1}</td>
+                                <td className='lineNumberContent'>{list === '' ? list.replace('', ' ') : list}</td>
+                            </tr>
+                        )}
+                        </pre>
+                    </table>
                 </div>
-
-           </div>
+            </div>
         );
     }
 }
