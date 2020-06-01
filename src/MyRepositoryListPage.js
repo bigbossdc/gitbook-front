@@ -13,6 +13,8 @@ class MyRepositoryListPage extends Component {
     this.setState({
         keyword: e.target.value
     })
+
+    
    
   }
   render() {
@@ -52,6 +54,7 @@ class MyRepositoryListPage extends Component {
                   regDate ={list.regDate}
                   list={list}
                   path={this.props.id}
+                  callDelete={this.props.callDelete}
                 
                 />)}
 

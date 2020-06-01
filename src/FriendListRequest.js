@@ -4,7 +4,23 @@ import FriendListRequestItem from "./FriendListRequestItem";
 
 
 class FriendListRequest extends Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         ...this.state,
+    //         userinfo: this.props.userinfo
+    //     }
+    //   }
+    
+    //   static getDerivedStateFromProps(nextProps, prevState) {
+    //       if(nextProps.userinfo !== prevState.userinfo) {
+    //           return {userinfo: nextProps.userinfo}
+    //       }
+    //       return null;
+    //   }
+ 
     render() {
+        console.log("fdfd" + this.props.userinfo)
         return(   
          <div>
             <div className="group-req">
@@ -17,12 +33,20 @@ class FriendListRequest extends Component {
                     
                 </div>
             <section className="notifications">
-                <FriendListRequestItem></FriendListRequestItem>
+                    <ul className="group-list">
+                        { this.props.userinfo && this.props.userinfo.map( list => <FriendListRequestItem 
+                            key={ list.id }
+                            nickname={list.nickname}
+                            name={list.name}
+                            id={list.id}
+                            img={list.image}
+                            no={list.no}
+                            callback={this.props.callback}
+                        />) }
+                    </ul>
            </section>
         </div>
         </div>
-            
-
         );
     }
 }

@@ -58,7 +58,7 @@ class MyRepositoryWritePage extends Component {
       <div className="RepositoryWritePage" >
         <h2 style={{ fontFamily: " 'Abhaya Libre' serif" }}>New Repository</h2>
         <hr></hr>
-        <form action="/gitbook/my/repository/detail" method="POST">
+        <form action={"/gitbook/my/"+sessionStorage.getItem("authUserId") +"/repository/view/"+this.state.gitName} method="POST">
           <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>Repository name</h4>
           <input type="hidden" name="userNo" required value={sessionStorage.getItem("authUserNo")}/>
           <input 
@@ -134,7 +134,7 @@ class MyRepositoryWritePage extends Component {
     );}
     componentDidMount(){
       
-        console.log("왜안나오냐"+this.props.repositorylist)
+       
 
     }
 

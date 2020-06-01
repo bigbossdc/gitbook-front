@@ -1,0 +1,167 @@
+/* 친구, 팔로우 버튼 css*/
+.friend-btn{
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    line-height: 1.4;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+   
+    border-radius: 4px;
+   
+    -khtml-user-select: none;
+    -webkit-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+   
+    -moz-transition: background, 0.3s;
+    -o-transition: background, 0.3s;
+    -webkit-transition: background, 0.3s;
+    transition: background, 0.3s;
+  }
+  
+  .friend-btn-default{
+    font-family: 'Varela Round', sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent;
+    border-color: #fff;
+    margin-top: 10px;
+    padding: 13px 31px;
+  }
+  
+  .friend-btn-default-new{
+    font-family: 'Varela Round', sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent;
+    border-color: #fff;
+    padding: 5px 10px;
+  }
+  .friend-btn-default-mint{
+    font-family: 'Varela Round', sans-serif;
+    letter-spacing: 1px;
+    color: #00C4CF;
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent;
+    border-color: #00C4CF;
+    padding: 13px 31px;
+  }
+  .friend-btn-default-mint:hover {
+    background-color: #00C4CF;
+    color: #fff !important;
+    text-decoration: none;
+  }
+  
+  .friend-btn-mint{
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 13px 31px;
+    color: #fff !important;
+    background: #0fc19e; 
+    letter-spacing: 1px; 
+  }
+  
+  
+  .friend-btn-mint-small{
+    font-size: 12px;
+    padding: 4px;
+    color: #ffffff !important;
+    background: #05cb95; 
+  }
+  
+  
+  .friend-btn-default:hover, .friend-btn-default-new:hover {
+    background-color: #fff;
+    color: #2C3E50 !important;
+    text-decoration: none;
+  }
+  
+  .friend-btn-mint:hover {
+    color: #fff !important;
+    background: #1ea88d; 
+    text-decoration: none;
+  }
+  
+  .friend-btn-mint-small:hover {
+    color: #fff !important;
+    background: #1fa881; 
+    text-decoration: none;
+  }
+
+
+/* 요청중 버튼 css*/
+.req-btn{
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    line-height: 1.4;
+    cursor: default;
+    background-image: none;
+    border: 1px solid transparent;
+   
+    border-radius: 4px;
+   
+    -khtml-user-select: none;
+    -webkit-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+   
+    -moz-transition: background, 0.3s;
+    -o-transition: background, 0.3s;
+    -webkit-transition: background, 0.3s;
+    transition: background, 0.3s;
+  }
+  
+  .req-btn-default{
+    font-family: 'Varela Round', sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent;
+    border-color: #fff;
+    margin-top: 10px;
+    padding: 13px 31px;
+  }
+  
+  .req-btn-default-new{
+    font-family: 'Varela Round', sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent;
+    border-color: #fff;
+    padding: 5px 10px;
+  } 
+  
+  .req-btn-mint-small{
+    font-size: 12px;
+    padding: 4px;
+    color: #ffffff !important;
+    background: darkgray; 
+  }
+  
+  
+  .req-btn-mint-small:hover {
+    color: #fff !important;
+    text-decoration: none;
+  }

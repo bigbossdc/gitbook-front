@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import './Fluffs/assets/css/demos/button.css';
 
 class FriendSearchItem extends Component {
   render() {
@@ -7,7 +8,8 @@ class FriendSearchItem extends Component {
         <div className="followers-body" style={{ margin: "10px 0px" }}>
           <img
             className="img-responsive img-circle"
-            src="/gitbook/assets/img/users/1.jpg"
+            alt=""
+            src={this.props.img}
             style={{
               width: "70px",
               height: "70px",
@@ -17,19 +19,32 @@ class FriendSearchItem extends Component {
           <div className="name-box">
             <h4 style={{ fontSize: "1.2em" }}>
               <a href="/" style={{ color: "#88898A" }}>
-                유남길apple
+                {this.props.nickname}
               </a>
             </h4>
-            <span>유남길</span>
-            <span>(skaska5@naver.com)</span>
+            <span>{this.props.name}</span>
+            <span>({this.props.id})</span>
             <div className="followers-base"></div>
           </div>
-          <span style={{ marginTop: "10px" }}>
-            <a href="" className="kafe-btn kafe-btn-mint-small">
-              {" "}
-              Follow
+          {this.props.status === '친구' ? 
+            <span style={{ marginTop: "10px" }}>
+            <a href="" className="friend-btn friend-btn-mint-small">
+              메시지
             </a>
-          </span>
+          </span> : this.props.status === '요청중' ?  
+          <span style={{ marginTop: "10px" }}>
+            <a onClick={this.onClickHandler.bind(this)} href="" className="req-btn req-btn-mint-small">
+              {this.props.status}
+            </a>
+          </span> : 
+          <span style={{ marginTop: "10px" }}>
+            <a href="" className="friend-btn friend-btn-mint-small">
+              {this.props.status}
+            </a>
+          </span> }
+
+
+
         </div>
         <hr></hr>
         <br></br>
