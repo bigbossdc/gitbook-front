@@ -95,7 +95,7 @@ class Header extends Component {
 		  
 		   <span className="hidden-xs" style={{fontFamily: " 'Varela Round', sans-serif",marginLeft:"10px"}}>
 			<strong>
-            { this.state.authUser && this.state.authUser.name  
+            { this.state.authUser && this.state.authUser.nickname  
               
             }
             </strong>

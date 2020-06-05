@@ -9,13 +9,15 @@ class Navigation2Item extends Component {
            path : this.props.path
        }
    }
-    onClickHandler() {
-        this.props.callChange.change(this.props.id)
-    }
+    // onClickHandler() {
+    //     this.props.callChange.change(this.props.id)
+    // }
     render() {
         return(
             <div className="col-lg-4">
-            <Link to={`/gitbook/my/${this.props.id}`} ><img onClick={this.onClickHandler.bind(this)} src={this.props.img} className="img-responsive" alt=""/></Link>
+            <Link to={`/gitbook/my/${this.props.id}`} ><img 
+            // onClick={this.onClickHandler.bind(this)} 
+            src={this.props.img} className="img-responsive" alt=""/></Link>
 
             </div>
         );

@@ -36,7 +36,7 @@ class Navigation2 extends Component {
                           id={list.id}
                           img={list.image}
                           path={this.props.id}
-                          callChange={this.props.callChange}
+                        //   callChange={this.props.callChange}
                         />)}
                     </div>
                 </div>      

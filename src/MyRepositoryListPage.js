@@ -6,17 +6,47 @@ class MyRepositoryListPage extends Component {
   constructor(props){
     super(props);
     this.state={
-      keyword: ''
+      keyword: '',
+      repositorylist: ''
     }
   }
   onInputChange(e){
     this.setState({
         keyword: e.target.value
     })
-
-    
-   
   }
+  callDeleteRepoList(gitItem){
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/delete`, {
+      method: 'post',
+      headers: global.API_HEADERS,
+      body: JSON.stringify(gitItem)
+  })
+  .then( response => response.json())
+  .then( json => {
+      this.setState({
+        repositorylist: json.data
+      });
+  })
+  .catch( err => console.error( err ));  
+  
+}
+callVisibleHandler(list){
+  fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/update`, {
+    method: 'post',
+    headers: global.API_HEADERS,
+    body: JSON.stringify(list)
+})
+.then( response => response.json())
+.then( json => {
+    console.log("update:"+json.data)
+    this.setState({
+      repositorylist: json.data
+    });
+})
+.catch( err => console.error( err ));  
+
+}
+
   render() {
     const authUserNo=sessionStorage.getItem("authUserNo");
     return (
@@ -41,7 +71,7 @@ class MyRepositoryListPage extends Component {
 
                 </div>
                 <hr></hr>
-                {this.props.repositorylist && this.props.repositorylist
+                {this.state.repositorylist && this.state.repositorylist
                 .filter((list) => list.gitName.indexOf(this.state.keyword ) != -1 && ((list.userNo == authUserNo ) ? 1 : list.visible == "public") ) 
                 .map((list) => <MyRepositoryListItem
                   key={list.no}
@@ -54,7 +84,10 @@ class MyRepositoryListPage extends Component {
                   regDate ={list.regDate}
                   list={list}
                   path={this.props.id}
-                  callDelete={this.props.callDelete}
+                  callDelete={{
+                    delete: this.callDeleteRepoList.bind(this),
+                    update: this.callVisibleHandler.bind(this)
+                 }}
                 
                 />)}
 
@@ -62,5 +95,19 @@ class MyRepositoryListPage extends Component {
             </div>      
     );
   }
+
+  componentDidMount() {
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/list`, {
+        method: 'get',
+        headers:global.API_HEADERS
+    })
+    .then( response => response.json())
+    .then( json => {
+        this.setState({
+          repositorylist: json.data
+        });
+    })
+    .catch( err => console.error( err ));      
+}
   }
 export default MyRepositoryListPage;
