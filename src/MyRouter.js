@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import Header from './Header';
 import Header2 from './Header2';
 import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
@@ -12,52 +11,20 @@ import MyRepositoryWritePage from './MyRepositoryWritePage';
 import ProfileAndAccount from './ProfileAndAccount';
 
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-    'Content-Type': 'application/json'
-}
-
 class MyRouter extends Component {
-  constructor(){
-    super(...arguments);
-    this.state={
-      repositorylist: '',    
+  constructor(props){
+    super(props);
+    this.state={  
+      repositorylist: '',
+
       userid: this.props.match.params.userid,
       scheduleValue : 'todo'
+
     }
   }
-callDeleteRepoList(gitItem){
-    fetch(`${API_URL}/gitbook/Repository/${this.state.userid}/delete`, {
-      method: 'post',
-      headers: API_HEADERS,
-      body: JSON.stringify(gitItem)
-  })
-  .then( response => response.json())
-  .then( json => {
-      this.setState({
-        repositorylist: json.data
-      });
-  })
-  .catch( err => console.error( err ));  
   
-}
 
-callVisibleHandler(list){
-    fetch(`${API_URL}/gitbook/Repository/${this.state.userid}/update`, {
-      method: 'post',
-      headers: API_HEADERS,
-      body: JSON.stringify(list)
-  })
-  .then( response => response.json())
-  .then( json => {
-      console.log("update:"+json.data)
-      this.setState({
-        repositorylist: json.data
-      });
-  })
-  .catch( err => console.error( err ));  
-  
-}
+
 
 changeScheduleToDoValue(){
   this.setState({
@@ -72,86 +39,60 @@ changeScheduleRepoValue(){
 }
 
 
-callDidmount(){
-  this.componentDidMount();
-}
-
-callChangePath(id){
-  this.setState({
-    userid: id
-  })
-  console.log("함수확인"+this.state.userid)
-}
-
-
 
   render() {
- 
-    
     return (
-
       <div className="App" >
-      {(this.state.userid === sessionStorage.getItem("authUserId")) ? <Header2 name="MyTimeline"
+      {(this.props.match.params.userid === sessionStorage.getItem("authUserId")) ? <Header2 name="MyTimeline"
         key="123"></Header2> : 
         <Header2
-           callmount={{
-           mount: this.callDidmount.bind(this),
-           change: this.callChangePath.bind(this) 
-        }}
          />}
 
         <section className="profile-two" style={{paddingTop:"225px"}}>
           <div className="container-fluid">
             <div className="row">
-
                   <Navigation                   
-                  key={ this.state.userid}
-                  id={ this.state.userid}
-                  callmount={{
-                    mount: this.callDidmount.bind(this)
-                  }}
-                 />  {/** 네비게이션 */}
-                  
+                  key={ this.props.match.params.userid}
+                  id={ this.props.match.params.userid}
+                
+                 />  {/** 네비게이션 */} 
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{background: "#fff",marginTop:"1px"}}>             
-                  <Route  path="/gitbook/my/:userid" exact component={MyTimelinePage}/>
+                  <Route   exact path="/gitbook/my/:userid" 
+                    render={() => 
+                        <MyTimelinePage
+                            key={this.props.match.params.userid}
+                            
+                            userid={this.props.match.params.userid}
 
-                  {/* <Route  path="/gitbook/my/repository" exact component={MyRepositoryListPage}/> */}
-                 
+                    /> }
+                  />
                   <Route
                     exact  path='/gitbook/my/:userid/repository'
                       render={() => <MyRepositoryListPage 
-                      id={this.state.userid}
-                      key={this.state.userid+"2"}
-                      repositorylist={this.state.repositorylist}
-                      callDelete={{
-                        delete: this.callDeleteRepoList.bind(this),
-                        update: this.callVisibleHandler.bind(this)
-                     }}
+                      id={this.props.match.params.userid}
+                      key={this.props.match.params.userid+"2"}
+          
                       />}/>
-
                   <Route
                      path='/gitbook/my/:userid/repository/write'
                       render={() => <MyRepositoryWritePage data="123"
-                      key={this.state.userid+"3"}
+                      key={this.props.match.params.userid+"3"}
                       repositorylist={this.state.repositorylist}/>}/>  
 
                   {/* <Route  path="/gitbook/my/repository/write" component={MyRepositoryWritePage}/> */}
                   <Route  path="/gitbook/my/:userid/repository/view/:repoName" component={MyRepositoryPage}/>
-                  <Route  path="/gitbook/my/:userid/schedule" component={MainCalendar}/>
-                  <Route  path="/gitbook/my/:userid/commit" component={MainCalendar}/>
+
+                  <Route  path="/gitbook/my/:userid/schedule" component={MainCalendar}/>         
                   <Route  path="/gitbook/my/:userid/profile" component={ProfileAndAccount}/>
                   <Route  path="/gitbook/my/:userid/account" component={ProfileAndAccount}/>
           
+
                   </div>
-              
                   {/** 세번째 섹션 */}
                   <Navigation2 
-                  key={this.state.userid+"1"}
-                  id={this.state.userid}
-                  callChange={{
-                    change: this.callChangePath.bind(this)
-                  }}
+                  key={this.props.match.params.userid+"1"}
+                  id={this.props.match.params.userid}
                   />
 
             </div>{/** row 종료 */}
@@ -159,14 +100,13 @@ callChangePath(id){
         </section>{/** profile-twd 종료 */}
       </div>
     );
-   
   }
-
   componentDidMount() {
 
-    fetch(`${API_URL}/gitbook/Repository/${this.state.userid}/list`, {
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/list`, {
+
         method: 'get',
-        headers: API_HEADERS
+        headers:global.API_HEADERS
     })
     .then( response => response.json())
     .then( json => {
@@ -174,8 +114,7 @@ callChangePath(id){
           repositorylist: json.data
         });
     })
-    .catch( err => console.error( err ));  
-      
+    .catch( err => console.error( err ));      
 }
 }
 

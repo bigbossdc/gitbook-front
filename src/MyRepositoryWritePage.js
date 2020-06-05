@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-    'Content-Type': 'application/json'}
-
 
 
 class MyRepositoryWritePage extends Component {
@@ -45,9 +41,9 @@ class MyRepositoryWritePage extends Component {
             visible: (this.state.visible['public'])? "public" : "private"
         };
         
-          fetch(`${API_URL}/gitbook/Repository/${sessionStorage.getItem("authUserId")}/add`, {
+          fetch(`${global.API_URL}/gitbook/Repository/${sessionStorage.getItem("authUserId")}/add`, {
             method: 'post',
-            headers: API_HEADERS,
+            headers: global.API_HEADERS,
             body: JSON.stringify(newRepo)
         })
         .catch( err => console.error( err ));  
@@ -64,6 +60,7 @@ class MyRepositoryWritePage extends Component {
           <input 
                     placeholder="파일명을 적어주세요.." 
                     type="text" 
+                    maxLength="30"
                     onChange={this.handleChange.bind(this)}
                     name="gitName"
                     value={this.state.gitName}
@@ -130,11 +127,7 @@ class MyRepositoryWritePage extends Component {
         </form>
       </div>
     );}
-    componentDidMount(){
-      
-       
-
-    }
+    
 
 }
 

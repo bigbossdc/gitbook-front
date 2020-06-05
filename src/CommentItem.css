@@ -1,0 +1,12 @@
+#deleteIcon{
+    display:inline-block;
+    float: right;
+    margin-right:20px;
+    color:red;
+    margin-top:6px;
+    cursor: pointer;
+}
+
+#deleteIcon:hover{
+    transform: scale(1.2);
+}

@@ -9,10 +9,7 @@ class Header2 extends Component {
             authUser: null
         }
     }
-    onClickHandler() {
-        this.props.callmount.mount()
-        this.props.callmount.change(sessionStorage.getItem("authUserId"))
-      }
+
 
       
     render() {
@@ -22,7 +19,9 @@ class Header2 extends Component {
             <section className="nav-sec" >
 	            <div className="d-flex justify-content-between">       
                 <div className={(this.props.name === "MyTimeline" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}
-                onClick={this.onClickHandler.bind(this)}>
+                // onClick={this.onClickHandler.bind(this)}
+                
+                >
                 <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}`} className="nav-icon"><em className="fa fa-home"></em>
                 <span >MyTimline</span>
 
@@ -35,9 +34,9 @@ class Header2 extends Component {
                 </Link>
                 </div>
                 <div className={(this.props.name === "Upload" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>
-                <a className="nav-icon"><em className="fa fa-instagram"></em>
+                <Link to="/gitbook/upload" className="nav-icon"><em className="fa fa-instagram"></em>
                     <span>Upload</span>
-                </a>
+                </Link>
                 </div>
 	   
                 <div className={(this.props.name === "Chatting" ) ? "p-2 nav-icon-lg mint-green" : "p-2 nav-icon-lg clean-black"}>

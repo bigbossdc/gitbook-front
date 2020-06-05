@@ -3,10 +3,6 @@ import {Link} from "react-router-dom";
 
 import Calendar from './Calendar'
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-    'Content-Type': 'application/json'
-}
 
 
 class Navigation extends Component {
@@ -18,21 +14,19 @@ class Navigation extends Component {
         
     }
 }
-
-onClickHandler() {
-  this.props.callmount.mount()
-}
-  
+ 
   render() {
         return(
             <div className="col-lg-3">
-            <aside id="leftsidebar" className="sidebar">        
+            <aside id="leftsidebar" className="sidebar">		  
              <ul className="list">
               <li>
                 <div className="user-info">
                   <div className="image">
                     <a href="photo_profile_two.html">
-                    <img src={this.state.userinfo && this.state.userinfo.image} className="img-responsive img-circle" alt="User"></img>
+
+                    <img src={this.state.userinfo.image} className="img-responsive img-circle" alt="User"></img>
+
                     <span className="online-status online"></span>
                     </a>
                   </div>
@@ -50,8 +44,10 @@ onClickHandler() {
               </li>
               <li>
                <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}`}><small className="text-muted">my Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-               <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}/repository`}><small onClick={this.onClickHandler.bind(this)} className="text-muted">my Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
-              
+
+               <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}/repository`}><small className="text-muted">my Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
+               
+
                
                { (sessionStorage.getItem("authUserId") === this.state.userinfo.id)?
                <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}/schedule`}><small className="text-muted">my Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
@@ -62,17 +58,19 @@ onClickHandler() {
              </ul>
             </aside>
             <div className="col-lg-12"> 
+
               <Calendar userid = {this.props.id}/>
             </div>            
+
            </div>
         );
     }
 
     componentDidMount() {
      
-      fetch(`${API_URL}/gitbook/user/friend`, {
+      fetch(`${global.API_URL}/gitbook/user/friend`, {
         method: 'post',
-        headers: API_HEADERS,
+        headers: global.API_HEADERS,
         body: this.props.id
      })
       .then( response => response.json())
