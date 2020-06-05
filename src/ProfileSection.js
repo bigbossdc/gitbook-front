@@ -1,88 +1,174 @@
 import React, { Component } from "react";
-import "./Fluffs/assets/css/demos/photo.css";
+
+const API_URL = "http://127.0.0.1:8080";
+const API_HEADERS = {
+	"Content-Type": "application/json",
+};
+let viewed = {};
 
 export default class ProfileSection extends Component {
 	constructor() {
 		super(...arguments);
 		this.state = {
-			editable_nickname: false,
-			editable_introduction: false,
+			edit_switch: false,
 			editables: {
-				nickname: "별명 010101",
-				introduction: "At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.",
+				ProfileNo: "",
+				image: "",
+				nickname: "",
+				profileContents: "",
 			},
+			file_image: null,
 		};
+		this.loadProfile();
 	}
 
-	onStatusChange(event){
-		let name = event.target.name;
-		if(name === 'nickname'){
-			this.setState({
-				editables: {nickname : event.target.value}
-			});
-			return;
-		}
+	loadProfile = () => {
+		fetch(`${API_URL}/gitbook/user/profile/info/${this.props.userid}`, {
+			method: "post",
+			headers: API_HEADERS,
+			body: null,
+		})
+			.then((response) => response.json())
+			.then((json) => {
+				viewed = JSON.parse(JSON.stringify(json.data));
+				this.setState({
+					editables: json.data,
+				});
+			})
+			.catch((err) => console.error(err));
+	};
 
-		if(name === 'introduction'){
-			this.setState({
-				editables: {introduction: event.target.value}
-			});
-			return;
-		}
-		
+	updateProfile = () => {
+		fetch(`${API_URL}/gitbook/user/profile/update/${this.props.userid}`, {
+			method: "post",
+			headers: API_HEADERS,
+			body: JSON.stringify(this.state.editables),
+		})
+			.then((response) => response.json())
+			.then((json) => {
+				if (json.result === "success") {
+					alert("프로필 수정을 성공했습니다.");
+					viewed = this.state.editables;
+					window.location.reload(true);
+				} else {
+					console.log(json);
+					alert("프로필 수정 실패...");
+				}
+			})
+			.catch((err) => console.error(err));
+	};
+
+	onStatusChange = (event) => {
+		let name = event.target.name;
+		let newEditables = this.state.editables;
+		newEditables[name] = event.target.value;
+
+		this.setState({
+			editables: newEditables,
+		});
+	};
+
+	onToggleButtonChanged = (event) => {
+		this.setState({
+			edit_switch: !this.state.edit_switch,
+		});
+	};
+
+	onFileChange = (event) => {
+		event.preventDefault();
+		let reader = new FileReader();
+		let file_image_upload = event.target.files[0];
+
+		reader.onloadend = () => {
+			let formData = new FormData();
+			formData.append("newImage", file_image_upload);
+
+			fetch(`${API_URL}/gitbook/user/profile/uploadImage/${this.props.userid}`, {
+				method: "post",
+				body: formData,
+			})
+				.then((response) => response.json())
+				.then((json) => {
+					if (json.result === "success") {
+						let newEditables = this.state.editables;
+						newEditables.image = json.data;
+						this.setState({
+							file_image: file_image_upload,
+							editables: newEditables,
+						});
+					} else {
+						console.log(json);
+						alert("이미지 업로드 실패...");
+					}
+				})
+				.catch((err) => console.error(err));
+		};
+		reader.readAsDataURL(file_image_upload);
 	};
 
 	render() {
-		console.log("called ProfileSection...");
 		return (
 			<aside id="leftsidebar" className="sidebar">
 				<ul className="list">
 					<li>
 						<div className="user-info">
-							<div className="image">
-								<a href="#">
-									<img src="/assets/img/users/1.jpg" className="img-responsive img-circle" alt="User" />
+							<a>
+								<div className="image">
+									<img className="img-responsive img-circle" src={this.state.file_image !== "" ? this.state.editables.image : API_URL + viewed.image} alt="User" style={{width: "200px", height: "200px"}}/>
 									<span className="online-status online"></span>
-								</a>
-							</div>
+								</div>
+							</a>
 							<br />
 							<br />
 							<div className="detail">
-								<h4>사용자 이름</h4>
-								<small>이메일@gmail.com</small>
+								<h4>{sessionStorage.getItem("authUserName")}</h4>
+								<small>{this.props.userid}</small>
 							</div>
-							<div className="row"></div>
+
+							<h4 style={{ color: "black", fontFamily: "Varlera Round" }}> 프로필 수정하기 </h4>
+							<label className="switch">
+								<input type="checkbox" onChange={this.onToggleButtonChanged.bind(this)} />
+								<span className="slider round" />
+							</label>
 						</div>
 					</li>
 					<li>
+						{this.state.edit_switch ? (
+							<>
+								<small className="text-muted">Change Image</small>
+								<p />
+								<input type="file" accept="image/jpg, impge/png, image/jpeg, image/gif" name="file_image" onChange={this.onFileChange.bind(this)} style={{ color: "black" }} />
+								<hr />
+							</>
+						) : (
+							<></>
+						)}
+
 						<small className="text-muted">Nickname</small>
 						<p />
-						<p>{this.state.editables.nickname}</p>
-						<input
-							name="nickname"
-							type="text"
-							className="form-control-join-email"
-							placeholder="닉네임"
-							style={{ color: "black" }}
-							value={this.state.editables.nickname}
-							onChange={this.onStatusChange.bind(this)}
-						/>
-						<button className="kafe-btn kafe-btn-mint form-group-join-btn">수정</button>
-
+						{this.state.edit_switch ? (
+							<input name="nickname" type="text" className="form-control-join-email" placeholder="닉네임" style={{ color: "black" }} value={this.state.editables.nickname} onChange={this.onStatusChange.bind(this)} />
+						) : (
+							<p>{viewed.nickname}</p>
+						)}
 						<hr />
 
 						<small className="text-muted">Introduction</small>
 						<p />
-						<p>{this.state.editables.introduction}</p>
-						<textarea
-							name="introduction"
-							rows="4"
-							cols="40"
-							style={{ color: "black", resize: "none" }}
-							value={this.state.editables.introduction}
-							onChange={this.onStatusChange.bind(this)}
-						/>
+						{this.state.edit_switch ? (
+							<textarea name="profileContents" rows="4" cols="40" style={{ color: "black", resize: "none" }} value={this.state.editables.profileContents} onChange={this.onStatusChange.bind(this)} />
+						) : (
+							<p>{viewed.profileContents}</p>
+						)}
+
 						<hr />
+						{this.state.edit_switch ? (
+							<button className="kafe-btn kafe-btn-mint form-group-join-btn" onClick={this.updateProfile.bind(this)}>
+								수정
+							</button>
+						) : (
+							<br />
+						)}
 					</li>
 				</ul>
 			</aside>
