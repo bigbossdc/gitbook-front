@@ -1,9 +1,12 @@
 .react-daypicker-root {
-  padding: 10px;
-  height : 750px 
+
+  height : 750px;
+  width : 900px;
 }
   .react-daypicker-root abbr {
-    padding-left: 150%;
+    width: 75px;
+    padding-left: 45px;
+    text-align: center;
     border-bottom: 0;
     text-decoration: none; }
 
@@ -14,23 +17,28 @@
     }
 
     .react-daypicker-root .tr{
-      border-bottom: solid 2px #88898A;
+      border-bottom: solid 3px #88898A;
+      font-family: "Varela Round", sans-serif;
+      font-weight: bold;
+      text-align: center;
     }
   
 
   .react-daypicker-root td{
     padding: 5px;
-    width: 40px; 
+    width:127px;
     font-size: medium; 
-    
+    text-align: center;
   }
 
 .sunday{
   color: red;
+  width:127px;
   }
 
 .saturday {
-  color:blue
+  color:blue;
+  width:127px;
 }
   .react-daypicker-root .header {
     display: flex;
@@ -60,34 +68,50 @@
     color:white;
   }
   .react-daypicker-root .day {
-    cursor: pointer;}
-    .react-daypicker-root .day:hover:not(.empty) {
-      background-color: #eee; }
-    .react-daypicker-root .day.active {
-      background-color: #ddd; }
-    .react-daypicker-root .day.empty {
-      cursor: default;}
-    .react-daypicker-root .day.today {
-      font-weight: bold; }
+    padding-top: 30px;
+    cursor: pointer;
+    width: 112px;
+    font-family: "Varela Round", sans-serif;
+    font-weight: bold;
+    &:first-child{
+      color: red;
+    }
+  }
 
+    .react-daypicker-root .day.active {
+      color:white;
+      border-radius: 100%;
+     }
+    .react-daypicker-root .day.empty {
+      color:white;
+      border-radius: 100%;
+      cursor: default;
+    }
+    .react-daypicker-root .day.today {
+      border-radius: 100%;
+      font-weight:bold;
+      text-decoration: underline;
+      text-decoration-color: black;
+    }
 
     .react-daypicker-root .total-table{
       font-family: "Varela Round", sans-serif;
       height: 100%;
       width: 100%;
       text-align: center;
+      
     }
     .react-daypicker-root .table-border{
       height: 80%;
       width: 100%;
-      border: solid 2px #88898A;
-      
+      border: solid 3px #88898A;
+      border-radius: 5%;
     }
     .react-daypicker-root .index-repository, .react-daypicker-root .index-todo-list{
       width:100px;
       height: 30px;
       color:#88898A;
-     
+      font-weight: bold;
       border-radius: 7px;
       text-align:center;
       font-family: "Varela Round", sans-serif;
@@ -108,6 +132,7 @@
       border:1.5px solid #545654;
       outline: 0;
       margin : auto;
+      font-weight: bold;
       font-size: 20px !important;
     }
 
@@ -123,21 +148,25 @@
       outline: 0;
       margin : auto;
       font-size: 20px !important;
+      font-weight: bold;
     }
 
     .react-daypicker-root .index-todo-list, .react-daypicker-root .index-todo-list-todo{
       margin-left: 10px;
+      font-weight: bold;
     }
     
     .react-daypicker-root .index-todo-list:hover, .react-daypicker-root .index-repository:hover{
       font-family: "Varela Round", sans-serif;
       font-size: 20px !important;
       background:#545654;
-      color:white;
       border:1.5px solid #545654;
+      font-weight: bold;
+      color:white
     }
-   
-
+    .img-resonsive-img-circle{
+      background-color: wheat;
+    }
   
 
 
@@ -196,7 +225,7 @@
 }
 .modal-meta-top .img-poster span {
   font-family: 'Abhaya Libre', serif;
-  color: #aaa;
+  color: black;
   font-size: 12px;
 }
 .modal-meta-top .img-poster a.kafe-btn-mint-small {
@@ -204,6 +233,15 @@
   margin-left: 0px;
   color: #fff !important;
   border-radius: 3px;  
+}
+
+.modal-body .row .col-md-4-modal-meta .modal-meta-top .close{
+  color: black;
+  font-size: large;
+}
+
+.closeButton:hover{
+  font-size: x-large;
 }
 
 
@@ -307,6 +345,13 @@
 .modal-meta-bottom .comment-body input{
   width: 100%;
 }
+
+.img{
+  width: 25px;
+  height: 25px;
+}
+
+
 
 
 

@@ -8,9 +8,11 @@ class RepositoryFileViewTable extends Component {
         a.splice(a.length-1,1);
         this.props.clicklist.newList(a.join("/"))
       }
-
+     
     render() {
+      
         let contents = this.props.contents.split('\n');
+        
         return (
             <div className='RepositoryFileViewTable'>
                 <div className='FileViewHeader'>
