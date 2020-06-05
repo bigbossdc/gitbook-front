@@ -9,11 +9,7 @@ class Header2 extends Component {
             authUser: null
         }
     }
-    // onClickHandler() {
-    //     this.props.callmount.mount()
-    //     this.props.callmount.change(sessionStorage.getItem("authUserId"))
-        
-    //   }
+
 
       
     render() {

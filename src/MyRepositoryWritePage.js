@@ -71,8 +71,6 @@ class MyRepositoryWritePage extends Component {
             <i className="fas fa-exclamation-triangle" style={{ marginLeft: "-25px", color: "red" }} />:
             <i className="fas fa-check" style={{ marginLeft: "-25px", color: "green" ,display:"inline-block"}} />) :  <i className="fas fa-exclamation-triangle" style={{ marginLeft: "-25px", color: "red" }} />
          }
-         
-         
             
           <br></br>
           <br></br>

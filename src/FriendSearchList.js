@@ -12,6 +12,7 @@ class FriendSearchList extends Component {
                 id={list.id}
                 nickname={list.nickname}
                 status={list.status}
+                no={list.no}
               />)}
             </div>
     );

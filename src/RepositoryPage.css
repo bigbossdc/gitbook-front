@@ -114,3 +114,11 @@
     padding: 0px;
 }
 
+
+.deleteForm:hover{
+   font-size: xx-large;
+   cursor: pointer;
+}
+
+
+

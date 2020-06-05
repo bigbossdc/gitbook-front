@@ -2,112 +2,35 @@ import React, {Component} from 'react';
 
 
 class GroupSettingAddUserItem extends Component {
-  render() {
-    
-    return (
-        <div className="group-box">
-          <div className="suggestions-list">
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/1.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Vanessa Wells</h4>
-                <span>@vannessa</span>
-              </div>
-              <span className="invite"><i className="fa fa-plus group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/2.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anthony McCartney</h4>
-                <span>@antony</span>
-              </div>
-              <span><i className="fa fa-check group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anna Morgan</h4>
-                <span>@anna</span>
-              </div>
-              <span className="invite"><i className="fa fa-plus group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anna Morgan</h4>
-                <span>@anna</span>
-              </div>
-              <span className="invite"><i className="fa fa-plus group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anna Morgan</h4>
-                <span>@anna</span>
-              </div>
-              <span className="invite"><i className="fa fa-plus group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anna Morgan</h4>
-                <span>@anna</span>
-              </div>
-              <span><i className="fa fa-check group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anna Morgan</h4>
-                <span>@anna</span>
-              </div>
-              <span><i className="fa fa-check group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anna Morgan</h4>
-                <span>@anna</span>
-              </div>
-              <span className="invite"><i className="fa fa-plus group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anna Morgan</h4>
-                <span>@anna</span>
-              </div>
-              <span className="invite"><i className="fa fa-plus group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anna Morgan</h4>
-                <span>@anna</span>
-              </div>
-              <span className="invite"><i className="fa fa-plus group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anna Morgan</h4>
-                <span>@anna</span>
-              </div>
-              <span className="invite"><i className="fa fa-plus group-invite"></i></span>
-            </div>
-            <div className="suggestion-body">
-              <img className="img-responsive img-circle" src="/gitbook/assets/img/users/3.jpg" alt=""/>
-              <div className="name-box">
-                <h4>Anna Morgan</h4>
-                <span>@anna</span>
-              </div>
-              <span className="invite"><i className="fa fa-plus group-invite"></i></span>
-            </div>
-        </div>	
-      </div>
-    );
+  constructor() {
+    super(...arguments);
+    this.state = {
+      status: this.props.status
+    }
   }
 
-}
+  // 요청 함수 호출
+  reqFollow() {
+    this.props.follow(this.props.no, this.props.groupno);
+    this.setState({
+      status: "요청"
+    })
+  }
 
+  render() {
+    return (
+          <div className="suggestion-body">
+            <img className="img-responsive img-circle" src={this.props.image} alt=""/>
+            <div className="name-box">
+              <h4>{this.props.nickname}</h4>
+              <span>{this.props.id}</span>
+            </div>
+            {this.state.status === '요청' ? 
+              <span><i className="fa fa-check group-invite"></i></span> :   
+              <span className="invite"><i className="fa fa-plus group-invite" onClick={this.reqFollow.bind(this)}></i></span>
+            }
+          </div>
+    );
+  }
+}
 export default GroupSettingAddUserItem;

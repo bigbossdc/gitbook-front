@@ -33,13 +33,15 @@ class App extends Component {
       headers: global.API_HEADERS,
       body: JSON.stringify({
         userid: sessionStorage.getItem("authUserId"),
+        userno: sessionStorage.getItem("authUserNo"),
         keyword: keyword
       })
     })
     .then( response => response.json())
     .then( json => {
         this.setState({
-          result : json.data
+          result : json.data,
+          keyword: ''
         });
         this.callbackReqFriend();
     })
@@ -52,11 +54,12 @@ class App extends Component {
         <Header handlerSubmit={{search: this.onSearchSubmit.bind(this)}}></Header>
         <Route path="/gitbook/main" render={() => <MainRouter result={this.state.result}/>}></Route>
         <Route path="/gitbook/my/:userid?" component={MyRouter}></Route>
-        <Route path="/gitbook/mygroup" component={MyGroupRouter}></Route>
+        <Route path="/gitbook/mygroup/:groupno?" component={MyGroupRouter}></Route>
         <Route path="/gitbook/myfriend" component={MyFriendRouter}></Route>
-        <Route path="/gitbook/group" component={GroupRouter}></Route> 
         <Route path="/gitbook/upload" render={() => <UploadPage result={this.state.result}/>}></Route> 
-       
+        <Route path="/gitbook/group/:groupno?/:userno?" component={GroupRouter}></Route> 
+
+
       </div>
     );
   }

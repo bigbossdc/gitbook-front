@@ -14,12 +14,32 @@ import ProfileAndAccount from './ProfileAndAccount';
 class MyRouter extends Component {
   constructor(props){
     super(props);
-    this.state={
-  
-      repositorylist: ''
+    this.state={  
+      repositorylist: '',
+
+      userid: this.props.match.params.userid,
+      scheduleValue : 'todo'
+
     }
   }
   
+
+
+
+changeScheduleToDoValue(){
+  this.setState({
+    scheduleValue : 'todo'
+  })
+}
+
+changeScheduleRepoValue(){
+  this.setState({
+   scheduleValue : 'repo'
+  })
+}
+
+
+
   render() {
     return (
       <div className="App" >
@@ -62,10 +82,12 @@ class MyRouter extends Component {
 
                   {/* <Route  path="/gitbook/my/repository/write" component={MyRepositoryWritePage}/> */}
                   <Route  path="/gitbook/my/:userid/repository/view/:repoName" component={MyRepositoryPage}/>
-                  <Route  path="/gitbook/my/:userid/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
-                  <Route  path="/gitbook/my/:userid/profile" component={ProfileAndAccount} />
-                  <Route  path="/gitbook/my/:userid/account" component={ProfileAndAccount} />
-                  
+
+                  <Route  path="/gitbook/my/:userid/schedule" component={MainCalendar}/>         
+                  <Route  path="/gitbook/my/:userid/profile" component={ProfileAndAccount}/>
+                  <Route  path="/gitbook/my/:userid/account" component={ProfileAndAccount}/>
+          
+
                   </div>
                   {/** 세번째 섹션 */}
                   <Navigation2 
@@ -80,7 +102,9 @@ class MyRouter extends Component {
     );
   }
   componentDidMount() {
+
     fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/list`, {
+
         method: 'get',
         headers:global.API_HEADERS
     })

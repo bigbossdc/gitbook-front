@@ -171,7 +171,6 @@ class MyRepositoryPage extends Component {
         if (JSON.stringify(json.data) !== 'null')
           this.setState({
             gitlist: json.data,
-           
           });
           this.setState({
             loding: true

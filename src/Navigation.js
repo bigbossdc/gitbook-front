@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
+
 import Calendar from './Calendar'
 
 
@@ -9,19 +10,12 @@ class Navigation extends Component {
     super(...arguments);
    
     this.state = {
-        
           userinfo:''
         
     }
-
-} 
-
-// onClickHandler() {
-//   this.props.callmount.mount()
-// }
-  
+}
+ 
   render() {
-   
         return(
             <div className="col-lg-3">
             <aside id="leftsidebar" className="sidebar">		  
@@ -30,7 +24,9 @@ class Navigation extends Component {
                 <div className="user-info">
                   <div className="image">
                     <a href="photo_profile_two.html">
+
                     <img src={this.state.userinfo.image} className="img-responsive img-circle" alt="User"></img>
+
                     <span className="online-status online"></span>
                     </a>
                   </div>
@@ -48,30 +44,24 @@ class Navigation extends Component {
               </li>
               <li>
                <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}`}><small className="text-muted">my Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-               <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}/repository`}><small  
-              //  onClick={this.onClickHandler.bind(this)} 
+
+               <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}/repository`}><small className="text-muted">my Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
                
-               className="text-muted">my Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
-               
+
                
                { (sessionStorage.getItem("authUserId") === this.state.userinfo.id)?
-               <Link to="/gitbook/my/schedule"><small className="text-muted">my Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
+               <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}/schedule`}><small className="text-muted">my Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
                 : ''
               }
-               { (sessionStorage.getItem("authUserId") === this.state.userinfo.id)?
-              <Link to="/gitbook/my/commit"><small className="text-muted">my Commit <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-                : ''
-              }
-
-
-
                <br></br>
               </li> 
              </ul>
             </aside>
             <div className="col-lg-12"> 
-              <Calendar></Calendar>
-            </div>				
+
+              <Calendar userid = {this.props.id}/>
+            </div>            
+
            </div>
         );
     }
