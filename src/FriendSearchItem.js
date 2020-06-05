@@ -1,7 +1,39 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import './Fluffs/assets/css/demos/button.css';
 
+const API_URL = 'http://127.0.0.1:8080';
+const API_HEADERS = {
+  'Content-Type': 'application/json'
+}
 class FriendSearchItem extends Component {
+  constructor() {
+    super(...arguments);
+    this.state = {
+      status: this.props.status
+    }
+  }
+
+  reqFollow() {
+    console.log("friend request 확인" + this.props.no + ":" + sessionStorage.getItem("authUserNo"));
+    fetch(`${API_URL}/gitbook/friend/request`, {
+      method: 'post',
+      headers: API_HEADERS,
+      body:JSON.stringify({
+        userno: sessionStorage.getItem("authUserNo"),
+        friendno: this.props.no
+      })
+    })
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          status: "요청중"
+        });
+      })
+      .catch(err => console.error(err))
+  }
+
+
   render() {
     return (
       <div className="FriendSearchItem">
@@ -18,9 +50,9 @@ class FriendSearchItem extends Component {
           />
           <div className="name-box">
             <h4 style={{ fontSize: "1.2em" }}>
-              <a href="/" style={{ color: "#88898A" }}>
+              <Link to={`/gitbook/my/${this.props.id}`} style={{ color: "#88898A" }}>
                 {this.props.nickname}
-              </a>
+              </Link>
             </h4>
             <span>{this.props.name}</span>
             <span>({this.props.id})</span>
@@ -29,21 +61,19 @@ class FriendSearchItem extends Component {
           {this.props.status === '친구' ? 
             <span style={{ marginTop: "10px" }}>
             <a href="" className="friend-btn friend-btn-mint-small">
-              메시지
+              {this.state.status}
             </a>
-          </span> : this.props.status === '요청중' ?  
+          </span> : this.state.status === '요청중' ?  
           <span style={{ marginTop: "10px" }}>
-            <a onClick={this.onClickHandler.bind(this)} href="" className="req-btn req-btn-mint-small">
-              {this.props.status}
+            <a href="" className="friend-btn req-btn-mint-small">
+              {this.state.status}
             </a>
           </span> : 
           <span style={{ marginTop: "10px" }}>
-            <a href="" className="friend-btn friend-btn-mint-small">
+            <a className="friend-btn follow-btn-mint-small" onClick={this.reqFollow.bind(this)}>
               {this.props.status}
             </a>
           </span> }
-
-
 
         </div>
         <hr></hr>

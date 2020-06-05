@@ -14,7 +14,6 @@ class MyFriendRouter extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-
       reqFriends: "",
       userFriends: ""
     }
@@ -49,15 +48,17 @@ class MyFriendRouter extends Component {
         headers: API_HEADERS,
         body: JSON.stringify({
           userno: sessionStorage.getItem("authUserNo"),
-          friendno: friendNo
+          friendno: friendNo,
+          id: sessionStorage.getItem("authUserId"),
+          kind: "친구"
         })
     })
     .then( response => response.json())
     .then( json => {
         this.setState({
-            //userFriends : json.data
-        });
-        this.callbackReqFriend();
+          userFriends : json.data
+      });
+      this.callbackReqFriend();
     })
     .catch( err => console.error( err ));        
   }
@@ -68,7 +69,7 @@ class MyFriendRouter extends Component {
         method: 'post',
         headers: API_HEADERS,
         body: JSON.stringify({
-            id : sessionStorage.getItem("authUserId"),
+            no : sessionStorage.getItem("authUserNo"),
             kind: "요청"
         })
     })
@@ -100,7 +101,8 @@ class MyFriendRouter extends Component {
                                      delete: this.callbackRejectFriend.bind(this)
                                     }} 
                           reqinfo={this.state.reqFriends} 
-                          friendinfo={this.state.userFriends}/>}/>
+                          friendinfo={this.state.userFriends}/>}
+                  />
                   </div>
               
                   {/** 세번째 섹션 */}
@@ -118,7 +120,7 @@ class MyFriendRouter extends Component {
         method: 'post',
         headers: API_HEADERS,
         body: JSON.stringify({
-            id : sessionStorage.getItem("authUserId"),
+            no : sessionStorage.getItem("authUserNo"),
             kind: "요청"
         })
     })
