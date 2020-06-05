@@ -23,7 +23,7 @@ class MyRouter extends Component {
     this.state={
       repositorylist: '',    
       userid: this.props.match.params.userid,
-            
+      scheduleValue : 'todo'
     }
   }
 callDeleteRepoList(gitItem){
@@ -59,9 +59,17 @@ callVisibleHandler(list){
   
 }
 
+changeScheduleToDoValue(){
+  this.setState({
+    scheduleValue : 'todo'
+  })
+}
 
-
-
+changeScheduleRepoValue(){
+  this.setState({
+   scheduleValue : 'repo'
+  })
+}
 
 
 callDidmount(){
@@ -78,7 +86,7 @@ callChangePath(id){
 
 
   render() {
-    console.log(this.state.userid);
+ 
     
     return (
 
@@ -130,9 +138,10 @@ callChangePath(id){
 
                   {/* <Route  path="/gitbook/my/repository/write" component={MyRepositoryWritePage}/> */}
                   <Route  path="/gitbook/my/:userid/repository/view/:repoName" component={MyRepositoryPage}/>
-                  <Route  path="/gitbook/my/:userid/schedule" component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
-                  <Route  path="/gitbook/my/:userid/profile" component={ProfileAndAccount} />
-                  <Route  path="/gitbook/my/:userid/account" component={ProfileAndAccount} />
+                  <Route  path="/gitbook/my/:userid/schedule" component={MainCalendar}/>
+                  <Route  path="/gitbook/my/:userid/commit" component={MainCalendar}/>
+                  <Route  path="/gitbook/my/:userid/profile" component={ProfileAndAccount}/>
+                  <Route  path="/gitbook/my/:userid/account" component={ProfileAndAccount}/>
           
                   </div>
               
@@ -154,7 +163,7 @@ callChangePath(id){
   }
 
   componentDidMount() {
-  
+
     fetch(`${API_URL}/gitbook/Repository/${this.state.userid}/list`, {
         method: 'get',
         headers: API_HEADERS
@@ -168,7 +177,6 @@ callChangePath(id){
     .catch( err => console.error( err ));  
       
 }
-
 }
 
 export default MyRouter;

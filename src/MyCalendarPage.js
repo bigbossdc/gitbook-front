@@ -12,12 +12,9 @@ import MainCalendar from './MainCalendar';
 
 class MyCalendarPage extends Component {
 
-  
 
   render() {
-    
-
-
+  
     return (
       <div className="App">
        <Header></Header>
@@ -29,7 +26,7 @@ class MyCalendarPage extends Component {
 
               {/** 두번째 섹션 */}
               <div className="col-lg-6">
-              <MainCalendar onModal={(open)=> this.setState(open)}  onDayClick={(day) => this.setState({ day })}></MainCalendar>
+              <MainCalendar/>
               </div>
 
               {/** 두번째 섹션 */}

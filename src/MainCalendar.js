@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
+import './MainCalendar.scss';
+import MyToDoScheduleDialog from './MyToDoScheduleDialog';
+import MyRepoScheduleDialog from './MyRepoScheduleDialog';
 
-import './MainCalendar.scss'
-
+const API_URL = 'http://127.0.0.1:8080';
+const API_HEADERS = {
+  'Content-Type': 'application/json'
+}
 
 const MONTHS = [
   "January",
@@ -42,16 +45,25 @@ export default class MainCalendar extends Component {
       month: now.getMonth(),
       today: new Date(now.getFullYear(), now.getMonth(), now.getDate()),
       year: now.getFullYear(),
-      
-      openModal : false,
-      scheduleOption : false,
-
-      buttonClassName : "todo",
-
-      checkedDay : 17 //배열로 다뤄서 요일 td로 넣어줘야한다.
+      userid: this.props.match.params.userid,
+      openModal: false,
+      scheduleOption: false,
+      buttonClassName: 'todo',
+      checkedToDoListDay: '',
+      checkedCommitListDay: '',
+      getToDoList: '',
+      getRepoList: '',
+      deleteInfo: '',
+      clickDay: 0,
     };
+
   }
- 
+
+  handler(list) {
+    this.setState({
+      getToDoList: this.state.getToDoList.concat(list)
+    })
+  }
 
   static isSameDay(a, b) {
     return (
@@ -65,6 +77,7 @@ export default class MainCalendar extends Component {
 
   get days() {
     const { month, year } = this.state;
+
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const days = [];
     const offset = new Date(year, month, 1).getDay();
@@ -93,7 +106,6 @@ export default class MainCalendar extends Component {
     if (this.props.monthNames) {
       return this.props.monthNames[month];
     }
-
     return MONTHS[month];
   }
 
@@ -101,7 +113,6 @@ export default class MainCalendar extends Component {
     if (this.props.longDayNames) {
       return this.props.longDayNames[dayOfWeek];
     }
-
     return DAYS_LONG[dayOfWeek];
   }
 
@@ -109,11 +120,10 @@ export default class MainCalendar extends Component {
     if (this.props.shortDayNames) {
       return this.props.shortDayNames[dayOfWeek];
     }
-
     return DAYS_SHORT[dayOfWeek];
   }
 
-  previousMonth (){
+  previousMonth() {
     const { month, year } = this.state;
 
     this.setState({
@@ -122,9 +132,9 @@ export default class MainCalendar extends Component {
     });
   };
 
-  
 
-  nextMonth = () => {
+
+  nextMonth() {
     const { month, year } = this.state;
 
     this.setState({
@@ -133,36 +143,107 @@ export default class MainCalendar extends Component {
     });
   };
 
+  newAddlist(day, newToDo) {
+    fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/addToDo/${day}`, {
+      method: 'post',
+      headers: API_HEADERS,
+      body: JSON.stringify(newToDo)
+    }).then(response => response.json())
+      .then(json => {
+        this.setState({
+          getToDoList: json.data
+        });
+      })
+      .catch(err => console.error(err))
+
+    this.componentDidMount();
+  }
+
+  deleteList(day, deleteTarget) {
+    fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/delete/${day}`, {
+      method: 'post',
+      headers: API_HEADERS,
+      body: JSON.stringify(deleteTarget)
+    }).then(response => response.json())
+      .then(json => {
+        this.setState({
+          getToDoList: json.data
+        });
+      })
+      .catch(err => console.error(err))
+
+    this.componentDidMount();
+  }
+
+  //일 클릭
   onDayClick = day => () => {
     if (day) {
-      console.log(day.getDate());
-     
+      let newMonth = this.state.month + 1;
+      let newDay = day.getDate();
+
+      newMonth = newMonth < 10 ? ('0' + newMonth) : newMonth;
+      newDay = newDay < 10 ? ('0' + newDay) : newDay;
+
       this.setState({
-        openModal : true
+        openModal: true,
+        clickDay: day.getDate()
       });
 
-      console.log(this.state.openModal);
+      if (this.state.buttonClassName == 'todo') {
+        fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/toDoList/${this.state.year}-${newMonth}-${newDay}`, {
+          method: 'get',
+          headers: API_HEADERS
+        })
+          .then(response => response.json())
+          .then(json => {
 
-      this.props.onDayClick(day);
+            this.setState({
+              getToDoList: json.data
+            });
+          })
+          .catch(err => console.error(err));
+      }
 
+      else {
+        fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/repoList/${this.state.year}-${newMonth}-${newDay}`, {
+          method: 'get',
+          headers: API_HEADERS
+        })
+          .then(response => response.json())
+          .then(json => {
+
+            this.setState({
+              getRepoList: json.data
+            });
+          })
+          .catch(err => console.error(err));
+      }
     }
-    else{
+    else {
       alert('요일을 클릭하여 스케줄을 확인하세요.')
     }
   };
 
   handleClose = () => {
     this.setState({
-      openModal : false
+      openModal: false
     });
   }
 
+
   renderDay = (day, index) => {
+
     const { date, month, today, year } = this.state;
     const { active } = this.props;
-
     const isToday = day && day.valueOf() === today.valueOf();
     const isActive = active && day && MainCalendar.isSameDay(active, day);
+
+    let toCompareMonth = this.state.month + 1;
+    (toCompareMonth < 10 ? toCompareMonth = ('0' + toCompareMonth) : toCompareMonth);
+
+    const formatDate = this.state.year + '-' + toCompareMonth + '-' + (
+      day ? day.getDate() && (day.getDate() < 10 ? '0' + day.getDate() : day.getDate())
+        : "")
 
     return (
       <td
@@ -177,7 +258,20 @@ export default class MainCalendar extends Component {
         key={`${year}.${month}.day.${index}`}
         onClick={this.onDayClick(day)}
       >
-        {day ? day.getDate() && (day.getDate() == this.state.checkedDay ? day.getDate()+ "  ●" : day.getDate()) : ""}
+
+        {this.state.buttonClassName == 'todo' ?
+
+          (day ? day.getDate() && (this.state.checkedToDoListDay.includes(formatDate) ?
+            <a style={{ backgroundColor: '#88898A' }}>{day.getDate()}<br></br><img className="img-resonsive-img-circle" width="25" height="25" alt="..." src="/gitbook/assets/img/users/1.jpg" /></a>
+            : day.getDate()) : "")
+
+          :
+
+          (day ? day.getDate() && (this.state.checkedCommitListDay.includes(formatDate) ?
+            <a style={{ backgroundColor: '#88898A' }}>{day.getDate()}<br /><img className="img-resonsive-img-circle" width="25" height="25" alt="..." src="/gitbook/assets/img/users/1.jpg" /></a>
+            : day.getDate()) : "")
+
+        }
       </td>
     );
   };
@@ -186,13 +280,13 @@ export default class MainCalendar extends Component {
     const { month, year } = this.state;
 
     return (
-      <tr key={`${year}.${month}.week.${index}`}>{days.map(this.renderDay)}</tr>
+      <tr style={{ height: "112px" }} key={`${year}.${month}.week.${index}`}>{days.map(this.renderDay)}</tr>
     );
   };
 
   renderDayHeader(dayOfWeek) {
     return (
-      <th scope="col">
+      <th scope="col" style={{ width: "80px" }}>
         <abbr title={this.longDayName(dayOfWeek)}>
           {this.shortDayName(dayOfWeek)}
         </abbr>
@@ -201,185 +295,139 @@ export default class MainCalendar extends Component {
   }
 
   Todo = () => {
-  
     this.setState({
-      scheduleOption : false,
-      buttonClassName : "todo"
-        });
-    console.log(this.state.scheduleOption)
+      scheduleOption: false,
+      buttonClassName: "todo"
+    });
   }
 
   Repo = () => {
-   
     this.setState({
-      scheduleOption : true,
-      buttonClassName : "repo"
+      scheduleOption: true,
+      buttonClassName: "repo"
     });
-    
-    console.log(this.state.scheduleOption)
+
+    fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyCommitList`, {
+      method: 'get',
+      headers: API_HEADERS
+    })
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          checkedCommitListDay: json.data.map((list) => list.checkDate)
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
     const { month, year } = this.state;
+
+
     return (
       <div className="react-daypicker-root">
 
-          <div className = "button-div" >
-                <button className={`${this.state.buttonClassName ==='todo' ? 'index-todo-list-todo' : 'index-todo-list'}`} onClick={this.Todo}>TODO</button>
-                <button className={`${this.state.buttonClassName ==='repo' ? 'index-repository-list' : 'index-repository'}`} onClick={this.Repo}>GIT</button>
-             </div>
+        <div className="button-div" >
+          <button className={`${this.state.buttonClassName === 'todo' ? 'index-todo-list-todo' : 'index-todo-list'}`} onClick={this.Todo}>TODO</button>
+          <button style={{ marginLeft: "10px" }} className={`${this.state.buttonClassName === 'repo' ? 'index-repository-list' : 'index-repository'}`} onClick={this.Repo}>GIT</button>
+        </div>
 
         <div className="header">
-          <div className="previous-month" onClick={this.previousMonth}>
+
+          <div className="previous-month" onClick={this.previousMonth.bind(this)}>
             ◀
           </div>
+
           <div className="month-year">
             {this.longMonthName(month)} {year}
           </div>
-          <div className="next-month" onClick={this.nextMonth}>
+
+          <div className="next-month" onClick={this.nextMonth.bind(this)}>
             ▶
           </div>
-        </div>
-      
-        <div style={{padding:20}}>
 
         </div>
-       
 
-       {!this.state.scheduleOption ? (
-       
-        //개인스케줄 다이얼로그
-
-       <Dialog open={this.state.openModal} onClose={this.handleClose}>
-           
-           <DialogContent>
-           <div className="modal-body">
-           <div className="row">
-   
-           <div className="col-md-4-modal-meta">
-              <div className="modal-meta-top">
-          <button onClick={this.handleClose} type="button" className="close" >
-            <span aria-hidden="true">개인스케줄(닫기)</span>
-            <span className="sr-only">Close</span>
-         </button>
-   
-          <div className="img-poster clearfix">
-           <a href=""><img className="img-responsive img-circle" src="/assets/img/users/18.jpg" alt="Image"></img></a>
-           <strong><a style={{fontSize:25}}>2020-05-14</a></strong>
-           <br></br>
-           <br/>
-           <input className="form-control input-sm" type="text" placeholder="ADD your Schedule..."></input>	
-          </div>
-         
-         
-          <ul className="img-comment-list">
-           <li>
-            <div className="comment-text">
-             <strong><a>2020.05.14</a></strong> <a href='#'><span style={{fontWeight:"bold", color:'red', fontSize:12 ,fontFamily: " 'Varela Round', sans-serif"}}>삭제</span></a>
-             <p>Hello this is a test comment.</p>
-             <span className="date sub-text">on December 5th, 2016</span>
-            </div>
-           </li>
-   
-           <li>
-            <div className="comment-text">
-             <strong><a>2020.05.14</a></strong> <a href='#'><span style={{fontWeight:"bold", color:'red', fontSize:12 ,fontFamily: " 'Varela Round', sans-serif"}}>삭제</span></a>
-             <p>칼퇴</p>
-             <span className="date sub-text">on December 5th, 2016</span>
-            </div>
-           </li>
-   
-           <li>
-            <div className="comment-text">
-             <strong><a>2020.05.14</a></strong> <a href='#'><span style={{fontWeight:"bold", color:'red', fontSize:12 ,fontFamily: " 'Varela Round', sans-serif"}}>삭제</span></a>
-             <p>운동</p>
-             <span className="date sub-text">on December 5th, 2016</span>
-            </div>
-           </li>
-           <li>
-            <div className="comment-text">
-             <strong><a>2020.05.14</a></strong> <a href='#'><span style={{fontWeight:"bold", color:'red', fontSize:12 ,fontFamily: " 'Varela Round', sans-serif"}}>삭제</span></a>
-             <p>자살</p>
-             <span className="date sub-text">on December 5th, 2016</span>
-            </div>
-           </li>
-           <li>
-            <div className="comment-text">
-             <strong><a>2020.05.14</a></strong> <a href='#'><span style={{fontWeight:"bold", color:'red', fontSize:12 ,fontFamily: " 'Varela Round', sans-serif"}}>삭제</span></a>
-             <p>뭐하지 이제</p>
-             <span className="date sub-text">on December 5th, 2016</span>
-            </div>
-           </li>
-          </ul>
-          </div>
-         </div>
+        <div style={{ padding: 20 }}>
         </div>
-       </div>
-       </DialogContent>
-       
-       </Dialog>) : 
-       
-        //commit 기록들 다이얼로그
 
-       ( <Dialog open={this.state.openModal} onClose={this.handleClose}>
-        <DialogContent>
-         <div className="modal-body">
-        <div className="row">
 
-        <div className="col-md-4-modal-meta">
-           <div className="modal-meta-top">
-       <button onClick={this.handleClose} type="button" className="close" >
-         <span aria-hidden="true">깃스케줄(닫기)</span>
-         <span className="sr-only">Close</span>
-      </button>
 
-       <div className="img-poster clearfix">
-        <a href=""><img className="img-responsive img-circle" src="assets/img/users/18.jpg" alt="Image"></img></a>
-        <strong><a style={{fontSize:25}}>2020-05-14</a></strong>
-        <br></br>
-        <br/>
-       </div>
-      
-      
-       <ul className="img-comment-list">
-        <li>
-         <div className="comment-text">
-          <strong><a>2020.05.14</a></strong> 
-          <p>커밋기록들 저장하면 되겠다.</p>
-          <span className="date sub-text">on December 5th, 2016</span>
-         </div>
-        </li>
-       </ul>
-			
-       </div>
-      </div>
-     </div>
-    </div>
-    </DialogContent>
-    </Dialog>
-    )}
-        
-       
-          
+        {!this.state.scheduleOption ? (
+          //개인스케줄 다이얼로그
+          <MyToDoScheduleDialog
+            userid={this.state.userid}
+            originDay={this.state.clickDay}
+            day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
+            month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
+            year={this.state.year}
+            monthName={this.longMonthName(month)}
 
-        <div className = 'table-border'>
-        <table className='total-table'>
-          <thead>
-            <tr className='tr'>
-              <td className = 'sunday'>{this.renderDayHeader(0)}</td>
-              <td>{this.renderDayHeader(1)}</td>
-              <td>{this.renderDayHeader(2)}</td>
-              <td>{this.renderDayHeader(3)}</td>
-              <td>{this.renderDayHeader(4)}</td>
-              <td> {this.renderDayHeader(5)}</td>
-              <td className = 'saturday'> {this.renderDayHeader(6)}</td>
-            </tr>
-          </thead>
-          <tbody>{this.weeks.map(this.renderWeek)}</tbody>
-        </table>
+            getToDoList={this.state.getToDoList && this.state.getToDoList}
+
+            addlist={this.newAddlist.bind(this)}
+            deletelist={this.deleteList.bind(this)}
+
+            openModal={this.state.openModal}
+            onClosehandler={this.handleClose.bind(this)}
+          />
+        ) :
+
+          //commit 기록들 다이얼로그
+
+          <MyRepoScheduleDialog
+            userid={this.state.userid}
+            originDay={this.state.clickDay}
+            day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
+            month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
+            year={this.state.year}
+            monthName={this.longMonthName(month)}
+
+            getRepoList={this.state.getRepoList && this.state.getRepoList}
+
+            openModal={this.state.openModal}
+            onClosehandler={this.handleClose.bind(this)}
+          />
+        }
+
+
+
+
+        <div className='table-border'>
+          <table className='total-table'>
+            <thead style={{ textAlign: "center" }}>
+              <tr className='tr'>
+                <td className='sunday'>{this.renderDayHeader(0)}</td>
+                <td>{this.renderDayHeader(1)}</td>
+                <td>{this.renderDayHeader(2)}</td>
+                <td>{this.renderDayHeader(3)}</td>
+                <td>{this.renderDayHeader(4)}</td>
+                <td> {this.renderDayHeader(5)}</td>
+                <td className='saturday'> {this.renderDayHeader(6)}</td>
+              </tr>
+            </thead>
+            <tbody>{this.weeks.map(this.renderWeek)}</tbody>
+          </table>
         </div>
-        
+
       </div>
     );
   }
+
+  componentDidMount() {
+    
+    fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyToDoList`, {
+      method: 'get',
+      headers: API_HEADERS
+    })
+      .then(response => response.json())
+      .then(json => {
+
+        this.setState({
+          checkedToDoListDay: json.data.map((list) => list.checkDate)
+        });
+      })
+      .catch(err => console.error(err));
+  }
+
 }

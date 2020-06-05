@@ -1,65 +1,85 @@
-import React from 'react';
+import React, { Component } from "react";
 import './Calendar.scss';
+import CalendarTable from "./CalendarTable";
 
-import moment from 'moment';
+const API_URL = 'http://127.0.0.1:8080';
+const API_HEADERS = {
+  'Content-Type': 'application/json'
+}
 
-function Calendar() {
-  function generate() {
-    const today = moment();
-    const startWeek = today.clone().startOf('month').week();
-    const endWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
-    let calendar = [];
-    for (let week = startWeek; week <= endWeek; week++) {
-      calendar.push(
-        <div className="row" key={week}>
-          {
-            Array(7).fill(0).map((n, i) => {
-              let current = today.clone().week(week).startOf('week').add(n + i, 'day')
-              let isSelected = today.format('YYYYMMDD') === current.format('YYYYMMDD') ? 'selected' : '';
-              let isGrayed = current.format('MM') === today.format('MM') ? '' : 'grayed';
-              return (
-                <div className={`box  ${isSelected} ${isGrayed}`} key={i}>
-                  <span className={`text`}>{current.format('D')}</span>
-                </div>
-              )
-            })
-          }
-        </div>
-      )
+class Calendar extends Component {
+
+  constructor(props) {
+    super(props);
+
+    const now = new Date();
+
+    this.state = {
+      thisYear : now.getFullYear(),
+      thisMonth : now.getMonth()+1,
+      getCommitList: ''
     }
-    return calendar;
   }
-  return (
-    <div className="Calendar">
-      
-      <div className="body" >
-        <div className="row">
-          <div className="box">
-            <span className="text">SUN</span>
+
+  render() {
+
+    return (
+      <div className="Calendar" >
+
+        <div className="body" >
+
+          <div className="row">
+            <div className="box">
+              <span className="text">SUN</span>
+            </div>
+            <div className="box">
+              <span className="text">MON</span>
+            </div>
+            <div className="box">
+              <span className="text">TUE</span>
+            </div>
+            <div className="box">
+              <span className="text">WED</span>
+            </div>
+            <div className="box">
+              <span className="text">THU</span>
+            </div>
+            <div className="box">
+              <span className="text">FRI</span>
+            </div>
+            <div className="box">
+              <span className="text">SAT</span>
+            </div>
           </div>
-          <div className="box">
-            <span className="text">MON</span>
-          </div>
-          <div className="box">
-            <span className="text">TUE</span>
-          </div>
-          <div className="box">
-            <span className="text">WED</span>
-          </div>
-          <div className="box">
-            <span className="text">THU</span>
-          </div>
-          <div className="box">
-            <span className="text">FRI</span>
-          </div>
-          <div className="box">
-            <span className="text">SAT</span>
-          </div>
+
+          <CalendarTable 
+            commitList = {this.state.getCommitList}
+          />
         </div>
-        {generate()}
       </div>
+    );
+  }
+
+componentDidMount(){
+
+   let formatMonth = this.state.thisMonth < 10 ? ('0' + this.state.thisMonth) : this.state.thisMonth;
+   let path = this.state.thisYear+'-'+formatMonth  // ex)2020-06
+
+  fetch(`${API_URL}/gitbook/Schedule/${this.props.userid}/naviCommitList/${path}`, {
+    method: 'get',
+    headers: API_HEADERS
+  })
+    .then(response => response.json())
+    .then(json => {
+
+      this.setState({
+        getCommitList: json.data.map((list) => list.checkDate)
+      });
      
-    </div>
-  )
+    })
+    .catch(err => console.error(err));
+}
+
+
 }
 export default Calendar;
