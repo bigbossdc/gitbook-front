@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import "./Fluffs/assets/css/demos/photo.css";
+import "./Fluffs/assets/css/demos/join.css";
 import "./Fluffs/assets/css/ProfileAndAccount_tab.css";
+import "./Fluffs/assets/css/ProfileAndAccount_button.css";
 import ProfileSection from "./ProfileSection";
 import AccountSettingSection from "./AccountSettingSection";
-
-const tabMenu = {
-	profile: <ProfileSection />,
-	account: <AccountSettingSection />,
-};
 
 export default class ProfileAndAccount extends Component {
 	constructor() {
@@ -28,7 +25,6 @@ export default class ProfileAndAccount extends Component {
 	};
 
 	render() {
-		console.log("called ProfileAndAccount...");
 		return (
 			<div className="banner-content" style={{ marginTop: "0px" }}>
 				<div className="tab">
@@ -42,7 +38,7 @@ export default class ProfileAndAccount extends Component {
 				<br />
 				<br />
 
-				{tabMenu[this.state.currentTab]}
+				{this.state.currentTab === 'profile' ? <ProfileSection userid={this.props.match.params.userid}/> : <AccountSettingSection />}
 			</div>
 		);
 	}

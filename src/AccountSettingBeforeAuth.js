@@ -5,7 +5,7 @@ export default class AccountSettingBeforeAuth extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: "",
+			id: "",
 			password: "",
 		};
 
@@ -14,9 +14,9 @@ export default class AccountSettingBeforeAuth extends Component {
 	}
 
 	doChangeState(event) {
-		if (event.target.name === "email") {
+		if (event.target.name === "id") {
 			this.setState({
-				email: event.target.value,
+				id: event.target.value,
 			});
 			return ;
 		}
@@ -29,7 +29,7 @@ export default class AccountSettingBeforeAuth extends Component {
 	}
 
 	doAuth() {
-		if(this.state.email === ''){
+		if(this.state.id === ''){
 			alert("아이디를 입력 바랍니다.");
 			return;
 		}
@@ -44,19 +44,19 @@ export default class AccountSettingBeforeAuth extends Component {
 	render() {
 		return (
 			<div className="form-signin">
-				<img src="/assets/img/users/1.jpg" className="img-responsive img-circle" alt="User" style={{ margin: "0 auto", width: "50%", height: "50%" }} />
 				<br />
 				<br />
 				<h1 style={{ color: "black", fontFamily: "Varlera Round" }}>재인증 필요</h1>
 				<br />
 				<br />
+				<br />
 				<div className="form-group">
 					<input
-						name="email"
+						name="id"
 						type="text"
 						className="form-control"
-						placeholder="Email"
-						value={this.state.email}
+						placeholder="ID"
+						value={this.state.id}
 						onChange={this.doChangeState.bind(this)}
 					/>
 				</div>
