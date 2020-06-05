@@ -48,11 +48,10 @@ export default class MyToDoScheduleDialog extends Component {
 
       this.props.addlist(newToDo.checkDate, newToDo);
 
-      /////////////////////
       this.setState({
         content: ''
       });
-      /////////////////////
+      
     }
   }
 
