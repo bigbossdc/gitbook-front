@@ -32,7 +32,7 @@ onClickHandler() {
                 <div className="user-info">
                   <div className="image">
                     <a href="photo_profile_two.html">
-                    <img src="/gitbook/assets/img/users/1.jpg" className="img-responsive img-circle" alt="User"></img>
+                    <img src={this.state.userinfo && this.state.userinfo.image} className="img-responsive img-circle" alt="User"></img>
                     <span className="online-status online"></span>
                     </a>
                   </div>

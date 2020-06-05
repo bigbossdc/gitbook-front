@@ -30,7 +30,10 @@ class Header extends Component {
     }
     
     onResult() {
-        this.props.handlerSubmit.search(this.state.keyword);
+        this.props.handlerSubmit.search(this.state.keyword)
+        this.setState({
+            keyword: ''
+        })
     }
 
     render() {
@@ -48,9 +51,20 @@ class Header extends Component {
                             <li>{/** 검색 창 */}
 		                     <div className="search-dashboard">
                                  <form onClick={this.onResult.bind(this)}>
-                                    <input placeholder="친구 검색" onChange={this.onInputChange.bind(this)}></input>
+                                    <input placeholder="친구 검색" onChange={this.onInputChange.bind(this)} value={this.state.keyword}></input>
                                     <Link to="/gitbook/main/friendsearch">
-                                        <button type="submit"><i className="fa fa-search" style={{display:"inline-block"}}></i></button>
+                                    <button type="submit" style={{display:"inline-block",     
+                                                                    background: "transparent none repeat scroll 0 0",
+                                                                    border: "medium none",
+                                                                    color: "#a7a7a7",
+                                                                    padding: "12px 22px",
+                                                                    position: "absolute",
+                                                                    right: "0",
+                                                                    top: "-7px",
+                                                                    cursor: "pointer"}}>
+                                        <i className="fa fa-search" >
+                                        </i>
+                                    </button>  
                                     </Link>
                                  </form>
                               </div>							

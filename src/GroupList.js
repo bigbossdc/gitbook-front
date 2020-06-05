@@ -8,9 +8,12 @@ class GroupList extends Component {
     render() {
         return(   
          <div>
-            <GroupListRequest></GroupListRequest>
+            <GroupListRequest
+                myreqlist={this.props.myreqlist}
+                callback={this.props.callback}/>
             <hr/>
-            <GroupListJoin></GroupListJoin>
+            <GroupListJoin
+                grouplist={this.props.grouplist}/>
         </div>
        );
     }
