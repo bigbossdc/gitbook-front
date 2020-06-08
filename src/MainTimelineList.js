@@ -13,17 +13,17 @@ class MainTimelineList extends Component {
   render() {
    
     return (
-      <div className="followers-list">
-         
-
-        {this.props.timelineItemList && 
-        this.props.timelineItemList
-        .map((list)=> <TimelineItem 
-        key={list.no}
-        list={list}
-        mathcid={sessionStorage.getItem("authUserId")}
-        />)
-        }
+      <div className="followers-box full-width">
+        <div className="followers-list">
+          {this.props.timelineItemList && 
+          this.props.timelineItemList
+          .map((list)=> <TimelineItem 
+          key={list.no}
+          list={list}
+          mathcid={sessionStorage.getItem("authUserId")}
+          />)
+          }
+        </div>
       </div>
     );
   }

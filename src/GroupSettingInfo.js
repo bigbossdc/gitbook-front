@@ -35,6 +35,15 @@ class GroupSettingInfo extends Component {
     });
   }
 
+  handleLengthChk=(e)=>{
+    if(e.target.value.length > 100) {
+        alert("100자를 초과했습니다 (글자수: " + e.target.value.length + ")" )
+        this.setState({
+          groupIntro: e.target.value.substring(0, 100)
+        });
+    }
+}
+
   handleRadio=(event)=>{
     let obj = {}
     obj[event.target.value] = event.target.checked 
@@ -97,6 +106,7 @@ class GroupSettingInfo extends Component {
 
         <input type="text" 
                className="form-control" 
+               maxLength="30"
                name="groupTitle"
                value={this.state.groupTitle} 
                onChange={this.handleChange.bind(this)}
@@ -119,8 +129,8 @@ class GroupSettingInfo extends Component {
                   rows="3" 
                   name="groupIntro"
                   value={this.state.groupIntro}
-                  onChange={this.handleChange.bind(this)}/>
-        
+                  onChange={this.handleChange.bind(this)}
+                  onKeyUp={this.handleLengthChk.bind(this)}/>
         <br/>
         <br/>
       

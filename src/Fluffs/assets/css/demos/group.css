@@ -136,7 +136,7 @@
     position: absolute;
     top:0%;
     height: 100%;
-    width: 20%;
+    width: 30%;
     background-color: rgba(0, 0, 0, 0.411);                                                                 
     z-index:1;
  }
@@ -144,12 +144,15 @@
     position: absolute;
     top:40%;
     left:10%;
-    transform: translate(-50%, -50%);                                                                   
+    width: 30%;
+    transform: translate(-35%, -50%);                                                                   
     font-size:5rem;
     color: white;
     z-index: 2;
     text-align: center;
+    word-break: normal;
 }
+
 .group-master-area {
     display: inline;
 }
@@ -164,12 +167,17 @@
     float: left;  
     vertical-align: middle;
 }
+.group-master-area .g-img {
+    width: 150px;
+    height: 150px;
+    margin-left: 5%;
+    float: left;
+}
 .group-master-area h4 {
     color: #3b3b3b;
     word-break: break-all;
     vertical-align: middle;
     margin-top: 5%;
-    margin-left: 25%;
     line-height: 1.5em;
 }
 .group-icon {
@@ -311,4 +319,14 @@
     font-size: 1.8em;
     padding: 0;
     margin: .22em 0 0 0;
+}
+
+#group-upload-icon {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-size: 18px;
+    color: #848484;
+    position: relative;
+    cursor: pointer;
 }

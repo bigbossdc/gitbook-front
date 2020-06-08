@@ -11,8 +11,8 @@ const API_HEADERS = {
 
 
 class Header extends Component {
-    constructor() {
-        super(...arguments);
+    constructor(props) {
+        super(props);
         this.state = {
             anuthUser: null,
             keyword:''
@@ -50,10 +50,10 @@ class Header extends Component {
 		                    
                             <li>{/** 검색 창 */}
 		                     <div className="search-dashboard">
-                                 <form onClick={this.onResult.bind(this)}>
+                                 <form>
                                     <input placeholder="친구 검색" onChange={this.onInputChange.bind(this)} value={this.state.keyword}></input>
                                     <Link to="/gitbook/main/friendsearch">
-                                    <button type="submit" style={{display:"inline-block",     
+                                    <button onClick={this.onResult.bind(this)} type="submit" style={{display:"inline-block",     
                                                                     background: "transparent none repeat scroll 0 0",
                                                                     border: "medium none",
                                                                     color: "#a7a7a7",

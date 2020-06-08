@@ -1,0 +1,29 @@
+.friend-box {
+    /* min-height: calc(100vmin-213px); */
+    min-height: 450px;
+    background: "#F4F4F4"
+}
+
+.contents {
+    height:10%; 
+    margin:10% auto;
+}
+
+.friend-wrapper {
+    min-height: 350px;
+    text-align: center;
+    margin-top: 150px;
+}
+.friend-wrapper:before {
+    content: ""; display: inline-block;
+    margin-right: 0; vertical-align: middle;
+}
+
+.friend-box {
+    display: inline-block; 
+    vertical-align: middle;
+}
+
+.friend-contents {
+    margin-top: 20px;
+}

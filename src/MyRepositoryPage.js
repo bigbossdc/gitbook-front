@@ -149,9 +149,9 @@ class MyRepositoryPage extends Component {
 
   componentDidMount() {
 
-    fetch(`${API_URL}/gitbook/Repository/${this.props.match.params.userid}/item/${this.props.match.params.repoName}`, {
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/item/${this.props.match.params.repoName}`, {
       method: 'get',
-      headers: API_HEADERS
+      headers: global.API_HEADERS
     })
       .then(response => response.json())
       .then(json => {
@@ -168,13 +168,17 @@ class MyRepositoryPage extends Component {
     })
       .then(response => response.json())
       .then(json => {
-        if (JSON.stringify(json.data) !== 'null')
+
+          if(json.message !== 'newRepo'){
           this.setState({
             gitlist: json.data,
           });
+          }
           this.setState({
             loding: true
           })
+       
+        
       })
 
       .catch(err => console.error(err));
