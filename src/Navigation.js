@@ -25,7 +25,7 @@ class Navigation extends Component {
                   <div className="image">
                     <a href="photo_profile_two.html">
 
-                    <img src={this.state.userinfo.image} className="img-responsive img-circle" alt="User"></img>
+                    <img src={this.state.userinfo.image} className="img-responsive img-circle" alt="User" style={{width: "200px", height: "200px"}}></img>
 
                     <span className="online-status online"></span>
                     </a>
