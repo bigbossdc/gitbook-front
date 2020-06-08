@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 import './Fluffs/assets/css/demos/group.css';
 import GroupHeaderImg from "./GroupHeaderImg";
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-  'Content-Type': 'application/json'
-}
+
 class GroupInfo extends Component {
     constructor(props) {
         super(props);
@@ -63,9 +60,9 @@ class GroupInfo extends Component {
     }
     
     componentDidMount() {
-        fetch(`${API_URL}/gitbook/group/info`, {
+        fetch(`${global.API_URL}/gitbook/group/info`, {
             method: 'post',
-            headers: API_HEADERS,
+            headers: global.API_HEADERS,
             body: JSON.stringify({
                 userno : sessionStorage.getItem("authUserNo"),
                 groupno: this.props.groupno

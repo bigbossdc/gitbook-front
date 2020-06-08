@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-    'Content-Type': 'application/json'
-}
-
 
 class Navigation2 extends Component {
    
@@ -43,11 +38,13 @@ class Navigation2 extends Component {
     }
 
     componentDidMount() {
-      fetch(`${API_URL}/gitbook/user/friend/navilist`, {
+
+      fetch(`${global.API_URL}/gitbook/user/friend/list`, {
+
         method: 'post',
-        headers: API_HEADERS,
+        headers: global.API_HEADERS,
         body: JSON.stringify({
-          id : this.props.id,
+          id : this.props.userid,
           kind: "친구"
         })
     })

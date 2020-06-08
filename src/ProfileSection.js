@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
-const API_URL = "http://127.0.0.1:8080";
-const API_HEADERS = {
-	"Content-Type": "application/json",
-};
+
 let viewed = {};
 
 export default class ProfileSection extends Component {
@@ -23,9 +20,9 @@ export default class ProfileSection extends Component {
 	}
 
 	loadProfile = () => {
-		fetch(`${API_URL}/gitbook/user/profile/info/${this.props.userid}`, {
+		fetch(`${global.API_URL}/gitbook/user/profile/info/${this.props.userid}`, {
 			method: "post",
-			headers: API_HEADERS,
+			headers: global.API_HEADERS,
 			body: null,
 		})
 			.then((response) => response.json())
@@ -39,9 +36,9 @@ export default class ProfileSection extends Component {
 	};
 
 	updateProfile = () => {
-		fetch(`${API_URL}/gitbook/user/profile/update/${this.props.userid}`, {
+		fetch(`${global.API_URL}/gitbook/user/profile/update/${this.props.userid}`, {
 			method: "post",
-			headers: API_HEADERS,
+			headers: global.API_HEADERS,
 			body: JSON.stringify(this.state.editables),
 		})
 			.then((response) => response.json())
@@ -93,7 +90,7 @@ export default class ProfileSection extends Component {
 			let formData = new FormData();
 			formData.append("newImage", file_image_upload);
 
-			fetch(`${API_URL}/gitbook/user/profile/uploadImage/${this.props.userid}`, {
+			fetch(`${global.API_URL}/gitbook/user/profile/uploadImage/${this.props.userid}`, {
 				method: "post",
 				body: formData,
 			})

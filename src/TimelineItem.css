@@ -153,13 +153,13 @@
 }
 
 #fileimage{
-  max-width: 160px;
-  height: 160px;
+ max-width: 100%;
+ max-height: 100%;
+ margin:-30px auto;
   cursor: pointer;
 }
 
 #fileimage:hover{
-  max-width: 160px;
-  height: 160px;
+  
   transform: scale(1.2);
 }

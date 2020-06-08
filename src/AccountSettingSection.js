@@ -3,10 +3,7 @@ import React, { Component, Fragment } from "react";
 import AccountSettingBeforeAuth from "./AccountSettingBeforeAuth";
 import AccountSettingAfterAuth from "./AccountSettingAfterAuth";
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-    'Content-Type': 'application/json'
-}
+
 
 export default class AccountSettingSection extends Component {
 	constructor() {
@@ -18,9 +15,9 @@ export default class AccountSettingSection extends Component {
 	}
 
 	onAuth = (loginInfo) => {
-		fetch(`${API_URL}/gitbook/user/account/checkUser`, {
+		fetch(`${global.API_URL}/gitbook/user/account/checkUser`, {
 			method: 'post',
-			headers: API_HEADERS,
+			headers: global.API_HEADERS,
 			body: JSON.stringify(loginInfo)
 		})
 		.then(response => response.json())
@@ -72,9 +69,9 @@ export default class AccountSettingSection extends Component {
 		}
 
 		// POST 통신 실행
-		fetch(`${API_URL}/gitbook/user/account/updateUser`, {
+		fetch(`${global.API_URL}/gitbook/user/account/updateUser`, {
 			method: 'post',
-			headers: API_HEADERS,
+			headers: global.API_HEADERS,
 			body: JSON.stringify(this.state.userData)
 		})
 		.then(response => response.json())

@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import GroupSettingDeleteUserItem from './GroupSettingDeleteUserItem';
 
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-  'Content-Type': 'application/json'
-}
+
 class GroupSettingDeleteUser extends Component {
   constructor() {
     super(...arguments);
@@ -30,9 +27,9 @@ class GroupSettingDeleteUser extends Component {
   // 그룹 멤버 탈퇴
   callbackDeleteMember(userno, groupno) {
     console.log("group delte 확인" + groupno + ":" + userno);
-    fetch(`${API_URL}/gitbook/group/deleteMember`, {
+    fetch(`${global.API_URL}/gitbook/group/deleteMember`, {
             method: 'post',
-            headers: API_HEADERS,
+            headers: global.API_HEADERS,
             body:JSON.stringify({
             userno: userno,
             groupno: groupno
@@ -84,9 +81,9 @@ class GroupSettingDeleteUser extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API_URL}/gitbook/group/joinlist`, {
+    fetch(`${global.API_URL}/gitbook/group/joinlist`, {
       method: 'post',
-      headers: API_HEADERS,
+      headers: global.API_HEADERS,
       body: JSON.stringify({
           groupno: this.props.groupno
         })

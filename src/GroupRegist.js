@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Fluffs/assets/css/demos/group.css';
 import {Link} from "react-router-dom";
 
-const API_URL = 'http://127.0.0.1:8080';
+
 const API_HEADERS2 = {
     'Content-Type': 'multipart/form-data; charset=UTF-8'
 }
@@ -64,7 +64,7 @@ class GroupRegist extends Component {
 
         let formData = new FormData();
         formData.append('file', file);
-        fetch(`${API_URL}/gitbook/group/imgupload`, {
+        fetch(`${global.API_URL}/gitbook/group/imgupload`, {
             method: 'post',
             headers: {
                 API_HEADERS2

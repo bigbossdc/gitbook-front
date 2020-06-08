@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import './Fluffs/assets/css/demos/button.css';
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-  'Content-Type': 'application/json'
-}
+
 class FriendSearchItem extends Component {
   constructor() {
     super(...arguments);
@@ -16,9 +13,9 @@ class FriendSearchItem extends Component {
 
   reqFollow() {
     console.log("friend request 확인" + this.props.no + ":" + sessionStorage.getItem("authUserNo"));
-    fetch(`${API_URL}/gitbook/friend/request`, {
+    fetch(`${global.API_URL}/gitbook/friend/request`, {
       method: 'post',
-      headers: API_HEADERS,
+      headers: global.API_HEADERS,
       body:JSON.stringify({
         userno: sessionStorage.getItem("authUserNo"),
         friendno: this.props.no

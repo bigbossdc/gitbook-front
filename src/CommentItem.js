@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './CommentItem.css';
-
+import { Link } from "react-router-dom";
 
 
 
@@ -34,11 +34,12 @@ class CommentItem extends Component {
             <img src={this.props.list.userProfile} className="img-responsive img-circle" alt="Image" />
           </div>
 
-          <strong><a href="/">{this.props.list.uesrNickname}</a></strong> 
+          <strong><Link to={`/gitbook/my/${this.props.list.userId}`}>{this.props.list.uesrNickname}</Link></strong> 
            {this.props.list.userId == sessionStorage.getItem("authUserId")?
            <i id="deleteIcon"  onClick={this.onClickShow.bind(this)}className="fas fa-backspace fa-1.5x"/>:''
            }
-          <p style={{paddingRight:"30px"}}>{this.props.list.contents}</p> <span className="date sub-text" style={{ marginBottom: "5px" }}>{this.props.list.regDate}</span>
+          <p style={{paddingRight:"30px"}}>{this.props.list.contents.split(" ")
+          .map(word=><div style={{display:"inline"}}>{word} &nbsp;</div>)}</p> <span className="date sub-text" style={{ marginBottom: "5px" }}>{this.props.list.regDate}</span>
         </li>
         <hr ></hr>
       </div>

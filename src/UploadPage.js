@@ -28,10 +28,12 @@ class UploadPage extends Component {
     })
       .then(response => response.json())
       .then(json => {
-
+       const check=json.data.split('.').pop()
+       if(check==='png'|| check==="jpg"|| check==="gif"||check==="jpeg" ||check==="PNG"){
         this.setState({
           imgList: this.state.imgList.concat(json.data)
         });
+      }
       })
       .catch(err => console.error(err));
     e.target.value = ''
@@ -91,6 +93,7 @@ class UploadPage extends Component {
       body: formData
     })
       .catch(err => console.error(err));
+      window.location=global.API_URL+"/gitbook/my/"+sessionStorage.getItem("authUserId");
   }
   render() {
     return (
@@ -115,7 +118,7 @@ class UploadPage extends Component {
                           (this.state.imgList.length < 10) ?
                             <div style={{ float: "left", widthMin: "20%", widthMax: "160px", margin: "0px 1.6%", display: "inline-block" }}>
                               <div className="imageFileDiv" >
-                                <label className="iconlabel"><input type="file" name={this.state.imgFile} style={{ display: "none" }} onChange={this.handleChangeFile} /> <i className="fa fa-camera text-muted fa-4x" id="custom" /></label>
+                                <label className="iconlabel"><input type="file" accept="image/gif,image/jpeg,image/png,image/jpg" name={this.state.imgFile} style={{ display: "none" }} onChange={this.handleChangeFile} /> <i className="fa fa-camera text-muted fa-4x" id="custom" /></label>
                               </div>
                             </div> : ''}
                       </div>
@@ -146,9 +149,9 @@ class UploadPage extends Component {
                       <div>
                         {
                           (this.state.contents !== '') ?
-                             <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}`}>
+                         
                               <button onClick={this.handleSubmit.bind(this)} style={{ color: "#0FC19E", float: "right", margin: "5px" }}
-                                className="kafe-btn kafe-btn-mint-small pull-right btn-sm">Upload</button></Link> :
+                                className="kafe-btn kafe-btn-mint-small pull-right btn-sm">Upload</button> :
                             ''}
                         {(this.state.visible === "public") ?
                           <i style={{ color: "#0FC19E" }} onClick={this.clickVisible.bind(this)} id="vislblelock" className="fas fa-lock-open fa-2x" /> :
@@ -167,5 +170,9 @@ class UploadPage extends Component {
       </div>
     );
   }
+  componentWillUnmount(){
+    setTimeout({},500);
+  }
+
 }
 export default UploadPage;
