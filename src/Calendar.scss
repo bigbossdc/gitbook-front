@@ -89,7 +89,8 @@
             }
 
             span.textRepo{
-              background-color: #88898A;
+              border-radius: 100%;
+              background-color: #0fc19e;
               color: white;
               font-weight: bold;
               font-size: 0.7em;
@@ -100,6 +101,8 @@
               top: 50%;
               left: 50%;
               transform: translate(-50%,-50%);
+              height: 23px;
+              width: 23px;
             }
             
           }

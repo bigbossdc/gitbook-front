@@ -41,7 +41,7 @@ class CalendarTable extends Component {
                                 <div className={`box  ${isSelected} ${isGrayed}`} key={i}>
                                     {commitDays.includes(formatDay) ? <span className={'textRepo'}>{formatDay}</span>
                                         :
-                                        <span className={'text'}>{formatDay}</span>
+                                        <span className={'text'} >{formatDay}</span>
                                     }
                                 </div>
                             );

@@ -50,7 +50,7 @@ class MyRepositoryPage extends Component {
   }
 
   render() {
-
+    console.log(this.state.loding)
     const k={
       position: "relative",
       top: "1px",
@@ -102,14 +102,15 @@ class MyRepositoryPage extends Component {
               </form>
             </div>
             <p style={{ fontSize: "0.8em" }}>경로: {this.props.match.params.repoName}/{this.state.callPath}</p>
-        
+                  
             { 
+           
               (this.state.loding == true)?
-
-            (this.state.gitlist.type === 'folder') ?
-              <RepositoryTable
-                key="repotable"
-                gitlist={this.state.gitlist && this.state.gitlist}
+             
+                 (this.state.gitlist.type === 'folder') ?
+                   <RepositoryTable
+                      key="repotable"
+                      gitlist={this.state.gitlist && this.state.gitlist}
                 callPath={this.state.callPath &&this.state.callPath}
                 clicklist={{
                   newList: this.onClickHandler.bind(this)}}
@@ -148,7 +149,7 @@ class MyRepositoryPage extends Component {
   }
 
   componentDidMount() {
-
+    console.log('didmount')
     fetch(`${API_URL}/gitbook/Repository/${this.props.match.params.userid}/item/${this.props.match.params.repoName}`, {
       method: 'get',
       headers: API_HEADERS
@@ -168,13 +169,19 @@ class MyRepositoryPage extends Component {
     })
       .then(response => response.json())
       .then(json => {
-        if (JSON.stringify(json.data) !== 'null')
-          this.setState({
-            gitlist: json.data,
-          });
+        console.log(json.message)
+        console.log("조건 이전 : " +this.state.loding)
+        
+          if(json.message !== 'newRepo'){
+            this.setState({
+              gitlist: json.data,
+            });
+          }
+
           this.setState({
             loding: true
           })
+          console.log("조건 이후 : " +this.state.loding)
       })
 
       .catch(err => console.error(err));

@@ -13,11 +13,11 @@ class GroupTimeLinePage extends Component {
     
     return (
       <div>
+              {/* <TimelineItem></TimelineItem>
               <TimelineItem></TimelineItem>
               <TimelineItem></TimelineItem>
               <TimelineItem></TimelineItem>
-              <TimelineItem></TimelineItem>
-              <TimelineItem></TimelineItem>
+              <TimelineItem></TimelineItem> */}
       </div>
     );
   }

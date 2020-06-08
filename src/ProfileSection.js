@@ -137,7 +137,7 @@ export default class ProfileSection extends Component {
 							<>
 								<small className="text-muted">Change Image</small>
 								<p />
-								<input type="file" accept="image/jpg, impge/png, image/jpeg, image/gif" name="file_image" onChange={this.onFileChange.bind(this)} style={{ color: "black" }} />
+								<input type="file" accept="image/jpg, impge/png, image/jpeg, image/gif, jpg, png, jpeg, gif" name="file_image" onChange={this.onFileChange.bind(this)} style={{ color: "black" }} />
 								<hr />
 							</>
 						) : (
