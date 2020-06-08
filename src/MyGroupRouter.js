@@ -9,10 +9,7 @@ import GroupList from './GroupList';
 import GroupRegist from './GroupRegist';
 
 {/*Group Navigation 사용하는 그룹 관련 페이지 - 그룹 타임라인, 그룹 관리*/}
-const API_URL = "http://127.0.0.1:8080";
-const API_HEADERS = {
-  "Content-Type": "application/json",
-};
+
 const API_HEADERS2 = {
   'Content-Type': 'multipart/form-data; charset=UTF-8'
 }
@@ -36,7 +33,7 @@ class MyRouter extends Component {
       formData.append('groupTitle', groupTitle);
       formData.append('description', description);
 
-      fetch(`${API_URL}/gitbook/group/regist`, {
+      fetch(`${global.API_URL}/gitbook/group/regist`, {
           method: 'post',
           headers: {
               API_HEADERS2
@@ -53,9 +50,9 @@ class MyRouter extends Component {
   // 그룹 요청 수락
   callbackAddGroup(groupno){
     console.log("그룹수락번호 " + groupno)
-    fetch(`${API_URL}/gitbook/group/addgroup`, {
+    fetch(`${global.API_URL}/gitbook/group/addgroup`, {
         method: 'post',
-        headers: API_HEADERS,
+        headers: global.API_HEADERS,
         body: JSON.stringify({
           userno: sessionStorage.getItem("authUserNo"),
           groupno: groupno,
@@ -74,9 +71,9 @@ class MyRouter extends Component {
     // 그룹 요청 거절
     callbackRejectGroup(groupno){
       console.log("그룹수락번호 " + groupno)
-      fetch(`${API_URL}/gitbook/group/rejectgroup`, {
+      fetch(`${global.API_URL}/gitbook/group/rejectgroup`, {
           method: 'post',
-          headers: API_HEADERS,
+          headers: global.API_HEADERS,
           body: JSON.stringify({
             userno: sessionStorage.getItem("authUserNo"),
             groupno: groupno,
@@ -94,9 +91,9 @@ class MyRouter extends Component {
 
     // 수락 및 거절 후 그룹 요청 리스트 다시 가져오기
     callbackReqGroup() {
-      fetch(`${API_URL}/gitbook/group/myreqlist`, {
+      fetch(`${global.API_URL}/gitbook/group/myreqlist`, {
         method: 'get',
-        headers: API_HEADERS
+        headers: global.API_HEADERS
       })
         .then(response => response.json())
         .then(json => {
@@ -156,9 +153,9 @@ class MyRouter extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API_URL}/gitbook/group/list`, {
+    fetch(`${global.API_URL}/gitbook/group/list`, {
       method: 'get',
-      headers: API_HEADERS
+      headers: global.API_HEADERS
     })
       .then(response => response.json())
       .then(json => {
@@ -168,9 +165,9 @@ class MyRouter extends Component {
       })
       .catch(err => console.error(err));
 
-    fetch(`${API_URL}/gitbook/group/myreqlist`, {
+    fetch(`${global.API_URL}/gitbook/group/myreqlist`, {
       method: 'get',
-      headers: API_HEADERS
+      headers: global.API_HEADERS
     })
       .then(response => response.json())
       .then(json => {

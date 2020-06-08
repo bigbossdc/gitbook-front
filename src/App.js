@@ -16,7 +16,8 @@ class App extends Component {
     super(...arguments);
     this.state = {
       keyword:'',
-      result:''
+      result:'',
+      authUser:''    
     }
   }
   // Header 친구 검색
@@ -47,13 +48,15 @@ class App extends Component {
     })
     .catch( err => console.error( err ));   
   }
-
+  
   render() {  
+  
     return (
-      <div className="App" >
-        <Header handlerSubmit={{search: this.onSearchSubmit.bind(this)}}></Header>
+      <div className="App"   >
+      <Header handlerSubmit={{search: this.onSearchSubmit.bind(this)}}></Header>
+     
         <Route path="/gitbook/main" render={() => <MainRouter result={this.state.result}/>}></Route>
-        <Route path="/gitbook/my/:userid?" component={MyRouter}></Route>
+        <Route path="/gitbook/my/:userid?"  component={MyRouter}></Route>
         <Route path="/gitbook/mygroup/:groupno?" component={MyGroupRouter}></Route>
         <Route path="/gitbook/myfriend" component={MyFriendRouter}></Route>
         <Route path="/gitbook/upload" render={() => <UploadPage result={this.state.result}/>}></Route> 

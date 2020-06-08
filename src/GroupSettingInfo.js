@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import './Fluffs/assets/css/demos/group.css';
 import {Link} from "react-router-dom";
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-    'Content-Type': 'application/json'
-}
+
 const API_HEADERS2 = {
   'Content-Type': 'multipart/form-data; charset=UTF-8'
 }
@@ -57,7 +54,7 @@ class GroupSettingInfo extends Component {
 
     let formData = new FormData();
     formData.append('file', file);
-    fetch(`${API_URL}/gitbook/group/imgupload`, {
+    fetch(`${global.API_URL}/gitbook/group/imgupload`, {
         method: 'post',
         headers: {
             API_HEADERS2
@@ -190,9 +187,9 @@ class GroupSettingInfo extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API_URL}/gitbook/group/info`, {
+    fetch(`${global.API_URL}/gitbook/group/info`, {
       method: 'post',
-      headers: API_HEADERS,
+      headers: global.API_HEADERS,
       body: JSON.stringify({
           userno : this.props.userno,
           groupno: this.props.groupno
@@ -215,9 +212,9 @@ class GroupSettingInfo extends Component {
     })
     .catch( err => console.error( err ));  
 
-    fetch(`${API_URL}/gitbook/group/list`, {
+    fetch(`${global.API_URL}/gitbook/group/list`, {
       method: 'get',
-      headers: API_HEADERS
+      headers: global.API_HEADERS
     })
       .then(response => response.json())
       .then(json => {

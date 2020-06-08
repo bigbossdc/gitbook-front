@@ -1,0 +1,151 @@
+# Query: API_URL
+# Flags: IgnoreExcludeSettings
+
+85개 결과 - 31 파일
+
+src\AccountSettingSection.js:
+   6: const API_URL = 'http://127.0.0.1:8080';
+  21: 		fetch(`${global.API_URL}/gitbook/user/account/checkUser`, {
+  75: 		fetch(`${global.API_URL}/gitbook/user/account/updateUser`, {
+
+src\App.js:
+  31:     fetch(`${global.API_URL}/gitbook/user/friend/search`, {
+  68:     fetch(`${global.API_URL}/gitbook/user/auth`, {
+
+src\Calendar.js:
+   5: const API_URL = 'http://127.0.0.1:8080';
+  68:   fetch(`${API_URL}/gitbook/Schedule/${this.props.userid}/naviCommitList/${path}`, {
+
+src\CalendarTable.js:
+  5: const API_URL = 'http://127.0.0.1:8080';
+
+src\DialogDelete.js:
+  6: const API_URL = 'http://127.0.0.1:8080';
+
+src\FriendSearchItem.js:
+   5: const API_URL = 'http://127.0.0.1:8080';
+  19:     fetch(`${API_URL}/gitbook/friend/request`, {
+
+src\global.js:
+  1: global.API_URL="http://127.0.0.1:8080";
+
+src\GroupInfo.js:
+   7: const API_URL = 'http://127.0.0.1:8080';
+  65:         fetch(`${API_URL}/gitbook/group/info`, {
+
+src\GroupRegist.js:
+   5: const API_URL = 'http://127.0.0.1:8080';
+  52:         fetch(`${API_URL}/gitbook/group/imgupload`, {
+
+src\GroupRouter.js:
+   16: const API_URL = 'http://127.0.0.1:8080';
+   40:     fetch(`${API_URL}/gitbook/group/infoupdate`, {
+  100:     fetch(`${API_URL}/gitbook/group/info`, {
+  116:     fetch(`${API_URL}/gitbook/group/joinlist`, {
+
+src\GroupSettingAddUser.js:
+   4: const API_URL = 'http://127.0.0.1:8080';
+  31:       fetch(`${API_URL}/gitbook/group/request`, {
+  82:         fetch(`${API_URL}/gitbook/group/reqlist`, {
+
+src\GroupSettingDeleteUser.js:
+   5: const API_URL = 'http://127.0.0.1:8080';
+  33:     fetch(`${API_URL}/gitbook/group/deleteMember`, {
+  87:     fetch(`${API_URL}/gitbook/group/joinlist`, {
+
+src\GroupSettingInfo.js:
+    5: const API_URL = 'http://127.0.0.1:8080';
+   60:     fetch(`${API_URL}/gitbook/group/imgupload`, {
+  193:     fetch(`${API_URL}/gitbook/group/info`, {
+  218:     fetch(`${API_URL}/gitbook/group/list`, {
+
+src\Header.js:
+    7: const API_URL = 'http://127.0.0.1:8080';
+  135:         fetch(`${API_URL}/gitbook/user/auth`, {
+
+src\MainCalendar.js:
+    7: const API_URL = 'http://127.0.0.1:8080';
+  147:     fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/addToDo/${day}`, {
+  163:     fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/delete/${day}`, {
+  193:         fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/toDoList/${this.state.year}-${newMonth}-${newDay}`, {
+  208:         fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/repoList/${this.state.year}-${newMonth}-${newDay}`, {
+  310:     fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyCommitList`, {
+  419:     fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyToDoList`, {
+
+src\MainRouter.js:
+  51:     fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/mainlist`, {
+
+src\MainTimelineList.js:
+  32:   //   fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/mainlist`, {
+
+src\MyFriendRouter.js:
+    9: const API_URL = 'http://127.0.0.1:8080';
+   24:     fetch(`${API_URL}/gitbook/user/friend/add`, {
+   46:     fetch(`${API_URL}/gitbook/user/friend/delete`, {
+   68:     fetch(`${API_URL}/gitbook/user/friend/req`, {
+  119:     fetch(`${API_URL}/gitbook/user/friend/req`, {
+  135:     fetch(`${API_URL}/gitbook/user/friend/list`, {
+
+src\MyGroupRouter.js:
+   12: const API_URL = "http://127.0.0.1:8080";
+   39:       fetch(`${API_URL}/gitbook/group/regist`, {
+   56:     fetch(`${API_URL}/gitbook/group/addgroup`, {
+   77:       fetch(`${API_URL}/gitbook/group/rejectgroup`, {
+   97:       fetch(`${API_URL}/gitbook/group/myreqlist`, {
+  159:     fetch(`${API_URL}/gitbook/group/list`, {
+  171:     fetch(`${API_URL}/gitbook/group/myreqlist`, {
+
+src\MyRepositoryListItem.js:
+  37:     fetch(`${global.API_URL}/gitbook/Repository/${this.props.path}/checkPW`, {
+
+src\MyRepositoryListPage.js:
+   19:     fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/delete`, {
+   34:   fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/update`, {
+  100:     fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/list`, {
+
+src\MyRepositoryPage.js:
+   34:     fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/repolist/${this.props.match.params.repoName}/${path}`, {
+  152:     fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/item/${this.props.match.params.repoName}`, {
+  166:       fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/repolist/${this.props.match.params.repoName}`, {
+  196:     // fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/repolist/${this.props.match.params.repoName}`, {
+
+src\MyRepositoryWritePage.js:
+  43:       fetch(`${global.API_URL}/gitbook/Repository/${sessionStorage.getItem("authUserId")}/add`, {
+
+src\MyRouter.js:
+  106:     fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/list`, {
+
+src\MyTimeLinePage.js:
+  41:     fetch(`${global.API_URL}/gitbook/timeline/${this.props.userid}/list`, {
+
+src\Navigation.js:
+  71:       fetch(`${global.API_URL}/gitbook/user/friend`, {
+
+src\Navigation2.js:
+   4: const API_URL = 'http://127.0.0.1:8080';
+  50:       fetch(`${API_URL}/gitbook/user/friend/list`, {
+
+src\ProfileSection.js:
+    3: const API_URL = "http://127.0.0.1:8080";
+   26: 		fetch(`${API_URL}/gitbook/user/profile/info/${this.props.userid}`, {
+   42: 		fetch(`${API_URL}/gitbook/user/profile/update/${this.props.userid}`, {
+   86: 			fetch(`${API_URL}/gitbook/user/profile/uploadImage/${this.props.userid}`, {
+  117: 									<img className="img-responsive img-circle" src={this.state.file_image !== "" ? this.state.editables.image : API_URL + viewed.image} alt="User" style={{width: "200px", height: "200px"}}/>
+
+src\TimelineItem.js:
+   63:     fetch(`${global.API_URL}/gitbook/Repository/${sessionStorage.getItem("authUserId")}/checkPW`, {
+   98:       fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/addcomment`, {
+  119:     fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/deletecomment/${CommentNo}/${this.props.list.no}`, {
+  134:     fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/addlike/${sessionStorage.getItem("authUserNo")}/${this.props.list.no}`, {
+  148:     fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/deletelike/${sessionStorage.getItem("authUserNo")}/${this.props.list.no}`, {
+  162:     fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/deleteTimeline/${this.props.list.no}`, {
+  331:     fetch(`${global.API_URL}/gitbook/timeline/${this.props.matchid}/info/${this.props.list.userNo}/${this.props.list.no}`, {
+
+src\UploadPage.js:
+  22:     fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/fileupload`, {
+  86:     fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/upload`, {
+
+src\UploadPageItem.js:
+   26:       fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/fileupload`, {
+   89:       fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/update/${this.props.timelineInfo.no}`, {
+  173:         fetch(`${global.API_URL}/gitbook/timeline/${this.props.matchid}/info/${this.props.timelineInfo.userNo}/${this.props.timelineInfo.no}`, {

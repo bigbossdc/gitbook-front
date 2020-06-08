@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import GroupSettingAddUserItem from './GroupSettingAddUserItem';
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-  'Content-Type': 'application/json'
-}
+
 class GroupSettingAddUser extends Component {
 
   constructor(props) {
@@ -28,9 +25,9 @@ class GroupSettingAddUser extends Component {
 
   // 그룹 멤버 추가 요청
   callbackReqFollow(userno, groupno) {
-      fetch(`${API_URL}/gitbook/group/request`, {
+      fetch(`${global.API_URL}/gitbook/group/request`, {
       method: 'post',
-      headers: API_HEADERS,
+      headers: global.API_HEADERS,
       body:JSON.stringify({
               userno: userno,
               groupno: groupno
@@ -79,9 +76,9 @@ class GroupSettingAddUser extends Component {
   }
 
   componentDidMount() {
-        fetch(`${API_URL}/gitbook/group/reqlist`, {
+        fetch(`${global.API_URL}/gitbook/group/reqlist`, {
           method: 'post',
-          headers: API_HEADERS,
+          headers: global.API_HEADERS,
           body: JSON.stringify({
               userno : this.props.userno,
               groupno: this.props.groupno

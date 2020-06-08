@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Header2 from "./Header2";
 import FriendSearchList from "./FriendSearchList";
 import MainTimelineList from "./MainTimelineList";
+import TagTimelineList from "./TagTimelineList";
 import UploadPage from "./UploadPage";
 
 class MainRouter extends Component {
@@ -12,8 +13,9 @@ class MainRouter extends Component {
       timelineItemList:''       
     }
   }
+
   render() {
-    
+   
     return (
       <div className="App">
         <Header2></Header2>
@@ -21,7 +23,7 @@ class MainRouter extends Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-8 col-lg-offset-2">
-                <div className="followers-box full-width">
+                <div className="followers-box full-width" style={{backgroundColor:"#F4F4F4",boxShadow:"none",border:"none"}}>
                   {/** 두번째 섹션 */}
 
                  {/* <Route path="/gitbook/main" exact component={MainTimelineList }/> */}
@@ -29,10 +31,14 @@ class MainRouter extends Component {
                       path='/gitbook/main'
                       render={() => <MainTimelineList/>}/> */}
 
-                  <Route path="/gitbook/main" exact render={()=> <MainTimelineList  
-                  timelineItemList={this.state.timelineItemList}
-                  userid={this.props.userid}
-                  />}></Route>
+                  <Route path="/gitbook/main" exact render={()=> <MainTimelineList  />}></Route>
+
+                  {/* <Route path="/gitbook/main/tag/:tagid" render={()=> <TagTimelineList 
+                  tagid={this.props.match.params.tagid}
+                  />}></Route> */}
+
+                   <Route path="/gitbook/main/tag/:tagid"  component={TagTimelineList}></Route>
+
                   <Route path="/gitbook/main/friendsearch" render={() => <FriendSearchList result={this.props.result}/>}/>
                   <Route path="/gitbook/main/upload" render={() => <UploadPage />}/>
                 </div>
@@ -46,24 +52,9 @@ class MainRouter extends Component {
       </div>
     );
   }
-
-  componentDidMount() {
-    fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/mainlist`, {
-      method: 'get',
-      headers:global.API_HEADERS
-  })
-  .then( response => response.json())
-  .then( json => {
-   
-      this.setState({
-        timelineItemList: json.data
-      });
-  })
-  .catch( err => console.error( err )); 
-
-
-  }
-
+  
+ 
+  
 
 }
 
