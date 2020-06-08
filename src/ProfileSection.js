@@ -46,9 +46,12 @@ export default class ProfileSection extends Component {
 		})
 			.then((response) => response.json())
 			.then((json) => {
-				if (json.result === "success") {
+				if (json.result === "success") {					
+					sessionStorage.setItem("authUserNickName", this.state.editables.nickname);
+					sessionStorage.setItem("authUserImage", this.state.editables.image);
+					sessionStorage.setItem("authUserProfileContents", this.state.editables.profileContents);
+
 					alert("프로필 수정을 성공했습니다.");
-					viewed = this.state.editables;
 					window.location.reload(true);
 				} else {
 					console.log(json);
@@ -78,8 +81,15 @@ export default class ProfileSection extends Component {
 		event.preventDefault();
 		let reader = new FileReader();
 		let file_image_upload = event.target.files[0];
+		
+		console.log(event.target.files);
+		if(['image/jpg', 'image/jpeg', 'image/png', 'image/gif'].includes(file_image_upload.type) === false){
+			alert("이미지 파일만 올려주세요!");
+			reader.abort();
+			return;
+		}
 
-		reader.onloadend = () => {
+		reader.onload = () => {
 			let formData = new FormData();
 			formData.append("newImage", file_image_upload);
 
@@ -107,6 +117,7 @@ export default class ProfileSection extends Component {
 	};
 
 	render() {
+		console.log("닉네임 >> ", sessionStorage.getItem("authUserNickName"));
 		return (
 			<aside id="leftsidebar" className="sidebar">
 				<ul className="list">
@@ -137,7 +148,7 @@ export default class ProfileSection extends Component {
 							<>
 								<small className="text-muted">Change Image</small>
 								<p />
-								<input type="file" accept="image/jpg, impge/png, image/jpeg, image/gif" name="file_image" onChange={this.onFileChange.bind(this)} style={{ color: "black" }} />
+								<input type="file" accept="image/jpg, image/jpeg, impge/png, image/gif, .jpg, .jpeg, .png, .gif" name="file_image" onChange={this.onFileChange.bind(this)} style={{ color: "black" }} />
 								<hr />
 							</>
 						) : (

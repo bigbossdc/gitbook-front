@@ -79,11 +79,12 @@ export default class AccountSettingSection extends Component {
 		})
 		.then(response => response.json())
 		.then(json => {
-			if(json.result === 'success'){
+			if(json.result === 'success'){				
+				sessionStorage.setItem("authUserName", this.state.userData.name);
+				sessionStorage.setItem("authUserPhone", this.state.userData.phone);
+				sessionStorage.setItem("authUserBirthDay", this.state.userData.birthday);
+
 				alert("사용자 정보 변경하였습니다.");
-				this.setState({
-					editable: false,
-				});
 				window.location.reload(true);
 			} else{
 				console.log(json);
