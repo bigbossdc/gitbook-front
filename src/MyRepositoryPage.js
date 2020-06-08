@@ -168,13 +168,17 @@ class MyRepositoryPage extends Component {
     })
       .then(response => response.json())
       .then(json => {
-        if (JSON.stringify(json.data) !== 'null')
+
+          if(json.message !== 'newRepo'){
           this.setState({
             gitlist: json.data,
           });
+          }
           this.setState({
             loding: true
           })
+       
+        
       })
 
       .catch(err => console.error(err));

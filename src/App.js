@@ -28,6 +28,7 @@ class App extends Component {
   }
 
   searchResult(keyword) {
+
     fetch(`${global.API_URL}/gitbook/user/friend/search`, {
       method: 'post',
       headers: global.API_HEADERS,
@@ -41,9 +42,7 @@ class App extends Component {
     .then( json => {
         this.setState({
           result : json.data,
-          keyword: ''
         });
-        this.callbackReqFriend();
     })
     .catch( err => console.error( err ));   
   }
@@ -52,14 +51,12 @@ class App extends Component {
     return (
       <div className="App" >
         <Header handlerSubmit={{search: this.onSearchSubmit.bind(this)}}></Header>
-        <Route path="/gitbook/main" render={() => <MainRouter result={this.state.result}/>}></Route>
+        <Route path="/gitbook/main" render={() => <MainRouter result={this.state.result} keyword={this.state.keyword}/>}></Route>
         <Route path="/gitbook/my/:userid?" component={MyRouter}></Route>
         <Route path="/gitbook/mygroup/:groupno?" component={MyGroupRouter}></Route>
         <Route path="/gitbook/myfriend" component={MyFriendRouter}></Route>
         <Route path="/gitbook/upload" render={() => <UploadPage result={this.state.result}/>}></Route> 
         <Route path="/gitbook/group/:groupno?/:userno?" component={GroupRouter}></Route> 
-
-
       </div>
     );
   }
