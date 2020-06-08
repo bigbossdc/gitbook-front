@@ -239,6 +239,8 @@ export default class MainCalendar extends Component {
     const isActive = active && day && MainCalendar.isSameDay(active, day);
 
     let toCompareMonth = this.state.month + 1;
+
+
     (toCompareMonth < 10 ? toCompareMonth = ('0' + toCompareMonth) : toCompareMonth);
 
     const formatDate = this.state.year + '-' + toCompareMonth + '-' + (
@@ -258,17 +260,16 @@ export default class MainCalendar extends Component {
         key={`${year}.${month}.day.${index}`}
         onClick={this.onDayClick(day)}
       >
-
+        
         {this.state.buttonClassName == 'todo' ?
 
           (day ? day.getDate() && (this.state.checkedToDoListDay.includes(formatDate) ?
-            <a style={{ backgroundColor: '#88898A' }}>{day.getDate()}<br></br><img className="img-resonsive-img-circle" width="25" height="25" alt="..." src="/gitbook/assets/img/users/1.jpg" /></a>
+            <a className='day-a'>{day.getDate()}<br/><i class="fas fa-check" style={{color : '#0fc19e'}}></i></a>
             : day.getDate()) : "")
-
           :
 
           (day ? day.getDate() && (this.state.checkedCommitListDay.includes(formatDate) ?
-            <a style={{ backgroundColor: '#88898A' }}>{day.getDate()}<br /><img className="img-resonsive-img-circle" width="25" height="25" alt="..." src="/gitbook/assets/img/users/1.jpg" /></a>
+            <a className='day-a'>{day.getDate()}<br /><i class="fas fa-check" style={{color : '#0fc19e'}}></i></a>
             : day.getDate()) : "")
 
         }
@@ -322,8 +323,6 @@ export default class MainCalendar extends Component {
 
   render() {
     const { month, year } = this.state;
-
-
     return (
       <div className="react-daypicker-root">
 
@@ -370,6 +369,8 @@ export default class MainCalendar extends Component {
 
             openModal={this.state.openModal}
             onClosehandler={this.handleClose.bind(this)}
+
+            test={this.state.today}
           />
         ) :
 

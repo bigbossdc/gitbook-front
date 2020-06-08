@@ -3,15 +3,23 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import './MainCalendar.scss'
 
+
+const blank_pattern = /^\s+|\s+$/g; 
+
+
 export default class MyToDoScheduleDialog extends Component {
 
   constructor() {
     super(...arguments);
     this.state = {
-      content: ''
-
+      content: '',
+      image:''
     };
+
+     
   }
+  
+
 
   onClickHandler() {
     this.props.onClosehandler();
@@ -21,6 +29,7 @@ export default class MyToDoScheduleDialog extends Component {
   }
 
   keyChange(e) {
+    
     if (e.key === 'Enter') {
       const authUserNo = sessionStorage.getItem("authUserNo");
 
@@ -32,12 +41,13 @@ export default class MyToDoScheduleDialog extends Component {
         scheduleContents: this.state.content,
         gourpNo: null,
       }
+      
 
+      ///////// 텍스트 오류 처리
       if (this.state.content.length == 0) {
         alert('텍스트를 입력하세요')
         return;
       }
-
       if (this.state.content.length > 50) {
         alert('100자 이하로 입력하세요.');
         this.setState({
@@ -45,9 +55,16 @@ export default class MyToDoScheduleDialog extends Component {
         })
         return;
       }
+      if( this.state.content.replace( blank_pattern, '' ) == "" ){
+        alert('공백만 입력되었습니다');
+        this.setState({
+          content: ''
+        })
+        return;
+      }
+     /////////////
 
       this.props.addlist(newToDo.checkDate, newToDo);
-
       this.setState({
         content: ''
       });
@@ -66,13 +83,16 @@ export default class MyToDoScheduleDialog extends Component {
       no: e.target.id,
       checkDate: this.props.year + "-" + this.props.month + "-" + this.props.day //ex) 2020-05-30
     }
-
-    this.props.deletelist(deleteTarget.checkDate, deleteTarget);
+    //setTimeout(() => {
+    //  console.log("시간지연가즈아")
+      this.props.deletelist(deleteTarget.checkDate, deleteTarget);
+    //}, 100);
   }
 
   render() {
-
+    console.log(this.state.image)
     return (
+      
       <Dialog open={this.props.openModal}>
 
         <DialogContent>
@@ -86,7 +106,7 @@ export default class MyToDoScheduleDialog extends Component {
                   </button>
 
                   <div className="img-poster clearfix">
-                    <a><img className="img-responsive img-circle" src="/gitbook/assets/img/users/1.jpg" alt="Image"></img></a>
+                    <a><img className="img-responsive img-circle" src={this.state.image} alt="Image"></img></a>
                     <strong><a style={{ fontSize: 25 }}>{this.props.year}-{this.props.month}-{this.props.day}</a></strong>
 
                     <br></br>
@@ -103,11 +123,13 @@ export default class MyToDoScheduleDialog extends Component {
                   <ul className="img-comment-list">
                     {
                       this.props.getToDoList && this.props.getToDoList.map((list) =>
+                        
                         <li>
-                          <div className="comment-text">
-                            <a className='deleteForm' onClick={this.deleteClickHandler.bind(this)}><span id={list.no} style={{ fontWeight: "bold", color: 'red', fontFamily: " 'Varela Round', sans-serif" }}>삭제</span></a>
-                            <p>{list.scheduleContents}</p>
-                            <span className="date sub-text">on {this.props.monthName} {this.props.originDay}th, {this.props.year}</span>
+                          <div>
+                            <a className='deleteButton' onClick={this.deleteClickHandler.bind(this)}><span id={list.no} style={{ fontWeight: "bold", color: 'red', fontFamily: " 'Varela Round', sans-serif" }}>삭제</span></a>
+                            <br/>
+                           <p className='p1'>{list.scheduleContents.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp }&nbsp;</div>)}</p>
+                            <p className='p2' style={{fontSize:"0.8em"}}>on {this.props.monthName} {this.props.originDay}th, {this.props.year}</p>
                           </div>
                         </li>
                       )
@@ -121,5 +143,22 @@ export default class MyToDoScheduleDialog extends Component {
       </Dialog>
     )
   }
+
+  componentDidMount() {
+    fetch(`${API_URL}/gitbook/user/friend`, {
+        method: 'post',
+        headers: API_HEADERS,
+        body: sessionStorage.getItem("authUserId"),
+     })
+    .then( response => response.json())
+    .then( json => {
+    
+        this.setState({
+            image: json.data.image
+        });
+    })
+    .catch( err => console.error( err ));
+}
+
 }
 
