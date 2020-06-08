@@ -29,14 +29,32 @@ class GroupRegist extends Component {
         });
     }
 
+    handleLengthChk=(e)=>{
+        if(e.target.value.length > 100) {
+            alert("100자를 초과했습니다 (글자수: " + e.target.value.length + ")" )
+            this.setState({
+                description: e.target.value.substring(0, 100)
+            });
+        }
+    }
+
     handleRadio=(event)=>{
         let obj = {}
         obj[event.target.value] = event.target.checked 
         this.setState({
             visible: obj,
-            chk: !this.state.chk
+            chk: !this.state.chk,
+            imgurl: '/gitbook/assets/image/basic.jpg'
         });
     }
+
+    clickHandlerDelete(e) {
+        this.setState({
+            previewURL: ''
+    
+        })
+    
+      }
 
     imageChange(event) {
         console.log("imagechange");
@@ -81,7 +99,7 @@ class GroupRegist extends Component {
 
     let profile_preview = null;
     if(this.state.file !== ''){
-        profile_preview = <img className='profile_preview' src={this.state.previewURL}></img>
+        profile_preview = <img src={this.state.previewURL} style={{ width: "100%", height: "100%", borderRadius: '10px', display: "block" }}></img>
     }
     
     return (
@@ -94,6 +112,7 @@ class GroupRegist extends Component {
                         <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>그룹 이름</h4>
                         <input type="text" 
                                className="form-control" 
+                               maxLength="30"
                                value={this.state.groupTitle} 
                                name="groupTitle"
                                onChange={this.handleChange.bind(this)}
@@ -112,9 +131,12 @@ class GroupRegist extends Component {
                                   value={this.state.description} 
                                   name="description"
                                   onChange={this.handleChange.bind(this)}
+                                  onKeyUp={this.handleLengthChk.bind(this)}
                                   rows="3"></textarea>
                         <br/>
-                        <br/>                 
+                        <br/>  
+                        <div className="row" style={{marginLeft:"0px", width: "90%"}}>
+                        <div style={{float:"left", width:"50%"}}>          
                         <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>그룹 이미지</h4>
                         <input 
                             type="radio" 
@@ -131,16 +153,33 @@ class GroupRegist extends Component {
                             checked={this.state.visible['nobasic']} 
                             onChange={this.handleRadio.bind(this)} />
                         <label>이미지 첨부 (jpg, jpeg, png, bmp)</label>
-                        <div className="group-search-area">   
-                            <div className="group-input-field">
-                                <input type="file" onChange={this.imageChange.bind(this)} disabled={this.state.chk}/> 
-                                {/* <i className="fas fa-upload"></i> */}
-                            </div>
                         </div>
-                        <hr></hr>
-                        <div>
-                            {profile_preview}
+                        <div style={{float:"left", width:"50%"}}>     
+                            {this.state.visible['nobasic'] === true ? 
+                                this.state.previewURL < 2 ? 
+                                <div className="imageFileDiv">
+                                    <label>
+                                    <input type="file" onChange={this.imageChange.bind(this)} disabled={this.state.chk} style={{display: "none"}}/> 
+                                    <i className="fa fa-camera text-muted fa-4x" id="custom" />
+                                    </label>
+                                </div> :  <div className="div2" style={{widthMin: "20%", widthMax: "160px", margin: "0px 1.6%" }}>
+                                            <i className="fas fa-backspace fa-2x" onClick={this.clickHandlerDelete.bind(this)} />
+                                            <div className="imageFileDiv">
+                                            <label>
+                                            {profile_preview}
+                                            </label>
+                                            </div>
+                                          </div>
+                            :  <div className="div2" style={{widthMin: "20%", widthMax: "160px", margin: "0px 1.6%" }}>
+                                    <div className="imageFileDiv">
+                                    <label>
+                                        <img src={this.state.imgurl} style={{ width: "100%", height: "100%", borderRadius: '10px', display: "block" }}></img>
+                                    </label>
+                                    </div>
+                                </div>}
                         </div>
+                        </div>                 
+      
                         { (this.state.groupTitle.trim() != '') ? 
                         ( 
                         this.props.grouplist && this.props.grouplist.some((list)=> list.groupTitle.trim() == this.state.groupTitle.trim()  )?

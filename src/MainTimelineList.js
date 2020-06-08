@@ -25,6 +25,7 @@ class MainTimelineList extends Component {
   render() {
     console.log("길이"+this.state.timelineItemList)
     return (
+
       <div >
 
         { (this.state.timelineItemList&&this.state.timelineItemList =='show')?
@@ -55,6 +56,7 @@ class MainTimelineList extends Component {
             }
             </div>:''
         }
+
       </div>
     );
   }

@@ -23,17 +23,18 @@ class GroupInfo extends Component {
         <div> 
             <GroupHeaderImg groupinfo={this.state.groupinfo} />
             <div className="group-req">
-                <div className="group-master-area">                
-                    <img className="img-fluid img-circle abc" src={this.state.groupinfo.masterImage} alt=""></img>            
-                    <span>
-                        <h4>
-                            {this.state.groupinfo.groupIntro}<br/>
-                            {this.state.groupinfo.groupIntro}
-                        </h4>
-                    </span>            
+                <div className="group-master-area">  
+                    <div className="row">              
+                        <img className="img-fluid img-circle g-img" src={this.state.groupinfo.masterImage} alt=""></img>            
+                        <span>
+                            <h4>
+                                {this.state.groupinfo.groupIntro}
+                            </h4>
+                        </span> 
+                    </div>           
                 </div>
+                <hr/>
                 <section className="notifications group-noti">
-                    <hr/>
                     <div className="repo">
                             <i className="fas fa-folder-open fa-3x"></i>
                             <h5>Repositories</h5>

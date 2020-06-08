@@ -15,7 +15,7 @@ class NavigationGroup extends Component {
                   <div className="user-info">
                     <div className="image">
                   <a href="photo_profile_two.html">
-                    <img src={this.props.groupinfo.masterImage} className="img-responsive img-circle" alt="User"></img>
+                    <img src={this.props.groupinfo.masterImage} className="img-responsive img-circle" style={{width:"180px", height:"180px", marginBottom:"10px"}} alt="User"></img>
                   </a>
                      {/*그룹 관리자만 나오는 아이콘 - 설정페이지*/}
                      {(sessionStorage.getItem("authUserNo") === this.props.groupinfo.masterNo) ? 
@@ -41,31 +41,16 @@ class NavigationGroup extends Component {
                <Link to="/gitbook/group"><small className="text-muted">Group Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
                <Link to="/gitbook/group/repository"><small className="text-muted">Group Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
                <Link to="/gitbook/group/schedule"><small className="text-muted">Group Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-               <Link to="/gitbook/group/commit"><small className="text-muted">Group Commit <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-                <br></br>
-             
+               <br></br>
               </li> 
-              
-  
-
-
-
-
-
+            
              </ul>
             </aside>
 
             <div className="col-lg-12"> 
               <Calendar></Calendar>
               </div>	
-
            </div>
-              
-         
-
-             
-         
-
            
         );
     }

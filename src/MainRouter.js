@@ -15,7 +15,7 @@ class MainRouter extends Component {
   }
 
   render() {
-   
+
     return (
       <div className="App">
         <Header2></Header2>
@@ -23,7 +23,9 @@ class MainRouter extends Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-8 col-lg-offset-2">
+
                 <div className="followers-box full-width" style={{backgroundColor:"#F4F4F4",boxShadow:"none",border:"none"}}>
+
                   {/** 두번째 섹션 */}
 
                  {/* <Route path="/gitbook/main" exact component={MainTimelineList }/> */}
@@ -31,21 +33,18 @@ class MainRouter extends Component {
                       path='/gitbook/main'
                       render={() => <MainTimelineList/>}/> */}
 
+
                   <Route path="/gitbook/main" exact render={()=> <MainTimelineList  />}></Route>
-
-                  {/* <Route path="/gitbook/main/tag/:tagid" render={()=> <TagTimelineList 
-                  tagid={this.props.match.params.tagid}
-                  />}></Route> */}
-
-                   <Route path="/gitbook/main/tag/:tagid"  component={TagTimelineList}></Route>
-
-                  <Route path="/gitbook/main/friendsearch" render={() => <FriendSearchList result={this.props.result}/>}/>
+                  <Route path="/gitbook/main/tag/:tagid"  component={TagTimelineList}></Route>
                   <Route path="/gitbook/main/upload" render={() => <UploadPage />}/>
-                </div>
+
+               
+                  <Route path="/gitbook/main/friendsearch" render={() => <FriendSearchList result={this.props.result} keyword={this.props.keyword}/>}/>
+                               </div>
               </div>
             </div>
             {/** row 종료 */}
-          </div>
+       
           {/** container-fluid 종료 */}
         </section>
         {/** profile-twd 종료 */}

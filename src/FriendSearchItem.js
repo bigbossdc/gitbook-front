@@ -57,15 +57,20 @@ class FriendSearchItem extends Component {
           </div>
           {this.props.status === '친구' ? 
             <span style={{ marginTop: "10px" }}>
-            <a href="" className="friend-btn friend-btn-mint-small">
-              {this.state.status}
+            <a className="friend-btn friend-btn-mint-small">
+              {this.props.status}
             </a>
-          </span> : this.state.status === '요청중' ?  
+          </span> : this.props.status === '요청중' ? 
           <span style={{ marginTop: "10px" }}>
-            <a href="" className="friend-btn req-btn-mint-small">
+            <a className="friend-btn req-btn-mint-small">
+              {this.props.status}
+            </a>
+          </span> : this.state.status === '요청중'?  
+          <span style={{ marginTop: "10px" }}>
+            <a className="friend-btn req-btn-mint-small">
               {this.state.status}
             </a>
-          </span> : 
+          </span> :
           <span style={{ marginTop: "10px" }}>
             <a className="friend-btn follow-btn-mint-small" onClick={this.reqFollow.bind(this)}>
               {this.props.status}

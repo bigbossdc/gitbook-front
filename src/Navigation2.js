@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navigation2Item from "./Navigation2Item"
+import {Link} from "react-router-dom";
 
 
 class Navigation2 extends Component {
@@ -18,23 +18,19 @@ class Navigation2 extends Component {
                 <div className="trending-box">
                     <div className="row">
                         <div className="col-lg-4">
-                        <a href="/"> <h4 style={{fontFamily: " 'Varela Round', sans-serif"}}><strong>친구 목록</strong></h4></a>
+                        <Link to="/gitbook/myfriend"> <h4 style={{fontFamily: " 'Varela Round', sans-serif"}}><strong>친구 목록</strong></h4></Link>
                         </div>
                     </div>
                 </div>
 
                 {/* 친구 리스트 */}
-                <div className="trending-box">
-                     <div className="row">
-                        {this.state.friendlist && this.state.friendlist.map(list => <Navigation2Item
-                          key={list.id}
-                          id={list.id}
-                          img={list.image}
-                          path={this.props.id}
-                        //   callChange={this.props.callChange}
-                        />)}
-                    </div>
-                </div>      
+                <div className="trending-box">                           
+                {this.state.friendlist && this.state.friendlist
+                    .map(list => <div className="col-lg-4">
+                                <Link to={`/gitbook/my/${list.id}`} ><img 
+                                src={list.image} className="img-reponsive" alt="" width="70.1" height="70.1" style={{marginBottom:"5px", marginTop:"5px" , display:"block", maxWidth:"100%", maxheight:"70.1px"}}/></Link>
+                                </div>)} 
+                </div>
 
             </div>
        
@@ -42,7 +38,9 @@ class Navigation2 extends Component {
     }
 
     componentDidMount() {
+
       fetch(`${global.API_URL}/gitbook/user/friend/list`, {
+
         method: 'post',
         headers: global.API_HEADERS,
         body: JSON.stringify({
