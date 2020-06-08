@@ -1,7 +1,6 @@
 .react-daypicker-root {
-
-  height : 750px;
-  width : 900px;
+  height : 100%;
+  width : 100%;
 }
   .react-daypicker-root abbr {
     width: 75px;
@@ -73,22 +72,24 @@
     width: 112px;
     font-family: "Varela Round", sans-serif;
     font-weight: bold;
+   
     &:first-child{
       color: red;
+    }
+    .day-a{
+      color:#90a4ae;
     }
   }
 
     .react-daypicker-root .day.active {
-      color:white;
+      
       border-radius: 100%;
      }
     .react-daypicker-root .day.empty {
-      color:white;
       border-radius: 100%;
       cursor: default;
     }
     .react-daypicker-root .day.today {
-      border-radius: 100%;
       font-weight:bold;
       text-decoration: underline;
       text-decoration-color: black;
@@ -98,6 +99,7 @@
       font-family: "Varela Round", sans-serif;
       height: 100%;
       width: 100%;
+      
       text-align: center;
       
     }
@@ -164,9 +166,7 @@
       font-weight: bold;
       color:white
     }
-    .img-resonsive-img-circle{
-      background-color: wheat;
-    }
+    
   
 
 
@@ -178,7 +178,7 @@
 
    .modal-body{
      width: 348px;
-     height: 500px;
+     height: 540px;
    }
 
    .row{
@@ -238,10 +238,6 @@
 .modal-body .row .col-md-4-modal-meta .modal-meta-top .close{
   color: black;
   font-size: large;
-}
-
-.closeButton:hover{
-  font-size: x-large;
 }
 
 
@@ -346,54 +342,31 @@
   width: 100%;
 }
 
+.deleteButton{
+  position: absolute;
+  animation-fill-mode: forwards;
+  font-family: monospace;
+  cursor: pointer;
+}
+
+.deleteButton:hover{
+  font-size: 1.3em;
+  //transition-duration: 1.0s;
+    //transform: translateY(-5px);
+  // ~ .p1 {
+  //   transition-duration: 1.0s;
+  //   transform: translateX(5px);
+  // }
+  // ~ .p2 {
+  //   transition-duration: 1.0s;
+  //    transform: translateX(5px);
+  //  }
+}
+
 .img{
   width: 25px;
   height: 25px;
 }
-
-
-
-
-
-
-/* ==========================================================================
-   Media Queries for Modal
-   ========================================================================== */
-   
-/* Desktop */
-@media (max-width: 1024px){
-}
-
-@media (max-width: 992px){
-	.modal-dialog{
-	  width: 700px;	
-	}	
-    .modal-content {
-        border-radius: 0;
-        max-height: 100%;
-        overflow-y: auto;
-    }
-	.img-poster{
-	  padding-top: 5px;	
-	}	
-}
-
-/* Tablets */
-@media (max-width: 800px){
-}
-
-@media (max-width: 768px){
-	.modal-dialog{
-	  width: 600px;	
-	}	
-	.modal-image img{
-	  height: auto !important;	
-	}
-	.img-poster{
-	  padding-top: 5px;	
-	}	
-}
-
 
 
     
