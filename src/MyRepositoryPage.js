@@ -4,10 +4,6 @@ import {Link} from "react-router-dom";
 import RepositoryTable from "./RepositoryTable";
 import RepositoryFileviewTable from "./RepositoryFileViewTable"
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-  'Content-Type': 'application/json'
-}
 
 
 class MyRepositoryPage extends Component {
@@ -32,12 +28,13 @@ class MyRepositoryPage extends Component {
   }
 
   onClickHandler(path) {
+    if(this.state.gitlist!==''){
     this.setState({
       loding:false
     })
-    fetch(`${API_URL}/gitbook/Repository/${this.props.match.params.userid}/repolist/${this.props.match.params.repoName}/${path}`, {
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/repolist/${this.props.match.params.repoName}/${path}`, {
       method: 'get',
-      headers: API_HEADERS
+      headers: global.API_HEADERS
     })
       .then(response => response.json())
       .then(json => {
@@ -50,10 +47,22 @@ class MyRepositoryPage extends Component {
 
       })
       .catch(err => console.error(err))
-
+    }
   }
 
   render() {
+
+    const k={
+      position: "relative",
+      top: "1px",
+      display: "inline-block",
+      width: "12px",
+      height: "12px",
+      borderRadius: "50%",
+      backgroundColor: (this.state.gitInfo.visible === "public" ) ? "#0FC19E" : "red" ,
+      marginRight:"6px",
+      marginBottom: "3px"
+    }
     return (
       <div className="RepositoryPage">
         <div
@@ -61,45 +70,11 @@ class MyRepositoryPage extends Component {
           style={{ background: "#fff", marginTop: "1px", boxShadow: "none" }}
         >
           <div className="cardbox-heading">
-            <div className="dropdown pull-right">
-              <button
-                className="btn btn-secondary btn-flat btn-flat-icon"
-                type="button"
-                data-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <em className="fa fa-ellipsis-h"></em>
-              </button>
-              <div
-                className="dropdown-menu dropdown-scale dropdown-menu-right"
-                role="menu"
-                style={{
-                  position: "absolute",
-                  transform: "translate3d(-136px, 28px, 0px)",
-                  top: "0px",
-                  left: "0px",
-                  willChange: "transform",
-                }}
-              >
-                <a
-                  className="dropdown-item"
-                  href="/"
-                  style={{ fontFamily: " 'Varela Round', sans-serif" }}
-                >
-                  <strong>수정 하기</strong>
-                </a>
-                <a
-                  className="dropdown-item"
-                  href="/"
-                  style={{ fontFamily: " 'Varela Round', sans-serif" }}
-                >
-                  <strong>삭제 하기</strong>
-                </a>
-              </div>
-            </div>
+            
           </div>
 
           <div className="container" style={{ width: "100%" }}>
+          <span style={k}></span>
             <h2>
             <Link to={`/gitbook/my/${this.props.match.params.userid}/repository`}>{this.props.match.params.userid}</Link>
             </h2>
@@ -108,8 +83,8 @@ class MyRepositoryPage extends Component {
             <Link >{this.state.gitInfo.gitName}</Link>
             </h2>
             <br></br>
-            <p>{this.state.gitInfo.description}</p>
-            <div>
+            <pre style={{overflowX:"hidden",wordBreak:"break-all",backgroundColor:"#FFFFFF",border:"none",fontFamily: " 'Varela Round', sans-serif"}}>{this.state.gitInfo.description}</pre>
+            <div >
               {document.queryCommandSupported("copy") && (
                 <div style={{ display: "inline" }}>
                   <button className="button1" onClick={this.copyToClipboard.bind(this)}>
@@ -121,21 +96,21 @@ class MyRepositoryPage extends Component {
                 <textarea
                   className="textarea1"
                   ref={(textarea) => (this.textArea = textarea)
-
+                  
                   }
                   value={"http://192.168.1.15:7005/gitbook/" + this.props.match.params.userid + "/" + this.props.match.params.repoName + ".git"}
                 />
               </form>
             </div>
             <p style={{ fontSize: "0.8em" }}>경로: {this.props.match.params.repoName}/{this.state.callPath}</p>
-        
+                  <div style={{width:"100%",height:"100%"}}>
             { 
               (this.state.loding == true)?
 
-            (this.state.gitlist.type === 'folder') ?
-              <RepositoryTable
-                key="repotable"
-                gitlist={this.state.gitlist && this.state.gitlist}
+                 (this.state.gitlist.type === 'folder') ?
+                   <RepositoryTable
+                      key="repotable"
+                      gitlist={this.state.gitlist && this.state.gitlist}
                 callPath={this.state.callPath &&this.state.callPath}
                 clicklist={{
                   newList: this.onClickHandler.bind(this)}}
@@ -157,11 +132,11 @@ class MyRepositoryPage extends Component {
                 </div>
 
                : 
-               <i class="fas fa-spinner fa-2x" style={{color:"#0FC19E" ,animation: "fa-spin 2s linear infinite",marginLeft:"350px"}}></i>
-             
-
+               <div style={{width:"30px",margin:" 50px auto "}}>
+               <i class="fas fa-spinner fa-2x" style={{color:"#0FC19E" ,animation: "fa-spin 2s linear infinite",fontSize:"4em",marginLeft:"-25px"}}></i>
+               </div>
               }
-            
+            </div>
 
 
           </div>
@@ -175,9 +150,9 @@ class MyRepositoryPage extends Component {
 
   componentDidMount() {
 
-    fetch(`${API_URL}/gitbook/Repository/${this.props.match.params.userid}/item/${this.props.match.params.repoName}`, {
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/item/${this.props.match.params.repoName}`, {
       method: 'get',
-      headers: API_HEADERS
+      headers: global.API_HEADERS
     })
       .then(response => response.json())
       .then(json => {
@@ -188,25 +163,36 @@ class MyRepositoryPage extends Component {
       })
       .catch(err => console.error(err));
 
-    fetch(`${API_URL}/gitbook/Repository/${this.props.match.params.userid}/repolist/${this.props.match.params.repoName}`, {
-      method: 'get',
-      headers: API_HEADERS
-    })
-      .then(response => response.json())
-      .then(json => {
-        if (JSON.stringify(json.data) !== 'null')
-          this.setState({
-            gitlist: json.data,
-          });
-          this.setState({
-            loding: true
+
+
+      fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/repolist/${this.props.match.params.repoName}`, {
+          method: 'get',
+          headers: global.API_HEADERS
+        })
+          .then(response => response.json())
+          .then(json => {
+           
+            
+              if(json.message === 'newRepo'){
+                this.setState({
+                  gitlist:''
+                })
+              }
+              else{
+                this.setState({
+                  gitlist: json.data,
+                 
+                });
+              }
+              
+              this.setState({
+                loding: true
+              })
           })
-      })
-
-      .catch(err => console.error(err));
-
+          .catch(err => console.error(err));
+  
   }
-
+  
 
 }
 

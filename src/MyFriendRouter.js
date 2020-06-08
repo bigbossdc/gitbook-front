@@ -6,15 +6,11 @@ import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
 import FriendList from './FriendList';
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-    'Content-Type': 'application/json'
-}
+
 class MyFriendRouter extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-
       reqFriends: "",
       userFriends: ""
     }
@@ -22,9 +18,9 @@ class MyFriendRouter extends Component {
   
   // 친구 요청 수락
   callbackAddFriend(friendNo){
-    fetch(`${API_URL}/gitbook/user/friend/add`, {
+    fetch(`${global.API_URL}/gitbook/user/friend/add`, {
         method: 'post',
-        headers: API_HEADERS,
+        headers: global.API_HEADERS,
         body: JSON.stringify({
           userno: sessionStorage.getItem("authUserNo"),
           friendno: friendNo,
@@ -44,31 +40,33 @@ class MyFriendRouter extends Component {
 
   // 친구 요청 거절 및 삭제
   callbackRejectFriend(friendNo){
-    fetch(`${API_URL}/gitbook/user/friend/delete`, {
+    fetch(`${global.API_URL}/gitbook/user/friend/delete`, {
         method: 'post',
-        headers: API_HEADERS,
+        headers: global.API_HEADERS,
         body: JSON.stringify({
           userno: sessionStorage.getItem("authUserNo"),
-          friendno: friendNo
+          friendno: friendNo,
+          id: sessionStorage.getItem("authUserId"),
+          kind: "친구"
         })
     })
     .then( response => response.json())
     .then( json => {
         this.setState({
-            //userFriends : json.data
-        });
-        this.callbackReqFriend();
+          userFriends : json.data
+      });
+      this.callbackReqFriend();
     })
     .catch( err => console.error( err ));        
   }
 
   // 수락 및 거절, 삭제 후 요청 리스트 다시 가져오기
   callbackReqFriend() {
-    fetch(`${API_URL}/gitbook/user/friend/req`, {
+    fetch(`${global.API_URL}/gitbook/user/friend/req`, {
         method: 'post',
-        headers: API_HEADERS,
+        headers: global.API_HEADERS,
         body: JSON.stringify({
-            id : sessionStorage.getItem("authUserId"),
+            no : sessionStorage.getItem("authUserNo"),
             kind: "요청"
         })
     })
@@ -100,7 +98,8 @@ class MyFriendRouter extends Component {
                                      delete: this.callbackRejectFriend.bind(this)
                                     }} 
                           reqinfo={this.state.reqFriends} 
-                          friendinfo={this.state.userFriends}/>}/>
+                          friendinfo={this.state.userFriends}/>}
+                  />
                   </div>
               
                   {/** 세번째 섹션 */}
@@ -114,11 +113,11 @@ class MyFriendRouter extends Component {
   }
 
   componentDidMount() {    
-    fetch(`${API_URL}/gitbook/user/friend/req`, {
+    fetch(`${global.API_URL}/gitbook/user/friend/req`, {
         method: 'post',
-        headers: API_HEADERS,
+        headers: global.API_HEADERS,
         body: JSON.stringify({
-            id : sessionStorage.getItem("authUserId"),
+            no : sessionStorage.getItem("authUserNo"),
             kind: "요청"
         })
     })
@@ -130,9 +129,9 @@ class MyFriendRouter extends Component {
     })
     .catch( err => console.error( err ));    
 
-    fetch(`${API_URL}/gitbook/user/friend/list`, {
+    fetch(`${global.API_URL}/gitbook/user/friend/list`, {
         method: 'post',
-        headers: API_HEADERS,
+        headers: global.API_HEADERS,
         body: JSON.stringify({
             id : sessionStorage.getItem("authUserId"),
             kind: "친구"

@@ -1,47 +1,79 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import MyRepositoryListItem from './MyRepositoryListItem';
-
+import './MyRepositoryListPage.css';
 class MyRepositoryListPage extends Component {
   constructor(props){
     super(props);
     this.state={
-      keyword: ''
+      keyword: '',
+      repositorylist: ''
     }
   }
   onInputChange(e){
     this.setState({
         keyword: e.target.value
     })
-
-    
-   
   }
+  callDeleteRepoList(gitItem){
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/delete`, {
+      method: 'post',
+      headers: global.API_HEADERS,
+      body: JSON.stringify(gitItem)
+  })
+  .then( response => response.json())
+  .then( json => {
+      this.setState({
+        repositorylist: json.data
+      });
+  })
+  .catch( err => console.error( err ));  
+  
+}
+callVisibleHandler(list){
+  fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/update`, {
+    method: 'post',
+    headers: global.API_HEADERS,
+    body: JSON.stringify(list)
+})
+.then( response => response.json())
+.then( json => {
+    console.log("update:"+json.data)
+    this.setState({
+      repositorylist: json.data
+    });
+})
+.catch( err => console.error( err ));  
+
+}
+
   render() {
     const authUserNo=sessionStorage.getItem("authUserNo");
     return (
             <div>
                 <div className = "row">
                   <div className="search-area" style={{width:"50%", display:"inline-block"}}>  
-                    <div className="input-field" >
-                     
-                     
-                      <input placeholder="Search" type="text" value={ this.state.keyword } onChange={ this.onInputChange.bind(this) 
-                       
- 
-                      }></input>
-                        <i className="fa fa-search"></i>
-                      </div>
-                  </div>
-
-                  { (this.props.id == sessionStorage.getItem("authUserId") ) ?
-                  <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`} className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link> : '' 
+                    <div className="input-field" style={{border:"1px solid #DBDBDB ",height:"50px",borderRadius:"5px"}} >
                   
+                      <input style={{fontSize:"1.4em"}}
+                             id="searchInput" placeholder="Search" 
+                             type="text" value={ this.state.keyword } 
+                             onChange={ this.onInputChange.bind(this) }/>
+                        <i style={{marginTop:"5px"}} className="fa fa-search"></i>
+                      </div>
+                  </div> 
+                  { 
+                  (this.props.id == sessionStorage.getItem("authUserId") ) ?
+                    <Link 
+                      to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`} 
+                      className="kafe-btn kafe-btn-mint-small" 
+                      style={{ float:"right", marginTop:"25px",width:"50px",height:"34px"}}><strong style={{color:"#FFFFFF",fontSize:"1.4em",margin:"auto"}}>New!</strong></Link> : '' 
+ 
                   }             
 
                 </div>
-                <hr></hr>
-                {this.props.repositorylist && this.props.repositorylist
+                <hr style={{backgroundColor:"#DBDBDB",height:"1px",marginTop:"-0px"}}></hr>
+                {this.state.repositorylist && this.state.repositorylist
                 .filter((list) => list.gitName.indexOf(this.state.keyword ) != -1 && ((list.userNo == authUserNo ) ? 1 : list.visible == "public") ) 
                 .map((list) => <MyRepositoryListItem
                   key={list.no}
@@ -54,7 +86,10 @@ class MyRepositoryListPage extends Component {
                   regDate ={list.regDate}
                   list={list}
                   path={this.props.id}
-                  callDelete={this.props.callDelete}
+                  callDelete={{
+                    delete: this.callDeleteRepoList.bind(this),
+                    update: this.callVisibleHandler.bind(this)
+                 }}
                 
                 />)}
 
@@ -62,5 +97,19 @@ class MyRepositoryListPage extends Component {
             </div>      
     );
   }
+
+  componentDidMount() {
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/list`, {
+        method: 'get',
+        headers:global.API_HEADERS
+    })
+    .then( response => response.json())
+    .then( json => {
+        this.setState({
+          repositorylist: json.data
+        });
+    })
+    .catch( err => console.error( err ));      
+}
   }
 export default MyRepositoryListPage;

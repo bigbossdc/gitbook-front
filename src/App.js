@@ -7,18 +7,17 @@ import MyRouter from './MyRouter';
 import MyGroupRouter from './MyGroupRouter';
 import MyFriendRouter from './MyFriendRouter';
 import Header from './Header';
+import UploadPage from './UploadPage';
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-    'Content-Type': 'application/json'
-}
+
 
 class App extends Component {
   constructor() {
     super(...arguments);
     this.state = {
       keyword:'',
-      result:''
+      result:'',
+      authUser:''    
     }
   }
   // Header 친구 검색
@@ -30,42 +29,46 @@ class App extends Component {
   }
 
   searchResult(keyword) {
-    fetch(`${API_URL}/gitbook/user/friend/search`, {
+
+    fetch(`${global.API_URL}/gitbook/user/friend/search`, {
       method: 'post',
-      headers: API_HEADERS,
+      headers: global.API_HEADERS,
       body: JSON.stringify({
         userid: sessionStorage.getItem("authUserId"),
+        userno: sessionStorage.getItem("authUserNo"),
         keyword: keyword
       })
     })
     .then( response => response.json())
     .then( json => {
         this.setState({
-          result : json.data
+          result : json.data,
         });
-        this.callbackReqFriend();
     })
     .catch( err => console.error( err ));   
   }
-
+  
   render() {  
+  
     return (
+
       <div className="App" >
         <Header handlerSubmit={{search: this.onSearchSubmit.bind(this)}}></Header>
-        <Route path="/gitbook/main" render={() => <MainRouter result={this.state.result}/>}></Route>
+        <Route path="/gitbook/main" render={() => <MainRouter result={this.state.result} keyword={this.state.keyword}/>}></Route>
         <Route path="/gitbook/my/:userid?" component={MyRouter}></Route>
-        <Route path="/gitbook/mygroup" component={MyGroupRouter}></Route>
+
+        <Route path="/gitbook/mygroup/:groupno?" component={MyGroupRouter}></Route>
         <Route path="/gitbook/myfriend" component={MyFriendRouter}></Route>
-        <Route path="/gitbook/group" component={GroupRouter}></Route> 
-       
+        <Route path="/gitbook/upload" render={() => <UploadPage result={this.state.result}/>}></Route> 
+        <Route path="/gitbook/group/:groupno?/:userno?" component={GroupRouter}></Route> 
       </div>
     );
   }
 
   componentDidMount() {
-    fetch(`${API_URL}/gitbook/user/auth`, {
+    fetch(`${global.API_URL}/gitbook/user/auth`, {
         method: 'get',
-        headers: API_HEADERS
+        headers: global.API_HEADERS
     })
     .then( response => response.json())
     .then( json => {

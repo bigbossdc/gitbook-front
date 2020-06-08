@@ -15,18 +15,19 @@ class NavigationGroup extends Component {
                   <div className="user-info">
                     <div className="image">
                   <a href="photo_profile_two.html">
-                    <img src="/gitbook/assets/img/users/13.jpeg" className="img-responsive img-circle" alt="User"></img>
+                    <img src={this.props.groupinfo.masterImage} className="img-responsive img-circle" style={{width:"180px", height:"180px", marginBottom:"10px"}} alt="User"></img>
                   </a>
                      {/*그룹 관리자만 나오는 아이콘 - 설정페이지*/}
-                    <Link to="/gitbook/group/setting"><i class="fas fa-cog fa-2x"/></Link>
+                     {(sessionStorage.getItem("authUserNo") === this.props.groupinfo.masterNo) ? 
+                      <Link to={`/gitbook/group/${this.props.groupinfo.no}/${this.props.groupinfo.masterNo}/setting`}><i class="fas fa-cog fa-2x"/></Link> : ''
+                     }
                
                     </div>
                 <div className="detail">
                  
                 <p style={{fontFamily: " 'Varela Round', sans-serif",margin:"10px"}}>
-                  안녕하세요! GibBook그룹에 오신것을 환영합니다!!
-                  여기는 개발자들을 위한 공간입니다.
-                  만나서 반갑습니다!! 지금 바로 가입하세요!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>                       
+                  {this.props.groupinfo.groupIntro}
+                </p>                       
                 </div>
                 <div className="row">
                  <div className="col-12">
@@ -40,31 +41,16 @@ class NavigationGroup extends Component {
                <Link to="/gitbook/group"><small className="text-muted">Group Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
                <Link to="/gitbook/group/repository"><small className="text-muted">Group Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
                <Link to="/gitbook/group/schedule"><small className="text-muted">Group Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-               <Link to="/gitbook/group/commit"><small className="text-muted">Group Commit <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-                <br></br>
-             
+               <br></br>
               </li> 
-              
-  
-
-
-
-
-
+            
              </ul>
             </aside>
 
             <div className="col-lg-12"> 
               <Calendar></Calendar>
               </div>	
-
            </div>
-              
-         
-
-             
-         
-
            
         );
     }

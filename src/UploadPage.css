@@ -35,3 +35,135 @@
   
 }
 
+
+.imageFileDiv {
+
+  background-color: #FFFFFF;
+  width: 160px; 
+  height: 160px ;
+  border: dotted 5px #DDDFE2; 
+  padding:5px;
+  margin: 20px;
+  border-radius: 10px;
+
+
+}
+.div2 i{
+  cursor:pointer;
+  position: absolute ;
+  color:#FFC0C0;
+  transform:rotate(-90deg);
+  margin-top:10px
+}
+
+.div2 i:hover{
+  color: red;
+  transform:rotate(-135deg)
+}
+
+.file-upload input.upload[type="file"] {
+ display: none;
+ }
+ 
+
+ #custom{
+ display: inline-block;
+ margin: 40px 42px ;
+ cursor:pointer;
+
+ }
+
+ #custom:hover{
+
+transform:scale(1.3)
+}
+
+.tagword{
+  display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    position: relative;
+    margin: 0 16px 8px 0;
+    padding: 0 10px 0 12px;
+    background: #0FC19E;    
+    -webkit-border-bottom-right-radius: 3px;    
+    border-bottom-right-radius: 3px;
+    -webkit-border-top-right-radius: 3px;    
+    border-top-right-radius: 3px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    color: #fff;
+    font-size: 12px;
+    font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;
+    text-decoration: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    font-weight: bold;
+    box-shadow: 3px 3px 3px 1px gray; 
+    margin:13px;
+    cursor: pointer;
+}
+
+.tagword:before {
+  content: "";
+  position: absolute;
+  top:0;
+  left: -12px;
+  width: 0;
+  height: 0;
+  border-color: transparent #0FC19E transparent transparent;
+  border-style: solid;
+  border-width: 12px 12px 12px 0;        
+  }
+
+  .tagword:after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 1px;
+    float: left;
+    width: 5px;
+    height: 5px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #fff;
+    -webkit-box-shadow: -1px -1px 2px rgba(0,0,0,0.4);
+    box-shadow: -1px -1px 2px rgba(0,0,0,0.4);
+    }
+
+    .tagword:hover{
+
+      transform: scale(1.1);
+    }
+
+    #vislblelock{
+     
+      float:right;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    #uploadDescription::-webkit-scrollbar {
+      width: 10px;
+    }
+    #uploadDescription::-webkit-scrollbar-thumb {
+      background-color: #0FC19E;
+    }
+    #uploadDescription::-webkit-scrollbar-track {
+      background-color: #DBDBDB;
+    }
+
+    #x{
+      color:gray ;
+      font-size :40px;
+      float:right ;
+      margin: -10px 0px 0px 0px;
+      height:40px ;
+      position:absolute ;
+      right:15px ;
+      cursor:pointer;
+    }
+
+    #x:hover{
+      color: red;
+
+    }

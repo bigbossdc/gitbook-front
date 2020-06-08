@@ -4,10 +4,6 @@ import './MainCalendar.scss';
 import MyToDoScheduleDialog from './MyToDoScheduleDialog';
 import MyRepoScheduleDialog from './MyRepoScheduleDialog';
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-  'Content-Type': 'application/json'
-}
 
 const MONTHS = [
   "January",
@@ -144,9 +140,9 @@ export default class MainCalendar extends Component {
   };
 
   newAddlist(day, newToDo) {
-    fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/addToDo/${day}`, {
+    fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/addToDo/${day}`, {
       method: 'post',
-      headers: API_HEADERS,
+      headers: global.API_HEADERS,
       body: JSON.stringify(newToDo)
     }).then(response => response.json())
       .then(json => {
@@ -160,9 +156,9 @@ export default class MainCalendar extends Component {
   }
 
   deleteList(day, deleteTarget) {
-    fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/delete/${day}`, {
+    fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/delete/${day}`, {
       method: 'post',
-      headers: API_HEADERS,
+      headers: global.API_HEADERS,
       body: JSON.stringify(deleteTarget)
     }).then(response => response.json())
       .then(json => {
@@ -190,9 +186,9 @@ export default class MainCalendar extends Component {
       });
 
       if (this.state.buttonClassName == 'todo') {
-        fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/toDoList/${this.state.year}-${newMonth}-${newDay}`, {
+        fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/toDoList/${this.state.year}-${newMonth}-${newDay}`, {
           method: 'get',
-          headers: API_HEADERS
+          headers: global.API_HEADERS
         })
           .then(response => response.json())
           .then(json => {
@@ -205,9 +201,9 @@ export default class MainCalendar extends Component {
       }
 
       else {
-        fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/repoList/${this.state.year}-${newMonth}-${newDay}`, {
+        fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/repoList/${this.state.year}-${newMonth}-${newDay}`, {
           method: 'get',
-          headers: API_HEADERS
+          headers: global.API_HEADERS
         })
           .then(response => response.json())
           .then(json => {
@@ -241,8 +237,11 @@ export default class MainCalendar extends Component {
     let toCompareMonth = this.state.month + 1;
 
 
+
     (toCompareMonth < 10 ? toCompareMonth = ('0' + toCompareMonth) : toCompareMonth);
 
+
+     
     const formatDate = this.state.year + '-' + toCompareMonth + '-' + (
       day ? day.getDate() && (day.getDate() < 10 ? '0' + day.getDate() : day.getDate())
         : "")
@@ -308,9 +307,9 @@ export default class MainCalendar extends Component {
       buttonClassName: "repo"
     });
 
-    fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyCommitList`, {
+    fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyCommitList`, {
       method: 'get',
-      headers: API_HEADERS
+      headers: global.API_HEADERS
     })
       .then(response => response.json())
       .then(json => {
@@ -417,9 +416,9 @@ export default class MainCalendar extends Component {
 
   componentDidMount() {
     
-    fetch(`${API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyToDoList`, {
+    fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyToDoList`, {
       method: 'get',
-      headers: API_HEADERS
+      headers: global.API_HEADERS
     })
       .then(response => response.json())
       .then(json => {

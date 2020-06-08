@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import TimelineItem from './TimelineItem';
 
 
-class MyTimelinePage extends Component {
+class TagTimelineList extends Component {
   constructor(){
     super(...arguments);
     this.state={
-      timelineItemList:'', 
+      timelineItemList:'',
       num:5        
     }
   }
@@ -22,42 +22,28 @@ class MyTimelinePage extends Component {
   
     }
    }
-
   render() {
+      
+     console.log(this.props.match.params.tagid)
     return (
-      <div> 
-        { (sessionStorage.getItem("authUserId")===this.props.userid)?
-        
-        this.state.timelineItemList && 
+      <div className="followers-list">
+         
+        {this.state.timelineItemList && 
         this.state.timelineItemList
         .map((list,index)=> 
         (index<this.state.num)?
         <TimelineItem 
         key={list.no}
         list={list}
-        mathcid={this.props.userid}
-        />:''
-        ):
-        
-        this.state.timelineItemList && 
-        this.state.timelineItemList
-        .filter((list)=>
-              list.visible != 'private'
-        )
-        .map((list,index)=> 
-        (index<this.state.num)?
-        <TimelineItem 
-        key={list.no}
-        list={list}
-        mathcid={this.props.userid}/>
-        :''
-        )
+        mathcid={sessionStorage.getItem("authUserId")}
+        />:'')
         }
       </div>
     );
   }
+
   componentDidMount() {
-    fetch(`${global.API_URL}/gitbook/timeline/${this.props.userid}/list`, {
+    fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/taglist/${this.props.match.params.tagid}`, {
       method: 'get',
       headers:global.API_HEADERS
   })
@@ -72,5 +58,9 @@ class MyTimelinePage extends Component {
 
   window.addEventListener('scroll',this._infiniteScroll,true);
   }
+
+
+
 }
-export default MyTimelinePage;
+
+export default TagTimelineList;
