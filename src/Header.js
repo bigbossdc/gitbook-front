@@ -3,11 +3,6 @@ import { Link } from "react-router-dom";
 import AlarmBox from "./AlarmBox";
 import DropdownMenu from "./DropdownMenu";
 
-const API_URL = "http://127.0.0.1:8080";
-const API_HEADERS = {
-   "Content-Type": "application/json",
-};
-
 class Header extends Component {
    constructor() {
       super(...arguments);
@@ -21,10 +16,9 @@ class Header extends Component {
    }
 
    componentDidMount() {
-      fetch(`${API_URL}/gitbook/user/friend`, {
-         method: "post",
-         headers: API_HEADERS,
-         body: sessionStorage.getItem("authUserId"),
+      fetch(`${global.API_URL}/gitbook/user/profile/info/${sessionStorage.getItem("authUserId")}`, {
+         method: 'post',
+         headers: global.API_HEADERS,
       })
          .then((response) => response.json())
          .then((json) => {

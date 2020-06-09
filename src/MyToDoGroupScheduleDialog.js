@@ -7,7 +7,7 @@ import './MainCalendar.scss'
 const blank_pattern = /^\s+|\s+$/g; 
 
 
-export default class MyToDoScheduleDialog extends Component {
+export default class MyToDoGroupScheduleDialog extends Component {
 
   constructor() {
     super(...arguments);
@@ -129,7 +129,7 @@ export default class MyToDoScheduleDialog extends Component {
                             <a className='deleteButton' onClick={this.deleteClickHandler.bind(this)}><span id={list.no} style={{ fontWeight: "bold", color: 'red', fontFamily: " 'Varela Round', sans-serif" }}>삭제</span></a>
                             <br/>
                            <p className='p1'>{list.scheduleContents.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp }&nbsp;</div>)}</p>
-                            <p className='p2' style={{fontSize:"0.8em"}}>on {this.props.monthName} {this.props.originDay}th, {this.props.year}</p>
+                            <p className='p2' style={{fontSize:"0.8em"}}>on {this.props.monthName} {this.props.thisDay}th, {this.props.year}</p>
                           </div>
                         </li>
                       )
@@ -145,7 +145,6 @@ export default class MyToDoScheduleDialog extends Component {
   }
 
   componentDidMount() {
-    console.log('todoDidMount Called...')
     fetch(`${global.API_URL}/gitbook/user/profile/info/${sessionStorage.getItem("authUserId")}`, {
         method: 'post',
         headers: global.API_HEADERS,

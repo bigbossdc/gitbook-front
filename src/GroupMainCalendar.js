@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import './MainCalendar.scss';
-import MyToDoScheduleDialog from './MyToDoScheduleDialog';
+import MyToDoGroupScheduleDialog from './MyToDoGroupScheduleDialog';
 import MyRepoScheduleDialog from './MyRepoScheduleDialog';
 
 
@@ -30,7 +30,7 @@ const DAYS_LONG = [
 ];
 const DAYS_SHORT = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-export default class MainCalendar extends Component {
+export default class GroupMainCalendar extends Component {
   constructor(props) {
     super(props);
 
@@ -41,7 +41,9 @@ export default class MainCalendar extends Component {
       month: now.getMonth(),
       today: new Date(now.getFullYear(), now.getMonth(), now.getDate()),
       year: now.getFullYear(),
-      userid: this.props.match.params.userid,
+     
+      //userid: this.props.match.params.userid,
+
       openModal: false,
       scheduleOption: false,
       buttonClassName: 'todo',
@@ -141,7 +143,7 @@ export default class MainCalendar extends Component {
 
   newAddlist(day, newToDo) {
     console.log('addList Called...')
-    fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/addToDo/${day}`, {
+    fetch(`${global.API_URL}/gitbook/group/Schedule/${this.props.groupno}/${this.props.userno}/addToDo/${day}`, {
       method: 'post',
       headers: global.API_HEADERS,
       body: JSON.stringify(newToDo)
@@ -150,7 +152,6 @@ export default class MainCalendar extends Component {
         this.setState({
           getToDoList: json.data
         });
-        console.log(this.state.getToDoList)
       })
       .catch(err => console.error(err))
 
@@ -188,7 +189,7 @@ export default class MainCalendar extends Component {
       });
 
       if (this.state.buttonClassName == 'todo') {
-        fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/toDoList/${this.state.year}-${newMonth}-${newDay}`, {
+        fetch(`${global.API_URL}/gitbook/group/Schedule/${this.props.groupno}/${this.props.userno}/toDoList/${this.state.year}-${newMonth}-${newDay}`, {
           method: 'get',
           headers: global.API_HEADERS
         })
@@ -203,7 +204,7 @@ export default class MainCalendar extends Component {
       }
 
       else {
-        fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/repoList/${this.state.year}-${newMonth}-${newDay}`, {
+        fetch(`${global.API_URL}/gitbook/group/Schedule/${this.props.groupno}/${this.props.userno}/repoList/${this.state.year}-${newMonth}-${newDay}`, {
           method: 'get',
           headers: global.API_HEADERS
         })
@@ -237,8 +238,6 @@ export default class MainCalendar extends Component {
     const isActive = active && day && MainCalendar.isSameDay(active, day);
 
     let toCompareMonth = this.state.month + 1;
-
-
 
     (toCompareMonth < 10 ? toCompareMonth = ('0' + toCompareMonth) : toCompareMonth);
 
@@ -309,7 +308,7 @@ export default class MainCalendar extends Component {
       buttonClassName: "repo"
     });
 
-    fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyCommitList`, {
+    fetch(`${global.API_URL}/gitbook/group/Schedule/${this.props.groupno}/${this.props.userno}/notEmptyGroupCommitList`, {
       method: 'get',
       headers: global.API_HEADERS
     })
@@ -323,13 +322,12 @@ export default class MainCalendar extends Component {
   }
 
   render() {
-    console.log("main Render called...")
-    
+  
     const { month, year } = this.state;
     return (
-      <div className="react-daypicker-root">
+      <div className="react-daypicker-root" >
 
-        <div className="button-div" >
+        <div className="button-div" style={{marginTop:"50px"}}>
           <button className={`${this.state.buttonClassName === 'todo' ? 'index-todo-list-todo' : 'index-todo-list'}`} onClick={this.Todo}>TODO</button>
           <button style={{ marginLeft: "10px" }} className={`${this.state.buttonClassName === 'repo' ? 'index-repository-list' : 'index-repository'}`} onClick={this.Repo}>GIT</button>
         </div>
@@ -357,14 +355,14 @@ export default class MainCalendar extends Component {
 
         {!this.state.scheduleOption ? (
           //개인스케줄 다이얼로그
-          <MyToDoScheduleDialog
+          <MyToDoGroupScheduleDialog
             userid={this.state.userid}
-            originDay={this.state.clickDay}
             day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
+            thisDay={this.state.date}
             month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
             year={this.state.year}
             monthName={this.longMonthName(month)}
-
+           
             getToDoList={this.state.getToDoList && this.state.getToDoList}
 
             addlist={this.newAddlist.bind(this)}
@@ -382,6 +380,7 @@ export default class MainCalendar extends Component {
           <MyRepoScheduleDialog
             userid={this.state.userid}
             originDay={this.state.clickDay}
+            thisDay={this.state.date}
             day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
             month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
             year={this.state.year}
@@ -419,8 +418,7 @@ export default class MainCalendar extends Component {
   }
 
   componentDidMount() {
-    console.log('MainCalendar DidMount Called')
-    fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyToDoList`, {
+    fetch(`${global.API_URL}/gitbook/group/Schedule/${this.props.groupno}/${this.props.userno}/notEmptyGroupToDoList`, {
       method: 'get',
       headers: global.API_HEADERS
     })
