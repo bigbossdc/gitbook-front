@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 import AlarmBox from "./AlarmBox";
 import DropdownMenu from "./DropdownMenu";
 
-const API_URL = "http://127.0.0.1:8080";
-const API_HEADERS = {
-   "Content-Type": "application/json",
-};
+
 
 class Header extends Component {
    constructor() {
@@ -21,10 +18,9 @@ class Header extends Component {
    }
 
    componentDidMount() {
-      fetch(`${API_URL}/gitbook/user/friend`, {
+      fetch(`${global.API_URL}/gitbook/user/profile/info/${sessionStorage.getItem("authUserId")}`, {
          method: "post",
-         headers: API_HEADERS,
-         body: sessionStorage.getItem("authUserId"),
+         headers: global.API_HEADERS,
       })
          .then((response) => response.json())
          .then((json) => {
@@ -103,7 +99,7 @@ class Header extends Component {
                         <li className="dropdown mega-avatar">
                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                               <span className="avatar w-32">
-                                 <img src={`${API_URL + this.state.authUser.image}`} className="img-resonsive img-circle" width="25" height="25" alt="..."></img>
+                                 <img src={`${global.API_URL + this.state.authUser.image}`} className="img-resonsive img-circle" width="25" height="25" alt="..."></img>
                               </span>
 
                               <span className="hidden-xs" style={{ fontFamily: " 'Varela Round', sans-serif", marginLeft: "10px" }}>

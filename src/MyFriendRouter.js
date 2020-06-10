@@ -103,7 +103,7 @@ class MyFriendRouter extends Component {
                   </div>
               
                   {/** 세번째 섹션 */}
-                  <Navigation2 id={sessionStorage.getItem("authUserId")} userinfo={this.state.userFriends}></Navigation2>
+                  <Navigation2 userid={sessionStorage.getItem("authUserId")} userinfo={this.state.userFriends}></Navigation2>
 
             </div>{/** row 종료 */}
           </div>{/** container-fluid 종료 */}

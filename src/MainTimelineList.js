@@ -25,17 +25,13 @@ class MainTimelineList extends Component {
   render() {
     console.log("길이"+this.state.timelineItemList)
     return (
-
       <div >
-
         { (this.state.timelineItemList&&this.state.timelineItemList =='show')?
           <div style={{backgroundColor:"#F4F4F4",width:"100%",height:"100%"}}>
         <div style={{width:"700px",margin:"0px auto",borderRadius:"20px"}}>
           <img 
           src={`${global.API_URL}/gitbook/assets/img/bg/5.jpg`} 
           style={{width:"100%"}}
-
-          
           />
       <i class="far fa-files-medical"></i>
           </div>
@@ -84,7 +80,6 @@ class MainTimelineList extends Component {
   })
   .catch( err => console.error( err )); 
  
-
   window.addEventListener('scroll',this._infiniteScroll,true);
   
   }

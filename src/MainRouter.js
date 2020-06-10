@@ -43,6 +43,7 @@ class MainRouter extends Component {
                                </div>
               </div>
             </div>
+            </div>
             {/** row 종료 */}
        
           {/** container-fluid 종료 */}
