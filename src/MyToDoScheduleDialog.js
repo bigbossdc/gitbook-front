@@ -18,8 +18,6 @@ export default class MyToDoScheduleDialog extends Component {
 
      
   }
-  
-
 
   onClickHandler() {
     this.props.onClosehandler();
@@ -155,7 +153,8 @@ export default class MyToDoScheduleDialog extends Component {
         });
     })
     .catch( err => console.error( err ));
+
+    
 }
 
 }
-

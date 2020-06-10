@@ -321,6 +321,7 @@ export default class MainCalendar extends Component {
   }
 
   render() {
+    console.log(this.state.checkedToDoListDay)
     const { month, year } = this.state;
     return (
       <div className="react-daypicker-root">
