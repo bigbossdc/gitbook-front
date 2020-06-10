@@ -5,6 +5,15 @@ import './MainCalendar.scss';
 
 export default class MyToRepoScheduleDialog extends Component {
 
+  constructor() {
+    super(...arguments);
+    this.state = {
+      image:''
+    };
+
+     
+  }
+
   onClickHandler() {
     this.props.onClosehandler();
   }
@@ -23,12 +32,11 @@ export default class MyToRepoScheduleDialog extends Component {
                   </button>
 
                   <div className="img-poster clearfix">
-                    <a href=""><img className="img-responsive img-circle" src="/gitbook/assets/img/users/1.jpg" alt="Image"></img></a>
+                    <a><img className="img-responsive img-circle" src={this.state.image} alt="Image"></img></a>
                     <strong><a style={{ fontSize: 25 }}>{this.props.year}-{this.props.month}-{this.props.day}</a></strong>
                     <br></br>
                     <br />
                   </div>
-
 
                   <ul className="img-comment-list">
                     {
@@ -51,4 +59,20 @@ export default class MyToRepoScheduleDialog extends Component {
       </Dialog>
     )
   }
+
+  componentDidMount() {
+    console.log('todoDidMount Called...')
+    fetch(`${global.API_URL}/gitbook/user/profile/info/${sessionStorage.getItem("authUserId")}`, {
+        method: 'post',
+        headers: global.API_HEADERS,
+     })
+    .then( response => response.json())
+    .then( json => {
+    
+        this.setState({
+            image: json.data.image
+        });
+    })
+    .catch( err => console.error( err ));
+}
 }
