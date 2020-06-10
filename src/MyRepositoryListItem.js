@@ -64,6 +64,7 @@ class MyRepositoryListItem extends Component {
   }
 
   render() {
+    console.log("aavbb : " + this.props.GroupNo)
     const k = {
       position: "relative",
       top: "1px",
@@ -95,9 +96,11 @@ class MyRepositoryListItem extends Component {
           <div className="media m-0">
             <div className="media-body">
               <span style={k}></span>
-
+ 
               <Link to={`/gitbook/my/${this.props.path}/repository/view/${this.props.gitName}`} className="text-muted" style={{ fontFamily: " 'Varela Round', sans-serif", fontSize: "1.9em", display: "inline-block", marginBottom: "10px" }}>
-                {this.props.gitName}</Link>
+                  {this.props.gitName}</Link>
+        
+              
               <pre style={{ overflowX: "hidden", wordBreak: "break-all", backgroundColor: "#FFFFFF", border: "none", fontFamily: " 'Varela Round', sans-serif" }}>{this.props.description}
               </pre>
 

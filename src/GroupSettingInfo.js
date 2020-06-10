@@ -47,7 +47,7 @@ class GroupSettingInfo extends Component {
     this.setState({
         visible: obj,
         chk: !this.state.chk,
-        imgurl: this.state.visible['basic'] == false ? '/gitbook/assets/image/basic.jpg' : this.state.imgurl
+        imgurl: this.state.visible['basic'] == false ? '/gitbook/assets/img/bg/basic.jpg' : this.state.imgurl
     });
   } 
 
@@ -213,11 +213,11 @@ class GroupSettingInfo extends Component {
           groupIntro: json.data.groupIntro,
           previewURL: json.data.image,
           visible:{
-            basic : json.data.image == '/gitbook/assets/image/basic.jpg' ? true : false,
-            nobasic : json.data.image != '/gitbook/assets/image/basic.jpg' ? true : false 
+            basic : json.data.image == '/gitbook/assets/img/bg/basic.jpg' ? true : false,
+            nobasic : json.data.image != '/gitbook/assets/img/bg/basic.jpg' ? true : false 
           },
-          chk: json.data.image == '/gitbook/assets/image/basic.jpg' ? true : false,
-          imgurl: json.data.image == '/gitbook/assets/image/basic.jpg' ? '/gitbook/assets/image/basic.jpg' : json.data.image
+          chk: json.data.image == '/gitbook/assets/img/bg/basic.jpg' ? true : false,
+          imgurl: json.data.image == '/gitbook/assets/img/bg/basic.jpg' ? '/gitbook/assets/img/bg/basic.jpg' : json.data.image
         });
     })
     .catch( err => console.error( err ));  

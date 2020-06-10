@@ -13,7 +13,6 @@ class Header extends Component {
       };
    }
 
-
    onNotifyKeywordChange(keyword) {
       this.setState({
          keyword: keyword,
@@ -48,10 +47,11 @@ class Header extends Component {
                         <li>
                            {/** 검색 창 */}
                            <div className="search-dashboard">
-                              <form onClick={this.onResult.bind(this)}>
+                              <form>
                                  <input placeholder="친구 검색" onChange={this.onInputChange.bind(this)} value={this.state.keyword}></input>
                                  <Link to="/gitbook/main/friendsearch">
                                     <button
+                                       onClick={this.onResult.bind(this)}
                                        type="submit"
                                        style={{
                                           display: "inline-block",

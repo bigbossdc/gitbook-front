@@ -85,7 +85,7 @@ class UploadPage extends Component {
     formData.append("tagList", sendtagList)
     formData.append("imgList", this.state.imgList)
 
-    fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/upload`, {
+    fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/upload/${this.props.match.params.groupno}`, {
       method: 'post',
       headers: {
 
@@ -93,9 +93,13 @@ class UploadPage extends Component {
       body: formData
     })
       .catch(err => console.error(err));
-      window.location=global.API_URL+"/gitbook/my/"+sessionStorage.getItem("authUserId");
+      (this.props.match.params.groupno === undefined 
+        ? window.location=global.API_URL+"/gitbook/my/"+sessionStorage.getItem("authUserId")
+          : window.location=global.API_URL+"/gitbook/group/"+ this.props.match.params.groupno +"/"+ sessionStorage.getItem("authUserNo"))
+      
   }
   render() {
+    console.log("group chk :" + this.props.match.params.groupno)
     return (
       <div>
         <Header2 name="Upload"></Header2>

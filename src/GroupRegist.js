@@ -19,7 +19,7 @@ class GroupRegist extends Component {
                 nobasic : false 
             },
             chk: true,
-            imgurl:'/gitbook/assets/image/basic.jpg'
+            imgurl:'/gitbook/assets/img/bg/basic.jpg'
         }
     }
         
@@ -44,7 +44,7 @@ class GroupRegist extends Component {
         this.setState({
             visible: obj,
             chk: !this.state.chk,
-            imgurl: '/gitbook/assets/image/basic.jpg'
+            imgurl: '/gitbook/assets/img/bg/basic.jpg'
         });
     }
 

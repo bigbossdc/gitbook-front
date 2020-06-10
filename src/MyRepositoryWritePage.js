@@ -111,7 +111,7 @@ class MyRepositoryWritePage extends Component {
    }
    componentDidMount() {
 
-      fetch(`${global.API_URL}/gitbook/Repository/${this.props.userid}/list`, {
+      fetch(`${global.API_URL}/gitbook/Repository/${this.props.userid}/check`, {
   
           method: 'get',
           headers:global.API_HEADERS
