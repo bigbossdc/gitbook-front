@@ -281,7 +281,6 @@ class TimeLineItem extends Component {
     <div className="modal" style={{ display: this.state.show ,marginTop:"160px" }}>
       <UploadPageItem 
 
-     
         timelineInfo={this.props.list}
         marchid={this.props.marchid}
         filelist={this.state.fileList}

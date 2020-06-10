@@ -17,7 +17,7 @@ class App extends Component {
     this.state = {
       keyword:'',
       result:'',
-      authUser:''    
+      authUser:''
     }
   }
   // Header 친구 검색
@@ -59,7 +59,7 @@ class App extends Component {
 
         <Route path="/gitbook/mygroup/:groupno?" component={MyGroupRouter}></Route>
         <Route path="/gitbook/myfriend" component={MyFriendRouter}></Route>
-        <Route path="/gitbook/upload" render={() => <UploadPage result={this.state.result}/>}></Route> 
+        <Route path="/gitbook/upload/:groupno?" exact component={UploadPage}></Route>  
         <Route path="/gitbook/group/:groupno?/:userno?" component={GroupRouter}></Route> 
       </div>
     );

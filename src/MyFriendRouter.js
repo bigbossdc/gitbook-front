@@ -12,7 +12,8 @@ class MyFriendRouter extends Component {
     super(...arguments);
     this.state = {
       reqFriends: "",
-      userFriends: ""
+      userFriends: "",
+      friendNum: ""
     }
   }
   
@@ -31,7 +32,8 @@ class MyFriendRouter extends Component {
     .then( response => response.json())
     .then( json => {
         this.setState({
-            userFriends : json.data
+            userFriends : json.data,
+            friendNum: Object(json.data).length
         });
         this.callbackReqFriend();
     })
@@ -53,7 +55,8 @@ class MyFriendRouter extends Component {
     .then( response => response.json())
     .then( json => {
         this.setState({
-          userFriends : json.data
+          userFriends : json.data,
+          friendNum: Object(json.data).length
       });
       this.callbackReqFriend();
     })
@@ -81,7 +84,7 @@ class MyFriendRouter extends Component {
 
 
   render() {
-    console.log("test" + sessionStorage.getItem("authUserId"))
+    console.log("testaaaa" + sessionStorage.getItem("authUserId") + ":" + this.state.friendNum)
     return (
       <div className="App" >
       
@@ -98,12 +101,14 @@ class MyFriendRouter extends Component {
                                      delete: this.callbackRejectFriend.bind(this)
                                     }} 
                           reqinfo={this.state.reqFriends} 
-                          friendinfo={this.state.userFriends}/>}
+                          friendinfo={this.state.userFriends}
+                          friendnum={this.state.friendNum}
+                          />}
                   />
                   </div>
               
                   {/** 세번째 섹션 */}
-                  <Navigation2 id={sessionStorage.getItem("authUserId")} userinfo={this.state.userFriends}></Navigation2>
+                  <Navigation2 userid={sessionStorage.getItem("authUserId")} userinfo={this.state.userFriends}></Navigation2>
 
             </div>{/** row 종료 */}
           </div>{/** container-fluid 종료 */}
@@ -140,7 +145,8 @@ class MyFriendRouter extends Component {
     .then( response => response.json())
     .then( json => {
         this.setState({
-            userFriends: json.data    
+            userFriends: json.data,
+            friendNum: Object(json.data).length
         });
     })
     .catch( err => console.error( err ));    

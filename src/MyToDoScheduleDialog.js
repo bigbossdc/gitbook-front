@@ -145,9 +145,9 @@ export default class MyToDoScheduleDialog extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API_URL}/gitbook/user/friend`, {
+    fetch(`${global.API_URL}/gitbook/user/profile/info/${sessionStorage.getItem("authUserId")}`, {
         method: 'post',
-        headers: API_HEADERS,
+        headers: global.API_HEADERS,
         body: sessionStorage.getItem("authUserId"),
      })
     .then( response => response.json())

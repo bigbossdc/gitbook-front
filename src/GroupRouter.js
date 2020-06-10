@@ -11,6 +11,7 @@ import GroupHeaderImg from './GroupHeaderImg';
 import GroupRepositoryListPage from './GroupRepositoryListPage';
 import GroupRepositoryWritePage from './GroupRepositoryWritePage';
 import GroupRepositoryPage from './GroupRepositoryPage';
+import MyRepositoryListPage from './MyRepositoryListPage';
 
 {/*Group Navigation 사용하는 그룹 관련 페이지 - 그룹 타임라인, 그룹 관리*/}
 
@@ -36,7 +37,7 @@ class GroupRouter extends Component {
   changegroupInfo(groupTitle, groupIntro, imgurl, groupno){
     fetch(`${global.API_URL}/gitbook/group/infoupdate`, {
         method: 'post',
-        headers: API_HEADERS,
+        headers: global.API_HEADERS,
         body: JSON.stringify({
           groupTitle: groupTitle,
           groupIntro: groupIntro,
@@ -69,17 +70,22 @@ class GroupRouter extends Component {
                   <div className="col-lg-6" style={{background: "#fff",marginTop:"1px"}}>             
                   <GroupHeaderImg groupinfo={this.state.groupInfo}></GroupHeaderImg>
 
-                  <Route  path="/gitbook/group/:groupno?/:userno?" exact component={GroupTimeLinePage }/>
+                  <Route  path="/gitbook/group/:groupno?/:userno?" exact render={() => <GroupTimeLinePage 
+                                                                                          groupno={this.props.match.params.groupno}/>}/>
                   <Route  path="/gitbook/group/:groupno?/:userno?/setting" exact render={() => <GroupSetting 
                                                                                                   userno={this.props.match.params.userno}
                                                                                                   groupno={this.props.match.params.groupno}
                                                                                                   changeInfo={this.changegroupInfo.bind(this)}
                                                                                                   changeList={this.changejoinList.bind(this)}
                                                                                                 />}/>
-                  {/* <Route  path="/gitbook/group/repository" exact component={GroupRepositoryListPage}/>
-                  <Route  path="/gitbook/group/repository/detail" exact component={GroupRepositoryPage}/>
-                  <Route  path="/gitbook/group/repository/write" exact component={GroupRepositoryWritePage}/>
-                  <Route  path="/gitbook/group/schedule"  exact component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/> */}
+                  <Route  path="/gitbook/group/:groupno?/:userno?/repository" exact render={() => <GroupRepositoryListPage
+                                                                                                    id={this.props.match.params.userno}
+                                                                                                    groupno={this.props.match.params.groupno}/>}/>
+                  <Route  path="/gitbook/group/:groupno?/:userno?/repository/write" exact render={() => <GroupRepositoryWritePage
+                                                                                                          groupno={this.props.match.params.groupno}/>}/>
+        
+                  <Route  path="/gitbook/group/:groupno?/:userno?/:userid?/repository/view/:repoName?" exact component={GroupRepositoryPage}/>
+                  <Route  path="/gitbook/group/schedule"  exact component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
 
                   </div>
               

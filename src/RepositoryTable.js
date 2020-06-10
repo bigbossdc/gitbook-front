@@ -7,6 +7,7 @@ class RepositoryTable extends Component {
 
  
   onClicklist(e){
+    console.log("ahhhh : " + e.target.id)
     this.props.clicklist.newList(e.target.id)
   }
 
