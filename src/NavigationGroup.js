@@ -41,7 +41,7 @@ class NavigationGroup extends Component {
               <li>
                <Link to="/gitbook/group"><small className="text-muted">Group Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
                <Link to="/gitbook/group/repository"><small className="text-muted">Group Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
-               <Link to={`/gitbook/group/${this.props.groupinfo.no}/${this.props.groupinfo.masterNo}/schedule`}><small className="text-muted">Group Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
+               <Link to={`/gitbook/group/${this.props.groupinfo.no}/${sessionStorage.getItem("authUserNo")}/schedule`}><small className="text-muted">Group Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
                <br></br>
               </li> 
             

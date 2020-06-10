@@ -140,7 +140,7 @@ export default class MainCalendar extends Component {
   };
 
   newAddlist(day, newToDo) {
-    console.log('addList Called...')
+    
     fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/addToDo/${day}`, {
       method: 'post',
       headers: global.API_HEADERS,
@@ -150,7 +150,6 @@ export default class MainCalendar extends Component {
         this.setState({
           getToDoList: json.data
         });
-        console.log(this.state.getToDoList)
       })
       .catch(err => console.error(err))
 
@@ -230,7 +229,6 @@ export default class MainCalendar extends Component {
 
 
   renderDay = (day, index) => {
-    console.log('renderDay Called...');
     const { date, month, today, year } = this.state;
     const { active } = this.props;
     const isToday = day && day.valueOf() === today.valueOf();
@@ -323,8 +321,6 @@ export default class MainCalendar extends Component {
   }
 
   render() {
-    console.log("main Render called...")
-    
     const { month, year } = this.state;
     return (
       <div className="react-daypicker-root">
@@ -358,6 +354,7 @@ export default class MainCalendar extends Component {
         {!this.state.scheduleOption ? (
           //개인스케줄 다이얼로그
           <MyToDoScheduleDialog
+            key='todoschedule'
             userid={this.state.userid}
             originDay={this.state.clickDay}
             day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
@@ -419,7 +416,7 @@ export default class MainCalendar extends Component {
   }
 
   componentDidMount() {
-    console.log('MainCalendar DidMount Called')
+    
     fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyToDoList`, {
       method: 'get',
       headers: global.API_HEADERS

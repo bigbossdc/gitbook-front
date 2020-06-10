@@ -19,8 +19,6 @@ export default class MyToDoGroupScheduleDialog extends Component {
      
   }
   
-
-
   onClickHandler() {
     this.props.onClosehandler();
     this.setState({
@@ -83,14 +81,11 @@ export default class MyToDoGroupScheduleDialog extends Component {
       no: e.target.id,
       checkDate: this.props.year + "-" + this.props.month + "-" + this.props.day //ex) 2020-05-30
     }
-    //setTimeout(() => {
-    //  console.log("시간지연가즈아")
-      this.props.deletelist(deleteTarget.checkDate, deleteTarget).bind(this);
-    //}, 100);
+   
+      this.props.deletelist(deleteTarget.checkDate, deleteTarget);
   }
 
   render() {
-  
     return (
       
       <Dialog open={this.props.openModal}>
@@ -111,6 +106,9 @@ export default class MyToDoGroupScheduleDialog extends Component {
 
                     <br></br>
                     <br />
+
+                    {this.props.masterno === sessionStorage.getItem("authUserNo") ? 
+                    
                     <input
                       onChange={this.handleChange.bind(this)}
                       onKeyPress={this.keyChange.bind(this)}
@@ -118,6 +116,13 @@ export default class MyToDoGroupScheduleDialog extends Component {
                       className="form-control input-sm"
                       type="text"
                       placeholder="Enter..." ></input>
+                    : 
+
+                    <a style={{fontFamily: " 'Varela Round', sans-serif",fontWeight:"bold" }}>추가/삭제의 권한이 없습니다.</a>
+
+                    }
+
+                    
                   </div>
 
                   <ul className="img-comment-list">
@@ -126,7 +131,11 @@ export default class MyToDoGroupScheduleDialog extends Component {
                         
                         <li>
                           <div>
+                          {this.props.masterno === sessionStorage.getItem("authUserNo") ? 
                             <a className='deleteButton' onClick={this.deleteClickHandler.bind(this)}><span id={list.no} style={{ fontWeight: "bold", color: 'red', fontFamily: " 'Varela Round', sans-serif" }}>삭제</span></a>
+                            :
+                            ""
+                            }
                             <br/>
                            <p className='p1'>{list.scheduleContents.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp }&nbsp;</div>)}</p>
                             <p className='p2' style={{fontSize:"0.8em"}}>on {this.props.monthName} {this.props.thisDay}th, {this.props.year}</p>

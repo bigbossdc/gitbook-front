@@ -41,8 +41,6 @@ export default class GroupMainCalendar extends Component {
       month: now.getMonth(),
       today: new Date(now.getFullYear(), now.getMonth(), now.getDate()),
       year: now.getFullYear(),
-     
-      //userid: this.props.match.params.userid,
 
       openModal: false,
       scheduleOption: false,
@@ -142,7 +140,6 @@ export default class GroupMainCalendar extends Component {
   };
 
   newAddlist(day, newToDo) {
-    console.log('addList Called...')
     fetch(`${global.API_URL}/gitbook/group/Schedule/${this.props.groupno}/${this.props.userno}/addToDo/${day}`, {
       method: 'post',
       headers: global.API_HEADERS,
@@ -159,7 +156,7 @@ export default class GroupMainCalendar extends Component {
   }
 
   deleteList(day, deleteTarget) {
-    fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/delete/${day}`, {
+    fetch(`${global.API_URL}/gitbook/group/Schedule/${this.props.groupno}/${this.props.userno}/delete/${day}`, {
       method: 'post',
       headers: global.API_HEADERS,
       body: JSON.stringify(deleteTarget)
@@ -231,7 +228,6 @@ export default class GroupMainCalendar extends Component {
 
 
   renderDay = (day, index) => {
-    console.log('renderDay Called...');
     const { date, month, today, year } = this.state;
     const { active } = this.props;
     const isToday = day && day.valueOf() === today.valueOf();
@@ -356,9 +352,10 @@ export default class GroupMainCalendar extends Component {
         {!this.state.scheduleOption ? (
           //개인스케줄 다이얼로그
           <MyToDoGroupScheduleDialog
+            key="groupToDo"
             userid={this.state.userid}
             day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
-            thisDay={this.state.date}
+            originDay={this.state.clickDay}
             month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
             year={this.state.year}
             monthName={this.longMonthName(month)}
@@ -371,7 +368,7 @@ export default class GroupMainCalendar extends Component {
             openModal={this.state.openModal}
             onClosehandler={this.handleClose.bind(this)}
 
-            test={this.state.today}
+            masterno = {this.props.masterno}
           />
         ) :
 
@@ -427,6 +424,7 @@ export default class GroupMainCalendar extends Component {
         this.setState({
           checkedToDoListDay: json.data.map((list) => list.checkDate)
         });
+        console.log(this.state.checkedToDoListDay)
       })
       .catch(err => console.error(err));
   }

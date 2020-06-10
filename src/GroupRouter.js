@@ -55,6 +55,7 @@ class GroupRouter extends Component {
   }
 
   render() {
+    console.log(this.state.groupInfo)
     return (
       <div className="App" >
        <Header></Header>
@@ -84,6 +85,7 @@ class GroupRouter extends Component {
                   <Route  path="/gitbook/group/:groupno?/:userno?/schedule" exact render={() => <GroupMainCalendar
                                                                                                  userno={this.props.match.params.userno}
                                                                                                  groupno={this.props.match.params.groupno}
+                                                                                                 masterno={this.state.groupInfo.masterNo}
                                                                                                  />}/>
 
                   </div>

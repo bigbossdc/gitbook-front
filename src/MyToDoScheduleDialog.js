@@ -83,10 +83,7 @@ export default class MyToDoScheduleDialog extends Component {
       no: e.target.id,
       checkDate: this.props.year + "-" + this.props.month + "-" + this.props.day //ex) 2020-05-30
     }
-    //setTimeout(() => {
-    //  console.log("시간지연가즈아")
-      this.props.deletelist(deleteTarget.checkDate, deleteTarget).bind(this);
-    //}, 100);
+      this.props.deletelist(deleteTarget.checkDate, deleteTarget);
   }
 
   render() {
