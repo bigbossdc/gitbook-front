@@ -213,7 +213,14 @@ class TimeLineItem extends Component {
           </div>
           <div>
             <p style={{ color: "black", fontFamily: " 'Varela Round', sans-serif", marginTop: "15px", wordBreak: "break-all", fontSize: "1.2em" }}>
-              {this.props.list.contents}
+              {
+              this.props.list.contents.split(/\n/g).map((word)=>
+              <div>
+              {word.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp }&nbsp;</div>)
+              }<br></br>
+              </div>
+              )  
+              }
             </p>
           </div>
         </div>

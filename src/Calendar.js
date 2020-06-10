@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import './Calendar.scss';
 import CalendarTable from "./CalendarTable";
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-  'Content-Type': 'application/json'
-}
+
 
 class Calendar extends Component {
 
@@ -65,9 +62,9 @@ componentDidMount(){
    let formatMonth = this.state.thisMonth < 10 ? ('0' + this.state.thisMonth) : this.state.thisMonth;
    let path = this.state.thisYear+'-'+formatMonth  // ex)2020-06
 
-  fetch(`${API_URL}/gitbook/Schedule/${this.props.userid}/naviCommitList/${path}`, {
+  fetch(`${global.API_URL}/gitbook/Schedule/${this.props.userid}/naviCommitList/${path}`, {
     method: 'get',
-    headers: API_HEADERS
+    headers: global.API_HEADERS
   })
     .then(response => response.json())
     .then(json => {

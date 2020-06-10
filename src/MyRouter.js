@@ -41,6 +41,7 @@ changeScheduleRepoValue(){
 
 
   render() {
+ 
     return (
       <div className="App" >
       {(this.props.match.params.userid === sessionStorage.getItem("authUserId")) ? <Header2 name="MyTimeline"
@@ -57,8 +58,8 @@ changeScheduleRepoValue(){
                 
                  />  {/** 네비게이션 */} 
                   {/** 두번째 섹션 */}
-                  <div className="col-lg-6" style={{background: "#fff",marginTop:"1px"}}>             
-                  <Route   exact path="/gitbook/my/:userid" 
+                  <div className="col-lg-6" style={{backgroundColor:"#F4F4F4",marginTop:"1px"}}>             
+                  <Route exact path="/gitbook/my/:userid" 
                     render={() => 
                         <MyTimelinePage
                             key={this.props.match.params.userid}
@@ -75,8 +76,10 @@ changeScheduleRepoValue(){
                   <Route
                      path='/gitbook/my/:userid/repository/write'
                       render={() => <MyRepositoryWritePage data="123"
-                      key={this.props.match.params.userid+"3"}
-                      repositorylist={this.state.repositorylist}/>}/>  
+                      key={this.props.match.params.userid}
+                      userid={this.props.match.params.userid}
+                      // repositorylist={this.state.repositorylist}
+                      />}/>  
 
                   {/* <Route  path="/gitbook/my/repository/write" component={MyRepositoryWritePage}/> */}
                   <Route  path="/gitbook/my/:userid/repository/view/:repoName" component={MyRepositoryPage}/>
@@ -90,7 +93,7 @@ changeScheduleRepoValue(){
                   {/** 세번째 섹션 */}
                   <Navigation2 
                   key={this.props.match.params.userid+"1"}
-                  id={this.props.match.params.userid}
+                  userid={this.props.match.params.userid}
                   />
 
             </div>{/** row 종료 */}
@@ -99,21 +102,21 @@ changeScheduleRepoValue(){
       </div>
     );
   }
-  componentDidMount() {
+//   componentDidMount() {
 
-    fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/list`, {
+//     fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/list`, {
 
-        method: 'get',
-        headers:global.API_HEADERS
-    })
-    .then( response => response.json())
-    .then( json => {
-        this.setState({
-          repositorylist: json.data
-        });
-    })
-    .catch( err => console.error( err ));      
-}
+//         method: 'get',
+//         headers:global.API_HEADERS
+//     })
+//     .then( response => response.json())
+//     .then( json => {
+//         this.setState({
+//           repositorylist: json.data
+//         });
+//     })
+//     .catch( err => console.error( err ));      
+// }
 }
 
 export default MyRouter;

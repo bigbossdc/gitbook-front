@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 import './Fluffs/assets/css/demos/group.css';
 import GroupHeaderImg from "./GroupHeaderImg";
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-  'Content-Type': 'application/json'
-}
+
 class GroupInfo extends Component {
     constructor(props) {
         super(props);
@@ -26,17 +23,18 @@ class GroupInfo extends Component {
         <div> 
             <GroupHeaderImg groupinfo={this.state.groupinfo} />
             <div className="group-req">
-                <div className="group-master-area">                
-                    <img className="img-fluid img-circle abc" src={this.state.groupinfo.masterImage} alt=""></img>            
-                    <span>
-                        <h4>
-                            {this.state.groupinfo.groupIntro}<br/>
-                            {this.state.groupinfo.groupIntro}
-                        </h4>
-                    </span>            
+                <div className="group-master-area">  
+                    <div className="row">              
+                        <img className="img-fluid img-circle g-img" src={this.state.groupinfo.masterImage} alt=""></img>            
+                        <span>
+                            <h4>
+                                {this.state.groupinfo.groupIntro}
+                            </h4>
+                        </span> 
+                    </div>           
                 </div>
+                <hr/>
                 <section className="notifications group-noti">
-                    <hr/>
                     <div className="repo">
                             <i className="fas fa-folder-open fa-3x"></i>
                             <h5>Repositories</h5>
@@ -62,9 +60,9 @@ class GroupInfo extends Component {
     }
     
     componentDidMount() {
-        fetch(`${API_URL}/gitbook/group/info`, {
+        fetch(`${global.API_URL}/gitbook/group/info`, {
             method: 'post',
-            headers: API_HEADERS,
+            headers: global.API_HEADERS,
             body: JSON.stringify({
                 userno : sessionStorage.getItem("authUserNo"),
                 groupno: this.props.groupno

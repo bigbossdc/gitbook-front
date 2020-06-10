@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import './Fluffs/assets/css/demos/group.css';
 import {Link} from "react-router-dom";
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-    'Content-Type': 'application/json'
-}
+
 const API_HEADERS2 = {
   'Content-Type': 'multipart/form-data; charset=UTF-8'
 }
@@ -35,6 +32,15 @@ class GroupSettingInfo extends Component {
     });
   }
 
+  handleLengthChk=(e)=>{
+    if(e.target.value.length > 100) {
+        alert("100자를 초과했습니다 (글자수: " + e.target.value.length + ")" )
+        this.setState({
+          groupIntro: e.target.value.substring(0, 100)
+        });
+    }
+}
+
   handleRadio=(event)=>{
     let obj = {}
     obj[event.target.value] = event.target.checked 
@@ -57,7 +63,7 @@ class GroupSettingInfo extends Component {
 
     let formData = new FormData();
     formData.append('file', file);
-    fetch(`${API_URL}/gitbook/group/imgupload`, {
+    fetch(`${global.API_URL}/gitbook/group/imgupload`, {
         method: 'post',
         headers: {
             API_HEADERS2
@@ -97,6 +103,7 @@ class GroupSettingInfo extends Component {
 
         <input type="text" 
                className="form-control" 
+               maxLength="30"
                name="groupTitle"
                value={this.state.groupTitle} 
                onChange={this.handleChange.bind(this)}
@@ -119,8 +126,8 @@ class GroupSettingInfo extends Component {
                   rows="3" 
                   name="groupIntro"
                   value={this.state.groupIntro}
-                  onChange={this.handleChange.bind(this)}/>
-        
+                  onChange={this.handleChange.bind(this)}
+                  onKeyUp={this.handleLengthChk.bind(this)}/>
         <br/>
         <br/>
       
@@ -190,9 +197,9 @@ class GroupSettingInfo extends Component {
   }
 
   componentDidMount() {
-    fetch(`${API_URL}/gitbook/group/info`, {
+    fetch(`${global.API_URL}/gitbook/group/info`, {
       method: 'post',
-      headers: API_HEADERS,
+      headers: global.API_HEADERS,
       body: JSON.stringify({
           userno : this.props.userno,
           groupno: this.props.groupno
@@ -215,9 +222,9 @@ class GroupSettingInfo extends Component {
     })
     .catch( err => console.error( err ));  
 
-    fetch(`${API_URL}/gitbook/group/list`, {
+    fetch(`${global.API_URL}/gitbook/group/list`, {
       method: 'get',
-      headers: API_HEADERS
+      headers: global.API_HEADERS
     })
       .then(response => response.json())
       .then(json => {

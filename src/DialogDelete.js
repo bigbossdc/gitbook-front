@@ -3,10 +3,6 @@ import './Fluffs/assets/css/demos/photo.css';
 import './dialogBox.css';
 
 
-const API_URL = 'http://127.0.0.1:8080';
-const API_HEADERS = {
-    'Content-Type': 'application/json'
-}
 class DialogDelete extends Component {
   constructor() {
 	super(...arguments);

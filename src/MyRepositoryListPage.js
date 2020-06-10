@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import MyRepositoryListItem from './MyRepositoryListItem';
-
+import './MyRepositoryListPage.css';
 class MyRepositoryListPage extends Component {
   constructor(props){
     super(props);
@@ -53,24 +53,26 @@ callVisibleHandler(list){
             <div>
                 <div className = "row">
                   <div className="search-area" style={{width:"50%", display:"inline-block"}}>  
-                    <div className="input-field" >
-                     
-                     
-                      <input placeholder="Search" type="text" value={ this.state.keyword } onChange={ this.onInputChange.bind(this) 
-                       
- 
-                      }></input>
-                        <i className="fa fa-search"></i>
-                      </div>
-                  </div>
-
-                  { (this.props.id == sessionStorage.getItem("authUserId") ) ?
-                  <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`} className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link> : '' 
+                    <div className="input-field" style={{border:"1px solid #DBDBDB ",height:"50px",borderRadius:"5px"}} >
                   
+                      <input style={{fontSize:"1.4em"}}
+                             id="searchInput" placeholder="Search" 
+                             type="text" value={ this.state.keyword } 
+                             onChange={ this.onInputChange.bind(this) }/>
+                        <i style={{marginTop:"5px"}} className="fa fa-search"></i>
+                      </div>
+                  </div> 
+                  { 
+                  (this.props.id == sessionStorage.getItem("authUserId") ) ?
+                    <Link 
+                      to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`} 
+                      className="kafe-btn kafe-btn-mint-small" 
+                      style={{ float:"right", marginTop:"25px",width:"50px",height:"34px"}}><strong style={{color:"#FFFFFF",fontSize:"1.4em",margin:"auto"}}>New!</strong></Link> : '' 
+ 
                   }             
 
                 </div>
-                <hr></hr>
+                <hr style={{backgroundColor:"#DBDBDB",height:"1px",marginTop:"-0px"}}></hr>
                 {this.state.repositorylist && this.state.repositorylist
                 .filter((list) => list.gitName.indexOf(this.state.keyword ) != -1 && ((list.userNo == authUserNo ) ? 1 : list.visible == "public") ) 
                 .map((list) => <MyRepositoryListItem

@@ -7,6 +7,7 @@ class MyRepositoryWritePage extends Component {
          gitName: "",
          description: "",
          check: "",
+         repositorylist:'',
          visible: {
             public: true,
             private: false,
@@ -15,7 +16,7 @@ class MyRepositoryWritePage extends Component {
    }
 
    handleChange = (e) => {
-      if (/^([0-9a-zA-Z_-]){0,}$/.test(e.target.value)) {
+      if (/^([0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣_-]){0,}$/.test(e.target.value)) {
          this.setState({
             [e.target.name]: e.target.value,
          });
@@ -49,7 +50,7 @@ class MyRepositoryWritePage extends Component {
 
    render() {
       return (
-         <div className="RepositoryWritePage">
+         <div className="RepositoryWritePage" >
             <h2 style={{ fontFamily: " 'Abhaya Libre' serif" }}>New Repository</h2>
             <hr></hr>
             <form action={"/gitbook/my/" + sessionStorage.getItem("authUserId") + "/repository/view/" + this.state.gitName} method="POST">
@@ -66,7 +67,7 @@ class MyRepositoryWritePage extends Component {
                   style={{ width: "40%", display: "inline", paddingRight: "40px" }}
                />
                {this.state.gitName.trim() != "" ? (
-                  this.props.repositorylist && this.props.repositorylist.some((list) => list.gitName.trim() == this.state.gitName.trim()) ? (
+                  this.state.repositorylist && this.state.repositorylist.some((list) => list.gitName.trim() == this.state.gitName.trim()) ? (
                      <i className="fas fa-exclamation-triangle" style={{ marginLeft: "-25px", color: "red" }} />
                   ) : (
                      <i className="fas fa-check" style={{ marginLeft: "-25px", color: "green", display: "inline-block" }} />
@@ -78,7 +79,9 @@ class MyRepositoryWritePage extends Component {
                <br></br>
                <br></br>
                <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>Description</h4>
-               <textarea className="form-control no-border" rows="3" onChange={this.handleChange.bind(this)} name="description" placeholder="상세 설명을 적어주세요.." />
+               <textarea className="form-control no-border" rows="3" 
+                        style={{resize:"none",width:"70%",height:"150px"}}
+                        onChange={this.handleChange.bind(this)} name="description" placeholder="상세 설명을 적어주세요.." />
                <hr></hr>
                <input type="radio" name="visible" value="public" checked={this.state.visible["public"]} onChange={this.handleRadio.bind(this)} />
                <label>공개</label>
@@ -88,7 +91,7 @@ class MyRepositoryWritePage extends Component {
                <hr></hr>
 
                {this.state.gitName.trim() != "" ? (
-                  this.props.repositorylist && this.props.repositorylist.some((list) => list.gitName.trim() == this.state.gitName.trim()) ? (
+                  this.state.repositorylist && this.state.repositorylist.some((list) => list.gitName.trim() == this.state.gitName.trim()) ? (
                      <button type="submit" className="kafe-btn kafe-btn-mint-small" disabled="true" style={{ float: "right ", margin: "10px", width: "70px", backgroundColor: "red" }} onClick={this.handleSubmit.bind(this)}>
                         생성 불가
                      </button>
@@ -106,6 +109,21 @@ class MyRepositoryWritePage extends Component {
          </div>
       );
    }
+   componentDidMount() {
+
+      fetch(`${global.API_URL}/gitbook/Repository/${this.props.userid}/list`, {
+  
+          method: 'get',
+          headers:global.API_HEADERS
+      })
+      .then( response => response.json())
+      .then( json => {
+          this.setState({
+            repositorylist: json.data
+          });
+      })
+      .catch( err => console.error( err ));      
+  }
 }
 
 export default MyRepositoryWritePage;

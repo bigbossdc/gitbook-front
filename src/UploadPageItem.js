@@ -31,10 +31,12 @@ class UploadPageItem extends Component {
       })
         .then(response => response.json())
         .then(json => {
-  
+          const check=json.data.split('.').pop()
+          if(check==='png'|| check==="jpg"|| check==="gif"||check==="jpeg"||check==="PNG"){
           this.setState({
             imgList: this.state.imgList.concat(json.data)
           });
+        }
         })
         .catch(err => console.error(err));
       e.target.value = ''
@@ -120,7 +122,7 @@ class UploadPageItem extends Component {
                             (this.state.imgList.length < 10) ?
                               <div style={{ float: "left", widthMin: "20%", widthMax: "160px", margin: "0px 1.6%", display: "inline-block" }}>
                                 <div className="imageFileDiv" >
-                                  <label className="iconlabel"><input type="file" name={this.state.imgFile} style={{ display: "none" }} onChange={this.handleChangeFile} /> <i className="fa fa-camera text-muted fa-4x" id="custom" /></label>
+                                  <label className="iconlabel"><input type="file" accept="image/gif,image/jpeg,image/png,image/jpg" name={this.state.imgFile} style={{ display: "none" }} onChange={this.handleChangeFile} /> <i className="fa fa-camera text-muted fa-4x" id="custom" /></label>
                                 </div>
                               </div> : ''}
                         </div>

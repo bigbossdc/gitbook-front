@@ -28,6 +28,7 @@ class MyRepositoryPage extends Component {
   }
 
   onClickHandler(path) {
+    if(this.state.gitlist!==''){
     this.setState({
       loding:false
     })
@@ -46,11 +47,11 @@ class MyRepositoryPage extends Component {
 
       })
       .catch(err => console.error(err))
-
+    }
   }
 
   render() {
-    console.log(this.state.loding)
+
     const k={
       position: "relative",
       top: "1px",
@@ -83,7 +84,7 @@ class MyRepositoryPage extends Component {
             </h2>
             <br></br>
             <pre style={{overflowX:"hidden",wordBreak:"break-all",backgroundColor:"#FFFFFF",border:"none",fontFamily: " 'Varela Round', sans-serif"}}>{this.state.gitInfo.description}</pre>
-            <div>
+            <div >
               {document.queryCommandSupported("copy") && (
                 <div style={{ display: "inline" }}>
                   <button className="button1" onClick={this.copyToClipboard.bind(this)}>
@@ -102,11 +103,10 @@ class MyRepositoryPage extends Component {
               </form>
             </div>
             <p style={{ fontSize: "0.8em" }}>경로: {this.props.match.params.repoName}/{this.state.callPath}</p>
-                  
+                  <div style={{width:"100%",height:"100%"}}>
             { 
-           
               (this.state.loding == true)?
-             
+
                  (this.state.gitlist.type === 'folder') ?
                    <RepositoryTable
                       key="repotable"
@@ -132,11 +132,11 @@ class MyRepositoryPage extends Component {
                 </div>
 
                : 
-               <i class="fas fa-spinner fa-2x" style={{color:"#0FC19E" ,animation: "fa-spin 2s linear infinite",marginLeft:"350px"}}></i>
-             
-
+               <div style={{width:"30px",margin:" 50px auto "}}>
+               <i class="fas fa-spinner fa-2x" style={{color:"#0FC19E" ,animation: "fa-spin 2s linear infinite",fontSize:"4em",marginLeft:"-25px"}}></i>
+               </div>
               }
-            
+            </div>
 
 
           </div>
@@ -149,10 +149,10 @@ class MyRepositoryPage extends Component {
   }
 
   componentDidMount() {
-    console.log('didmount')
-    fetch(`${API_URL}/gitbook/Repository/${this.props.match.params.userid}/item/${this.props.match.params.repoName}`, {
+
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/item/${this.props.match.params.repoName}`, {
       method: 'get',
-      headers: API_HEADERS
+      headers: global.API_HEADERS
     })
       .then(response => response.json())
       .then(json => {
@@ -163,31 +163,36 @@ class MyRepositoryPage extends Component {
       })
       .catch(err => console.error(err));
 
-    fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/repolist/${this.props.match.params.repoName}`, {
-      method: 'get',
-      headers: global.API_HEADERS
-    })
-      .then(response => response.json())
-      .then(json => {
-        console.log(json.message)
-        console.log("조건 이전 : " +this.state.loding)
-        
-          if(json.message !== 'newRepo'){
-            this.setState({
-              gitlist: json.data,
-            });
-          }
 
-          this.setState({
-            loding: true
+
+      fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/repolist/${this.props.match.params.repoName}`, {
+          method: 'get',
+          headers: global.API_HEADERS
+        })
+          .then(response => response.json())
+          .then(json => {
+           
+            
+              if(json.message === 'newRepo'){
+                this.setState({
+                  gitlist:''
+                })
+              }
+              else{
+                this.setState({
+                  gitlist: json.data,
+                 
+                });
+              }
+              
+              this.setState({
+                loding: true
+              })
           })
-          console.log("조건 이후 : " +this.state.loding)
-      })
-
-      .catch(err => console.error(err));
-
+          .catch(err => console.error(err));
+  
   }
-
+  
 
 }
 
