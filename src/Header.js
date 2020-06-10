@@ -4,6 +4,7 @@ import AlarmBox from "./AlarmBox";
 import DropdownMenu from "./DropdownMenu";
 
 
+
 class Header extends Component {
    constructor() {
       super(...arguments);
@@ -11,6 +12,7 @@ class Header extends Component {
          keyword: "",
       };
    }
+
 
    onNotifyKeywordChange(keyword) {
       this.setState({
@@ -77,7 +79,9 @@ class Header extends Component {
                         <li className="dropdown mega-avatar">
                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                               <span className="avatar w-32">
+
                                  <img src={`${global.API_URL + sessionStorage.getItem("authUserImage")}`} className="img-resonsive img-circle" width="25" height="25" alt="..."></img>
+
                               </span>
 
                               <span className="hidden-xs" style={{ fontFamily: " 'Varela Round', sans-serif", marginLeft: "10px" }}>
