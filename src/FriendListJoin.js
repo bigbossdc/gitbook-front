@@ -22,7 +22,7 @@ class FriendListJoin extends Component {
          <div>
             <div className="group-req">
                 <div className="group-search-area">   
-                    <p><h4 className="group-req-title"><b>친구 목록</b></h4></p>
+                    <p><h4 className="group-req-title"><b>친구 목록 ({this.props.friendnum}명)</b></h4></p>
                     <div className="group-input-field">
                         <input placeholder="Search1" type="text" value={this.props.keyword} onChange={this.onInputChange.bind(this)}/>
                         <i className="fa fa-search"></i>  

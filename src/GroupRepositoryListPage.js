@@ -1,35 +1,117 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import GroupRepositoryListItem from './GroupRepositoryListItem';
+import './MyRepositoryListPage.css';
+class MyRepositoryListPage extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      keyword: '',
+      repositorylist: ''
+    }
+  }
+  onInputChange(e){
+    this.setState({
+        keyword: e.target.value
+    })
+  }
+  callDeleteRepoList(gitItem){
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/group/delete`, {
+      method: 'post',
+      headers: global.API_HEADERS,
+      body: JSON.stringify(gitItem)
+  })
+  .then( response => response.json())
+  .then( json => {
+      this.setState({
+        repositorylist: json.data
+      });
+  })
+  .catch( err => console.error( err ));  
+  
+}
+callVisibleHandler(list){
+  fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/group/update`, {
+    method: 'post',
+    headers: global.API_HEADERS,
+    body: JSON.stringify(list)
+})
+.then( response => response.json())
+.then( json => {
+    console.log("update:"+json.data)
+    this.setState({
+      repositorylist: json.data
+    });
+})
+.catch( err => console.error( err ));  
 
+}
 
-
-class GroupRepositoryListPage extends Component {
   render() {
-   
+    console.log("chkkkkk :" + this.props.id + ":" + this.props.groupno)
+    const authUserNo=sessionStorage.getItem("authUserNo");
     return (
             <div>
                 <div className = "row">
                   <div className="search-area" style={{width:"50%", display:"inline-block"}}>  
-                    <div className="input-field" >
-                      <input placeholder="Search" type="text"></input>
-                        <i className="fa fa-search"></i>
+                    <div className="input-field" style={{border:"1px solid #DBDBDB ",height:"50px",borderRadius:"5px"}} >
+                  
+                      <input style={{fontSize:"1.4em"}}
+                             id="searchInput" placeholder="Search" 
+                             type="text" value={ this.state.keyword } 
+                             onChange={ this.onInputChange.bind(this) }/>
+                        <i style={{marginTop:"5px"}} className="fa fa-search"></i>
                       </div>
-                  </div>
-                  <Link to="/gitbook/group/repository/write" className="kafe-btn kafe-btn-mint-small" style={{ float:"right", margin:"2%",}}>New!</Link>               
+                  </div> 
+                  { 
+                  (this.props.id == sessionStorage.getItem("authUserNo") ) ?
+                    <Link 
+                      to={`/gitbook/group/${this.props.groupno}/${sessionStorage.getItem("authUserNo")}/repository/write`} 
+                      className="kafe-btn kafe-btn-mint-small" 
+                      style={{ float:"right", marginTop:"25px",width:"50px",height:"34px"}}><strong style={{color:"#FFFFFF",fontSize:"1.4em",margin:"auto"}}>New!</strong></Link> : '' 
+ 
+                  }             
+
                 </div>
-                <hr></hr>
+                <hr style={{backgroundColor:"#DBDBDB",height:"1px",marginTop:"-0px"}}></hr>
+                {this.state.repositorylist && this.state.repositorylist
+                .filter((list) => list.gitName.indexOf(this.state.keyword ) != -1 && ((list.userNo == authUserNo ) ? 1 : list.visible == "public") ) 
+                .map((list) => <GroupRepositoryListItem
+                  key={list.no}
+                  id={list.no}
+                  userNo={list.userNo}
+                  groupNo={list.groupNo}
+                  description={list.description}
+                  gitName={list.gitName}
+                  visible={list.visible}
+                  regDate ={list.regDate}
+                  userId={list.userId}
+                  list={list}
+                  path={this.props.id}
+                  callDelete={{
+                    delete: this.callDeleteRepoList.bind(this),
+                    update: this.callVisibleHandler.bind(this)
+                 }}
                 
-                <GroupRepositoryListItem color="red"></GroupRepositoryListItem>
-                <GroupRepositoryListItem color="#0FC19E"></GroupRepositoryListItem>
-                <GroupRepositoryListItem color="red"></GroupRepositoryListItem>
-                <GroupRepositoryListItem color="#0FC19E"></GroupRepositoryListItem>
-                <GroupRepositoryListItem color="red"></GroupRepositoryListItem>
-                <GroupRepositoryListItem color="#0FC19E"></GroupRepositoryListItem>
+                />)}
+
 
             </div>      
     );
   }
-}
 
-export default GroupRepositoryListPage;
+  componentDidMount() {
+    fetch(`${global.API_URL}/gitbook/Repository/${this.props.id}/grouplist/${this.props.groupno}/${sessionStorage.getItem("authUserNo")}`, {
+        method: 'get',
+        headers:global.API_HEADERS
+    })
+    .then( response => response.json())
+    .then( json => {
+        this.setState({
+          repositorylist: json.data
+        });
+    })
+    .catch( err => console.error( err ));      
+}
+  }
+export default MyRepositoryListPage;

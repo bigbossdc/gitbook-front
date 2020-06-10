@@ -3,33 +3,14 @@ import { Link } from "react-router-dom";
 import AlarmBox from "./AlarmBox";
 import DropdownMenu from "./DropdownMenu";
 
+
+
 class Header extends Component {
    constructor() {
       super(...arguments);
       this.state = {
-         authUser: {
-            image: "",
-            nickname: "",
-         },
          keyword: "",
       };
-   }
-
-   componentDidMount() {
-      fetch(`${global.API_URL}/gitbook/user/profile/info/${sessionStorage.getItem("authUserId")}`, {
-         method: 'post',
-         headers: global.API_HEADERS,
-      })
-         .then((response) => response.json())
-         .then((json) => {
-            let received = {};
-            received.image = json.data.image;
-            received.nickname = json.data.nickname;
-            this.setState({
-               authUser: received,
-            });
-         })
-         .catch((err) => console.error(err));
    }
 
    onNotifyKeywordChange(keyword) {
@@ -66,10 +47,11 @@ class Header extends Component {
                         <li>
                            {/** 검색 창 */}
                            <div className="search-dashboard">
-                              <form onClick={this.onResult.bind(this)}>
+                              <form>
                                  <input placeholder="친구 검색" onChange={this.onInputChange.bind(this)} value={this.state.keyword}></input>
                                  <Link to="/gitbook/main/friendsearch">
                                     <button
+                                       onClick={this.onResult.bind(this)}
                                        type="submit"
                                        style={{
                                           display: "inline-block",
@@ -97,11 +79,13 @@ class Header extends Component {
                         <li className="dropdown mega-avatar">
                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                               <span className="avatar w-32">
-                                 <img src={`${API_URL + this.state.authUser.image}`} className="img-resonsive img-circle" width="25" height="25" alt="..."></img>
+
+                                 <img src={`${global.API_URL + sessionStorage.getItem("authUserImage")}`} className="img-resonsive img-circle" width="25" height="25" alt="..."></img>
+
                               </span>
 
                               <span className="hidden-xs" style={{ fontFamily: " 'Varela Round', sans-serif", marginLeft: "10px" }}>
-                                 <strong>{this.state.authUser.nickname}</strong>
+                                 <strong>{sessionStorage.getItem("authUserNickName")}</strong>
                               </span>
                            </a>
                            <DropdownMenu></DropdownMenu> {/** 프로필 메뉴   */}
