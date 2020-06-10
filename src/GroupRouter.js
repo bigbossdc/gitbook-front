@@ -6,7 +6,7 @@ import NavigationGroup from './NavigationGroup';
 import NavigationGroup2 from './NavigationGroup2';
 import GroupSetting from './GroupSetting';
 import GroupTimeLinePage from './GroupTimeLinePage';
-import MainCalendar from './MainCalendar';
+import GroupMainCalendar from './GroupMainCalendar';
 import GroupHeaderImg from './GroupHeaderImg';
 import GroupRepositoryListPage from './GroupRepositoryListPage';
 import GroupRepositoryWritePage from './GroupRepositoryWritePage';
@@ -56,6 +56,7 @@ class GroupRouter extends Component {
   }
 
   render() {
+    console.log(this.state.groupInfo)
     return (
       <div className="App" >
        <Header></Header>
@@ -64,7 +65,7 @@ class GroupRouter extends Component {
           <div className="container-fluid">
             <div className="row">
               
-                  <NavigationGroup groupinfo={this.state.groupInfo}></NavigationGroup>  {/** 네비게이션 */}
+                  <NavigationGroup groupno={this.props.match.params.groupno} userno={this.props.match.params.userno} groupinfo={this.state.groupInfo}></NavigationGroup>  {/** 네비게이션 */}
                 
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{background: "#fff",marginTop:"1px"}}>             
@@ -86,6 +87,12 @@ class GroupRouter extends Component {
         
                   <Route  path="/gitbook/group/:groupno?/:userno?/:userid?/repository/view/:repoName?" exact component={GroupRepositoryPage}/>
                   <Route  path="/gitbook/group/schedule"  exact component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
+
+                  <Route  path="/gitbook/group/:groupno?/:userno?/schedule" exact render={() => <GroupMainCalendar
+                                                                                                 userno={this.props.match.params.userno}
+                                                                                                 groupno={this.props.match.params.groupno}
+                                                                                                 masterno={this.state.groupInfo.masterNo}
+                                                                                                 />}/>
 
                   </div>
               
