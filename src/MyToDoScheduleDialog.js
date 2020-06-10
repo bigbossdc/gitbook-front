@@ -125,7 +125,7 @@ export default class MyToDoScheduleDialog extends Component {
                           <div>
                             <a className='deleteButton' onClick={this.deleteClickHandler.bind(this)}><span id={list.no} style={{ fontWeight: "bold", color: 'red', fontFamily: " 'Varela Round', sans-serif" }}>삭제</span></a>
                             <br/>
-                           <p className='p1'>{list.scheduleContents.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp }&nbsp;</div>)}</p>
+                           <p className='p1'>{list.scheduleContents.split(" ").map(nbsp=><a style={{display:"inline", fontSize:"20px"}}>{nbsp }&nbsp;</a>)}</p>
                             <p className='p2' style={{fontSize:"0.8em"}}>on {this.props.monthName} {this.props.originDay}th, {this.props.year}</p>
                           </div>
                         </li>

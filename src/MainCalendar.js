@@ -154,6 +154,7 @@ export default class MainCalendar extends Component {
       .catch(err => console.error(err))
 
       this.componentDidMount();
+      this.renderDay();
   }
 
   deleteList(day, deleteTarget) {
@@ -170,6 +171,7 @@ export default class MainCalendar extends Component {
       .catch(err => console.error(err))
 
     this.componentDidMount();
+    this.renderDay();
   }
 
   //일 클릭
