@@ -43,12 +43,7 @@ export default class ProfileSection extends Component {
 		})
 			.then((response) => response.json())
 			.then((json) => {
-				if (json.result === "success") {					
-					sessionStorage.setItem("authUserNickName", this.state.editables.nickname);
-					sessionStorage.setItem("authUserImage", this.state.editables.image);
-					sessionStorage.setItem("authUserProfileContents", this.state.editables.profileContents);
-
-					alert("프로필 수정을 성공했습니다.");
+				if (json.result === "success") {alert("프로필 수정을 성공했습니다.");
 					window.location.reload(true);
 				} else {
 					console.log(json);

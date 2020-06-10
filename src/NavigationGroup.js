@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import './Fluffs/assets/css/demos/photo.css';
-import Calendar from './Calendar'
+import GroupCalendar from './GroupCalendar'
 import { Link } from "react-router-dom";
 import GroupSetting from "./GroupSetting";
 import GroupTimeLinePage from "./GroupTimeLinePage";
 
 class NavigationGroup extends Component {
     render() {
+
         return(
             <div className="col-lg-3">
             <aside id="leftsidebar" className="sidebar">		  
@@ -38,9 +39,9 @@ class NavigationGroup extends Component {
               </li>
              
               <li>
-               <Link to="/gitbook/group"><small className="text-muted">Group Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-               <Link to="/gitbook/group/repository"><small className="text-muted">Group Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
-               <Link to="/gitbook/group/schedule"><small className="text-muted">Group Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
+               <Link to={`/gitbook/group/${this.props.groupinfo.no}`}><small className="text-muted">Group Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
+               <Link to={`/gitbook/group/${this.props.groupinfo.no}/${sessionStorage.getItem("authUserNo")}/repository`}><small className="text-muted">Group Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
+               <Link to={`/gitbook/group/${this.props.groupinfo.no}/${sessionStorage.getItem("authUserNo")}/schedule`}><small className="text-muted">Group Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
                <br></br>
               </li> 
             
@@ -48,7 +49,10 @@ class NavigationGroup extends Component {
             </aside>
 
             <div className="col-lg-12"> 
-              <Calendar></Calendar>
+              <GroupCalendar
+                groupno = {this.props.groupno}
+                userno = {this.props.userno}
+              />
               </div>	
            </div>
            

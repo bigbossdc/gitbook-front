@@ -32,6 +32,7 @@ class FriendList extends Component {
                 callback={this.props.callback} 
                 userinfo={this.props.friendinfo}
                 keyword={this.state.keyword}
+                friendnum={this.props.friendnum}
                 onNotifyKeywordChange={this.onNotifyKeywordChange.bind(this)}/>
         </div>
        );

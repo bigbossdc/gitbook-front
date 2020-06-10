@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 //import './Fluffs/assets/css/demos/photo.css';
 import './Fluffs/assets/css/demos/group.css';
 import './Fluffs/assets/css/demos/groupTab.css';
@@ -14,7 +15,7 @@ class GroupHeaderImg extends Component {
                     <h4>{this.props.groupinfo.groupTitle}</h4>
                 </div> 
                 <div className="img-cover"></div>
-                {this.props.groupinfo.grant !== 'user_req' ? <a className='btn-floating'><div><i className="fa fa-pencil fa-1x"></i></div></a> : ''}
+                {this.props.groupinfo.grant !== 'user_req' ? <Link to={`/gitbook/upload/${this.props.groupinfo.no}`} className='btn-floating'><div><i className="fa fa-pencil fa-1x"></i></div></Link> : ''}
                 
         </div>
         );
