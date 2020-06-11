@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-
+import "./Fluffs/assets/css/demos/navi.css";
 import Calendar from './Calendar'
 
 
@@ -79,31 +79,30 @@ onClose() {
                 <div className="user-info">
                   {(sessionStorage.getItem("authUserId") === this.state.userinfo.id) ? 
                     <div className="image">
-                      <Link to={`/gitbook/my/${this.state.userinfo.id}/profile`}>
-                      <img src={this.state.userinfo.image} className="img-circle" alt="User" style={{width:"180px", height:"180px", marginBottom:"10px"}}></img>
-                      <span className="online-status online"></span>
-                      </Link>
+                      <Link to={`/gitbook/my/${this.state.userinfo.id}/profile`} style={{marginBottom:"20px"}}>
+                       <img src={this.state.userinfo.image} className="img-circle" alt="User" style={{width:"180px", height:"180px", marginRight:"15px"}}></img>
+                       <span className="online-status online" style={{marginLeft:"10px"}}/>
+                      </Link>       
                     </div> : 
                     (this.state.userinfo.status === "기타") ?
                     <div className="image">
-                      <Link>
-                      <img src={this.state.userinfo.image} className="img-circle" onClick={this.onShow.bind(this)} alt="User" style={{width:"180px", height:"180px", marginBottom:"10px"}}></img>
+                      <Link style={{marginBottom:"20px"}}>
+                      <img src={this.state.userinfo.image} className="img-circle" onClick={this.onShow.bind(this)} alt="User" style={{width:"180px", height:"180px", marginRight:"15px"}}></img>
                       <span className="online-status online" style={{background:"red"}}></span>
                       </Link>
                     </div> :
                     <div className="image">
-                       <Link>
-                      <img src={this.state.userinfo.image} className="img-circle" alt="User" style={{width:"180px", height:"180px", marginBottom:"10px"}}></img>
+                       <Link style={{marginBottom:"20px"}}>
+                      <img src={this.state.userinfo.image} className="img-circle" alt="User" style={{width:"180px", height:"180px", marginRight:"15px"}}></img>
                       <span className="online-status online" style={{background:"blue"}}></span>
                       </Link>
                     </div>}
 
                   <div className="detail">
-                      <h4 style={{fontFamily: " 'Varela Round', sans-serif"}}><strong>{this.state.userinfo && this.state.userinfo.nickname}</strong></h4>
-                      <small  style={{fontFamily: " 'Varela Round', sans-serif"}}>{this.state.userinfo && this.state.userinfo.name}</small>  
-                      <small>({this.state.userinfo && this.state.userinfo.id})</small> 
+                      <h4><strong style={{fontFamily:"'Nanum Gothic', sans-serif"}}>{this.state.userinfo && this.state.userinfo.nickname}</strong></h4>
+                      <small style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", color:"#848484"}}>{this.state.userinfo && this.state.userinfo.name}&nbsp;({this.state.userinfo && this.state.userinfo.id})</small>  
                       <hr></hr>
-                      <p style={{fontFamily: " 'Varela Round', sans-serif",margin:"10px"}}>{this.state.userinfo && this.state.userinfo.profileContents} </p>                       
+                      <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", margin:"10px"}}>{this.state.userinfo && this.state.userinfo.profileContents} </p>                       
                   </div>
                 <div className="row">
                  <div className="col-12"></div>                                
@@ -111,18 +110,29 @@ onClose() {
                </div>
               </li>
               <li>
-               <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}`}><small className="text-muted">my Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-
-               <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}/repository`}><small className="text-muted">my Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
-
-               { (sessionStorage.getItem("authUserId") === this.state.userinfo.id)?
-               <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}/schedule`}><small className="text-muted">my Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
+                <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}`}>
+                  <div className="contents-div">
+                    <small className="navi"><i class="fas fa-stream"></i>&nbsp;&nbsp;&nbsp;Timeline <em className="fa fa-angle-right pull-right"></em></small>
+                  </div>
+                </Link>
+                <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}/repository`}>
+                  <div className="contents-div">
+                    <small className="navi"><i class="fab fa-git-alt"></i>&nbsp;&nbsp;&nbsp;Repository <em className="fa fa-angle-right pull-right"></em></small>       
+                  </div>
+                </Link>
+                { (sessionStorage.getItem("authUserId") === this.state.userinfo.id)?
+                  <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}/schedule`}>
+                    <div className="contents-div">
+                    <small className="navi"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;Schedule <em className="fa fa-angle-right pull-right"></em></small>
+                    </div>
+                  </Link>
                 : ''
-              }
-               <br></br>
+                }
+               
               </li> 
              </ul>
             </aside>
+            <hr/>
             <div className="col-lg-12"> 
 
               <Calendar userid = {this.props.id}/>

@@ -1,0 +1,29 @@
+.sidebar .list li .navi{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 20px;
+    color: #606665
+}
+
+.sidebar .list li .contents-div:hover{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #DFDFDF;
+}
+
+.sidebar .list li .contents-div:hover .navi{
+    color: #00c292;
+}
+
+.sidebar .list li .contents-div {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 20px;
+    height: 50px;
+    padding-top: 13px;
+    padding-left: 10px;
+}
+
+.sidebar .list li a {
+    display: block;
+    padding: 0;
+}

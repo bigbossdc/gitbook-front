@@ -27,14 +27,14 @@ class GroupListRequest extends Component {
         return(   
          <div>
             <div className="group-req">
+            <p><h4 className="group-req-title"><b>그룹 요청</b></h4></p>
+                <div className="group-add-btn">     
+                    <Link to="/gitbook/mygroup/regist"><span><strong style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"15px"}}>그룹 생성&nbsp;&nbsp;<i className="fa fa-plus a"></i></strong></span></Link>
+                </div> 
                 <div className="group-search-area">   
-                    <p><h4 className="group-req-title"><b>그룹 요청</b></h4></p>
                     <div className="group-input-field">
                         <input placeholder="Search" type="text" value={this.state.keyword} onChange={this.onInputChange.bind(this)}/>
                         <i className="fa fa-search"></i>  
-                    </div>
-                    <div className="group-add-btn">     
-                        <Link to="/gitbook/mygroup/regist"><span>그룹 생성&nbsp;&nbsp;<i className="fa fa-plus a"></i></span></Link>
                     </div>
                 </div>
                 <section class="notifications">

@@ -14,8 +14,8 @@ class FriendListRequest extends Component {
         return(   
          <div>
             <div className="group-req">
+            <p><h4 className="group-req-title"><b>친구 요청</b></h4></p>
                 <div className="group-search-area">   
-                    <p><h4 className="group-req-title"><b>친구 요청</b></h4></p>
                     <div className="group-input-field">
                         <input placeholder="Search" type="text" value={this.props.keyword} onChange={this.onInputChange.bind(this)}/>
                         <i className="fa fa-search"></i>  

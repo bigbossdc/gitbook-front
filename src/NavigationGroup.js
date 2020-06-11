@@ -24,11 +24,10 @@ class NavigationGroup extends Component {
                      }
                
                     </div>
-                <div className="detail">
-                 
-                <p style={{fontFamily: " 'Varela Round', sans-serif",margin:"10px"}}>
-                  {this.props.groupinfo.groupIntro}
-                </p>                       
+                <div className="detail">               
+                  <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", margin:"10px"}}>
+                    {this.props.groupinfo.groupIntro}
+                  </p>                       
                 </div>
                 <div className="row">
                  <div className="col-12">
@@ -39,15 +38,25 @@ class NavigationGroup extends Component {
               </li>
              
               <li>
-               <Link to={`/gitbook/group/${this.props.groupinfo.no}`}><small className="text-muted">Group Timeline <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-               <Link to={`/gitbook/group/${this.props.groupinfo.no}/${sessionStorage.getItem("authUserNo")}/repository`}><small className="text-muted">Group Repository <em className="fa fa-angle-right pull-right"></em></small><br/></Link>           
-               <Link to={`/gitbook/group/${this.props.groupinfo.no}/${sessionStorage.getItem("authUserNo")}/schedule`}><small className="text-muted">Group Schedule <em className="fa fa-angle-right pull-right"></em></small><br/></Link>
-               <br></br>
+               <Link to={`/gitbook/group/${this.props.groupinfo.no}`}>
+                  <div className="contents-div">
+                    <small className="navi"><i class="fas fa-stream"></i>&nbsp;&nbsp;&nbsp;Timeline <em className="fa fa-angle-right pull-right"></em></small>
+                  </div>
+               </Link>
+               <Link to={`/gitbook/group/${this.props.groupinfo.no}/${sessionStorage.getItem("authUserNo")}/repository`}>
+                  <div className="contents-div">
+                    <small className="navi"><i class="fab fa-git-alt"></i>&nbsp;&nbsp;&nbsp;Repository <em className="fa fa-angle-right pull-right"></em></small>          
+                  </div>
+               </Link>
+               <Link to={`/gitbook/group/${this.props.groupinfo.no}/${sessionStorage.getItem("authUserNo")}/schedule`}>
+                  <div className="contents-div">
+                    <small className="navi"><i class="fas fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;Schedule <em className="fa fa-angle-right pull-right"></em></small>
+                  </div>
+               </Link>
               </li> 
-            
              </ul>
             </aside>
-
+            <hr/>
             <div className="col-lg-12"> 
               <GroupCalendar
                 groupno = {this.props.groupno}

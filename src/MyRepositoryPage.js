@@ -80,7 +80,7 @@ class MyRepositoryPage extends Component {
             </h2>
             <h2>/</h2>{" "}
             <h2 onClick={this.onClickHandler.bind(this,'')}>
-            <Link >{this.state.gitInfo.gitName}</Link>
+            <Link >{this.state.gitInfo.gitName && this.state.gitInfo.gitName}</Link>
             </h2>
             <br></br>
             <pre style={{overflowX:"hidden",wordBreak:"break-all",backgroundColor:"#FFFFFF",border:"none",fontFamily: " 'Varela Round', sans-serif"}}>{this.state.gitInfo.description}</pre>
