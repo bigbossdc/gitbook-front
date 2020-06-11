@@ -16,14 +16,10 @@ class MyRouter extends Component {
     super(props);
     this.state={  
       repositorylist: '',
-
       userid: this.props.match.params.userid,
       scheduleValue : 'todo'
-
     }
   }
-  
-
 
 
 changeScheduleToDoValue(){
@@ -43,7 +39,7 @@ changeScheduleRepoValue(){
   render() {
  
     return (
-      <div className="App" >
+      <div className="App">
       {(this.props.match.params.userid === sessionStorage.getItem("authUserId")) ? <Header2 name="MyTimeline"
         key="123"></Header2> : 
         <Header2
@@ -55,7 +51,7 @@ changeScheduleRepoValue(){
                   <Navigation                   
                   key={ this.props.match.params.userid}
                   id={ this.props.match.params.userid}
-                
+                  name={this.state.navicontents}
                  />  {/** 네비게이션 */} 
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{backgroundColor:"#F4F4F4",marginTop:"1px"}}>             
@@ -104,6 +100,7 @@ changeScheduleRepoValue(){
       </div>
     );
   }
+
 //   componentDidMount() {
 
 //     fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/list`, {

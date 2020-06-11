@@ -6,11 +6,8 @@
     box-shadow: 5px 5px 5px rgb(231, 230, 230);
     min-height: 20px;
 }
-.group-search-area {
-    width: 100%;
-}
 
-.group-search-area .group-input-field {
+.group-input-field {
     background: #f4f4f4;
     margin: 0;
     border-radius: 4px;
@@ -20,8 +17,13 @@
     display: inline-block;
     width: 70%;
     vertical-align: middle;
+    outline: none;
+    resize: none;
+    border: 0;
+    box-shadow: none;
+    color: #beced7;
 }
-.group-search-area .group-input-field input {
+.group-input-field input {
     font-family: 'Abhaya Libre', serif;
     margin: 0;
     border: 0;
@@ -29,7 +31,7 @@
     color: #848484 !important;
     padding: 10px 0px;
 }
-.group-search-area .group-input-field i {
+.group-input-field i {
     font-size: 18px;
     color: #848484 !important;
     float: right;
@@ -37,16 +39,10 @@
     top: 10px;
     cursor: pointer;
 }
-.group-input-field {
-    margin: 0;
-    outline: none;
-    resize: none;
-    border: 0;
-    box-shadow: none;
-    color: #beced7;
-}
+
 .group-add-btn {
     float: right;
+  
     vertical-align: middle;
     margin: 10px;
 }
@@ -54,7 +50,7 @@
     color: #3b3b3b;
     
 }
-.group-add-btn span:hover {
+.group-add-btn span strong:hover {
     color: #0fc19e;
 }
 .a {
@@ -224,7 +220,7 @@
     list-style: none outside;
     padding: 0;
     overflow: auto;
-    height: 430px;
+    
 }
 .group-box .suggestion-body {
     float: left;

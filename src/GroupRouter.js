@@ -58,7 +58,7 @@ class GroupRouter extends Component {
   render() {
     console.log(this.state.groupInfo)
     return (
-      <div className="App" >
+      <div className="AppGroup">
        <Header></Header>
        <Header2 name="Group"></Header2>
         <section className="profile-two" style={{paddingTop:"225px"}}>
@@ -68,7 +68,7 @@ class GroupRouter extends Component {
                   <NavigationGroup groupno={this.props.match.params.groupno} userno={this.props.match.params.userno} groupinfo={this.state.groupInfo}></NavigationGroup>  {/** 네비게이션 */}
                 
                   {/** 두번째 섹션 */}
-                  <div className="col-lg-6" style={{background: "#fff",marginTop:"1px"}}>             
+                  <div className="col-lg-6" style={{background: "#F4F4F4",marginTop:"1px"}}>             
                   <GroupHeaderImg groupinfo={this.state.groupInfo}></GroupHeaderImg>
 
                   <Route  path="/gitbook/group/:groupno?/:userno?" exact render={() => <GroupTimeLinePage 

@@ -37,12 +37,9 @@ class MainRouter extends Component {
                   <Route path="/gitbook/main" exact render={()=> <MainTimelineList  />}></Route>
                   <Route path="/gitbook/main/tag/:tagid"  component={TagTimelineList}></Route>
                   <Route path="/gitbook/main/upload" render={() => <UploadPage />}/>
-
-               
                   <Route path="/gitbook/main/friendsearch" render={() => <FriendSearchList result={this.props.result} keyword={this.props.keyword}/>}/>
-                               </div>
+                </div>
               </div>
-         
             {/** row 종료 */}
            </div>
           {/** container-fluid 종료 */}

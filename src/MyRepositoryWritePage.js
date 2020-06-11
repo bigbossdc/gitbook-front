@@ -22,6 +22,11 @@ class MyRepositoryWritePage extends Component {
          });
       }
    };
+   handleChange2 = (e) => {
+      this.setState({
+         [e.target.name]: e.target.value,
+      });     
+   };
 
    handleChange2 = (e) => {
       
