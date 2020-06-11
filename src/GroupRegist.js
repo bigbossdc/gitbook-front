@@ -99,17 +99,17 @@ class GroupRegist extends Component {
 
     let profile_preview = null;
     if(this.state.file !== ''){
-        profile_preview = <img src={this.state.previewURL} style={{ width: "100%", height: "100%", borderRadius: '10px', display: "block" }}></img>
+        profile_preview = <img src={this.state.previewURL} style={{width: "450px", height: "150px", borderRadius: '10px', display: "block" }}></img>
     }
     
     return (
         <div className="group-req-setting">    
-            <h2 style={{ fontFamily: " 'Abhaya Libre' serif" }}>그룹 등록</h2>
+            <h2 style={{fontFamily:"'Nanum Gothic', sans-serif"}}>그룹 등록</h2>
             <hr></hr>
             <div className="group-box">
                 <div className="suggestions-list">
                     <form method="POST">
-                        <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>그룹 이름</h4>
+                        <h4 style={{fontFamily:"'Nanum Gothic', sans-serif"}}>그룹 이름</h4>
                         <input type="text" 
                                className="form-control" 
                                maxLength="30"
@@ -126,7 +126,7 @@ class GroupRegist extends Component {
                       
                         <br/>
                         <br/>
-                        <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>그룹 인사말 (100자 이내)</h4>
+                        <h4 style={{fontFamily:"'Nanum Gothic', sans-serif"}}>그룹 인사말 (100자 이내)</h4>
                         <textarea className="form-control no-border" 
                                   value={this.state.description} 
                                   name="description"
@@ -134,17 +134,17 @@ class GroupRegist extends Component {
                                   onKeyUp={this.handleLengthChk.bind(this)}
                                   rows="3"></textarea>
                         <br/>
-                        <br/>  
+                        <br/>
+                        <h4 style={{ fontFamily:"'Nanum Gothic', sans-serif" }}>그룹 이미지</h4>  
                         <div className="row" style={{marginLeft:"0px", width: "90%"}}>
-                        <div style={{float:"left", width:"50%"}}>          
-                        <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>그룹 이미지</h4>
+                        <div style={{float:"left", width:"40%"}}>          
                         <input 
                             type="radio" 
                             name="visible" 
                             value="basic" 
                             checked={this.state.visible['basic']} 
                             onChange={this.handleRadio.bind(this)} />
-                        <label>기본 타이틀 이미지 (default)</label>
+                        <label style={{ fontFamily:"'Nanum Gothic', sans-serif" }}>&nbsp;기본 타이틀 이미지 (default)</label>
                         <br></br>
                         <input 
                             type="radio" 
@@ -152,28 +152,28 @@ class GroupRegist extends Component {
                             value="nobasic"
                             checked={this.state.visible['nobasic']} 
                             onChange={this.handleRadio.bind(this)} />
-                        <label>이미지 첨부 (jpg, jpeg, png, bmp)</label>
+                        <label style={{ fontFamily:"'Nanum Gothic', sans-serif" }}>&nbsp;이미지 첨부 (jpg, jpeg, png, bmp)</label>
                         </div>
                         <div style={{float:"left", width:"50%"}}>     
                             {this.state.visible['nobasic'] === true ? 
                                 this.state.previewURL < 2 ? 
-                                <div className="imageFileDiv">
-                                    <label>
+                                <div className="imageFileDiv" style={{ width: "470px", height: "170px", marginTop:"0px"}}>
+                                    <label style={{marginLeft:"35%"}}>
                                     <input type="file" onChange={this.imageChange.bind(this)} disabled={this.state.chk} style={{display: "none"}}/> 
                                     <i className="fa fa-camera text-muted fa-4x" id="custom" />
                                     </label>
-                                </div> :  <div className="div2" style={{widthMin: "20%", widthMax: "160px", margin: "0px 1.6%" }}>
+                                </div> :  <div className="div2">
                                             <i className="fas fa-backspace fa-2x" onClick={this.clickHandlerDelete.bind(this)} />
-                                            <div className="imageFileDiv">
+                                            <div className="imageFileDiv" style={{ width: "470px", height: "170px", marginTop:"0px"}}>
                                             <label>
                                             {profile_preview}
                                             </label>
                                             </div>
                                           </div>
-                            :  <div className="div2" style={{widthMin: "20%", widthMax: "160px", margin: "0px 1.6%" }}>
-                                    <div className="imageFileDiv">
+                            :  <div className="div2">
+                                    <div className="imageFileDiv" style={{ width: "470px", height: "170px", marginTop:"0px"}}>
                                     <label>
-                                        <img src={this.state.imgurl} style={{ width: "100%", height: "100%", borderRadius: '10px', display: "block" }}></img>
+                                        <img src={this.state.imgurl} style={{ width: "450px", height: "150px", borderRadius: '10px', display: "block" }}></img>
                                     </label>
                                     </div>
                                 </div>}
