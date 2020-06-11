@@ -7,6 +7,7 @@ import moment from 'moment';
 class CalendarTable extends Component {
 
     render() {
+        
         const today = moment();
         const startWeek = today.clone().startOf('month').week();
         const endWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();

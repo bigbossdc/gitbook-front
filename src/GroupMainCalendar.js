@@ -153,6 +153,7 @@ export default class GroupMainCalendar extends Component {
       .catch(err => console.error(err))
 
       this.componentDidMount();
+      this.renderDay();
   }
 
   deleteList(day, deleteTarget) {
@@ -169,6 +170,7 @@ export default class GroupMainCalendar extends Component {
       .catch(err => console.error(err))
 
     this.componentDidMount();
+    this.renderDay();
   }
 
   //일 클릭
@@ -424,7 +426,6 @@ export default class GroupMainCalendar extends Component {
         this.setState({
           checkedToDoListDay: json.data.map((list) => list.checkDate)
         });
-        console.log(this.state.checkedToDoListDay)
       })
       .catch(err => console.error(err));
   }

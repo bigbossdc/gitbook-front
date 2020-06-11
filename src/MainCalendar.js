@@ -154,6 +154,7 @@ export default class MainCalendar extends Component {
       .catch(err => console.error(err))
 
       this.componentDidMount();
+      this.renderDay();
   }
 
   deleteList(day, deleteTarget) {
@@ -170,6 +171,7 @@ export default class MainCalendar extends Component {
       .catch(err => console.error(err))
 
     this.componentDidMount();
+    this.renderDay();
   }
 
   //일 클릭
@@ -321,7 +323,6 @@ export default class MainCalendar extends Component {
   }
 
   render() {
-    console.log(this.state.checkedToDoListDay)
     const { month, year } = this.state;
     return (
       <div className="react-daypicker-root">
@@ -393,9 +394,10 @@ export default class MainCalendar extends Component {
         }
 
 
-
+        
 
         <div className='table-border'>
+    
           <table className='total-table'>
             <thead style={{ textAlign: "center" }}>
               <tr className='tr'>
@@ -411,7 +413,7 @@ export default class MainCalendar extends Component {
             <tbody>{this.weeks.map(this.renderWeek)}</tbody>
           </table>
         </div>
-
+          
       </div>
     );
   }
