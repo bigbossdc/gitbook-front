@@ -72,7 +72,7 @@
   .convo-message P{
 	word-break: break-all;
 	max-width: 405;
-	font-family:  'Jeju Gothic', sans-serif;
+	font-family: 'Jeju Gothic', sans-serif;
   }
   .type_messages .input-field textarea{
 	font-family:  'Jeju Gothic', sans-serif;
@@ -229,3 +229,17 @@
 	margin-right: 15px;
 	margin-top: 10px;
 }
+ .txt_post {
+	
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1.2em;
+    height: 1em; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+	
+}
+
+  

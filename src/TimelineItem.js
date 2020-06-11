@@ -23,7 +23,7 @@ class TimeLineItem extends Component {
       show:'none',
       show2:'none',
       show3:'none',
-      deleteInput:''
+      deleteInput:'',
     }
 
   }
@@ -85,7 +85,6 @@ class TimeLineItem extends Component {
 
   handleKeyPress(e) {
     if ((e.key === 'Enter') && (this.state.comment.trim() !=='')) {
-  
 
       const newComment = {
         contents: this.state.comment,
@@ -108,10 +107,10 @@ class TimeLineItem extends Component {
 
         })
         .catch(err => console.error(err));
-
       this.setState({
-        comment: ''
+        comment: '',
       })
+      window.jQuery(document.getElementsByClassName("img1-comment-list")).scrollTop(0);
     }
   }
 
