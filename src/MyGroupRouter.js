@@ -13,7 +13,7 @@ import GroupRegist from './GroupRegist';
 const API_HEADERS2 = {
   'Content-Type': 'multipart/form-data; charset=UTF-8'
 }
-class MyRouter extends Component {
+class MyGroupRouter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +21,7 @@ class MyRouter extends Component {
       groupMaster:''
     };
   }
+
 
   // 그룹 생성하기
   handleSubmit(groupTitle, description, imgurl){
@@ -108,7 +109,7 @@ class MyRouter extends Component {
   render() {
     console.log("grouplist확인 : " + this.state.groupList)
     return (
-      <div className="App" >
+      <div className="AppMyGroupRouter">
 
        <Header2 name="Group"></Header2>
         <section className="profile-two" style={{paddingTop:"225px"}}>
@@ -176,7 +177,8 @@ class MyRouter extends Component {
         });
       })
       .catch(err => console.error(err));
+      
   }
 }
 
-export default MyRouter;
+export default MyGroupRouter;

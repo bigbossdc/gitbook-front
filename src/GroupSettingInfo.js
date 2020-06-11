@@ -32,6 +32,14 @@ class GroupSettingInfo extends Component {
     });
   }
 
+  clickHandlerDelete(e) {
+    this.setState({
+        previewURL: ''
+
+    })
+
+  }
+
   handleLengthChk=(e)=>{
     if(e.target.value.length > 100) {
         alert("100자를 초과했습니다 (글자수: " + e.target.value.length + ")" )
@@ -47,6 +55,7 @@ class GroupSettingInfo extends Component {
     this.setState({
         visible: obj,
         chk: !this.state.chk,
+        previewURL: this.state.visible['basic'] == false ? '/gitbook/assets/img/bg/basic.jpg' : this.state.previewURL,
         imgurl: this.state.visible['basic'] == false ? '/gitbook/assets/img/bg/basic.jpg' : this.state.imgurl
     });
   } 
@@ -131,32 +140,50 @@ class GroupSettingInfo extends Component {
         <br/>
         <br/>
       
-        <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>그룹 이미지</h4>
-        <input 
-            type="radio" 
-            name="visible" 
-            value="basic" 
-            checked={this.state.visible['basic']} 
-            onChange={this.handleRadio.bind(this)} />
-        <label >기본 타이틀 이미지 (default)</label>
-        <br></br>
-        <input 
-            type="radio" 
-            name="visible" 
-            value="nobasic"
-            checked={this.state.visible['nobasic']} 
-            onChange={this.handleRadio.bind(this)} />
-        <label >이미지 첨부 (jpg, jpeg, png, bmp)</label>
-
-        <div className="group-search-area">   
-            <div className="group-input-field">
-              <input type="file" onChange={this.imageChange.bind(this)} disabled={this.state.chk}/> 
-                {/* <i class="fas fa-upload"></i> */}
-            </div>
-        </div>
-        <hr></hr>
-        <div>
-          <img src={this.state.previewURL} style={{height: "150px", width: "50%"}}/>
+        <h4 style={{ fontFamily:"'Nanum Gothic', sans-serif" }}>그룹 이미지</h4> 
+        <div className="row" style={{marginLeft:"0px", width: "90%"}}>
+          <div style={{float:"left", width:"40%"}}>  
+          <input 
+              type="radio" 
+              name="visible" 
+              value="basic" 
+              checked={this.state.visible['basic']} 
+              onChange={this.handleRadio.bind(this)} />
+          <label style={{ fontFamily:"'Nanum Gothic', sans-serif" }}>&nbsp;기본 타이틀 이미지 (default)</label>
+          <br></br>
+          <input 
+              type="radio" 
+              name="visible" 
+              value="nobasic"
+              checked={this.state.visible['nobasic']} 
+              onChange={this.handleRadio.bind(this)} />
+          <label style={{ fontFamily:"'Nanum Gothic', sans-serif" }}>&nbsp;이미지 첨부 (jpg, jpeg, png, bmp)</label>    
+          </div>
+          <div style={{float:"left", width:"50%"}}>     
+          {this.state.visible['nobasic'] === true ? 
+            this.state.previewURL < 2 ? 
+            <div className="imageFileDiv" style={{ width: "470px", height: "170px", marginTop:"0px"}}>
+              <label style={{marginLeft:"35%"}}>
+                <input type="file" onChange={this.imageChange.bind(this)} disabled={this.state.chk} style={{display: "none"}}/> 
+                <i className="fa fa-camera text-muted fa-4x" id="custom" />
+              </label>
+            </div> : <div className="div2">
+                        <i className="fas fa-backspace fa-2x" onClick={this.clickHandlerDelete.bind(this)} />
+                        <div className="imageFileDiv" style={{ width: "470px", height: "170px", marginTop:"0px"}}>
+                        <label>
+                          <img src={this.state.previewURL} style={{width: "450px", height: "150px", borderRadius: '10px', display: "block" }}></img>
+                        </label>
+                        </div>
+                      </div>
+            : <div>
+                <div className="imageFileDiv" style={{ width: "470px", height: "170px", marginTop:"0px"}}>
+                  <label>
+                   <img src={this.state.previewURL} style={{width: "450px", height: "150px", borderRadius: '10px', display: "block" }}></img>
+                  </label>
+                </div>
+              </div>
+          }
+          </div>
         </div>
         {
           (this.state.groupTitle.trim() !== '') ? 

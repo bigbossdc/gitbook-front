@@ -48,7 +48,7 @@ class Header extends Component {
                            {/** 검색 창 */}
                            <div className="search-dashboard">
                               <form>
-                                 <input placeholder="친구 검색" onChange={this.onInputChange.bind(this)} value={this.state.keyword}></input>
+                                 <input placeholder="친구 검색" onChange={this.onInputChange.bind(this)} value={this.state.keyword} style={{outline:"none"}}></input>
                                  <Link to="/gitbook/main/friendsearch">
                                     <button
                                        onClick={this.onResult.bind(this)}

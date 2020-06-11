@@ -53,7 +53,7 @@ class App extends Component {
   
     return (
 
-      <div className="App" >
+      <div className="App">
         <Header handlerSubmit={{search: this.onSearchSubmit.bind(this)}}></Header>
         <Route path="/gitbook/main" render={() => <MainRouter result={this.state.result} keyword={this.state.keyword}/>}></Route>
         <Route path="/gitbook/my/:userid?" component={MyRouter}></Route>
@@ -92,8 +92,7 @@ class App extends Component {
     })
     .catch( err => console.error( err ));  
     
-   
-}
+  }
 }
 
 export default App;

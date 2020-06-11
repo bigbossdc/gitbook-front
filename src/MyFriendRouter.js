@@ -86,8 +86,7 @@ class MyFriendRouter extends Component {
   render() {
     console.log("testaaaa" + sessionStorage.getItem("authUserId") + ":" + this.state.friendNum)
     return (
-      <div className="App" >
-      
+      <div className="App">
        <Header2 name="Friend"></Header2>
         <section className="profile-two" style={{paddingTop:"225px"}}>
           <div className="container-fluid">
@@ -150,6 +149,7 @@ class MyFriendRouter extends Component {
         });
     })
     .catch( err => console.error( err ));    
+    
   }
 }
 
