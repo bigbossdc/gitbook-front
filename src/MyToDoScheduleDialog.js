@@ -12,14 +12,13 @@ export default class MyToDoScheduleDialog extends Component {
   constructor() {
     super(...arguments);
     this.state = {
+      checkedToDoListDay:'',
       content: '',
       image:''
     };
 
      
   }
-  
-
 
   onClickHandler() {
     this.props.onClosehandler();
@@ -90,6 +89,8 @@ export default class MyToDoScheduleDialog extends Component {
   
     return (
       
+      
+
       <Dialog open={this.props.openModal}>
 
         <DialogContent>
@@ -109,6 +110,7 @@ export default class MyToDoScheduleDialog extends Component {
                     <br></br>
                     <br />
                     <input
+                      key='inputText'
                       onChange={this.handleChange.bind(this)}
                       onKeyPress={this.keyChange.bind(this)}
                       value={this.state.content}
@@ -125,7 +127,7 @@ export default class MyToDoScheduleDialog extends Component {
                           <div>
                             <a className='deleteButton' onClick={this.deleteClickHandler.bind(this)}><span id={list.no} style={{ fontWeight: "bold", color: 'red', fontFamily: " 'Varela Round', sans-serif" }}>삭제</span></a>
                             <br/>
-                           <p className='p1'>{list.scheduleContents.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp }&nbsp;</div>)}</p>
+                           <p className='p1'>{list.scheduleContents.split(" ").map(nbsp=><a style={{display:"inline", fontSize:"20px"}}>{nbsp }&nbsp;</a>)}</p>
                             <p className='p2' style={{fontSize:"0.8em"}}>on {this.props.monthName} {this.props.originDay}th, {this.props.year}</p>
                           </div>
                         </li>
@@ -154,7 +156,18 @@ export default class MyToDoScheduleDialog extends Component {
         });
     })
     .catch( err => console.error( err ));
+
+    fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyToDoList`, {
+      method: 'get',
+      headers: global.API_HEADERS
+    })
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          checkedToDoListDay: json.data.map((list) => list.checkDate)
+        });
+      })
+      .catch(err => console.error(err));
 }
 
 }
-

@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from "react";
 
 const iconList = {
-	commit: "fa fa-comment",
-	friend: "fa fa-user-plus",
-	group: "fa fa-user-plus",
-	heart: "fa fa-heart",
+   commit: "fa fa-comment",
+   friend: "fa fa-user-plus",
+   group: "fa fa-user-plus",
+   heart: "fa fa-heart",
 };
 
 // props: [iconType, contents, time( -> timeDifference), link]

@@ -12,6 +12,7 @@ import ChattingPage from './ChattingPage'
 
 
 
+
 class App extends Component {
   constructor() {
     super(...arguments);
@@ -54,6 +55,7 @@ class App extends Component {
     return (
 
       <div className="App">
+
         <Header handlerSubmit={{search: this.onSearchSubmit.bind(this)}}></Header>
         <Route path="/gitbook/main" render={() => <MainRouter result={this.state.result} keyword={this.state.keyword}/>}></Route>
         <Route path="/gitbook/my/:userid?" component={MyRouter}></Route>

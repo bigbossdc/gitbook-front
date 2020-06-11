@@ -4,12 +4,12 @@ import AlarmList from "./AlarmList";
 import "./Fluffs/assets/css/AlarmBox.css";
 
 export default class AlarmBox extends Component {
-	constructor() {
-		super(...arguments);
-		this.state = {
-			alarmList: null,
-		};
-	}
+   constructor() {
+      super(...arguments);
+      this.state = {
+         alarmList: null,
+      };
+   }
 
 	componentDidMount() {
 		fetch(`${global.API_URL}/gitbook/alarm/list`, {

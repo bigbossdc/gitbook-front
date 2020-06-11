@@ -61,7 +61,6 @@ export default class MyToRepoScheduleDialog extends Component {
   }
 
   componentDidMount() {
-    console.log('todoDidMount Called...')
     fetch(`${global.API_URL}/gitbook/user/profile/info/${sessionStorage.getItem("authUserId")}`, {
         method: 'post',
         headers: global.API_HEADERS,

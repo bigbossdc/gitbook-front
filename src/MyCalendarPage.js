@@ -7,9 +7,6 @@ import Navigation2 from './Navigation2';
 
 import MainCalendar from './MainCalendar'; 
 
-
-
-
 class MyCalendarPage extends Component {
 
 
