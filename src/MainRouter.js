@@ -40,7 +40,6 @@ class MainRouter extends Component {
                   <Route path="/gitbook/main/friendsearch" render={() => <FriendSearchList result={this.props.result} keyword={this.props.keyword}/>}/>
                 </div>
               </div>
-     
             {/** row 종료 */}
            </div>
           {/** container-fluid 종료 */}

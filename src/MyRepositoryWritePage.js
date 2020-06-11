@@ -28,6 +28,14 @@ class MyRepositoryWritePage extends Component {
       });     
    };
 
+   handleChange2 = (e) => {
+      
+         this.setState({
+            [e.target.name]: e.target.value,
+         });
+      
+   };
+
    handleRadio = (event) => {
       let obj = {};
       obj[event.target.value] = event.target.checked;

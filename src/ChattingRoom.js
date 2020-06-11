@@ -14,6 +14,7 @@ class ChattingRoom extends Component {
 	render() {
 		return (
 			<div>
+				{this.props.chatInfo&&this.props.chatInfo?
 				<div className="conversation-box">
 
 					<div className="conversation-header">
@@ -22,14 +23,14 @@ class ChattingRoom extends Component {
 							<div className="user-message-img">
 								<img src="assets/img/users/6.jpg" className="img-responsive img-circle" alt="" />
 							</div>
-							<div className="user-message-info" >
+							<div className="user-message-info" style={{width:"90%"}} >
 								
-								<div style={{display:"inline-block"}}>
-									<h4 style={{ fontFamily: "'Jeju Gothic', sans-serif" }}>낭기리의 채팅방</h4>
+								<div style={{display:"inline-block",marginTop:"6px"}}>
+									<h4 style={{ fontFamily: "'Jeju Gothic', sans-serif",width:"100%" }}>{this.props.chatInfo && this.props.chatInfo.title}</h4>
 									<p style={{ fontFamily: "'Jeju Gothic', sans-serif" }}>참여인원&nbsp;5명</p>
 								</div>
 
-								<div className="dropdown pull-right" style={{ position: "relative" ,right:"-500px"}}>
+								<div className="dropdown pull-right" style={{float:"right"}}>
 									<button className="btn btn-secondary btn-flat btn-flat-icon" id="k"style={{backgroundColor:"#FFFFFF"}} type="button" data-toggle="dropdown" aria-expanded="false">
 										<em className="fas fa-cog " style={{backgroundColor:"#FFFFFF",color:"#797979"}}/>
 									</button>
@@ -66,7 +67,14 @@ class ChattingRoom extends Component {
 						</div>
 					</div>
 
+				</div>:
+				<div className="conversation-box" style={{height:"100%",width:"100%"}}>	
+					<div className="conversation-header" style={{height:"725px",width:"100%"}}>
+					<h2 style={{fontFamily:"'Jeju Gothic', sans-serif",marginTop:"200px",marginLeft:"200px"}}><strong>채팅창을 선택해주세요!</strong></h2>
+					<i class="far fa-comment-dots fa-10x" style={{marginLeft:"270px"}}></i>
+					</div>
 				</div>
+	}
 			</div>
 		);
 	}
