@@ -86,8 +86,7 @@ class GroupRouter extends Component {
                                                                                                           groupno={this.props.match.params.groupno}/>}/>
         
                   <Route  path="/gitbook/group/:groupno?/:userno?/:userid?/repository/view/:repoName?" exact component={GroupRepositoryPage}/>
-                  <Route  path="/gitbook/group/schedule"  exact component={MainCalendar} onModal={(open)=> this.setState(open)} onDayClick={(day) => this.setState({ day })}/>
-
+                  
                   <Route  path="/gitbook/group/:groupno?/:userno?/schedule" exact render={() => <GroupMainCalendar
                                                                                                  userno={this.props.match.params.userno}
                                                                                                  groupno={this.props.match.params.groupno}

@@ -23,6 +23,14 @@ class MyRepositoryWritePage extends Component {
       }
    };
 
+   handleChange2 = (e) => {
+      
+         this.setState({
+            [e.target.name]: e.target.value,
+         });
+      
+   };
+
    handleRadio = (event) => {
       let obj = {};
       obj[event.target.value] = event.target.checked;
@@ -81,7 +89,7 @@ class MyRepositoryWritePage extends Component {
                <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>Description</h4>
                <textarea className="form-control no-border" rows="3" 
                         style={{resize:"none",width:"70%",height:"150px"}}
-                        onChange={this.handleChange.bind(this)} name="description" placeholder="상세 설명을 적어주세요.." />
+                        onChange={this.handleChange2.bind(this)} name="description" placeholder="상세 설명을 적어주세요.." />
                <hr></hr>
                <input type="radio" name="visible" value="public" checked={this.state.visible["public"]} onChange={this.handleRadio.bind(this)} />
                <label>공개</label>
