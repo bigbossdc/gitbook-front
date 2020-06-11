@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 const iconList = {
 	commit: "fa fa-comment",
@@ -13,16 +13,16 @@ export default class AlarmItem extends Component {
 		super(...arguments);
 		this.state = {};
 	}
-	
+
 	onClickRead = (event) => {
-		console.log("clicked...");
-	}
+		this.props.onAlarmRead(this.props.itemData.no);
+	};
 
 	render() {
 		return (
-			<frameElement>
-				<a href='#' className="dropdown-item notify-item">
-					<input type='button' class='markAsRead' value='읽음' onClick={this.onClickRead.bind(this)} />
+			<Fragment>
+				<a href="#" className="dropdown-item notify-item">
+					<input type="button" className="markAsRead" value="확인" onClick={this.onClickRead.bind(this)} />
 					<div className="notify-icon bg-success">
 						<i className={iconList[this.props.itemData.alarmType]}></i>
 					</div>
@@ -30,11 +30,10 @@ export default class AlarmItem extends Component {
 						{this.props.itemData.alarmContents}
 						<small className="text-muted">{this.props.itemData.alarmDate}</small>
 					</p>
-					
 				</a>
-				
+
 				<hr style={{ margin: "0px" }} />
-			</frameElement>
+			</Fragment>
 		);
 	}
 }
