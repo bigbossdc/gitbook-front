@@ -59,9 +59,7 @@ changeScheduleRepoValue(){
                     render={() => 
                         <MyTimelinePage
                             key={this.props.match.params.userid}
-                            
                             userid={this.props.match.params.userid}
-
                     /> }
                   />
                   <Route

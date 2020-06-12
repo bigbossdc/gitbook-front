@@ -238,11 +238,7 @@ export default class MainCalendar extends Component {
 
     let toCompareMonth = this.state.month + 1;
 
-
-
     (toCompareMonth < 10 ? toCompareMonth = ('0' + toCompareMonth) : toCompareMonth);
-
-
      
     const formatDate = this.state.year + '-' + toCompareMonth + '-' + (
       day ? day.getDate() && (day.getDate() < 10 ? '0' + day.getDate() : day.getDate())
