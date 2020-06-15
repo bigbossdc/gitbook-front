@@ -138,9 +138,6 @@ export default class AlarmBox extends Component {
 							<div className="alarmBoxScrollArea">
 								<AlarmList alarmList={this.state.alarmList} onAlarmRead={this.onAlarmRead.bind(this)} /> {/** 알림 메시지 목록 */}
 							</div>
-							<a href="#" className="dropdown-item text-center notify-all">
-								More Alarms <i className="fa fa-arrow-right"></i>
-							</a>
 						</div>
 					</div>
 				</li>

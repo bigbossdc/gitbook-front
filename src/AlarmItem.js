@@ -9,50 +9,74 @@ const iconList = {
 };
 
 const linkList = {
-	commit: "",
+	commit: `/gitbook/my/${sessionStorage.getItem("authUserId")}/repository`,
 	friend: "/gitbook/myfriend",
-	group: "",
+	group: "/gitbook/mygroup",
 	chatting: "/gitbook/chatting",
 };
 
 export default class AlarmItem extends Component {
 	constructor() {
 		super(...arguments);
-		this.state = {};
+		this.state = {
+			gitAddr: "",
+		};
 	}
 
 	onClickRead = (event) => {
 		this.props.onAlarmRead(this.props.itemData.no);
 	};
 
-	/*
+	componentWillMount() {
+		this.setTimeDifference(this.props.itemData.alarmDate);
+		if (this.props.itemData.alarmType === "commit") {
+			let msg = this.props.itemData.alarmContents;
+			console.log(msg.slice(msg.indexOf("님이") + 3, msg.indexOf("에") - 1));
+			this.setState({
+				gitAddr: msg.slice(msg.indexOf("님이") + 3, msg.indexOf("에") - 1),
+			});
+		}
+	}
+
 	setTimeDifference = (originalTime) => {
 		let timeMills = new Date(originalTime.split(".")[0]);
 		let diffMills = Date.now() - timeMills;
 
-		var hour = Math.floor((diffMills % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		var minute = Math.floor((diffMills % (1000 * 60 * 60)) / (1000 * 60));
-		var second = Math.floor((diffMills % (1000 * 60)) / 1000);
+		let hour = Math.floor((diffMills % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // hour
+		let minute = Math.floor((diffMills % (1000 * 60 * 60)) / (1000 * 60)); // minute
+		let second = Math.floor((diffMills % (1000 * 60)) / 1000); // second
+
+		let day = Math.floor(diffMills / (1000 * 60 * 60 * 24)); // day
+		let month = Math.floor(day / 30); // month
+		let year = Math.floor(day / 365); // year
+
+		let arrNum = [year, month, day, hour, minute, second];
+		let arrMsg = ["년 전", "개월 전", "일 전", "시간 전", "분 전", "초 전"];
+		let message = null;
+		for (let i = 0; i < arrNum.length; i++) {
+			if (arrNum[i] !== 0) {
+				message = arrNum[i] + arrMsg[i];
+				break;
+			}
+			message = "방금 전";
+		}
 
 		this.setState({
-			hour: hour,
-			minute: minute,
-			second: second,
+			message: message,
 		});
 	};
-	*/
 
 	render() {
 		return (
 			<Fragment>
-				<Link to="#" className="dropdown-item notify-item">
+				<Link to={linkList[this.props.itemData.alarmType] + (this.props.itemData.alarmType === "commit" ? `/view/${this.state.gitAddr}` : "")} className="dropdown-item notify-item">
 					<input type="button" className="markAsRead" value="확인" onClick={this.onClickRead.bind(this)} />
 					<div className="notify-icon bg-success">
 						<i className={iconList[this.props.itemData.alarmType]}></i>
 					</div>
 					<p className="notify-details" style={{ whiteSpace: "normal", fontSize: "13px" }}>
-						{this.props.itemData.alarmContents.length < 70 ? this.props.itemData.alarmContents : `${this.props.itemData.alarmContents.slice(0, 70)}...`}
-						<small className="text-muted">{this.props.itemData.alarmDate}</small>
+						{this.props.itemData.alarmContents.length < 65 ? this.props.itemData.alarmContents : `${this.props.itemData.alarmContents.slice(0, 65)}...`}
+						<small className="text-muted">{this.state.message}</small>
 					</p>
 				</Link>
 

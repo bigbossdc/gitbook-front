@@ -5,40 +5,35 @@ import "./Fluffs/assets/css/ProfileAndAccount_tab.css";
 import "./Fluffs/assets/css/ProfileAndAccount_button.css";
 import ProfileSection from "./ProfileSection";
 import AccountSettingSection from "./AccountSettingSection";
+import { Link } from "react-router-dom";
 
 export default class ProfileAndAccount extends Component {
 	constructor() {
 		super(...arguments);
-
 		this.state = {
-			currentTab: "profile",
+			currentTab: "",
 		};
 	}
-
-	onChangeTab(event){
-		let tabName = event.target.name;
-		if (tabName !== this.state.currentTab) {
-			this.setState({
-				currentTab: tabName,
-			});
-		}
-	};
 
 	render() {
 		return (
 			<div className="banner-content" style={{ marginTop: "0px" }}>
 				<div className="tab">
-					<button className="tablinks" name="profile" onClick={this.onChangeTab.bind(this)}>
-						Profile
-					</button>
-					<button className="tablinks" name="account" onClick={this.onChangeTab.bind(this)}>
-						Account
-					</button>
+					<Link to={"/gitbook/my/" + sessionStorage.getItem("authUserId") + "/profile"}>
+						<button className="tablinks" name="profile">
+							Profile
+						</button>
+					</Link>
+					<Link to={"/gitbook/my/" + sessionStorage.getItem("authUserId") + "/account"}>
+						<button className="tablinks" name="account">
+							Account
+						</button>
+					</Link>
 				</div>
 				<br />
 				<br />
 
-				{this.state.currentTab === 'profile' ? <ProfileSection userid={this.props.match.params.userid}/> : <AccountSettingSection />}
+				{window.location.href.split("/").pop() === "profile" ? <ProfileSection userid={this.props.match.params.userid} /> : <AccountSettingSection />}
 			</div>
 		);
 	}
