@@ -24,7 +24,8 @@ class GroupListRequest extends Component {
     }
 
     render() {
-        console.log("group no chk " + this.props.myreqlist)
+        console.log("group no chk ")
+        console.log(this.props.myreqlist)
         return(    
             <div className="group-req" style={{marginTop:"0px"}}>
                 <p><h4 className="group-req-title"><b>그룹 요청</b></h4></p>

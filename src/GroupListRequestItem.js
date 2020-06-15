@@ -14,6 +14,8 @@ class GroupListRequestItem extends Component {
     }
 
     render() {
+        console.log("groupListRequestItem.js Called!!")
+       
         return(   
             <li>
                 <div className="media"> 

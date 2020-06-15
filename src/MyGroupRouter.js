@@ -50,7 +50,11 @@ class MyGroupRouter extends Component {
 
   // 그룹 요청 수락
   callbackAddGroup(groupno){
+    console.log("calledbackAddGroup Called")
     console.log("그룹수락번호 " + groupno)
+    
+  
+  
     fetch(`${global.API_URL}/gitbook/group/addgroup`, {
         method: 'post',
         headers: global.API_HEADERS,
@@ -107,6 +111,7 @@ class MyGroupRouter extends Component {
 
 
   render() {
+
     return (
       <div className="App">
 
