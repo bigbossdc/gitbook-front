@@ -18,6 +18,9 @@ class DropdownMenu extends Component {
 				<Link to={"/gitbook/my/" + sessionStorage.getItem("authUserId") + "/account"} className="dropdown-item" style={{ fontFamily: " 'Varela Round', sans-serif" }}>
 					<span>계정 관리</span>
 				</Link>
+				<Link to="/gitbook/main/out" className="dropdown-item" style={{ fontFamily: " 'Varela Round', sans-serif" }}>
+					<span>회원 탈퇴</span>
+				</Link>
 				<div className="dropdown-divider"></div>
 			</div>
 		);

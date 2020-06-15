@@ -111,7 +111,7 @@ class MyGroupRouter extends Component {
       <div className="App">
 
        {/* <Header2 name="Group"></Header2> */}
-        <section className="profile-two" style={{paddingTop:"100px"}}>
+        <section className="profile-two" style={{paddingTop:"100px", minHeight:"100vh"}}>
           <div className="container-fluid">
             <div className="row">
               

@@ -14,16 +14,21 @@ class NavigationGroup extends Component {
              <ul className="list">
               <li>
                   <div className="user-info">
-                    <div className="image">
-                  <a href="photo_profile_two.html">
-                    <img src={this.props.groupinfo.masterImage} className="img-responsive img-circle" style={{width:"180px", height:"180px", marginBottom:"10px"}} alt="User"></img>
-                  </a>
-                     {/*그룹 관리자만 나오는 아이콘 - 설정페이지*/}
-                     {(sessionStorage.getItem("authUserNo") === this.props.groupinfo.masterNo) ? 
-                      <Link to={`/gitbook/group/${this.props.groupinfo.no}/${this.props.groupinfo.masterNo}/setting`}><i class="fas fa-cog fa-2x"/></Link> : ''
-                     }
-               
-                    </div>
+                    {(sessionStorage.getItem("authUserNo") === this.props.groupinfo.masterNo) ?
+                        <div className="image">
+                          <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/profile`}  style={{marginBottom:"20px"}}>
+                            <img src={this.props.groupinfo.masterImage} className="img-responsive img-circle" style={{width:"180px", height:"180px", marginRight:"15px"}} alt="User"></img>
+                            <span className="online-status online" style={{marginLeft:"10px"}}/>
+                          </Link>
+                          {/*그룹 관리자만 나오는 아이콘 - 설정페이지*/}
+                          <Link to={`/gitbook/group/${this.props.groupinfo.no}/${this.props.groupinfo.masterNo}/setting`}><i class="fas fa-cog fa-2x"/></Link>
+                        </div>
+                        : <div className="image">
+                              <img src={this.props.groupinfo.masterImage} className="img-responsive img-circle" style={{width:"180px", height:"180px", marginRight:"15px"}} alt="User"></img>
+                              <span className="online-status online" style={{marginLeft:"10px", background:"blue"}}/>
+                          </div>
+                    }
+
                 <div className="detail">               
                   <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", margin:"10px"}}>
                     {/* {

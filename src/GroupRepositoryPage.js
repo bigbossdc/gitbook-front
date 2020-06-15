@@ -51,8 +51,7 @@ class GroupRepositoryPage extends Component {
   }
 
   render() {
-    console.log("pleaseeee..." + this.props.match.params.userno + ":" + this.props.match.params.repoName)
-
+  
     const k={
       position: "relative",
       top: "1px",
@@ -60,7 +59,7 @@ class GroupRepositoryPage extends Component {
       width: "12px",
       height: "12px",
       borderRadius: "50%",
-      backgroundColor: (this.state.gitInfo.visible === "public" ) ? "#0FC19E" : "red" ,
+      backgroundColor: (this.state.gitInfo && this.state.gitInfo.visible === "public" ) ? "#0FC19E" : "red" ,
       marginRight:"6px",
       marginBottom: "3px"
     }
@@ -81,10 +80,10 @@ class GroupRepositoryPage extends Component {
             </h2>
             <h2>/</h2>{" "}
             <h2 onClick={this.onClickHandler.bind(this,'')}>
-            <Link >{this.state.gitInfo.gitName}</Link>
+            <Link >{this.state.gitInfo && this.state.gitInfo.gitName}</Link>
             </h2>
             <br></br>
-            <pre style={{overflowX:"hidden",wordBreak:"break-all",backgroundColor:"#FFFFFF",border:"none",fontFamily: " 'Varela Round', sans-serif"}}>{this.state.gitInfo.description}</pre>
+            <pre style={{overflowX:"hidden",wordBreak:"break-all",backgroundColor:"#FFFFFF",border:"none",fontFamily: " 'Varela Round', sans-serif"}}>{this.state.gitInfo && this.state.gitInfo.description}</pre>
             <div >
               {document.queryCommandSupported("copy") && (
                 <div style={{ display: "inline" }}>
@@ -108,7 +107,7 @@ class GroupRepositoryPage extends Component {
             { 
               (this.state.loding == true)?
 
-                 (this.state.gitlist.type === 'folder') ?
+                 (this.state.gitlist  && this.state.gitlist.type === 'folder') ?
                    <RepositoryTable
                       key="repotable"
                       gitlist={this.state.gitlist && this.state.gitlist}
@@ -117,14 +116,23 @@ class GroupRepositoryPage extends Component {
                   newList: this.onClickHandler.bind(this)}}
               />
               :
-              (this.state.gitlist.type === 'file') ?
+              (this.state.gitlist  && this.state.gitlist.type === 'file') ?
                 <RepositoryFileviewTable
                   contents={this.state.gitlist && this.state.gitlist['contents']}
-                  srcName={this.state.callPath.split('/').pop()}
+                  srcName={this.state.callPath  && this.state.callPath.split('/').pop()}
                   callPath={this.state.callPath &&this.state.callPath}
                   clicklist={{
                     newList: this.onClickHandler.bind(this)}}
                 
+                />
+                :
+                  (this.state.callPath && this.state.callPath.length > 0) ?
+                  <RepositoryTable
+                        key="repotable"
+                        gitlist=""
+                  callPath={this.state.callPath &&this.state.callPath}
+                  clicklist={{
+                    newList: this.onClickHandler.bind(this)}}
                 />
                 :
                 <div>

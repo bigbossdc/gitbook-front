@@ -50,6 +50,10 @@ class Header extends Component {
       if(contentsname === "my" && location.pathname.split('/')[4] === "profile") {
          contentsname = "main";
       }
+
+      if(contentsname === "my" && location.pathname.split('/')[4] === "account") {
+         contentsname = "main";
+      }
       
       return (
          <header className="tr-header" style={{ position: "fixed", width: "100%", zIndex: "100" }}>
@@ -150,6 +154,7 @@ class Header extends Component {
                                              right: "0",
                                              top: "-7px",
                                              cursor: "pointer",
+                                             outline:"none"
                                           }}
                                        >
                                           <i className="fa fa-search"></i>
@@ -171,7 +176,11 @@ class Header extends Component {
                                  </span>
 
                                  <span className="hidden-xs" style={{ fontFamily: " 'Varela Round', sans-serif", marginLeft: "10px" }}>
-                                    <strong>{sessionStorage.getItem("authUserNickName")}</strong>
+                                    <strong title={sessionStorage.getItem("authUserNickName")}>
+                                       {sessionStorage.getItem("authUserNickName") && sessionStorage.getItem("authUserNickName").length > 5 ? 
+                                          sessionStorage.getItem("authUserNickName").substring(0, 5) + ".."
+                                          : sessionStorage.getItem("authUserNickName")}
+                                    </strong>
                                  </span>
                               </a>
                               <DropdownMenu></DropdownMenu> {/** 프로필 메뉴   */}

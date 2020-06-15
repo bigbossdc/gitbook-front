@@ -46,7 +46,7 @@ changeScheduleRepoValue(){
          />} */}
          {/* <Header3/> */}
 
-        <section className="profile-two" style={{paddingTop:"100px"}}>
+        <section className="profile-two" style={{paddingTop:"100px", minHeight:"100vh"}}>
           <div className="container-fluid">
             <div className="row">
                   <Navigation                   
