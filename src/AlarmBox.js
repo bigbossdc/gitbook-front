@@ -1,15 +1,15 @@
 import React, { Component, Fragment } from "react";
-import SocketClient from "./SocketClient";
+import SockJsClient from "react-stomp";
 import AlarmList from "./AlarmList";
 import "./Fluffs/assets/css/AlarmBox.css";
 
 export default class AlarmBox extends Component {
-   constructor() {
-      super(...arguments);
-      this.state = {
-         alarmList: null,
-      };
-   }
+	constructor() {
+		super(...arguments);
+		this.state = {
+			alarmList: null,
+		};
+	}
 
 	componentDidMount() {
 		fetch(`${global.API_URL}/gitbook/alarm/list`, {
@@ -23,6 +23,10 @@ export default class AlarmBox extends Component {
 					alarmList: json.data,
 				});
 			});
+	}
+
+	componentWillUnmount() {
+		this._ismounted = false;
 	}
 
 	onAlarmRead = (no) => {
@@ -79,7 +83,7 @@ export default class AlarmBox extends Component {
 			});
 	};
 
-	onReceiveAlarmOnline = (newAlarmItem) => {
+	onReceiveAlarm = (newAlarmItem) => {
 		console.log(newAlarmItem);
 
 		let original = this.state.alarmList;
@@ -89,19 +93,37 @@ export default class AlarmBox extends Component {
 		});
 	};
 
+	onReceiveChatting = (newChattingItem) => {
+		console.log(newChattingItem);
+	};
 
 	render() {
 		return (
 			<Fragment>
-				<SocketClient receiveAlarmHandler={this.onReceiveAlarmOnline}/>
-				<li className="dropdown notification-list" style={{ paddingLeft: "20px" }}>
+				<SockJsClient
+					url="http://127.0.0.1:8080/gitbook/socket"
+					topics={[`/topics/alarm/${sessionStorage.getItem("authUserId")}`, `/topics/chatting/${sessionStorage.getItem("authUserId")}`]}
+					onMessage={(msg) => {
+						let type = msg.split(">>")[0];
+						let data = JSON.parse(msg.split(">>")[1]);
+						if (type === "alarm") {
+							this.onReceiveAlarm(data);
+						} else if (type === "chatting") {
+							this.onReceiveChatting(data);
+						}
+					}}
+					ref={(client) => {
+						this.clientRef = client;
+					}}
+				/>
+				<li className="dropdown notification-list" style={{ paddingLeft: "10px", paddingRight: "10px" }}>
 					{/** 알림 버튼 아이콘*/}
 					<a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 						<i className="fa fa-bell noti-icon" style={{ display: "inline-block" }}></i>
-						<span className="badge badge-danger badge-pill noti-icon-badge">{this.state.alarmList === null ? 0 : this.state.alarmList.length}</span>
+						{this.state.alarmList === null || this.state.alarmList.length === 0 ? <></> : <span className="badge badge-danger badge-pill noti-icon-badge">{this.state.alarmList.length > 99 ? "99+" : this.state.alarmList.length}</span>}
 					</a>
 					{/** 알림 목록 보여줄 때*/}
-					<div className="dropdown-menu dropdown-menu-right dropdown-lg">
+					<div className="dropdown-menu dropdown-menu-right dropdown-lg" style={{ width: "400px", left: "-400px" }}>
 						<div className="dropdown-item noti-title" style={{ height: "40px" }}>
 							<h6 className="m-0" style={{ paddingTop: "5px" }}>
 								<span className="pull-right">

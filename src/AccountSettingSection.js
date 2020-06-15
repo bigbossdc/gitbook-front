@@ -46,15 +46,13 @@ export default class AccountSettingSection extends Component {
 	}
 
 	onModifyUserInfo = (event) => {
-		console.log(this.state.userData);
-
 		// 비밀번호를 제외한 나머지 정보들의 누락 여부를 확인하기
-		if(this.state.userData.name == null || this.state.userData.name === ''){
-			alert("이름을 입력해주세요.");
+		if(this.state.userData.name == null || this.state.userData.name.trim().length < 2 || this.state.userData.name.length > 10){
+			alert("이름을 2자 ~ 10자 입력해주세요.");
 			return;
 		}
-		if(this.state.userData.phone == null || this.state.userData.phone.length < 10 || this.state.userData.phone.length > 11 || /[0-9]/.test(this.state.userData.phone) === false){
-			alert("폰 번호를 10자 ~ 11자 입력해주세요.");
+		if(this.state.userData.phone == null || this.state.userData.phone.trim().length < 10 || this.state.userData.phone.trim().length > 11 || /[0-9]/.test(this.state.userData.phone) === false){
+			alert("폰 번호를 10자 ~ 11자 입력해주세요. ('-' 빼고 입력)");
 			return;
 		}
 		if(this.state.userData.changePassword){
