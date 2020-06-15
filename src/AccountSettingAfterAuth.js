@@ -22,7 +22,6 @@ export default class AccountSettingAfterAuth extends Component {
 
 	onBirthChanged = (event) => {
 		let name = event.target.name;
-		console.log()
 		if(['birthYear', 'birthMonth', 'birthDay'].includes(name)){
 			let newBirthday = this.props.userData.birthday.split(' ')[0].split('-');
 			if(name === 'birthYear'){
@@ -47,9 +46,6 @@ export default class AccountSettingAfterAuth extends Component {
 	}
 
 	render() {
-		console.log("called AccountAfterAuth...");
-		console.log(this.props.userData);
-
 		const calYear = [];
 		const calMonth = [];
 		const calDay = [];
