@@ -40,15 +40,15 @@ class RepositoryTable extends Component {
                           </tr>: ''
                           }
                               {
-                               Object.keys(this.props.gitlist.contents).map((key) => 
+                               Object.keys(this.props.gitlist && this.props.gitlist.contents).map((key) => 
                         
                                <tr>
                                  <td >
-                               { (this.props.gitlist.contents[key].type=='folder') ? <i className="far fa-folder"/> : <i className="far fa-file-alt"/>}
-                                  <a style={{cursor:"pointer"}} id={this.props.gitlist.contents[key].path} key={key} onClick={this.onClicklist.bind(this)}> {this.props.gitlist.contents[key].path.split('/').pop()}</a></td>
-                                  <td><a> {this.props.gitlist.contents[key].commit}</a></td>
-                                  <td>{this.props.gitlist.contents[key].date}</td>
-                             </tr>
+                                  { (this.props.gitlist.contents[key].type=='folder') ? <i className="far fa-folder"/> : <i className="far fa-file-alt"/>}
+                                      <a style={{cursor:"pointer"}} id={this.props.gitlist.contents[key].path} key={key} onClick={this.onClicklist.bind(this)}> {this.props.gitlist.contents[key].path.split('/').pop()}</a></td>
+                                      <td><a> {this.props.gitlist.contents[key].commit}</a></td>
+                                      <td>{this.props.gitlist.contents[key].date}</td>
+                              </tr>
             
                                )}
 

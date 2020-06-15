@@ -88,7 +88,7 @@ class MyFriendRouter extends Component {
     return (
       <div className="App">
        {/* <Header2 name="Friend"></Header2> */}
-        <section className="profile-two" style={{paddingTop:"100px"}}>
+        <section className="profile-two" style={{paddingTop:"100px", minHeight:"100vh"}}>
           <div className="container-fluid">
             <div className="row">
             <Navigation id={ sessionStorage.getItem("authUserId")}></Navigation> 

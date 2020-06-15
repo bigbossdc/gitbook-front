@@ -5,6 +5,7 @@ import FriendSearchList from "./FriendSearchList";
 import MainTimelineList from "./MainTimelineList";
 import TagTimelineList from "./TagTimelineList";
 import UploadPage from "./UploadPage";
+import MemberOut from "./MemberOut";
 
 class MainRouter extends Component {
   constructor(){
@@ -19,7 +20,7 @@ class MainRouter extends Component {
     return (
       <div className="App" >
         {/* <Header2></Header2> */}
-        <section className="profile-two" style={{paddingTop:"100px", height:"100vh"}}>
+        <section className="profile-two" style={{paddingTop:"100px", minHeight:"100vh"}}>
           <div className="container-fluid">
             <div className="row" style={{marginLeft:"0px"}}>
               <div className="col-lg-8 col-lg-offset-2">
@@ -34,8 +35,9 @@ class MainRouter extends Component {
                       render={() => <MainTimelineList/>}/> */}
                   <Route path="/gitbook/main" exact render={()=> <MainTimelineList  />}></Route>
                   <Route path="/gitbook/main/tag/:tagid"  component={TagTimelineList}></Route>
-                  <Route path="/gitbook/main/upload" render={() => <UploadPage />}/>
-                  <Route path="/gitbook/main/friendsearch" render={() => <FriendSearchList result={this.props.result} keyword={this.props.keyword}/>}/>
+                  <Route path="/gitbook/main/upload" exact render={() => <UploadPage />}/>
+                  <Route path="/gitbook/main/friendsearch" exact render={() => <FriendSearchList result={this.props.result} keyword={this.props.keyword}/>}/>
+                  <Route path="/gitbook/main/out" exact component={MemberOut}></Route>
                 </div>
               </div>
 
