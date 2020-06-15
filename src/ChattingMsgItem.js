@@ -3,46 +3,64 @@ import "./ChattingPage.css";
 
 
 class ChattingMsgItem extends Component {
-    constructor() {
-      super(...arguments);
-      this.state = {
-        
-      }
-    }
-   
-    render() {
-      return (
-        <div>
-       <div className="convo-box pull-right">
-                          <div className="convo-area" style={{maxWidth:"832px"}}>
-                            <div className="convo-message" >
-                              <p className="chatContetns">이건 채팅입니다
-							 
-							  !!!!!44444444444444444444444444444444444444444!!!!!!!!!3333333333333333333333333333333333333!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!22222222222222222222222222222222!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-							   채팅이에요 채팅이랍니다 채팅같지용? 채팅맞아 이자식아 채팅채팅채팅채팅채팅 글이 너무 길어요 길었으면 좋겠슴돠</p>
-                            </div>
-                            <span>Sat, Aug 23, 1:08 PM</span>
-                          </div>
-                          <div class="convo-img">
-                            <img  title="지존혜딘공듀" src="assets/img/users/2.jpg" alt="" class="img-responsive img-circle" />
-							
-                          </div>
-                        </div>
+  constructor() {
+    super(...arguments);
+    this.state = {
 
-                        <div className="convo-box convo-left">
-                          <div className="convo-area convo-left" style={{maxWidth:"832px"}}>
-                            <div className="convo-message">
-                              <p>Cras ultricies ligula.</p>
-                            </div>
-                            <span> 5 minutes ago</span>
-                          </div>
-                          <div className="convo-img">
-                            <img title="지존혜딘공듀" src="assets/img/users/6.jpg" alt="" className="img-responsive img-circle" />
-                          </div>
-                        </div>
-        </div>
-      );
     }
-    
   }
-  export default ChattingMsgItem;
+
+  render() {
+    return (
+      <div>
+        {this.props.msg && this.props.msg.userNo == 1004 ?
+
+          <div className="convo-box" width="100%">
+            <p className="announcement">{this.props.msg.contents}</p>
+          </div> :
+          (this.props.msg.userNo == sessionStorage.getItem("authUserNo")) ?
+
+            <div className="convo-box pull-right" style={{ float: "right" }}>
+              <div className="convo-area convo-right" style={{ maxWidth: "832px", float: "right" }}>
+                <div className="convo-message" style={{ float: "right",width:"100%" }} >
+                  <p style={{ maxWidth: "100%", padding: "10px 15px", }} >
+                    {this.props.msg.contents.split(/\n/g).map((word) =>
+                      <div>
+                        {word.split(" ").map(nbsp => <div style={{ display: "inline" }}>{nbsp}&nbsp;</div>)
+                        }<br></br>
+                      </div>
+                    )}</p>
+                </div>
+                <span>{this.props.msg.sendDate}</span>
+              </div>
+              <div className="convo-img">
+                <img style={{ width: "50px", height: "50px" }} title={this.props.msg.userNickname} src={this.props.msg.image} alt="" className="img-responsive img-circle" />
+
+              </div>
+            </div>
+            :
+            <div className="convo-box convo-left" style={{ width:"60%" }}>
+              <div className="convo-area convo-left" style={{ maxWidth: "832px" }}>
+                <div className="convo-message">
+                  <p style={{ maxWidth: "100%" }}>  {this.props.msg.contents.split(/\n/g).map((word) =>
+                    <div>
+                      {word.split(" ").map(nbsp => <div style={{ display: "inline" }}>{nbsp}&nbsp;</div>)
+                      }<br></br>
+                    </div>
+                  )}</p>
+                </div>
+                <span>{this.props.msg.sendDate}</span>
+              </div>
+              <div className="convo-img">
+                <img style={{ width: "50px", height: "50px" }} title={this.props.msg.userNickname} src={this.props.msg.image} alt="" className="img-responsive img-circle" />
+              </div>
+            </div>
+
+
+        }
+      </div>
+    );
+  }
+
+}
+export default ChattingMsgItem;

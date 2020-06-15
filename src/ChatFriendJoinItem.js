@@ -9,6 +9,7 @@ class ChatFriendJoinItem extends Component {
         super(...arguments);
         this.state = {
             show: "none"
+          
         };
     }
 
@@ -85,7 +86,7 @@ class ChatFriendJoinItem extends Component {
             </div>
         );
     }
-
+   
 }
 
 export default ChatFriendJoinItem;
