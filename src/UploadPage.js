@@ -101,9 +101,9 @@ class UploadPage extends Component {
   render() {
     console.log("group chk :" + this.props.match.params.groupno)
     return (
-      <div>
-        <Header2 name="Upload"></Header2>
-        <section className="profile-two" style={{ paddingTop: "225px" }}>
+      <div className="App" style={{height:"100vh"}}>
+        {/* <Header2 name="Upload"></Header2> */}
+        <section className="profile-two" style={{ paddingTop: "100px", height:"100%"}}>
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-8 col-lg-offset-2" style={{ background: "#F4F4F4", marginTop: "1px" }}>  {/** 두번째 섹션 */}

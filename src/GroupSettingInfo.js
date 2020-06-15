@@ -20,7 +20,6 @@ class GroupSettingInfo extends Component {
           basic : '',
           nobasic : '' 
       },
-      chk: '',
       imgurl:'',
       title:''
     }
@@ -52,11 +51,10 @@ class GroupSettingInfo extends Component {
   handleRadio=(event)=>{
     let obj = {}
     obj[event.target.value] = event.target.checked 
+    console.log("img chkkkkk : " + event.target.checked)
     this.setState({
         visible: obj,
-        chk: !this.state.chk,
-        previewURL: this.state.visible['basic'] == false ? '/gitbook/assets/img/bg/basic.jpg' : this.state.previewURL,
-        imgurl: this.state.visible['basic'] == false ? '/gitbook/assets/img/bg/basic.jpg' : this.state.imgurl
+        previewURL: event.target.value === "basic" ? '/gitbook/assets/img/bg/basic.jpg' : '',
     });
   } 
 
@@ -81,9 +79,16 @@ class GroupSettingInfo extends Component {
     })
     .then(response => response.json())
     .then( json => {
-        this.setState({
-            imgurl: json.data
-        })
+      const check=json.data.split('.').pop()
+      if(check=="png"|| check=="jpg"|| check=="gif"||check=="jpeg" ||check=="PNG"){
+          this.setState({
+              imgurl: json.data
+          })
+      } else {
+          this.setState({
+              previewURL:""
+          })
+      }
     })
     .catch(err => console.log(err));
 
@@ -164,7 +169,7 @@ class GroupSettingInfo extends Component {
             this.state.previewURL < 2 ? 
             <div className="imageFileDiv" style={{ width: "470px", height: "170px", marginTop:"0px"}}>
               <label style={{marginLeft:"35%"}}>
-                <input type="file" onChange={this.imageChange.bind(this)} disabled={this.state.chk} style={{display: "none"}}/> 
+                <input type="file" accept="image/gif,image/jpeg,image/png,image/jpg" onChange={this.imageChange.bind(this)} style={{display: "none"}}/> 
                 <i className="fa fa-camera text-muted fa-4x" id="custom" />
               </label>
             </div> : <div className="div2">
@@ -243,8 +248,7 @@ class GroupSettingInfo extends Component {
             basic : json.data.image == '/gitbook/assets/img/bg/basic.jpg' ? true : false,
             nobasic : json.data.image != '/gitbook/assets/img/bg/basic.jpg' ? true : false 
           },
-          chk: json.data.image == '/gitbook/assets/img/bg/basic.jpg' ? true : false,
-          imgurl: json.data.image == '/gitbook/assets/img/bg/basic.jpg' ? '/gitbook/assets/img/bg/basic.jpg' : json.data.image
+          imgurl: json.data.image
         });
     })
     .catch( err => console.error( err ));  

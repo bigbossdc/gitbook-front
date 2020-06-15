@@ -85,17 +85,16 @@ class MyFriendRouter extends Component {
 
 
   render() {
-    console.log("testaaaa" + sessionStorage.getItem("authUserId") + ":" + this.state.friendNum)
     return (
       <div className="App">
-       <Header2 name="Friend"></Header2>
-        <section className="profile-two" style={{paddingTop:"225px"}}>
+       {/* <Header2 name="Friend"></Header2> */}
+        <section className="profile-two" style={{paddingTop:"100px"}}>
           <div className="container-fluid">
             <div className="row">
             <Navigation id={ sessionStorage.getItem("authUserId")}></Navigation> 
             
                   {/** 두번째 섹션 */}
-                  <div className="col-lg-6" style={{background: "#f4f4f4",marginTop:"1px"}}>             
+                  <div className="col-lg-6" style={{background: "#f4f4f4"}}>             
                   <Route path="/gitbook/myfriend" exact render={() => <FriendList 
                           callback={{add: this.callbackAddFriend.bind(this), 
                                      delete: this.callbackRejectFriend.bind(this)
