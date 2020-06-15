@@ -26,7 +26,7 @@ export default class SocketClient extends Component {
 	render() {
 		return (
 			<SockJsClient
-				url="http://127.0.0.1:8080/gitbook/socket"
+				url={`${global.API_URL}/gitbook/socket`}
 				topics={[`/topics/alarm/${sessionStorage.getItem("authUserId")}`, `/topics/chatting/${sessionStorage.getItem("authUserId")}`]}
 				onMessage={(msg) => {
 					let type = msg.split(">>")[0];

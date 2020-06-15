@@ -100,7 +100,7 @@ export default class AlarmBox extends Component {
 		return (
 			<Fragment>
 				<SockJsClient
-					url="http://127.0.0.1:8080/gitbook/socket"
+					url={`${global.API_URL}/gitbook/socket`}
 					topics={[`/topics/alarm/${sessionStorage.getItem("authUserId")}`, `/topics/chatting/${sessionStorage.getItem("authUserId")}`]}
 					onMessage={(msg) => {
 						let type = msg.split(">>")[0];
@@ -118,7 +118,7 @@ export default class AlarmBox extends Component {
 				<li className="dropdown notification-list" style={{ paddingLeft: "10px", paddingRight: "10px" }}>
 					{/** 알림 버튼 아이콘*/}
 					<a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-						<i className="fa fa-bell noti-icon" style={{ display: "inline-block" }}></i>
+						<i className="fa fa-bell noti-icon" style={{ display: "inline-block", cursor:"pointer"}}></i>
 						{this.state.alarmList === null || this.state.alarmList.length === 0 ? <></> : <span className="badge badge-danger badge-pill noti-icon-badge">{this.state.alarmList.length > 99 ? "99+" : this.state.alarmList.length}</span>}
 					</a>
 					{/** 알림 목록 보여줄 때*/}
