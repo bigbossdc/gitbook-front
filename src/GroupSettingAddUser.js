@@ -30,7 +30,7 @@ class GroupSettingAddUser extends Component {
       headers: global.API_HEADERS,
       body:JSON.stringify({
               userno: userno,
-              groupno: groupno
+              groupno: groupno,
           })
       })
       .then(response => response.json())

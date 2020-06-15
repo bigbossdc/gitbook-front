@@ -7,6 +7,7 @@ import Navigation2 from './Navigation2';
 import FriendList from './FriendList';
 
 
+
 class MyFriendRouter extends Component {
   constructor() {
     super(...arguments);
@@ -23,9 +24,9 @@ class MyFriendRouter extends Component {
         method: 'post',
         headers: global.API_HEADERS,
         body: JSON.stringify({
-          userno: sessionStorage.getItem("authUserNo"),
+          userno: sessionStorage.getItem("authUserNo"), 
           friendno: friendNo,
-          id: sessionStorage.getItem("authUserId"),
+          id: sessionStorage.getItem("authUserId"), // zozfd@daum.net : 17(friendId)
           kind: "친구"
         })
     })
