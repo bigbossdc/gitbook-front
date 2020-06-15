@@ -36,6 +36,15 @@ export default class ProfileSection extends Component {
 	};
 
 	updateProfile = () => {
+		if(this.state.editables.nickname === '' || this.state.editables.nickname.length < 2 || this.state.editables.nickname.length > 10){
+			alert("닉네임을 2자 ~ 10자 이내로 입력하세요.");
+			return;
+		}
+		if(this.state.editables.profileContents.length > 40 || this.state.editables.profileContents.trim().length < 1){
+			alert("프로파일 소개글을 40자 이내로 입력하세요.");
+			return;
+		}
+
 		fetch(`${global.API_URL}/gitbook/user/profile/update/${this.props.userid}`, {
 			method: "post",
 			headers: global.API_HEADERS,
@@ -109,7 +118,6 @@ export default class ProfileSection extends Component {
 	};
 
 	render() {
-		console.log("닉네임 >> ", sessionStorage.getItem("authUserNickName"));
 		return (
 			<aside id="leftsidebar" className="sidebar">
 				<ul className="list">

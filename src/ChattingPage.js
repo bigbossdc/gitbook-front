@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Header2 from './Header2';
 import ChattingListItem from './ChattingListItem';
 import ChattingRoom from './ChattingRoom';
 //import { Link } from "react-router-dom";
 import "./ChattingPage.css";
 import ChatFriendJoinItem from "./ChatFriendJoinItem";
+import SockJsClient from "react-stomp";
 
 class ChattingPage extends Component {
   constructor() {
@@ -16,8 +17,10 @@ class ChattingPage extends Component {
       modalSearch: '',
       newChatName: '',
       inviteList: [],
+      inviteList2:'',
       chatRoomList:[],
-      checkItem:''
+      checkItem:'',
+      msgList:''
     }
   }
   handleChange(e) {
@@ -40,10 +43,26 @@ class ChattingPage extends Component {
     })
   }
   onCheckItm(list){
-    this.setState({
-      checkItem:list
+    
+      fetch(`${global.API_URL}/gitbook/chatting/api/chatRoomInfo/${list.no}`, {
+      method: 'get',
+      headers: global.API_HEADERS,
     })
+      .then(response => response.json())
+      .then(json => {
+        window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop(document.body.scrollHeight);
+        this.setState({
+          inviteList2: json.data.inviteList,
+          checkItem:list,
+          msgList:json.data.msgList
+        });
+      })
+      .catch(err => console.error(err));
+      
+     this.onSendChatting();
   }
+  
+  
 
   inviteListadd(list) {
     if (this.state.inviteList.length < 9) {
@@ -76,16 +95,45 @@ class ChattingPage extends Component {
           });
       })
       .catch(err => console.error(err));
-
+      // this.clientRef.sendMessage("/app/chatting/socketCreateCahtRoom",JSON.stringify(formData));
       this.onCloseHandler();
 
   }
 
+  onSendChatting = () => {
+   
+		this.clientRef.sendMessage("/app/chatting/send",JSON.stringify());
+	};
+  onChageMsgList(msgList){
+    this.setState({
+      msgList:msgList
+    })
+
+  }
   render() {
+ 
     return (
-      <div className="ChattingPage">
-        <Header2 name="Chatting"></Header2>
-        <section className="profile-two" style={{ paddingTop: "225px", overflow: "hidden" }}>
+
+      <Fragment>
+     
+      <SockJsClient
+				url={`${global.API_URL}/gitbook/socket`}
+				topics={[`/topics/chatting/resetChatRoom/${sessionStorage.getItem("authUserNo")}`]}
+				onMessage={(msg) => {
+         this.setState({
+          chatRoomList:msg
+         })
+
+				}}
+				ref={(client) => {
+					this.clientRef = client;
+				}}
+			></SockJsClient>
+
+      <div className="ChattingPage" style={{height:"100vh"}}>
+        {/* <Header2 name="Chatting"></Header2> */}
+        <section className="profile-two" style={{ paddingTop: "100px", height:"100%", overflow: "hidden" }}>
+
           <div className="container" >
             <div className="row">
               <div className="messages-box">
@@ -132,8 +180,13 @@ class ChattingPage extends Component {
                   </div>
                   <div className="col-lg-8 col-md-12 pd-right-none pd-left-none">
                     <ChattingRoom
-                      key={this.state.checkItem}
+                      key={this.state.checkItem.no}
                       chatInfo={this.state.checkItem}
+                      inviteList={this.state.inviteList2}
+                      msgList={this.state.msgList}
+                      change={{
+                        change:this.onChageMsgList.bind(this)
+                      }}
                     />
                   </div>
                 </div>
@@ -220,7 +273,7 @@ class ChattingPage extends Component {
 
                       </div>
                       {
-                        (this.state.newChatName != '' && (this.state.inviteList.length >= 1)) ?
+                        (this.state.newChatName.trim() != '' && (this.state.inviteList.length >= 1)) ?
                           <button onClick={this.createChattingRoom.bind(this)} className="chatButton" >생성</button> : ''
                       }
                     </div>
@@ -233,6 +286,7 @@ class ChattingPage extends Component {
         </section>{/** profile-twd 종료 */}
 
       </div>
+      </Fragment>
     );
   }
 

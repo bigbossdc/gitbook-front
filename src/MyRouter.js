@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import Header2 from './Header2';
+import Header3 from './Header3';
 import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
 import MyTimelinePage from './MyTimelinePage';
@@ -40,12 +40,13 @@ changeScheduleRepoValue(){
  
     return (
       <div className="App">
-      {(this.props.match.params.userid === sessionStorage.getItem("authUserId")) ? <Header2 name="MyTimeline"
+      {/* {(this.props.match.params.userid === sessionStorage.getItem("authUserId")) ? <Header2 name="MyTimeline"
         key="123"></Header2> : 
         <Header2
-         />}
+         />} */}
+         {/* <Header3/> */}
 
-        <section className="profile-two" style={{paddingTop:"225px"}}>
+        <section className="profile-two" style={{paddingTop:"100px"}}>
           <div className="container-fluid">
             <div className="row">
                   <Navigation                   

@@ -26,6 +26,16 @@ class NavigationGroup extends Component {
                     </div>
                 <div className="detail">               
                   <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", margin:"10px"}}>
+                    {/* {
+                       this.props.groupinfo.groupIntro.split(/\n/g).map((word)=>
+                      <div>
+                        {
+                          word.split(" ").map(nbsp => <div>{nbsp}&nbsp;</div>)
+                        }
+                      </div>
+                      )
+
+                    } */}
                     {this.props.groupinfo.groupIntro}
                   </p>                       
                 </div>

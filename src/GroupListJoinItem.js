@@ -5,6 +5,7 @@ import './Fluffs/assets/css/demos/group.css';
 
 
 class GroupListJoinItem extends Component {
+
     render() {
         return(   
          <div>  

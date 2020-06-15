@@ -56,12 +56,12 @@ class GroupRouter extends Component {
   }
 
   render() {
-    console.log(this.state.groupInfo)
+    console.log(this.props.groupno)
     return (
       <div className="AppGroup">
-       <Header></Header>
-       <Header2 name="Group"></Header2>
-        <section className="profile-two" style={{paddingTop:"225px"}}>
+       {/* <Header></Header> */}
+       {/* <Header2 name="Group"></Header2> */}
+        <section className="profile-two" style={{paddingTop:"100px"}}>
           <div className="container-fluid">
             <div className="row">
               
