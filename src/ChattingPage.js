@@ -83,9 +83,9 @@ class ChattingPage extends Component {
 
   render() {
     return (
-      <div className="ChattingPage">
-        <Header2 name="Chatting"></Header2>
-        <section className="profile-two" style={{ paddingTop: "225px", overflow: "hidden" }}>
+      <div className="ChattingPage" style={{height:"100vh"}}>
+        {/* <Header2 name="Chatting"></Header2> */}
+        <section className="profile-two" style={{ paddingTop: "100px", height:"100%", overflow: "hidden" }}>
           <div className="container" >
             <div className="row">
               <div className="messages-box">

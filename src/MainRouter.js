@@ -17,11 +17,11 @@ class MainRouter extends Component {
   render() {
 
     return (
-      <div className="App">
-        <Header2></Header2>
-        <section className="profile-two" style={{paddingTop:"225px"}}>
+      <div className="App" >
+        {/* <Header2></Header2> */}
+        <section className="profile-two" style={{paddingTop:"100px", height:"100vh"}}>
           <div className="container-fluid">
-            <div className="row">
+            <div className="row" style={{marginLeft:"0px"}}>
               <div className="col-lg-8 col-lg-offset-2">
 
                 <div className="followers-box full-width" style={{backgroundColor:"#F4F4F4",boxShadow:"none",border:"none"}}>
@@ -32,8 +32,6 @@ class MainRouter extends Component {
                  {/* <Route
                       path='/gitbook/main'
                       render={() => <MainTimelineList/>}/> */}
-
-
                   <Route path="/gitbook/main" exact render={()=> <MainTimelineList  />}></Route>
                   <Route path="/gitbook/main/tag/:tagid"  component={TagTimelineList}></Route>
                   <Route path="/gitbook/main/upload" render={() => <UploadPage />}/>

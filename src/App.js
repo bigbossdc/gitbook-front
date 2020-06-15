@@ -19,7 +19,8 @@ class App extends Component {
     this.state = {
       keyword:'',
       result:'',
-      authUser:''
+      authUser:'',
+      contentsid: "main"
     }
   }
   // Header 친구 검색
@@ -51,18 +52,24 @@ class App extends Component {
   }
   
   render() {  
-  
+    
+
     return (
 
       <div className="App">
+        {
+          
+          console.log("test url")
+          
+        }
 
-        <Header handlerSubmit={{search: this.onSearchSubmit.bind(this)}}></Header>
+        <Header handlerSubmit={{search: this.onSearchSubmit.bind(this)}} url={this.state.url}></Header>
         <Route path="/gitbook/main" render={() => <MainRouter result={this.state.result} keyword={this.state.keyword}/>}></Route>
         <Route path="/gitbook/my/:userid?" component={MyRouter}></Route>
         <Route path="/gitbook/chatting" render={() => <ChattingPage result={this.state.result}/>}></Route> 
         <Route path="/gitbook/mygroup/:groupno?" component={MyGroupRouter}></Route>
-        <Route path="/gitbook/myfriend" component={MyFriendRouter}></Route>
-        <Route path="/gitbook/upload/:groupno?" exact component={UploadPage}></Route>  
+        <Route path="/gitbook/myfriend" component={MyFriendRouter} ></Route>
+        <Route path="/gitbook/upload/:groupno?" exact component={UploadPage}></Route>         
         <Route path="/gitbook/group/:groupno?/:userno?" component={GroupRouter}></Route> 
       </div>
     );

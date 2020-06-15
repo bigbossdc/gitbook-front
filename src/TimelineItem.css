@@ -160,6 +160,28 @@
 }
 
 #fileimage:hover{
-  
+
   transform: scale(1.2);
+}
+
+.main-nocontents {
+  background-color:#F4F4F4;
+  width:100%;
+  height:100%;
+  margin: 0 auto;
+}
+
+.main-nocontents-area {
+  width:900px;
+  margin:0px auto;
+  margin-top: 100px;
+  border-radius:20px;
+}
+.main-nocontents-area h1 {
+  color: #5e5d5d;
+}
+
+.main-nocontents-area text {
+  color: #848484;
+  font-size: 1.5em;
 }

@@ -79,7 +79,17 @@
     list-style: none outside;
     padding: 0;
     overflow: auto;
-    height: 300px;
+    max-height: 300px;
+    min-height: 30px;
+}
+.notifications ul div .nocontents {
+    text-align: center;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+}
+.notifications ul div .nocontents i:hover {
+    color: #0fc19e;
+    border-color: #0fc19e;
 }
 .notifications ul li .media .media_body .btn_group {
     float: right;

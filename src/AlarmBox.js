@@ -94,7 +94,7 @@ export default class AlarmBox extends Component {
 		return (
 			<Fragment>
 				<SocketClient receiveAlarmHandler={this.onReceiveAlarmOnline}/>
-				<li className="dropdown notification-list" style={{ paddingLeft: "20px" }}>
+				<li className="dropdown notification-list" style={{ paddingLeft: "15px", paddingRight:"0px"}}>
 					{/** 알림 버튼 아이콘*/}
 					<a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 						<i className="fa fa-bell noti-icon" style={{ display: "inline-block" }}></i>

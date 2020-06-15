@@ -77,7 +77,7 @@ class GroupRepositoryPage extends Component {
           <div className="container" style={{ width: "100%" }}>
           <span style={k}></span>
             <h2>
-            <Link to={`/gitbook/group/${this.props.match.params.groupno}/${this.props.match.params.userno}/repository`}>{this.props.match.params.userid}</Link>
+            <Link to={`/gitbook/group/${this.props.match.params.groupno}/${sessionStorage.getItem("authUserNo")}/repository`}>{this.props.match.params.userid}</Link>
             </h2>
             <h2>/</h2>{" "}
             <h2 onClick={this.onClickHandler.bind(this,'')}>

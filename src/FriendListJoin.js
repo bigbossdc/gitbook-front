@@ -22,15 +22,23 @@ class FriendListJoin extends Component {
          <div>
             <div className="group-req">
             <p><h4 className="group-req-title"><b>친구 목록 ({this.props.friendnum}명)</b></h4></p>
-                <div className="group-search-area">   
+                {this.props.userinfo == "" ?
+                ""
+                :<div className="group-search-area">   
                     <div className="group-input-field">
                         <input placeholder="Search1" type="text" value={this.props.keyword} onChange={this.onInputChange.bind(this)}/>
                         <i className="fa fa-search"></i>  
                     </div>
                 </div>
+                }
+
                 <section class="notifications">
                     <ul className="group-list">
-                        { this.props.userinfo && this.props.userinfo
+                        {this.props.userinfo == "" ?
+                            <div>
+                                <p className="nocontents">친구가 없습니다. 친구를 추가해보세요 :)</p>
+                            </div>
+                            :this.props.userinfo && this.props.userinfo
                             .filter((element) => element.nickname.indexOf(this.props.keyword) != -1 || element.name.indexOf(this.props.keyword) != -1 || element.id.indexOf(this.props.keyword) != -1)
                             .map( list => <FriendListJoinItem 
                                 key={ list.id }
@@ -40,7 +48,8 @@ class FriendListJoin extends Component {
                                 no={list.no}
                                 img={list.image}
                                 callback={this.props.callback}
-                        />) }
+                            />) 
+                        }
                     </ul>
                 </section>
             </div>

@@ -11,7 +11,7 @@ class GroupRegist extends Component {
         super(...arguments);
         this.state={
             groupTitle: '',
-            description:'',
+            groupIntro:'',
             file: null,
             previewURL:'',
             visible:{
@@ -33,7 +33,7 @@ class GroupRegist extends Component {
         if(e.target.value.length > 100) {
             alert("100자를 초과했습니다 (글자수: " + e.target.value.length + ")" )
             this.setState({
-                description: e.target.value.substring(0, 100)
+                groupIntro: e.target.value.substring(0, 100)
             });
         }
     }
@@ -53,8 +53,7 @@ class GroupRegist extends Component {
             previewURL: ''
     
         })
-    
-      }
+    }
 
     imageChange(event) {
         console.log("imagechange");
@@ -73,9 +72,16 @@ class GroupRegist extends Component {
         })
         .then(response => response.json())
         .then( json => {
-            this.setState({
-                imgurl: json.data
-            })
+            const check=json.data.split('.').pop()
+            if(check=="png"|| check=="jpg"|| check=="gif"||check=="jpeg" ||check=="PNG"){
+                this.setState({
+                    imgurl: json.data
+                })
+            } else {
+                this.setState({
+                    previewURL:""
+                })
+            }
         })
         .catch(err => console.log(err));
 
@@ -92,7 +98,7 @@ class GroupRegist extends Component {
     } 
 
     onResult() {
-        this.props.handleSubmit(this.state.groupTitle, this.state.description, this.state.imgurl)
+        this.props.handleSubmit(this.state.groupTitle, this.state.groupIntro, this.state.imgurl)
     }
 
     render() {
@@ -128,8 +134,8 @@ class GroupRegist extends Component {
                         <br/>
                         <h4 style={{fontFamily:"'Nanum Gothic', sans-serif"}}>그룹 인사말 (100자 이내)</h4>
                         <textarea className="form-control no-border" 
-                                  value={this.state.description} 
-                                  name="description"
+                                  value={this.state.groupIntro} 
+                                  name="groupIntro"
                                   onChange={this.handleChange.bind(this)}
                                   onKeyUp={this.handleLengthChk.bind(this)}
                                   rows="3"></textarea>
@@ -159,7 +165,7 @@ class GroupRegist extends Component {
                                 this.state.previewURL < 2 ? 
                                 <div className="imageFileDiv" style={{ width: "470px", height: "170px", marginTop:"0px"}}>
                                     <label style={{marginLeft:"35%"}}>
-                                    <input type="file" onChange={this.imageChange.bind(this)} disabled={this.state.chk} style={{display: "none"}}/> 
+                                    <input type="file" accept="image/gif,image/jpeg,image/png,image/jpg" onChange={this.imageChange.bind(this)} disabled={this.state.chk} style={{display: "none"}}/> 
                                     <i className="fa fa-camera text-muted fa-4x" id="custom" />
                                     </label>
                                 </div> :  <div className="div2">

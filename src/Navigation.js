@@ -69,7 +69,6 @@ onClose() {
 }
  
   render() {
-    console.log("aaa :" + this.state.userinfo.status)
         return(
           <div>
             <div className="col-lg-3">
@@ -110,6 +109,7 @@ onClose() {
                </div>
               </li>
               <li>
+              
                 <Link to={`/gitbook/my/${this.state.userinfo && this.state.userinfo.id}`}>
                   <div className="contents-div">
                     <small className="navi"><i class="fas fa-stream"></i>&nbsp;&nbsp;&nbsp;Timeline <em className="fa fa-angle-right pull-right"></em></small>
@@ -133,7 +133,7 @@ onClose() {
              </ul>
             </aside>
             <hr/>
-            <div className="col-lg-12"> 
+            <div className="col-lg-12" style={{marginTop:"10px"}}> 
 
               <Calendar userid = {this.props.id}/>
             </div>            

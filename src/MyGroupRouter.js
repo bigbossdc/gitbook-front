@@ -107,19 +107,18 @@ class MyGroupRouter extends Component {
 
 
   render() {
-    console.log("grouplist확인 : " + this.state.groupList)
     return (
-      <div className="AppMyGroupRouter">
+      <div className="App">
 
-       <Header2 name="Group"></Header2>
-        <section className="profile-two" style={{paddingTop:"225px"}}>
+       {/* <Header2 name="Group"></Header2> */}
+        <section className="profile-two" style={{paddingTop:"100px"}}>
           <div className="container-fluid">
             <div className="row">
               
-                   <Navigation id={ sessionStorage.getItem("authUserId")}></Navigation> 
+                  <Navigation id={ sessionStorage.getItem("authUserId")}></Navigation> 
             
                   {/** 두번째 섹션 */}
-                  <div className="col-lg-6" style={{background: "#f4f4f4",marginTop:"1px"}}>             
+                  <div className="col-lg-6" style={{background: "#f4f4f4"}}>             
                   <Route path="/gitbook/mygroup" exact 
                         render={() => <GroupList 
                                         grouplist={this.state.groupList} 
