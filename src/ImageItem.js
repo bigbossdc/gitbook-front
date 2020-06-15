@@ -30,13 +30,13 @@ class ImageItem extends Component {
               </div>
              
              
-              <div className="modal" style={{ display: this.state.show ,marginTop:"212px" }}>
+              <div className="modal" style={{ display: this.state.show }}>
               <div>
                 <div className="col-lg-8 col-lg-offset-2" style={{ background: " rgba( 255, 255, 255, 0 )", marginTop: "1px"}}>  {/** 두번째 섹션 */}
                   <div className="UploadPage" style={{height:"100%",width:"100%"}} >
                     {/* <div className="box" style={{ boxShadow: "1px 1px 4px 2px #FFFFFF", padding: "10px", minWidth: "250px",Height:"600px",overflow:"auto" }}> */}
                   
-                    <img className="img-responsive" style={{maxHeight:"900px",maxWidth:"900px"}} onClick={this.onClose.bind(this)} id="fileimage"  src={this.props.url} alt="MaterialImg"/>
+                    <img className="img-responsive" style={{maxHeight:"900px",maxWidth:"900px",marginTop:"100px"}} onClick={this.onClose.bind(this)} id="fileimage"  src={this.props.url} alt="MaterialImg"/>
 
                     {/* </div> */}
                   </div>

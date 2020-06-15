@@ -42,6 +42,7 @@ class ChattingPage extends Component {
       show: "none"
     })
   }
+
   onCheckItm(list){
     
       fetch(`${global.API_URL}/gitbook/chatting/api/chatRoomInfo/${list.no}`, {
@@ -50,7 +51,7 @@ class ChattingPage extends Component {
     })
       .then(response => response.json())
       .then(json => {
-        window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop(document.body.scrollHeight);
+       
         this.setState({
           inviteList2: json.data.inviteList,
           checkItem:list,
@@ -60,6 +61,15 @@ class ChattingPage extends Component {
       .catch(err => console.error(err));
       
      this.onSendChatting();
+    
+  }
+
+  onResetChecItem(){
+    this.setState({
+      inviteList2: '',
+      checkItem:'',
+      msgList:''
+    });
   }
   
   
@@ -185,7 +195,8 @@ class ChattingPage extends Component {
                       inviteList={this.state.inviteList2}
                       msgList={this.state.msgList}
                       change={{
-                        change:this.onChageMsgList.bind(this)
+                        change:this.onChageMsgList.bind(this),
+                        reset:this.onResetChecItem.bind(this)
                       }}
                     />
                   </div>
@@ -201,8 +212,8 @@ class ChattingPage extends Component {
 
               <div>
 
-                <div className="modal" style={{ display: this.state.show, marginTop: "200px" }}>
-                  <div className="modal-content" style={{ margin: "-4% auto", height: "80%", width: "35%", minWidth: "500px", minHeight: "700px" }}>
+                <div className="modal" style={{ display: this.state.show }}>
+                  <div className="modal-content" style={{  height: "80%", width: "35%", minWidth: "500px", minHeight: "700px" }}>
                     <div className="modal-header" style={{
                       backgroundColor: "#0FC19E",
                       height: "70px"

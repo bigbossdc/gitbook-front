@@ -277,7 +277,7 @@ class TimeLineItem extends Component {
         
     {/* 여기부터 */}
 
-    <div className="modal" style={{ display: this.state.show ,marginTop:"160px" }}>
+    <div className="modal" style={{ display: this.state.show}}>
       <UploadPageItem 
 
         timelineInfo={this.props.list}
