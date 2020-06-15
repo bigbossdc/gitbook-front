@@ -1,33 +1,82 @@
 import React, { Component } from 'react';
 import "./ChattingPage.css";
 import ChattingMsgItem from "./ChattingMsgItem";
-
+import SockJsClient from "react-stomp";
 
 class ChattingRoom extends Component {
 	constructor() {
 		super(...arguments);
 		this.state = {
-
+			sendMsg:''
 		}
 	}
+	handleChange(e) {
+		this.setState({
+		  [e.target.name]: e.target.value
+		})
+	  }
+
+	  handleKeyPress(e) {
+		if ((e.key == 'Enter') && (this.state.sendMsg.trim() !=='')) {
+	
+			const formData = new FormData();
+			formData.append("contents", this.state.sendMsg);
+			let inviteUserNo = [];
+			this.props.inviteList.map((list) => inviteUserNo = inviteUserNo.concat(list.userNo))
+			formData.append("inviteList", inviteUserNo);
+		  fetch(`${global.API_URL}/gitbook/chatting/api/sendMsg/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}`, {
+			method: 'post',
+			headers: {},
+			body: formData
+		  })
+			
+		  this.setState({
+			sendMsg: '',
+		  })
+		  //window.jQuery(document.getElementsByClassName("img1-comment-list")).scrollTop(0);
+
+
+		}
+	  }
+	  onChageMsgList(msg){
+		  console.log("실행"+msg)
+			this.props.change.change(msg);
+	  }
+
 
 	render() {
+	
+		const admin = this.props.inviteList && this.props.inviteList.filter((item)=> item.grant ==="admin")
 		return (
 			<div>
+				<SockJsClient
+				url={`${global.API_URL}/gitbook/socket`}
+				topics={[`/topics/chatting/test/${this.props.chatInfo.no}`]}
+				onMessage={(msg) => {
+					this.onChageMsgList(msg);
+
+				}}
+				ref={(client) => {
+					this.clientRef = client;
+				}}
+			></SockJsClient>
+
+
 				{this.props.chatInfo&&this.props.chatInfo?
 				<div className="conversation-box">
-
-					<div className="conversation-header">
+					<div className="conversation-header" style={{height:"80px"}}>
 						<div className="user-message-details">
 
 							<div className="user-message-img">
-								<img src="assets/img/users/6.jpg" className="img-responsive img-circle" alt="" />
+								{admin.map(list=><img src={list.image} width="50" style={{width:"40px !importent",height:"40px"}}className="img-responsive img-circle" alt="" />)	
+								// <img src={admin.image} className="img-responsive img-circle" alt="" />
+								}
 							</div>
 							<div className="user-message-info" style={{width:"90%"}} >
 								
 								<div style={{display:"inline-block",marginTop:"6px"}}>
 									<h4 style={{ fontFamily: "'Jeju Gothic', sans-serif",width:"100%" }}>{this.props.chatInfo && this.props.chatInfo.title}</h4>
-									<p style={{ fontFamily: "'Jeju Gothic', sans-serif" }}>참여인원&nbsp;5명</p>
+									<p style={{ fontFamily: "'Jeju Gothic', sans-serif" }}key={this.props.inviteList} >참여인원&nbsp;{this.props.inviteList&&this.props.inviteList.length}명</p>
 								</div>
 
 								<div className="dropdown pull-right" style={{float:"right"}}>
@@ -48,18 +97,26 @@ class ChattingRoom extends Component {
 
 					<div className="conversation-container">
 
-						<ChattingMsgItem />
-						<ChattingMsgItem />
-						<ChattingMsgItem />
-						<ChattingMsgItem />
-						<ChattingMsgItem />
+					{	this.props.msgList && this.props.msgList.map((list)=>	
+						<ChattingMsgItem 
+							key={list.no}
+							msg={list}
+						/>
+							)	
+					}	
 
 
 
 					</div>
 					<div className="type_messages">
 						<div className="input-field">
-							<textarea placeholder="채팅을 입력해주세요.."></textarea>
+							<textarea 
+							placeholder="채팅을 입력해주세요.."
+							name="sendMsg"
+							value={this.state.sendMsg}
+							onChange={this.handleChange.bind(this)}
+							onKeyPress={this.handleKeyPress.bind(this)}
+							/>
 							<ul className="imoji">
 
 								<li><a> <i className="fas fa-arrow-circle-right"></i></a></li>
@@ -78,6 +135,12 @@ class ChattingRoom extends Component {
 			</div>
 		);
 	}
+
+	
+
+
+
+
 
 }
 export default ChattingRoom;
