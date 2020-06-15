@@ -100,7 +100,7 @@ export default class AlarmBox extends Component {
 		return (
 			<Fragment>
 				<SockJsClient
-					url="http://127.0.0.1:8080/gitbook/socket"
+					url={`${global.API_URL}/gitbook/socket`}
 					topics={[`/topics/alarm/${sessionStorage.getItem("authUserId")}`, `/topics/chatting/${sessionStorage.getItem("authUserId")}`]}
 					onMessage={(msg) => {
 						let type = msg.split(">>")[0];
@@ -138,9 +138,6 @@ export default class AlarmBox extends Component {
 							<div className="alarmBoxScrollArea">
 								<AlarmList alarmList={this.state.alarmList} onAlarmRead={this.onAlarmRead.bind(this)} /> {/** 알림 메시지 목록 */}
 							</div>
-							<a href="#" className="dropdown-item text-center notify-all">
-								More Alarms <i className="fa fa-arrow-right"></i>
-							</a>
 						</div>
 					</div>
 				</li>

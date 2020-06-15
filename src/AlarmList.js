@@ -22,9 +22,9 @@ export default class AlarmList extends Component {
 				{list.length !== 0 ? (
 					list
 				) : (
-					<p className="dropdown-item notify-item notify-details" style={{ fontSize: "15px" }}>
-						no alarms...
-					</p>
+					<div>
+						<img src={global.API_URL + "/gitbook/assets/img/error/noAlarm.png"} alt="no alarm..." style={{ width: "20%", height: "20%", display: "block", margin: "50px auto" }} />
+					</div>
 				)}
 			</div>
 		);
