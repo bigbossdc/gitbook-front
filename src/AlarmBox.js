@@ -80,7 +80,7 @@ export default class AlarmBox extends Component {
 	};
 
 	onReceiveAlarmOnline = (newAlarmItem) => {
-		console.log(newAlarmItem);
+		console.log("RECEIVED ALARM >> ", newAlarmItem);
 
 		let original = this.state.alarmList;
 		original.unshift(newAlarmItem);

@@ -19,7 +19,7 @@ class FriendSearchItem extends Component {
       body:JSON.stringify({
         userno: sessionStorage.getItem("authUserNo"),
         friendno: this.props.no,
-        userId: sessionStorage.getItem("authUserId"),
+        userNickName: sessionStorage.getItem("authUserNickName"),
         friendId : this.props.id,
       })
     })
