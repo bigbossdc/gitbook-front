@@ -8,7 +8,8 @@ class ChattingListItem extends Component {
 		super(...arguments);
 		this.state = {
 			chatRoomImage: '',
-			chatRoomLastMsg: ''
+			chatRoomLastMsg: '',
+			alarmCount:''
 		}
 	}
 	oncheckItem() {
@@ -16,6 +17,13 @@ class ChattingListItem extends Component {
 		this.props.onCheckItm.check(this.props.list);
 
 	}
+	resetAlarm() {
+		  fetch(`${global.API_URL}/gitbook/chatting/api/resetAlarm/${sessionStorage.getItem("authUserNo")}/${this.props.list.no}`, {
+			method: 'post',
+			headers: global.API_HEADERS
+		
+		  })
+	  }
 
 	render() {
 		return (
@@ -28,6 +36,24 @@ class ChattingListItem extends Component {
 						this.setState({
 							chatRoomLastMsg:msg
 						})
+						if(this.props.check.no === this.props.list.no){
+						
+							this.resetAlarm()
+						}
+					}}
+					ref={(client) => {
+						this.clientRef = client;
+					}}
+				></SockJsClient>
+				<SockJsClient
+					url={`${global.API_URL}/gitbook/socket`}
+					topics={[`/topics/chatting/alarm/${this.props.list.no}/${sessionStorage.getItem("authUserNo")}`]}
+					onMessage={(msg) => {
+					if(this.props.check.no !== this.props.list.no){	
+						this.setState({
+							alarmCount:msg
+						})
+					}
 					}}
 					ref={(client) => {
 						this.clientRef = client;
@@ -48,7 +74,9 @@ class ChattingListItem extends Component {
 								<p className="txt_post" style={{ fontFamily: "'Jeju Gothic', sans-serif" }}>{this.state.chatRoomLastMsg && this.state.chatRoomLastMsg.contents}</p>
 								<span className="time-posted">{this.state.chatRoomLastMsg && this.state.chatRoomLastMsg.sendDate}</span>
 							</div>
-							<span className="message-notification">1</span>
+							{/* <i class="fas fa-comment-alt fa-2x" style={{color:"#0FC19E",margin:"4px"}}/> */}
+							{this.state.alarmCount && this.state.alarmCount !== 0 ?
+								<span className="message-notification">{this.state.alarmCount && this.state.alarmCount}</span>:''}
 						</div>
 					</li>
 
@@ -66,7 +94,8 @@ class ChattingListItem extends Component {
 			.then(json => {
 				this.setState({
 					chatRoomImage: json.data.image,
-					chatRoomLastMsg: json.data.lastMsg
+					chatRoomLastMsg: json.data.lastMsg,
+					alarmCount:json.data.alarmCount
 				});
 			})
 			.catch(err => console.error(err));
