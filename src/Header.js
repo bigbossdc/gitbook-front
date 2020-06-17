@@ -85,12 +85,12 @@ class Header extends Component {
                         {contentsname == "mygroup" ?
                            <div className="select-contents">
                               <Link to="/gitbook/mygroup" className="nav-icon">
-                                 <em className="fa fa-crosshairs"></em>
+                                 <em className="fas fa-users"></em>
                               </Link>
                            </div>
                            : <div className="noselect-contents">
                               <Link to="/gitbook/mygroup" className="nav-icon">
-                                 <em className="fa fa-crosshairs"></em>
+                                 <em className="fas fa-users"></em>
                               </Link>
                              </div>
                         }
@@ -121,12 +121,12 @@ class Header extends Component {
                         {contentsname == "myfriend" ?
                            <div className="select-contents">
                               <Link to="/gitbook/myfriend" className="nav-icon">
-                                 <em className="fas fa-user-friends"></em>
+                                 <em className="fas fa-user"></em>
                               </Link>
                            </div>
                            :<div className="noselect-contents">
                               <Link to="/gitbook/myfriend" className="nav-icon">
-                                 <em className="fas fa-user-friends"></em>
+                                 <em className="fas fa-user"></em>
                               </Link>
                            </div>
                         }

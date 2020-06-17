@@ -6,6 +6,7 @@ import './Fluffs/assets/css/demos/group.css';
 class GroupListRequestItem extends Component {
 
     onClickAdd() {
+        console.log("group chk1 " + this.props.groupTitle)
         this.props.callback.add(this.props.groupno);
     }
 

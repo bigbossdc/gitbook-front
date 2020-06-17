@@ -23,6 +23,7 @@ class TimeLineItem extends Component {
       show:'none',
       show2:'none',
       show3:'none',
+      show4:'none',
       deleteInput:'',
     }
 
@@ -39,11 +40,19 @@ class TimeLineItem extends Component {
       show2: "block",
     });
   }
+
+  onShowOutMember() {
+    this.setState({
+      show4: "block",
+    });
+  }
+
   onClose() {
     this.setState({
       show: "none",
       show2:"none",
       show3:"none",
+      show4:"none",
       deleteInput: ''
     });
   }
@@ -189,7 +198,11 @@ class TimeLineItem extends Component {
             </div>
             <div className="media-body">
               <p className="m-0" style={{ fontFamily: " 'Varela Round', sans-serif", fontSize: "1.3em" }}>
+                {(this.state.userInfo.userStatus == 1) ? 
                 <Link className="text-muted" to={`/gitbook/my/${this.state.userInfo.id}`}>{this.state.userInfo.nickname}</Link>
+                :<a className="text-muted" onClick={this.onShowOutMember.bind(this)} style={{cursor:"pointer"}}>{this.state.userInfo.nickname}</a>
+                }
+                       
                 {(this.props.list.visible === 'private') ?
                   <span style={{ color: "#E16A70" }}> [비공개 글입니다]</span> : ''
                 }
@@ -320,12 +333,35 @@ class TimeLineItem extends Component {
   </div>
 </div>
 </div>
-
-
-
 {/* 삭제 다이얼로그 여기까지 */}
 
+{/* 탈퇴회원 알림 다이얼로그  */}
+<div>
 
+<div className="modal" style={{ display: this.state.show4 }}>
+  <div className="modal-content" style={{ margin: "15% auto", height: "130px", width: "300px" }}>
+    <div className="modal-header" style={{
+      backgroundColor: "#0FC19E"
+    }}>
+      <span className="close" onClick={this.onClose.bind(this)}>&times;</span>
+      <h6 style={{ wordBreak: "break-all" }}>해당 사용자는 탈퇴한 회원입니다.</h6>
+    </div>
+
+    <div className="modal-footer">
+     <button
+        style={{ width: "70px", marginTop: "30px" }}
+        type="submit"
+        className="kafe-btn kafe-btn-mint-small" name="button-ok"
+        onClick={this.onClose.bind(this)}
+      >
+        ok
+    </button>
+
+    </div>
+  </div>
+</div>
+</div>
+{/* 탈퇴회원 알림 다이얼로그 여기까지 */}
 
 
 

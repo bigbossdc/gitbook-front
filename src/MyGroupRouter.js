@@ -50,7 +50,7 @@ class MyGroupRouter extends Component {
 
   // 그룹 요청 수락
   callbackAddGroup(groupno){
-    console.log("calledbackAddGroup Called")
+    console.log("calledbackAddGroup Called2323")
     console.log("그룹수락번호 " + groupno)
     
   

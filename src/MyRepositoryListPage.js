@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import MyRepositoryListItem from './MyRepositoryListItem';
 import './MyRepositoryListPage.css';
+import MyRepositoryListPageGuide from "./MyRepositoryListPageGuide";
+
 class MyRepositoryListPage extends Component {
   constructor(props){
     super(props);
@@ -51,6 +53,9 @@ callVisibleHandler(list){
     const authUserNo=sessionStorage.getItem("authUserNo");
     return (
             <div>
+              {this.state.repositorylist && this.state.repositorylist.length === 0 ? 
+                <MyRepositoryListPageGuide/>
+                :<div>
                 <div className = "row">
                   <div className="search-area" style={{width:"50%", display:"inline-block"}}>  
                     <div className="input-field" style={{border:"1px solid #DBDBDB ",height:"50px",borderRadius:"5px"}} >
@@ -92,8 +97,8 @@ callVisibleHandler(list){
                  }}
                 
                 />)}
-
-
+                </div>
+              }
             </div>      
     );
   }

@@ -64,6 +64,8 @@ class MyRepositoryPage extends Component {
       marginBottom: "3px"
     }
 
+    console.log("repo color : " + k.backgroundColor)
+
     return (
       <div className="RepositoryPage">
         <div

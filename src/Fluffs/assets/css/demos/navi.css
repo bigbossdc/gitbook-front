@@ -27,3 +27,21 @@
     display: block;
     padding: 0;
 }
+
+.navi-icon {
+    text-align:center; 
+    margin-bottom:30px;
+    color: #5b6160;
+}
+
+.navi-icon:hover {
+    text-align:center; 
+    margin-bottom:30px;
+    color: #0fc19e;
+}
+
+.navi-nocontents .navi-text {
+    text-align:center;
+    font-family:'Nanum Gothic', sans-serif;
+    color: #606665;
+}

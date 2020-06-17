@@ -97,7 +97,7 @@ class GroupRouter extends Component {
                   </div>
               
                   {/** 세번째 섹션 */}
-                  <NavigationGroup2 joinlist={this.state.joinList}></NavigationGroup2>
+                  <NavigationGroup2 joinlist={this.state.joinList} groupinfo={this.state.groupInfo}></NavigationGroup2>
 
             </div>{/** row 종료 */}
           </div>{/** container-fluid 종료 */}

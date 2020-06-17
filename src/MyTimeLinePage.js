@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TimelineItem from './TimelineItem';
+import MyTimeLinePageGuide from './MyTimeLinePageGuide';
 
 
 class MyTimelinePage extends Component {
@@ -24,35 +25,42 @@ class MyTimelinePage extends Component {
    }
 
   render() {
+    console.log("timeline chk " + this.state.timelineItemList.length)
     return (
       <div> 
-        { (sessionStorage.getItem("authUserId")===this.props.userid)?
+        {
+          (this.state.timelineItemList && this.state.timelineItemList.length === 0 ? <MyTimeLinePageGuide/>
+          
+          : ((sessionStorage.getItem("authUserId")===this.props.userid)?
         
-        this.state.timelineItemList && 
-        this.state.timelineItemList
-        .map((list,index)=> 
-        (index<this.state.num)?
-        <TimelineItem 
-        key={list.no}
-        list={list}
-        mathcid={this.props.userid}
-        />:''
-        ):
-        
-        this.state.timelineItemList && 
-        this.state.timelineItemList
-        .filter((list)=>
-              list.visible != 'private'
-        )
-        .map((list,index)=> 
-        (index<this.state.num)?
-        <TimelineItem 
-        key={list.no}
-        list={list}
-        mathcid={this.props.userid}/>
-        :''
-        )
+            this.state.timelineItemList && 
+            this.state.timelineItemList
+            .map((list,index)=> 
+            (index<this.state.num)?
+            <TimelineItem 
+            key={list.no}
+            list={list}
+            mathcid={this.props.userid}
+            />:''
+            ):
+            
+            this.state.timelineItemList && 
+            this.state.timelineItemList
+            .filter((list)=>
+                  list.visible != 'private'
+            )
+            .map((list,index)=> 
+            (index<this.state.num)?
+            <TimelineItem 
+            key={list.no}
+            list={list}
+            mathcid={this.props.userid}/>
+            :''
+            )
+
+          ))
         }
+
       </div>
     );
   }
