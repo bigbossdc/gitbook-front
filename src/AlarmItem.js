@@ -31,9 +31,8 @@ export default class AlarmItem extends Component {
 		this.setTimeDifference(this.props.itemData.alarmDate);
 		if (this.props.itemData.alarmType === "commit") {
 			let msg = this.props.itemData.alarmContents;
-			console.log(msg.slice(msg.indexOf("님이") + 3, msg.indexOf("에") - 1));
 			this.setState({
-				gitAddr: msg.slice(msg.indexOf("님이") + 3, msg.indexOf("에") - 1),
+				gitAddr: msg.slice(msg.indexOf("[") + 1, msg.indexOf(".git")),
 			});
 		}
 	}
@@ -52,13 +51,12 @@ export default class AlarmItem extends Component {
 
 		let arrNum = [year, month, day, hour, minute, second];
 		let arrMsg = ["년 전", "개월 전", "일 전", "시간 전", "분 전", "초 전"];
-		let message = null;
+		let message = "방금 전";
 		for (let i = 0; i < arrNum.length; i++) {
 			if (arrNum[i] !== 0) {
 				message = arrNum[i] + arrMsg[i];
 				break;
 			}
-			message = "방금 전";
 		}
 
 		this.setState({
@@ -75,7 +73,7 @@ export default class AlarmItem extends Component {
 						<i className={iconList[this.props.itemData.alarmType]}></i>
 					</div>
 					<p className="notify-details" style={{ whiteSpace: "normal", fontSize: "13px" }}>
-						{this.props.itemData.alarmContents.length < 65 ? this.props.itemData.alarmContents : `${this.props.itemData.alarmContents.slice(0, 65)}...`}
+						{this.props.itemData.alarmContents.length < 90 ? this.props.itemData.alarmContents : `${this.props.itemData.alarmContents.slice(0, 90)}...`}
 						<small className="text-muted">{this.state.message}</small>
 					</p>
 				</Link>

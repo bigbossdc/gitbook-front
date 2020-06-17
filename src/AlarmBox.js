@@ -115,11 +115,17 @@ export default class AlarmBox extends Component {
 						this.clientRef = client;
 					}}
 				/>
-				<li className="dropdown notification-list" style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+				<li className="dropdown notification-list" style={{ display: "block", padding: "0px auto", width: "70px" }}>
 					{/** 알림 버튼 아이콘*/}
 					<a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-						<i className="fa fa-bell noti-icon" style={{ display: "inline-block", cursor:"pointer"}}></i>
-						{this.state.alarmList === null || this.state.alarmList.length === 0 ? <></> : <span className="badge badge-danger badge-pill noti-icon-badge">{this.state.alarmList.length > 99 ? "99+" : this.state.alarmList.length}</span>}
+						<i className="fa fa-bell noti-icon" style={{ display: "inline-block", cursor: "pointer", paddingLeft: this.state.alarmList === null || this.state.alarmList.length === 0 ? "20px" : "5px" }}></i>
+						{this.state.alarmList === null || this.state.alarmList.length === 0 ? (
+							<></>
+						) : (
+							<span className="badge badge-danger badge-pill noti-icon-badge" style={{ padding: "3px 6px", fontSize: "11px" }}>
+								{this.state.alarmList.length > 99 ? "99+" : this.state.alarmList.length}
+							</span>
+						)}
 					</a>
 					{/** 알림 목록 보여줄 때*/}
 					<div className="dropdown-menu dropdown-menu-right dropdown-lg" style={{ width: "400px", left: "-400px" }}>
