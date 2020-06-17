@@ -11,6 +11,7 @@ import MyRepositoryWritePage from './MyRepositoryWritePage';
 import ProfileAndAccount from './ProfileAndAccount';
 
 
+
 class MyRouter extends Component {
   constructor(props){
     super(props);
@@ -39,6 +40,7 @@ changeScheduleRepoValue(){
   render() {
  
     return (
+      
       <div className="App">
       {/* {(this.props.match.params.userid === sessionStorage.getItem("authUserId")) ? <Header2 name="MyTimeline"
         key="123"></Header2> : 
@@ -97,6 +99,7 @@ changeScheduleRepoValue(){
           </div>{/** container-fluid 종료 */}
         </section>{/** profile-twd 종료 */}
       </div>
+      
     );
   }
 
