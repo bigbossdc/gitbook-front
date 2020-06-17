@@ -3,10 +3,11 @@ import {Link} from "react-router-dom";
 import "./Fluffs/assets/css/demos/navi.css";
 import Calendar from './Calendar'
 
-
+import ErrorBoundary from './ErrorBoundary';
 
 class Navigation extends Component {
-  constructor() {
+
+ constructor() {
     super(...arguments);
    
     this.state = {
@@ -70,6 +71,7 @@ onClose() {
  
   render() {
         return(
+          <ErrorBoundary>
           <div>
             <div className="col-lg-3">
             <aside id="leftsidebar" className="sidebar">		  
@@ -157,6 +159,7 @@ onClose() {
             </div>
           </div> 
           </div>
+          </ErrorBoundary>
         );
     }
 

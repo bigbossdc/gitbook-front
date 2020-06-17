@@ -132,8 +132,8 @@ class Header extends Component {
                         }
                      </div>
                      {/* /navbar-header */}
-                     <div className="col-lg-3">
-                     <div className="navbar-right" style={{width:"446.47px", marginRight:"0px"}}>
+                     <div className="col-lg-3" style={{paddingLeft: '0px', paddingRight: '0px'}}>
+                     <div className="navbar-right" style={{width:"468px", marginRight:"0px"}}>
                         <ul className="nav navbar-nav">
                            <li>
                               {/** 검색 창 */}

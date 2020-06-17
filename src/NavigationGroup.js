@@ -10,10 +10,10 @@ class NavigationGroup extends Component {
 
         return(
             <div className="col-lg-3">
-            <aside id="leftsidebar" className="sidebar">		  
-             <ul className="list">
+            <aside id="leftsidebar" className="sidebar">        
+            <ul className="list">
               <li>
-                  <div className="user-info">
+              <div className="user-info">
                     {(sessionStorage.getItem("authUserNo") === this.props.groupinfo.masterNo) ?
                         <div className="image">
                           <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/profile`}  style={{marginBottom:"20px"}}>
@@ -30,7 +30,6 @@ class NavigationGroup extends Component {
                             </Link>
                           </div>
                     }
-
                 <div className="detail">               
                   <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", margin:"10px"}}>
                     {/* {
@@ -79,7 +78,7 @@ class NavigationGroup extends Component {
                 groupno = {this.props.groupno}
                 userno = {this.props.userno}
               />
-              </div>	
+              </div>   
            </div>
            
         );

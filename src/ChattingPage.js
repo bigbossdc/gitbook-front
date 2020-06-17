@@ -20,7 +20,8 @@ class ChattingPage extends Component {
       inviteList2:'',
       chatRoomList:[],
       checkItem:'',
-      msgList:''
+      msgList:'',
+      num:30
     }
   }
   handleChange(e) {
@@ -55,7 +56,8 @@ class ChattingPage extends Component {
         this.setState({
           inviteList2: json.data.inviteList,
           checkItem:list,
-          msgList:json.data.msgList
+          msgList:json.data.msgList,
+          num:30
         });
       })
       .catch(err => console.error(err));
@@ -120,6 +122,27 @@ class ChattingPage extends Component {
     })
 
   }
+  onChageinvite2List(inviteList2){
+    this.setState({
+      inviteList2:inviteList2
+    })
+
+  }
+
+  _infiniteScroll=()=>{
+		
+		var scrollHeigth= window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop();
+	
+		if(0 === scrollHeigth){
+			this.setState({
+			  num: this.state.num+5
+			})
+			if(this.state.msgList.length>this.state.num){
+				window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop(300)
+			}
+		}
+		
+	   }
   render() {
  
     return (
@@ -196,8 +219,10 @@ class ChattingPage extends Component {
                       msgList={this.state.msgList}
                       change={{
                         change:this.onChageMsgList.bind(this),
-                        reset:this.onResetChecItem.bind(this)
+                        reset:this.onResetChecItem.bind(this),
+                        inviteListchange:this.onChageinvite2List.bind(this)
                       }}
+                      num={this.state.num}
                     />
                   </div>
                 </div>
@@ -330,6 +355,8 @@ class ChattingPage extends Component {
           });
         })
         .catch(err => console.error(err));
+
+        window.addEventListener('scroll',this._infiniteScroll,true);
   }
   
 
