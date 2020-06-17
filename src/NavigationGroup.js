@@ -13,7 +13,7 @@ class NavigationGroup extends Component {
             <aside id="leftsidebar" className="sidebar">		  
              <ul className="list">
               <li>
-                  <div className="user-info">
+              <div className="user-info">
                     {(sessionStorage.getItem("authUserNo") === this.props.groupinfo.masterNo) ?
                         <div className="image">
                           <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/profile`}  style={{marginBottom:"20px"}}>
@@ -24,11 +24,12 @@ class NavigationGroup extends Component {
                           <Link to={`/gitbook/group/${this.props.groupinfo.no}/${this.props.groupinfo.masterNo}/setting`}><i class="fas fa-cog fa-2x"/></Link>
                         </div>
                         : <div className="image">
+                            <Link style={{cursor:"default"}}>
                               <img src={this.props.groupinfo.masterImage} className="img-responsive img-circle" style={{width:"180px", height:"180px", marginRight:"15px"}} alt="User"></img>
                               <span className="online-status online" style={{marginLeft:"10px", background:"blue"}}/>
+                            </Link>
                           </div>
                     }
-
                 <div className="detail">               
                   <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", margin:"10px"}}>
                     {/* {
