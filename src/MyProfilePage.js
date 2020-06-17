@@ -5,11 +5,13 @@ import Header2 from "./Header2";
 import Navigation from "./Navigation";
 import Navigation2 from "./Navigation2";
 import ProfileAndAccount from "./ProfileAndAccount"
-
+import ErrorBoundary from './ErrorBoundary';
 class MyProfilePage extends Component {
 	render() {
 		console.log("called MyProfilePage...");
+		
 		return (
+			
 			<Fragment>
 				<Header></Header>
 				<Header2 name="MyTimeline"></Header2>
@@ -30,6 +32,7 @@ class MyProfilePage extends Component {
 				</section>
 				{/** profile-twd 종료 */}
 			</Fragment>
+		
 		);
 	}
 }

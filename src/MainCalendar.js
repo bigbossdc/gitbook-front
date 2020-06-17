@@ -150,10 +150,11 @@ export default class MainCalendar extends Component {
         this.setState({
           getToDoList: json.data
         });
+      }).then( json => {
+        this.componentDidMount();
       })
       .catch(err => console.error(err))
 
-      this.componentDidMount();
       this.renderDay();
   }
 
@@ -167,6 +168,8 @@ export default class MainCalendar extends Component {
         this.setState({
           getToDoList: json.data
         });
+      }).then( json => {
+        this.componentDidMount();
       })
       .catch(err => console.error(err))
 

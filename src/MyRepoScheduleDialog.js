@@ -28,7 +28,7 @@ export default class MyToRepoScheduleDialog extends Component {
               <div className="col-md-4-modal-meta">
                 <div className="modal-meta-top">
                   <button onClick={this.onClickHandler.bind(this)} type="button" className="close" >
-                    <span className="closeButton" aria-hidden="true">COMMIT(닫기)</span>
+                    <span className="closeButton" aria-hidden="true">(닫기)</span>
                   </button>
 
                   <div className="img-poster clearfix">
@@ -38,13 +38,13 @@ export default class MyToRepoScheduleDialog extends Component {
                     <br />
                   </div>
 
-                  <ul className="img-comment-list">
+                  <ul  className="img-comment-list">
                     {
                       this.props.getRepoList && this.props.getRepoList.map((list) =>
-                        <li>
+                        <li style={{marginTop:"10px"}}>
                           <div className="comment-text">
-                            <p>{list.scheduleContents}</p>
-                            <span className="date sub-text">on {this.props.monthName} {this.props.originDay}th, {this.props.year}</span>
+                            <p>{list.scheduleContents.split(">>>>>")[0]}.git</p>
+                            <span className="date sub-text" style={{fontSize:"1.1em"}}>"{list.scheduleContents.split(">>>>>")[1]}"</span>
                           </div>
                         </li>
                       )

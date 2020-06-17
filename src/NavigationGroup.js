@@ -10,7 +10,7 @@ class NavigationGroup extends Component {
 
         return(
             <div className="col-lg-3">
-            <aside id="leftsidebar" className="sidebar">		  
+            <aside id="leftsidebar" className="sidebar">        
              <ul className="list">
               <li>
               <div className="user-info">
@@ -78,7 +78,7 @@ class NavigationGroup extends Component {
                 groupno = {this.props.groupno}
                 userno = {this.props.userno}
               />
-              </div>	
+              </div>   
            </div>
            
         );
