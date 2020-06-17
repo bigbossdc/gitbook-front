@@ -59,6 +59,19 @@ class ChattingListItem extends Component {
 						this.clientRef = client;
 					}}
 				></SockJsClient>
+				<SockJsClient
+					url={`${global.API_URL}/gitbook/socket`}
+					topics={[`/topics/chatting/imgagReset/${this.props.list.no}/${sessionStorage.getItem("authUserNo")}`]}
+					onMessage={(msg) => {
+						this.setState({
+							chatRoomImage:msg
+						})
+					
+					}}
+					ref={(client) => {
+						this.clientRef = client;
+					}}
+				></SockJsClient>
 				<div>
 
 					<li

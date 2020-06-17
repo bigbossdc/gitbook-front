@@ -4,97 +4,97 @@ import AlarmList from "./AlarmList";
 import "./Fluffs/assets/css/AlarmBox.css";
 
 export default class AlarmBox extends Component {
-	constructor() {
-		super(...arguments);
-		this.state = {
-			alarmList: null,
-		};
-	}
+   constructor() {
+      super(...arguments);
+      this.state = {
+         alarmList: null,
+      };
+   }
 
-	componentDidMount() {
-		fetch(`${global.API_URL}/gitbook/alarm/list`, {
-			method: "post",
-			headers: global.API_HEADERS,
-			body: null,
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				this.setState({
-					alarmList: json.data,
-				});
-			});
-	}
+   componentDidMount() {
+      fetch(`${global.API_URL}/gitbook/alarm/list`, {
+         method: "post",
+         headers: global.API_HEADERS,
+         body: null,
+      })
+         .then((response) => response.json())
+         .then((json) => {
+            this.setState({
+               alarmList: json.data,
+            });
+         });
+   }
 
-	componentWillUnmount() {
-		this._ismounted = false;
-	}
+   componentWillUnmount() {
+      this._ismounted = false;
+   }
 
-	onAlarmRead = (no) => {
-		//sql로 요청 보내기
-		fetch(`${global.API_URL}/gitbook/alarm/mark`, {
-			headers: global.API_HEADERS,
-			method: "post",
-			body: JSON.stringify({ no: no, id: sessionStorage.getItem("authUserId") }),
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				if (json.result === "fail") {
-					console.log(json);
-					return;
-				}
-				let original = this.state.alarmList;
-				for (let index in original) {
-					if (original[index].no === no) {
-						original.splice(index, 1);
-						break;
-					}
-				}
-				this.setState({
-					alarmList: original,
-				});
-			});
-	};
+   onAlarmRead = (no) => {
+      //sql로 요청 보내기
+      fetch(`${global.API_URL}/gitbook/alarm/mark`, {
+         headers: global.API_HEADERS,
+         method: "post",
+         body: JSON.stringify({ no: no, id: sessionStorage.getItem("authUserId") }),
+      })
+         .then((response) => response.json())
+         .then((json) => {
+            if (json.result === "fail") {
+               console.log(json);
+               return;
+            }
+            let original = this.state.alarmList;
+            for (let index in original) {
+               if (original[index].no === no) {
+                  original.splice(index, 1);
+                  break;
+               }
+            }
+            this.setState({
+               alarmList: original,
+            });
+         });
+   };
 
-	onClearAll = () => {
-		if (this.state.alarmList === null || this.state.alarmList <= 0) {
-			return;
-		}
+   onClearAll = () => {
+      if (this.state.alarmList === null || this.state.alarmList <= 0) {
+         return;
+      }
 
-		//sql로 요청 보내기
-		fetch(`${global.API_URL}/gitbook/alarm/mark`, {
-			headers: global.API_HEADERS,
-			method: "post",
-			body: JSON.stringify({ id: sessionStorage.getItem("authUserId") }),
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				if (json.result === "fail") {
-					console.log(json);
-					return;
-				}
-				let original = this.state.alarmList;
-				if (original === null || original.length <= 0) {
-					return;
-				}
-				original.splice(0);
-				this.setState({
-					alarmList: original,
-				});
-			});
-	};
+      //sql로 요청 보내기
+      fetch(`${global.API_URL}/gitbook/alarm/mark`, {
+         headers: global.API_HEADERS,
+         method: "post",
+         body: JSON.stringify({ id: sessionStorage.getItem("authUserId") }),
+      })
+         .then((response) => response.json())
+         .then((json) => {
+            if (json.result === "fail") {
+               console.log(json);
+               return;
+            }
+            let original = this.state.alarmList;
+            if (original === null || original.length <= 0) {
+               return;
+            }
+            original.splice(0);
+            this.setState({
+               alarmList: original,
+            });
+         });
+   };
 
-	onReceiveAlarm = (newAlarmItem) => {
-		console.log(newAlarmItem);
-		let original = this.state.alarmList;
-		original.unshift(newAlarmItem);
-		this.setState({
-			alarmList: original,
-		});
-	};
+   onReceiveAlarm = (newAlarmItem) => {
+      console.log(newAlarmItem);
+      let original = this.state.alarmList;
+      original.unshift(newAlarmItem);
+      this.setState({
+         alarmList: original,
+      });
+   };
 
-	onReceiveChatting = (newChattingItem) => {
-		console.log(newChattingItem);
-	};
+   onReceiveChatting = (newChattingItem) => {
+      console.log(newChattingItem);
+   };
 
 	render() {
 		return (
@@ -139,15 +139,14 @@ export default class AlarmBox extends Component {
 								Notification
 							</h6>
 						</div>
-
-						<div className="alarmBoxScrollDiv">
-							<div className="alarmBoxScrollArea">
-								<AlarmList alarmList={this.state.alarmList} onAlarmRead={this.onAlarmRead.bind(this)} /> {/** 알림 메시지 목록 */}
-							</div>
-						</div>
-					</div>
-				</li>
-			</Fragment>
-		);
-	}
+                  <div className="alarmBoxScrollDiv">
+                     <div className="alarmBoxScrollArea">
+                        <AlarmList alarmList={this.state.alarmList} onAlarmRead={this.onAlarmRead.bind(this)} /> {/** 알림 메시지 목록 */}
+                     </div>
+                  </div>
+               </div>
+            </li>
+         </Fragment>
+      );
+   }
 }

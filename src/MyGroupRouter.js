@@ -52,8 +52,6 @@ class MyGroupRouter extends Component {
   callbackAddGroup(groupno){
     console.log("calledbackAddGroup Called")
     console.log("그룹수락번호 " + groupno)
-    
-  
   
     fetch(`${global.API_URL}/gitbook/group/addgroup`, {
         method: 'post',
@@ -126,6 +124,7 @@ class MyGroupRouter extends Component {
                   <div className="col-lg-6" style={{background: "#f4f4f4"}}>             
                   <Route path="/gitbook/mygroup" exact 
                         render={() => <GroupList 
+                                       groupno={this.props.match.params.groupno}
                                         grouplist={this.state.groupList} 
                                         myreqlist={this.state.myreqList}
                                         callback={{
