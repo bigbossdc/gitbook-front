@@ -20,12 +20,12 @@ class ChattingMsgItem extends Component {
           </div> :
           (this.props.msg.userNo == sessionStorage.getItem("authUserNo")) ?
 
-            <div className="convo-box pull-right" style={{ float: "right" }}>
-              <div className="convo-area convo-right" style={{ maxWidth: "832px", float: "right" }}>
-                <div className="convo-message" style={{ float: "right",width:"100%" }} >
-                  <p style={{ maxWidth: "100%", padding: "10px 15px", }} >
+            <div className="convo-box pull-right" style={{ width:"60%", float: "right" }}>
+              <div className="convo-area convo-right" style={{ maxWidth: "832px", float:"right" }}>
+                <div className="convo-message"  style={{  maxWidth:"832px"}} >
+                  <p style={{  padding: "10px 15px ",wordBreak:"break-all",width:"auto"}} >
                     {this.props.msg.contents.split(/\n/g).map((word) =>
-                      <div>
+                      <div style={{ margin:"0px" }}>
                         {word.split(" ").map(nbsp => <div style={{ display: "inline" }}>{nbsp}&nbsp;</div>)
                         }<br></br>
                       </div>
@@ -42,7 +42,7 @@ class ChattingMsgItem extends Component {
             <div className="convo-box convo-left" style={{ width:"60%" }}>
               <div className="convo-area convo-left" style={{ maxWidth: "832px" }}>
                 <div className="convo-message">
-                  <p style={{ maxWidth: "100%" }}>  {this.props.msg.contents.split(/\n/g).map((word) =>
+                  <p >  {this.props.msg.contents.split(/\n/g).map((word) =>
                     <div>
                       {word.split(" ").map(nbsp => <div style={{ display: "inline" }}>{nbsp}&nbsp;</div>)
                       }<br></br>
