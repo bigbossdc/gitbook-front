@@ -11,7 +11,7 @@ class NavigationGroup extends Component {
         return(
             <div className="col-lg-3">
             <aside id="leftsidebar" className="sidebar">        
-             <ul className="list">
+            <ul className="list">
               <li>
               <div className="user-info">
                     {(sessionStorage.getItem("authUserNo") === this.props.groupinfo.masterNo) ?

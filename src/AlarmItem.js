@@ -78,7 +78,6 @@ export default class AlarmItem extends Component {
                   <small className="text-muted">{this.state.message}</small>
                </p>
             </Link>
-
             <hr style={{ margin: "0px" }} />
          </Fragment>
       );
