@@ -14,6 +14,7 @@ class GroupInfo extends Component {
     }
 
     onClickAdd() {
+        console.log("group chk!!!!!!! " + this.props.groupno)
         this.props.callback.add(this.props.groupno);
     }
 

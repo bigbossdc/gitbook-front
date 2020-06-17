@@ -96,6 +96,7 @@ export default class AlarmBox extends Component {
       console.log(newChattingItem);
    };
 
+
 	render() {
 		return (
 			<Fragment>
@@ -139,6 +140,7 @@ export default class AlarmBox extends Component {
 								Notification
 							</h6>
 						</div>
+
                   <div className="alarmBoxScrollDiv">
                      <div className="alarmBoxScrollArea">
                         <AlarmList alarmList={this.state.alarmList} onAlarmRead={this.onAlarmRead.bind(this)} /> {/** 알림 메시지 목록 */}

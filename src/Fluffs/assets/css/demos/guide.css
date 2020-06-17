@@ -1,0 +1,29 @@
+.guide-box {
+    background-color: rgba(196, 196, 196, 0.171);
+    /* background-color: #ffffff; */
+    margin: 0px;
+    padding: 20px;
+    box-shadow: 5px 5px 5px rgb(231, 230, 230);
+    min-height: 20px;
+}
+
+.guide-box hr {
+    border-width: 2px;
+}
+
+.guide-box-player {
+    /* background-color: rgba(196, 196, 196, 0.171); */
+    background-color: #ffffff;
+    margin: 0px;
+    padding: 20px;
+    box-shadow: 5px 5px 5px rgb(231, 230, 230);
+    min-height: 20px;
+}
+
+.timeline-file-icon {
+    color: #5b6160;
+}
+
+.timeline-file-icon:hover {
+    color: #0fc19e;
+}
