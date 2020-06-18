@@ -23,7 +23,8 @@ class ChattingListItem extends Component {
 	
 		return (
 			<Fragment>
-			
+
+
 				<div>
 
 					<li

@@ -150,6 +150,9 @@ class ChattingPage extends Component {
 				url={`${global.API_URL}/gitbook/socket`}
 				topics={[`/topics/chatting/resetChatRoom/${sessionStorage.getItem("authUserNo")}`]}
 				onMessage={(msg) => {
+         let receivedObj = JSON.parse(msg);
+         console.log('reasdasdasdasd')
+         console.log(receivedObj);
          this.setState({
           chatRoomList:msg
          })
@@ -356,9 +359,11 @@ class ChattingPage extends Component {
 
         window.addEventListener('scroll',this._infiniteScroll,true);
   }
+
     componentWillUnmount(){
       window.removeEventListener('scroll',this._infiniteScroll,true);
     }
+
 
 }
 export default ChattingPage;

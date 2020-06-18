@@ -26,7 +26,7 @@ class MyTimelinePage extends Component {
    }
 
   render() {
-    console.log("timeline chk " + this.state.timelineItemList.length)
+
     return (
       <div> 
          { this.state.item && this.state.item == '' ? '' : this.state.item=='noshow'? <MyTimeLinePageGuide groupno={this.props.groupno}/>

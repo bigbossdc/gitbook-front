@@ -68,7 +68,13 @@ export default class AlarmItem extends Component {
    render() {
       return (
          <Fragment>
-            <Link to={linkList[this.props.itemData.alarmType] + (this.props.itemData.alarmType === "commit" ? `/view/${this.state.gitAddr}` : "")} className="dropdown-item notify-item">
+            <Link to= {this.props.itemData.groupNo !== null && this.props.itemData.alarmType === 'commit' ?
+             `/gitbook/group/${this.props.itemData.groupNo}/${sessionStorage.getItem("authUserNo")}/${sessionStorage.getItem("authUserId")}/repository/view/${this.state.gitAddr}`
+
+             :
+
+              linkList[this.props.itemData.alarmType] + (this.props.itemData.alarmType === "commit" ? `/view/${this.state.gitAddr}` : "")}
+            className="dropdown-item notify-item">
                <input type="button" className="markAsRead" value="확인" onClick={this.onClickRead.bind(this)} />
                <div className="notify-icon bg-success">
                   <i className={iconList[this.props.itemData.alarmType]}></i>

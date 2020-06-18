@@ -64,8 +64,6 @@ class MyRepositoryPage extends Component {
       marginBottom: "3px"
     }
 
-    console.log("repo color : " + k.backgroundColor)
-
     return (
       <div className="RepositoryPage">
         <div
@@ -213,8 +211,12 @@ class MyRepositoryPage extends Component {
           .catch(err => console.error(err));
   
   }
-  
 
+  componentWillUnmount(){
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    
+  }
+  
 }
 
 export default MyRepositoryPage;
