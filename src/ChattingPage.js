@@ -62,7 +62,7 @@ class ChattingPage extends Component {
       })
       .catch(err => console.error(err));
       
-     this.onSendChatting();
+   
     
   }
 
@@ -107,15 +107,12 @@ class ChattingPage extends Component {
           });
       })
       .catch(err => console.error(err));
-      // this.clientRef.sendMessage("/app/chatting/socketCreateCahtRoom",JSON.stringify(formData));
+      //this.clientRef.sendMessage("/app/chatting/socketCreateCahtRoom",JSON.stringify(formData));
       this.onCloseHandler();
 
   }
 
-  onSendChatting = () => {
-   
-		this.clientRef.sendMessage("/app/chatting/send",JSON.stringify());
-	};
+  
   onChageMsgList(msgList){
     this.setState({
       msgList:msgList
@@ -144,7 +141,7 @@ class ChattingPage extends Component {
 		
 	   }
   render() {
- 
+   
     return (
 
       <Fragment>
@@ -196,11 +193,12 @@ class ChattingPage extends Component {
                         <ul >
                           { this.state.chatRoomList && this.state.chatRoomList
                             .filter((element) =>
-                            element.title.indexOf(this.state.search) != -1)
+                            element.chatRoomListItem.title.indexOf(this.state.search) != -1)
                           .map((list)=> 
                           <ChattingListItem 
-                              key={list.no}
+                              key={list.chatRoomListItem.no}
                               list={list}
+                              
                               check={this.state.checkItem}
                               onCheckItm={{
                                 check:this.onCheckItm.bind(this)
@@ -358,7 +356,9 @@ class ChattingPage extends Component {
 
         window.addEventListener('scroll',this._infiniteScroll,true);
   }
-  
+    componentWillUnmount(){
+      window.removeEventListener('scroll',this._infiniteScroll,true);
+    }
 
 }
 export default ChattingPage;

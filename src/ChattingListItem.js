@@ -14,83 +14,39 @@ class ChattingListItem extends Component {
 	}
 	oncheckItem() {
 
-		this.props.onCheckItm.check(this.props.list);
+		this.props.onCheckItm.check(this.props.list.chatRoomListItem);
 
 	}
-	resetAlarm() {
-		  fetch(`${global.API_URL}/gitbook/chatting/api/resetAlarm/${sessionStorage.getItem("authUserNo")}/${this.props.list.no}`, {
-			method: 'post',
-			headers: global.API_HEADERS
-		
-		  })
-	  }
+	
 
 	render() {
+	
 		return (
 			<Fragment>
-				<SockJsClient
-					url={`${global.API_URL}/gitbook/socket`}
-					topics={[`/topics/chatting/lastMsg/${this.props.list.no}`]}
-					onMessage={(msg) => {
-						
-						this.setState({
-							chatRoomLastMsg:msg
-						})
-						if(this.props.check.no === this.props.list.no){
-						
-							this.resetAlarm()
-						}
-					}}
-					ref={(client) => {
-						this.clientRef = client;
-					}}
-				></SockJsClient>
-				<SockJsClient
-					url={`${global.API_URL}/gitbook/socket`}
-					topics={[`/topics/chatting/alarm/${this.props.list.no}/${sessionStorage.getItem("authUserNo")}`]}
-					onMessage={(msg) => {
-					if(this.props.check.no !== this.props.list.no){	
-						this.setState({
-							alarmCount:msg
-						})
-					}
-					}}
-					ref={(client) => {
-						this.clientRef = client;
-					}}
-				></SockJsClient>
-				<SockJsClient
-					url={`${global.API_URL}/gitbook/socket`}
-					topics={[`/topics/chatting/imgagReset/${this.props.list.no}/${sessionStorage.getItem("authUserNo")}`]}
-					onMessage={(msg) => {
-						this.setState({
-							chatRoomImage:msg
-						})
-					
-					}}
-					ref={(client) => {
-						this.clientRef = client;
-					}}
-				></SockJsClient>
+			
 				<div>
 
 					<li
-						className={(this.props.check.no === this.props.list.no) ? "active" : ""}
+						className={(this.props.check.no === this.props.list.chatRoomListItem.no) ? "active" : ""}
 						onClick={this.oncheckItem.bind(this)}>
 						<div className="user-message-details">
 							<div className="user-message-img">
-								<img style={{ width: "40px", height: "40px" }} src={this.state.chatRoomImage} className="img-responsive img-circle" alt="" />
+								<img style={{ width: "40px", height: "40px" }} src={this.props.list.image} className="img-responsive img-circle" alt="" />
 
 							</div>
 							<div class="user-message-info" style={{ width: "250px" }}>
-								<h4 style={{ textOverflow: "ellipsis", fontFamily: "'Jeju Gothic', sans-serif", marginBottom: "15px" }} className="txt_post2">{this.props.list.title}</h4>
-								<p className="txt_post" style={{ fontFamily: "'Jeju Gothic', sans-serif" }}>{this.state.chatRoomLastMsg && this.state.chatRoomLastMsg.contents}</p>
-								<span className="time-posted">{this.state.chatRoomLastMsg && this.state.chatRoomLastMsg.sendDate}</span>
+								<h4 style={{ textOverflow: "ellipsis", fontFamily: "'Jeju Gothic', sans-serif", marginBottom: "15px" }} className="txt_post2">{this.props.list.chatRoomListItem.title}</h4>
+								<p className="txt_post" style={{ fontFamily: "'Jeju Gothic', sans-serif" }}>{this.props.list.lastMsg && this.props.list.lastMsg.contents}</p>
+								<span className="time-posted">{this.props.list && this.props.list.lastMsg.sendDate}</span>
 							</div>
 							{/* <i class="fas fa-comment-alt fa-2x" style={{color:"#0FC19E",margin:"4px"}}/> */}
-							{this.state.alarmCount && this.state.alarmCount !== 0 ?
-								<span className="message-notification">{this.state.alarmCount && this.state.alarmCount}</span>:''}
-						</div>
+							
+							{
+							(this.props.check.no !== this.props.list.chatRoomListItem.no) ?
+							(this.props.list.alarmCount && this.props.list.alarmCount !== 0 ?
+								<span className="message-notification">{this.props.list.alarmCount && this.props.list.alarmCount}</span>:''):''}
+								
+								</div>
 					</li>
 
 				</div>
@@ -99,19 +55,23 @@ class ChattingListItem extends Component {
 		);
 	}
 	componentDidMount() {
-		fetch(`${global.API_URL}/gitbook/chatting/api/chatRoomListItmeInfo/${this.props.list.no}`, {
-			method: 'get',
-			headers: global.API_HEADERS,
-		})
-			.then(response => response.json())
-			.then(json => {
-				this.setState({
-					chatRoomImage: json.data.image,
-					chatRoomLastMsg: json.data.lastMsg,
-					alarmCount:json.data.alarmCount
-				});
-			})
-			.catch(err => console.error(err));
+		// fetch(`${global.API_URL}/gitbook/chatting/api/chatRoomListItmeInfo/${this.props.list.no}`, {
+		// 	method: 'get',
+		// 	headers: global.API_HEADERS,
+		// })
+		// 	.then(response => response.json())
+		// 	.then(json => {
+		// 		this.setState({
+		// 			chatRoomImage: json.data.image,
+		// 			chatRoomLastMsg: json.data.lastMsg,
+		// 			alarmCount:json.data.alarmCount
+		// 		});
+		// 	})
+		// 	.catch(err => console.error(err));
+	}
+
+	componentWillUnmount(){
+		
 	}
 }
 export default ChattingListItem;

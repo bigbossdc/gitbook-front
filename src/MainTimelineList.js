@@ -78,6 +78,9 @@ class MainTimelineList extends Component {
   window.addEventListener('scroll',this._infiniteScroll,true);
   
   }
+  componentWillUnmount(){
+    window.removeEventListener('scroll',this._infiniteScroll,true);
+  }
 
 }
 

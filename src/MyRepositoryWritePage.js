@@ -16,7 +16,7 @@ class MyRepositoryWritePage extends Component {
    }
 
    handleChange = (e) => {
-      if (/^([0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣_-]){0,}$/.test(e.target.value)) {
+      if (/^([0-9a-zA-Z_-]){0,}$/.test(e.target.value)) {
          this.setState({
             [e.target.name]: e.target.value,
          });
