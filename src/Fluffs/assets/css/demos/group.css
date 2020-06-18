@@ -6,6 +6,37 @@
     box-shadow: 5px 5px 5px rgb(231, 230, 230);
     min-height: 20px;
 }
+.group-search-area {
+    width: 100%;
+}
+
+.group-search-area .group-input-field {
+    background: #f4f4f4;
+    margin: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 0 20px;
+    position: relative;
+    display: inline-block;
+    width: 70%;
+    vertical-align: middle;
+}
+.group-search-area .group-input-field input {
+    font-family: 'Abhaya Libre', serif;
+    margin: 0;
+    border: 0;
+    background: #f4f4f4;
+    color: #848484 !important;
+    padding: 10px 0px;
+}
+.group-search-area .group-input-field i {
+    font-size: 18px;
+    color: #848484 !important;
+    float: right;
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+}
 
 .group-input-field {
     background: #f4f4f4;

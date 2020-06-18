@@ -5,13 +5,6 @@ import "./Fluffs/assets/css/demos/navi.css"
 
 
 class Navigation2 extends Component {
-   
-    constructor() {
-        super(...arguments);
-        this.state = {
-            friendlist:''
-        }
-    }
 
     render() {
         return(
@@ -25,7 +18,7 @@ class Navigation2 extends Component {
                 </div>
 
                 {/* 친구 리스트 */}
-                {this.state.friendlist.length === 0 ?
+                {this.props.friendlist && this.props.friendlist.length === 0 ?
                 <div className="trending-box">
                     <div className="col-lg-12">
                         <div className="navi-nocontents" style={{margin:"50px auto"}}>
@@ -38,39 +31,16 @@ class Navigation2 extends Component {
                 </div>
    
                 :<div className="trending-box">                           
-                    {this.state.friendlist && this.state.friendlist
+                    {this.props.friendlist && this.props.friendlist
                         .map(list => <div className="col-lg-4" style={{paddingLeft:"5px", paddingRight:"5px"}}>
                                     <Link to={`/gitbook/my/${list.id}`} ><img 
                                     src={list.image} className="img-reponsive" alt="" width="130" height="130" style={{marginBottom:"5px", marginTop:"5px", display:"block", maxWidth:"100%", maxheight:"70.1px"}}/></Link>
                                     </div>)} 
                 </div>     
                 }
-
-
             </div>
-       
         );
     }
-
-    componentDidMount() {
-
-      fetch(`${global.API_URL}/gitbook/user/friend/list`, {
-
-        method: 'post',
-        headers: global.API_HEADERS,
-        body: JSON.stringify({
-          id : this.props.userid,
-          kind: "친구"
-        })
-    })
-    .then( response => response.json())
-    .then( json => {
-        this.setState({
-          friendlist: json.data    
-        });
-    })
-    .catch( err => console.error( err ));    
-  }
 }
 
 export default Navigation2;

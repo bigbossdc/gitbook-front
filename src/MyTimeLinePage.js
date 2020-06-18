@@ -8,7 +8,8 @@ class MyTimelinePage extends Component {
     super(...arguments);
     this.state={
       timelineItemList:'', 
-      num:5        
+      num:5,
+      item:''        
     }
   }
   _infiniteScroll=()=>{
@@ -28,9 +29,8 @@ class MyTimelinePage extends Component {
     console.log("timeline chk " + this.state.timelineItemList.length)
     return (
       <div> 
-        {
-          (this.state.timelineItemList && this.state.timelineItemList.length === 0 ? <MyTimeLinePageGuide/>
-          
+         { this.state.item && this.state.item == '' ? '' : this.state.item=='noshow'? <MyTimeLinePageGuide groupno={this.props.groupno}/>
+  
           : ((sessionStorage.getItem("authUserId")===this.props.userid)?
         
             this.state.timelineItemList && 
@@ -58,7 +58,7 @@ class MyTimelinePage extends Component {
             :''
             )
 
-          ))
+          )
         }
 
       </div>
@@ -71,14 +71,25 @@ class MyTimelinePage extends Component {
   })
   .then( response => response.json())
   .then( json => {
-   
+    if(json.data.length > 0) {
       this.setState({
-        timelineItemList: json.data
+        timelineItemList: json.data,
+        item: "show"
       });
+
+    } else {
+      this.setState({
+        item: "noshow"
+      })
+    }
   })
   .catch( err => console.error( err )); 
 
   window.addEventListener('scroll',this._infiniteScroll,true);
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener('scroll',this._infiniteScroll,true);
   }
 }
 export default MyTimelinePage;

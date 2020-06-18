@@ -60,6 +60,7 @@ class MyFriendRouter extends Component {
           friendNum: Object(json.data).length
       });
       this.callbackReqFriend();
+
     })
     .catch( err => console.error( err ));        
   }
@@ -107,7 +108,7 @@ class MyFriendRouter extends Component {
                   </div>
               
                   {/** 세번째 섹션 */}
-                  <Navigation2 userid={sessionStorage.getItem("authUserId")} userinfo={this.state.userFriends}></Navigation2>
+                  <Navigation2 userid={sessionStorage.getItem("authUserId")} friendlist={this.state.userFriends}></Navigation2>
 
             </div>{/** row 종료 */}
           </div>{/** container-fluid 종료 */}
