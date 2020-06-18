@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './RepositoryPage.css';
+import Highlight from "react-highlight.js";
 
 
 class RepositoryFileViewTable extends Component {
@@ -11,7 +12,20 @@ class RepositoryFileViewTable extends Component {
      
     render() {
       
-        let contents = this.props.contents.split('\n');
+        let contents = "";
+
+        let type = this.props.srcName.split(".")[1];
+
+        if(type === "conf" || type === "sh" || type === "c" || type === "cpp" || type === "css"
+            || type === "coffee" || type === "diff" || type === "html" || type === "xml" || type === "http"
+            || type === "json" || type === "java" || type === "rb" || type === "ini" || type === "js"
+            || type === "php" || type === "py" || type === "sql" || type === "md" || type === "NGINX" || type === "m") {
+                type = "normal";
+                contents = this.props.contents;
+        } else {
+            contents = this.props.contents.split('\n');
+        }
+        console.log(type);
         
         return (
             <div className='RepositoryFileViewTable'>
@@ -19,21 +33,25 @@ class RepositoryFileViewTable extends Component {
                 <i id={this.props.callPath} 
                      onClick={this.onClicklist2.bind(this)} 
                      className="fas fa-undo-alt"
-                    style={{cursor:"pointer",float:"left",marginLeft:"10px",marginTop:"4px"}}
+                    style={{cursor:"pointer",float:"left",paddingLeft:"10px"}}
                 ></i>
                     {this.props.srcName}
                 </div>
-                <div className='FileViewContents'>
+                <div className='FileViewContents' style={{backgroundColor:"#fff"}}>
                     <table className='FileViewTable'>
-                  <pre style={{border:"none"}}>
-                        {contents.map((list, i) =>
-                   
+                        {type==="normal" ? 
+                            <Highlight className="repo-view">
+                                {contents}
+                            </Highlight >
+                            : <pre style={{border:"none"}}>
+                            {contents.map((list, i) =>
                                 <tr>
-                                <td className='lineNumber' style={{ userSelect: "none" }}>{i + 1}</td>
-                                <td className='lineNumberContent'>{list === '' ? list.replace('', ' ') : list}</td>
-                            </tr>
-                        )}
-                        </pre>
+                                    <td className='lineNumber' style={{ userSelect: "none" }}>{i + 1}</td>
+                                    <td className='lineNumberContent'>{list === '' ? list.replace('', ' ') : list}</td>
+                                </tr>
+                            )}
+                            </pre>
+                        }
                     </table>
                 </div>
             </div>

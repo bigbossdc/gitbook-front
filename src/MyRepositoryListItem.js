@@ -77,12 +77,13 @@ class MyRepositoryListItem extends Component {
       marginBottom: "3px"
     }
     return (
-      <div className="cardbox">
-        <div className="cardbox-heading">
+      <div className="cardbox" style={{boxShadow:"none"}}>
+        <div className="cardbox-headingss" style={{backgroundColor:"#F4F4F4", boxShadow:"none"}}>
           {(sessionStorage.getItem("authUserNo") == this.props.userNo) && (
             <div className="dropdown pull-right">
-              <button className="btn btn-secondary btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
-                <em className="fa fa-ellipsis-h"></em>
+              <button className="btn btn-secondary btn-flat btn-flat-icon" type="button" style={{backgroundColor:"#DFDFDF"}} data-toggle="dropdown" aria-expanded="false">
+                <em className="fa fa-ellipsis-h" style={{color:"#828282"}}></em>
+           
               </button>
               <div className="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style={{ position: "absolute", transform: "translate3d(-136px, 28px, 0px)", top: "0px", left: "0px", willChange: "transform" }}>
                 {(this.props.visible == "public") ?
@@ -97,18 +98,20 @@ class MyRepositoryListItem extends Component {
             <div className="media-body">
               <span style={k}></span>
  
-              <Link to={`/gitbook/my/${this.props.path}/repository/view/${this.props.gitName}`} className="text-muted" style={{ fontFamily: " 'Varela Round', sans-serif", fontSize: "1.9em", display: "inline-block", marginBottom: "10px" }}>
+              <Link to={`/gitbook/my/${this.props.path}/repository/view/${this.props.gitName}`} className="text-muted" style={{ fontFamily: "'Nanum Gothic', sans-serif", fontSize: "1.9em", display: "inline-block", marginBottom: "10px", color:"#6E786E"}}>
                   {this.props.gitName}</Link>
         
               
-              <pre style={{ overflowX: "hidden", wordBreak: "break-all", backgroundColor: "#FFFFFF", border: "none", fontFamily: " 'Varela Round', sans-serif" }}>{this.props.description}
-              </pre>
+              {/* <pre style={{ overflowX: "hidden", wordBreak: "break-all", backgroundColor: "#FFFFFF", border: "none", fontFamily: " 'Varela Round', sans-serif" }}>{this.props.description}
+              </pre> */}
+
+              <br/>
 
 
-              <small style={{ float: "right" }}><span>{this.props.regDate}</span></small>
+              <p style={{fontSize:"1em", textAlign:"right", fontFamily:"'Nanum Gothic', sans-serif"}}><span>{this.props.regDate}</span></p>
             </div>
           </div>
-          <hr></hr>
+          <hr style={{backgroundColor:"#DBDBDB", height:"1px"}}></hr>
         </div>
 
         <div>

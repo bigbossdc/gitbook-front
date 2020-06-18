@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import GroupRepositoryListItem from './GroupRepositoryListItem';
 import './MyRepositoryListPage.css';
+import MyRepositoryListPageGuide from './MyRepositoryListPageGuide';
 class MyRepositoryListPage extends Component {
   constructor(props){
     super(props);
     this.state={
       keyword: '',
-      repositorylist: ''
+      repositorylist: '',
+      item:''
     }
   }
   onInputChange(e){
@@ -52,6 +54,10 @@ callVisibleHandler(list){
     const authUserNo=sessionStorage.getItem("authUserNo");
     return (
             <div>
+              { this.state.item && this.state.item == '' ? '' : this.state.item=='noshow' ?   
+                <MyRepositoryListPageGuide groupno={this.props.groupno}/>
+                :
+                <div>
                 <div className = "row">
                   <div className="search-area" style={{width:"50%", display:"inline-block"}}>  
                     <div className="input-field" style={{border:"1px solid #DBDBDB ",height:"50px",borderRadius:"5px"}} >
@@ -94,7 +100,8 @@ callVisibleHandler(list){
                  }}
                 
                 />)}
-
+                </div>
+              }
 
             </div>      
     );
@@ -107,10 +114,18 @@ callVisibleHandler(list){
     })
     .then( response => response.json())
     .then( json => {
+      if(json.data.length > 0) {
         this.setState({
-          repositorylist: json.data
+          repositorylist: json.data,
+          item: "show"
         });
-    })
+
+      } else {
+        this.setState({
+          item: "noshow"
+        })
+      }
+  })
     .catch( err => console.error( err ));      
 }
   }

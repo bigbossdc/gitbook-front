@@ -9,7 +9,8 @@ class MyRepositoryListPage extends Component {
     super(props);
     this.state={
       keyword: '',
-      repositorylist: ''
+      repositorylist: '',
+      item:''
     }
   }
   onInputChange(e){
@@ -53,9 +54,10 @@ callVisibleHandler(list){
     const authUserNo=sessionStorage.getItem("authUserNo");
     return (
             <div>
-              {this.state.repositorylist && this.state.repositorylist.length === 0 ? 
+              { this.state.item && this.state.item == '' ? '' : this.state.item == 'noshow' ? 
                 <MyRepositoryListPageGuide/>
-                :<div>
+                :
+                <div>
                 <div className = "row">
                   <div className="search-area" style={{width:"50%", display:"inline-block"}}>  
                     <div className="input-field" style={{border:"1px solid #DBDBDB ",height:"50px",borderRadius:"5px"}} >
@@ -77,7 +79,7 @@ callVisibleHandler(list){
                   }             
 
                 </div>
-                <hr style={{backgroundColor:"#DBDBDB",height:"1px",marginTop:"-0px"}}></hr>
+                <hr style={{backgroundColor:"#DBDBDB",height:"1.5px",marginTop:"-0px"}}></hr>
                 {this.state.repositorylist && this.state.repositorylist
                 .filter((list) => list.gitName.indexOf(this.state.keyword ) != -1 && ((list.userNo == authUserNo ) ? 1 : list.visible == "public") ) 
                 .map((list) => <MyRepositoryListItem
@@ -110,10 +112,18 @@ callVisibleHandler(list){
     })
     .then( response => response.json())
     .then( json => {
+      if(json.data.length > 0) {
         this.setState({
-          repositorylist: json.data
+          repositorylist: json.data,
+          item: "show"
         });
-    })
+
+      } else {
+        this.setState({
+          item: "noshow"
+        })
+      }
+  })
     .catch( err => console.error( err ));      
 }
   }
