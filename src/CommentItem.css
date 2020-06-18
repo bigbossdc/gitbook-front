@@ -5,6 +5,7 @@
     color:red;
     margin-top:6px;
     cursor: pointer;
+    font-size: 1.2em;
 }
 
 #deleteIcon:hover{
