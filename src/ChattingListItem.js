@@ -32,7 +32,7 @@ class ChattingListItem extends Component {
 					url={`${global.API_URL}/gitbook/socket`}
 					topics={[`/topics/chatting/lastMsg/${this.props.list.no}`]}
 					onMessage={(msg) => {
-						
+						console.log('lastMsg!!!!!!!!!!!!!!!!!!!!!!!!')
 						this.setState({
 							chatRoomLastMsg:msg
 						})

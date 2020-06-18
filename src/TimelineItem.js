@@ -175,9 +175,12 @@ class TimeLineItem extends Component {
     window.location=window.location.pathname;
   }
   render() {
- 
+    let cardboxType;
+    this.props.list.type && this.props.list.type === 'public' ? cardboxType = 'publicCardbox' : cardboxType = 'commitCardbox';
     return (
-      <div className="cardbox" >
+      <div className="cardbox">
+
+      <div className={cardboxType}>
         <div className="cardbox-heading" >
           {/** 드롭다운 메뉴 */}
           {this.state.userInfo && (this.state.userInfo.id == sessionStorage.getItem("authUserId") ?
@@ -187,7 +190,11 @@ class TimeLineItem extends Component {
               </button>
               <div className="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style={{ position: "absolute", transform: "translate3d(-136px, 28px, 0px)", top: "0px", left: "0px", willChange: "transform" }}>
                 <a className="dropdown-item" onClick={this.onShow2.bind(this)}  href="#" style={{ fontFamily: " 'Varela Round', sans-serif" }}><strong>삭제 하기</strong></a>
+
+                {this.props.list.type && (this.props.list.type === 'public') ?
                 <a onClick ={this.onShow.bind(this)} className="dropdown-item"  style={{ fontFamily: " 'Varela Round', sans-serif",cursor:"pointer" }}><strong>수정 하기</strong></a>
+                : ''}
+
               </div>
             </div> : ''
           )
@@ -331,6 +338,7 @@ class TimeLineItem extends Component {
 
     </div>
   </div>
+
 </div>
 </div>
 {/* 삭제 다이얼로그 여기까지 */}
@@ -364,7 +372,7 @@ class TimeLineItem extends Component {
 {/* 탈퇴회원 알림 다이얼로그 여기까지 */}
 
 
-
+</div>
       </div>
     );
   }

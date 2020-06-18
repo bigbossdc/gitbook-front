@@ -25,7 +25,7 @@ class MyTimelinePage extends Component {
    }
 
   render() {
-    console.log("timeline chk " + this.state.timelineItemList.length)
+
     return (
       <div> 
         {

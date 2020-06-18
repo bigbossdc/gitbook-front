@@ -4,8 +4,7 @@ import React, { Component } from "react";
 
 
 class RepositoryTable extends Component {
-
- 
+  
   onClicklist(e){
     console.log("ahhhh : " + e.target.id)
     this.props.clicklist.newList(e.target.id)
@@ -19,7 +18,6 @@ class RepositoryTable extends Component {
   
 
   render() {
-       console.log(sessionStorage.getItem("authUserPassword"))
         return(
             <div id="RepositoryTable">
                 
@@ -58,6 +56,7 @@ class RepositoryTable extends Component {
            </div>
         );
     }
+   
 }
 
 export default RepositoryTable;

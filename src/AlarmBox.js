@@ -84,7 +84,7 @@ export default class AlarmBox extends Component {
    };
 
    onReceiveAlarm = (newAlarmItem) => {
-      console.log(newAlarmItem);
+      
       let original = this.state.alarmList;
       original.unshift(newAlarmItem);
       this.setState({
@@ -98,6 +98,7 @@ export default class AlarmBox extends Component {
 
 
 	render() {
+    
 		return (
 			<Fragment>
 				<SockJsClient
