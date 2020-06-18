@@ -18,7 +18,8 @@ class MyGroupRouter extends Component {
     super(props);
     this.state = {
       groupList:'',
-      groupMaster:''
+      groupMaster:'',
+      friendlist:''
     };
   }
 
@@ -147,7 +148,7 @@ class MyGroupRouter extends Component {
                   </div>
               
                   {/** 세번째 섹션 */}
-                  <Navigation2 userid={sessionStorage.getItem("authUserId")} userinfo={this.state.userFriends}></Navigation2>
+                  <Navigation2 friendlist={this.state.friendlist}></Navigation2>
 
             </div>{/** row 종료 */}
           </div>{/** container-fluid 종료 */}
@@ -180,6 +181,23 @@ class MyGroupRouter extends Component {
         });
       })
       .catch(err => console.error(err));
+
+      fetch(`${global.API_URL}/gitbook/user/friend/list`, {
+
+        method: 'post',
+        headers: global.API_HEADERS,
+        body: JSON.stringify({
+          id : sessionStorage.getItem("authUserId"),
+          kind: "친구"
+        })
+    })
+    .then( response => response.json())
+    .then( json => {
+        this.setState({
+          friendlist: json.data    
+        });
+    })
+    .catch( err => console.error( err ));   
       
   }
 }

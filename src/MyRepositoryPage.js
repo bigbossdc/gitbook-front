@@ -70,7 +70,7 @@ class MyRepositoryPage extends Component {
       <div className="RepositoryPage">
         <div
           className="cardbox"
-          style={{ background: "#fff", marginTop: "1px", boxShadow: "none" }}
+          style={{ background: "#F4F4F4", marginTop: "1px", boxShadow: "none" }}
         >
           <div className="cardbox-heading">
             
@@ -88,11 +88,20 @@ class MyRepositoryPage extends Component {
 
             </h2>
             <br></br>
-            <pre style={{overflowX:"hidden",wordBreak:"break-all",backgroundColor:"#FFFFFF",border:"none",fontFamily: " 'Varela Round', sans-serif"}}>{this.state.gitInfo && this.state.gitInfo.description}</pre>
+            <div style={{marginTop:"20px"}}>
+              <pre className="repo-description" style={{}}>
+                <text style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#414141"}}>
+                  Description<hr style={{marginTop:"2px", marginBottom:"10px", borderColor:"#C3C3C3"}}/>
+                </text>
+                <text style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em"}}>
+                  {this.state.gitInfo && this.state.gitInfo.description}
+                </text>
+              </pre>
+            </div>
             <div >
               {document.queryCommandSupported("copy") && (
                 <div style={{ display: "inline" }}>
-                  <button className="button1" onClick={this.copyToClipboard.bind(this)}>
+                  <button className="button1" onClick={this.copyToClipboard.bind(this)} style={{border:"0px", height:"26px", borderColor:"#0FC19E"}}>
                     Copy
                   </button>
                 </div>
@@ -100,6 +109,7 @@ class MyRepositoryPage extends Component {
               <form style={{ display: "inline" }}>
                 <textarea
                   className="textarea1"
+                  style={{height:"26px", fontFamily:"'Nanum Gothic', sans-serif", borderColor:"#A2A2A2", width:"80%"}}
                   ref={(textarea) => (this.textArea = textarea)
                   
                   }
@@ -107,7 +117,7 @@ class MyRepositoryPage extends Component {
                 />
               </form>
             </div>
-            <p style={{ fontSize: "0.8em" }}>경로: {this.props.match.params.repoName}/{this.state.callPath}</p>
+            <p style={{ fontSize: "1em", fontFamily:"'Nanum Gothic', sans-serif" }}>경로: {this.props.match.params.repoName}/{this.state.callPath}</p>
                   <div style={{width:"100%",height:"100%"}}>
             { 
               (this.state.loding == true)?
@@ -155,8 +165,6 @@ class MyRepositoryPage extends Component {
           </div>
           <br></br>
         </div>
-
-        <hr></hr>
       </div>
     );
   }

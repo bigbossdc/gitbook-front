@@ -20,13 +20,26 @@ class MyRepositoryListPageGuide extends Component {
       <div>
       <div className="guide-box">
         <div style={{textAlign:"center", margin:"20px 0px"}}>
-        <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`}>
-        <p className="timeline-file-icon"><i className="fas fa-database fa-6x"></i></p>
-        </Link>
+          {
+            (this.props.groupno && this.props.groupno !== undefined) ?
+               <Link to={`/gitbook/group/${this.props.groupno}/${sessionStorage.getItem("authUserId")}/repository/write`}>
+                <p className="timeline-file-icon"><i className="fas fa-database fa-6x"></i></p>
+              </Link>
+              :<Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`}>
+                  <p className="timeline-file-icon"><i className="fas fa-database fa-6x"></i></p>
+                </Link>
+              
+          }
+
       </div>
       <div style={{textAlign:"center", marginBottom:"25px"}}>
         <p><h4 className="group-req-title" style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.5em", color:"#606665"}}><b>생성한 레포지토리가 없습니다</b></h4></p>
-        <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#606665"}}>깃 생성이 어렵나요? <br/> 아래 가이드를 보고 "{sessionStorage.getItem("authUserNickName")}"님의 소스코드를 관리해보세요</p>
+        {
+           (this.props.groupno && this.props.groupno !== undefined) ?
+           <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#606665"}}>깃 생성이 어렵나요? <br/> 아래 가이드를 보고 그룹의 소스코드를 관리해보세요</p>
+           :<p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#606665"}}>깃 생성이 어렵나요? <br/> 아래 가이드를 보고 "{sessionStorage.getItem("authUserNickName")}"님의 소스코드를 관리해보세요</p>
+        }
+        
       </div>
      
         <video autoPlay="autoplay" loop="loop" muted style={{width:"100%", height:"500px", position:"relative"}}>
@@ -34,12 +47,6 @@ class MyRepositoryListPageGuide extends Component {
         </video>
         
       </div>
-      
-      {/* <div className="guide-box-player">
-        <video autoPlay="autoplay" loop="loop" muted style={{width:"100%"}}>
-          <source src="/gitbook/assets/player/gitbook.mp4" type="video/mp4"></source>
-        </video>
-      </div> */}
   </div>
     );
   }
