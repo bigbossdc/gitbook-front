@@ -37,3 +37,37 @@
 	vertical-align: center;
 	float: right;
 }
+
+
+
+@keyframes noti{
+	0% {
+		
+		transform:rotate(-12deg);
+		
+	}
+	25% {
+		
+		transform:rotate(-6deg);
+		
+	}
+	50%{
+		transform:rotate(0deg);
+	}
+	75%{
+		transform:rotate(6deg);
+	}
+
+	100%{
+	
+		transform:rotate(12deg);
+	}
+
+
+}
+#notiIcon:hover{
+	background-color: red;
+	animation: noti 0.3s 0.2s infinite alternate-reverse;	
+
+
+}

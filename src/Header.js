@@ -4,6 +4,8 @@ import { Link, withRouter } from "react-router-dom";
 import AlarmBox from "./AlarmBox";
 import DropdownMenu from "./DropdownMenu";
 import "./Fluffs/assets/css/demos/header.css"
+import {Motion, spring} from 'react-motion';
+
 
 
 
@@ -73,7 +75,11 @@ class Header extends Component {
                         {contentsname === "my" ?
                            <div className="select-contents">
                               <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}`} className="nav-icon">
-                                 <em className="fa fa-home"></em>
+                             
+                                 <em className="fa fa-home" > </em>
+                                
+
+                               
                               </Link>
                            </div>
                            : <div className="noselect-contents">
@@ -167,7 +173,7 @@ class Header extends Component {
 
                            <AlarmBox />
                            {/** 여기까지가 알림 창 */}
-                           <li className="dropdown mega-avatar" style={{marginRight:"10px", paddingLeft:"0px"}}>
+                           <li className="dropdown mega-avatar" style={{marginRight:"10px", paddingLeft:"0px",marginLeft:"65px"}}>
                               <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" style={{paddingLeft:"0px"}}>
                                  <span className="avatar w-32" style={{marginRight:"0px", marginLeft:"0px"}}>
 

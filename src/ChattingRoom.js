@@ -44,6 +44,8 @@ class ChattingRoom extends Component {
 			let inviteUserNo = [];
 			this.props.inviteList.map((list) => inviteUserNo = inviteUserNo.concat(list.userNo))
 			formData.append("inviteList", inviteUserNo);
+
+			
 			fetch(`${global.API_URL}/gitbook/chatting/api/sendMsg/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}`, {
 				method: 'post',
 				headers: {},
@@ -129,6 +131,10 @@ class ChattingRoom extends Component {
 		let inviteUserNo = [];
 		this.state.changeInviteList.map((list) => inviteUserNo = inviteUserNo.concat(list.no))
 		formData.append("inviteList", inviteUserNo);
+
+		let inviteUserNo2 = [];
+		this.props.inviteList.map((list) => inviteUserNo2 = inviteUserNo2.concat(list.userNo))
+		formData.append("inviteList2", inviteUserNo2);
 	
 		fetch(`${global.API_URL}/gitbook/chatting/api/addinviteUser/${sessionStorage.getItem('authUserNo')}/${this.props.chatInfo.no}`, {
 		  method: 'post',
@@ -144,7 +150,13 @@ class ChattingRoom extends Component {
 		  this.onClose();
 	}
 
-
+	resetAlarm() {
+		fetch(`${global.API_URL}/gitbook/chatting/api/resetAlarm/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}`, {
+		  method: 'post',
+		  headers: global.API_HEADERS
+	  
+		})
+	}
 
 	render() {
 
@@ -158,11 +170,17 @@ class ChattingRoom extends Component {
 		
 		return (
 			<div>
-				<SockJsClient
+				
+
+
+				{this.props.chatInfo && this.props.chatInfo ?
+					<div className="conversation-box">
+						<SockJsClient
 					url={`${global.API_URL}/gitbook/socket`}
 					topics={[`/topics/chatting/test/${this.props.chatInfo.no}`]}
 					onMessage={(msg) => {
 						this.onChageMsgList(msg);
+						this.resetAlarm();
 						var scrollHeigth= window.jQuery(document.getElementsByClassName("conversation-container")).prop('scrollHeight')
 						window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop(scrollHeigth);
 					}}
@@ -182,10 +200,6 @@ class ChattingRoom extends Component {
 						this.clientRef = client;
 					}}
 				></SockJsClient>
-
-
-				{this.props.chatInfo && this.props.chatInfo ?
-					<div className="conversation-box">
 						<div className="conversation-header" style={{ height: "80px" }}>
 							<div className="user-message-details">
 
@@ -280,7 +294,7 @@ class ChattingRoom extends Component {
 								backgroundColor: "#0FC19E"
 							}}>
 								<span className="close" onClick={this.onClose.bind(this)}>&times;</span>
-								<h6 style={{ wordBreak: "break-all" }}>현재 채팅방을 나가시겠습니까?</h6>
+								<h6 style={{ wordBreak: "break-all",fontSize:"13px",fontFamily:"'Jeju Gothic', sans-serif" }}>현재 채팅방을 나가시겠습니까?</h6>
 							</div>
 							<div className="modal-footer">
 

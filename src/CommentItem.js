@@ -52,9 +52,9 @@ class CommentItem extends Component {
           }
          
            {this.props.list.userId == sessionStorage.getItem("authUserId")?
-           <i id="deleteIcon"  onClick={this.onClickShow.bind(this)}className="fas fa-backspace fa-1.5x"/>:''
+           <i id="deleteIcon"   onClick={this.onClickShow.bind(this)}className="fas fa-backspace fa-1.5x"/>:''
            }
-          <p style={{paddingRight:"30px"}}>{this.props.list.contents.split(" ")
+          <p style={{paddingRight:"30px",fontFamily:"'Jeju Gothic', sans-serif"}}>{this.props.list.contents.split(" ")
           .map(word=><div style={{display:"inline"}}>{word} &nbsp;</div>)}</p> <span className="date sub-text" style={{ marginBottom: "5px" }}>{this.props.list.regDate}</span>
         </li>
         <hr ></hr>
