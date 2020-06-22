@@ -45,3 +45,24 @@
     font-family:'Nanum Gothic', sans-serif;
     color: #606665;
 }
+
+.tooltip-custom {
+    display: none;
+    position: relative;
+    top: 90px;
+    right: 10px
+}
+
+.col-lg-4:hover .tooltip-custom {
+    display: inline-block;
+    border-radius: 8px;
+    padding: 3px 8px 3px 8px;
+    background-color: #3C3C3C;
+    color: #fff;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 0.8em;
+    text-align: center;
+    position: absolute;
+    margin-top: 20px;
+
+}

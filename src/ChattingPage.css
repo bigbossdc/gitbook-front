@@ -257,3 +257,42 @@
 	border: none;
 }
   
+.convo-img .tooltip-custom {
+    display: none;
+    position: relative;
+    top: -30px;
+	left: -70px;
+}
+
+.convo-img:hover .tooltip-custom {
+    display: inline-block;
+    border-radius: 8px;
+    padding: 3px 8px 3px 8px;
+    background-color: #3C3C3C;
+    color: #fff;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 0.8em;
+    text-align: center;
+    position: absolute;
+	margin-bottom: 50px;
+}
+
+.convo-img .tooltip-custom2 {
+    display: none;
+    position: relative;
+    top: -30px;
+	width: 110px;
+}
+
+.convo-img:hover .tooltip-custom2 {
+    display: inline-block;
+    border-radius: 8px;
+    padding: 3px 8px 3px 8px;
+    background-color: #3C3C3C;
+    color: #fff;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 0.8em;
+    text-align: center;
+    position: absolute;
+	margin-bottom: 50px;
+}

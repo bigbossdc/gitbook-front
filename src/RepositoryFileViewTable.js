@@ -16,15 +16,21 @@ class RepositoryFileViewTable extends Component {
 
         let type = this.props.srcName.split(".")[1];
 
-        if(type === "conf" || type === "sh" || type === "c" || type === "cpp" || type === "css"
-            || type === "coffee" || type === "diff" || type === "html" || type === "xml" || type === "http"
-            || type === "json" || type === "java" || type === "rb" || type === "ini" || type === "js"
-            || type === "php" || type === "py" || type === "sql" || type === "md" || type === "NGINX" || type === "m") {
-                type = "normal";
-                contents = this.props.contents;
-        } else {
+        if(type === "txt") {
             contents = this.props.contents.split('\n');
+        } else {
+            type = "normal";
+            contents = this.props.contents;
         }
+        // if(type === "conf" || type === "sh" || type === "c" || type === "cpp" || type === "css"
+        //     || type === "coffee" || type === "diff" || type === "html" || type === "xml" || type === "http"
+        //     || type === "json" || type === "java" || type === "rb" || type === "ini" || type === "js"
+        //     || type === "php" || type === "py" || type === "sql" || type === "md" || type === "NGINX" || type === "m" || type === "project" || type === "classpath") {
+        //         type = "normal";
+        //         contents = this.props.contents;
+        // } else {
+        //     contents = this.props.contents.split('\n');
+        // }
         console.log(type);
         
         return (
@@ -39,14 +45,13 @@ class RepositoryFileViewTable extends Component {
                 </div>
                 <div className='FileViewContents' style={{backgroundColor:"#fff"}}>
                     <table className='FileViewTable'>
-                        {type==="normal" ? 
+                        {type=="normal" ? 
                             <Highlight className="repo-view">
                                 {contents}
                             </Highlight >
-                            : <pre style={{border:"none"}}>
-                            {contents.map((list, i) =>
+                            : <pre style={{border:"none", backgroundColor:"#fff", width:"875px", overflowX:"auto", margin:"0px auto"}}>
+                            {contents.map((list) =>
                                 <tr>
-                                    <td className='lineNumber' style={{ userSelect: "none" }}>{i + 1}</td>
                                     <td className='lineNumberContent'>{list === '' ? list.replace('', ' ') : list}</td>
                                 </tr>
                             )}

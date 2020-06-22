@@ -29,7 +29,7 @@ class MyTimelinePage extends Component {
 
     return (
       <div> 
-         { this.state.item && this.state.item == '' ? '' : this.state.item=='noshow'? <MyTimeLinePageGuide groupno={this.props.groupno}/>
+         { this.state.item && this.state.item == '' ? '' : this.state.item=='noshow'? <MyTimeLinePageGuide groupno={this.props.groupno} userid={this.props.userid}/>
   
           : ((sessionStorage.getItem("authUserId")===this.props.userid)?
         

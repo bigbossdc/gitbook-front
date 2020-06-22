@@ -13,31 +13,38 @@ class GroupSetting extends Component {
             currentTabObj : <GroupSettingInfo 
                                 userno={this.props.userno}
                                 groupno={this.props.groupno}
-                                changeInfo={this.props.changeInfo}/>
+                                changeInfo={this.props.changeInfo}/>,
+            tabKind : "info"
         }
     }
 
     render() {
+        console.log("tab chk " + this.state.tabKind)
         return(  
             <div>
                 <div className="gtab">
-                    <button className="tablinks" 
+                    <button className={this.state.tabKind === "info" ? "tabclick" : "tablinks"} 
                             onClick={() => this.setState({currentTabObj : <GroupSettingInfo    
                                                                             userno={this.props.userno}
                                                                             groupno={this.props.groupno}
                                                                             changeInfo={this.props.changeInfo}
-                                                                            />})}>기본정보관리</button>
-                    <button className="tablinks" 
+                                                                            />,
+                                                            tabKind:"info"})}>기본정보관리</button>
+
+                    <button className={this.state.tabKind === "add" ? "tabclick" : "tablinks"} 
                             onClick={() => this.setState({currentTabObj : <GroupSettingAddUser 
                                                                             userno={this.props.userno}
                                                                             groupno={this.props.groupno}
-                                                                            />})}>맴버추가관리</button>
-                    <button className="tablinks" 
+                                                                            />,
+                                                            tabKind:"add"})}>맴버추가관리</button>
+
+                    <button className={this.state.tabKind === "delete" ? "tabclick" : "tablinks"}
                             onClick={() => this.setState({currentTabObj : <GroupSettingDeleteUser 
                                                                             userno={this.props.userno}
                                                                             groupno={this.props.groupno}
                                                                             changeList={this.props.changeList}
-                                                                           />})}>맴버탈퇴관리</button>
+                                                                           />,
+                                                            tabKind:"delete"})}>맴버탈퇴관리</button>
                 </div>
                 <div>
                     {this.state.currentTabObj}

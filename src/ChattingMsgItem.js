@@ -34,8 +34,8 @@ class ChattingMsgItem extends Component {
                 <span>{this.props.msg.sendDate}</span>
               </div>
               <div className="convo-img">
-                <img style={{ width: "50px", height: "50px" }} title={this.props.msg.userNickname} src={this.props.msg.image} alt="" className="img-responsive img-circle" />
-
+                <img style={{ width: "50px", height: "50px" }} src={this.props.msg.image} alt="" className="img-responsive img-circle" />
+                <span className="tooltip-custom">{this.props.msg.userNickname}</span>
               </div>
             </div>
             :
@@ -52,7 +52,8 @@ class ChattingMsgItem extends Component {
                 <span>{this.props.msg.sendDate}</span>
               </div>
               <div className="convo-img">
-                <img style={{ width: "50px", height: "50px" }} title={this.props.msg.userNickname} src={this.props.msg.image} alt="" className="img-responsive img-circle" />
+                <img style={{ width: "50px", height: "50px" }} src={this.props.msg.image} alt="" className="img-responsive img-circle" />
+                <span className="tooltip-custom2">{this.props.msg.userNickname}</span>
               </div>
             </div>
 

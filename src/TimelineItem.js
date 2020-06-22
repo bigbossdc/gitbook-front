@@ -185,7 +185,7 @@ class TimeLineItem extends Component {
           {/** 드롭다운 메뉴 */}
           {this.state.userInfo && (this.state.userInfo.id == sessionStorage.getItem("authUserId") ?
             <div className="dropdown pull-right">
-              <button className="btn btn-secondary btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
+              <button className="btn btn-secondary btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false" style={{outline:"none"}}>
                 <em className="fa fa-ellipsis-h"></em>
               </button>
               <div className="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style={{ position: "absolute", transform: "translate3d(-136px, 28px, 0px)", top: "0px", left: "0px", willChange: "transform" }}>

@@ -123,20 +123,22 @@ export default class ProfileSection extends Component {
 				<ul className="list">
 					<li>
 						<div className="user-info">
+							<br />
+							<br />
 							<a>
 								<div className="image">
-									<img className="img-responsive img-circle" src={this.state.file_image !== "" ? this.state.editables.image : API_URL + viewed.image} alt="User" style={{width: "200px", height: "200px"}}/>
+									<img className="img-responsive img-circle" src={this.state.file_image !== "" ? this.state.editables.image : global.API_URL + viewed.image} alt="User" style={{width: "200px", height: "200px"}}/>
 									<span className="online-status online"></span>
 								</div>
 							</a>
 							<br />
 							<br />
 							<div className="detail">
-								<h4>{sessionStorage.getItem("authUserName")}</h4>
-								<small>{this.props.userid}</small>
+								<h4 style={{fontFamily: "'Nanum Gothic', sans-serif" }}>{sessionStorage.getItem("authUserName")}</h4>
+								<small style={{fontFamily: "'Nanum Gothic', sans-serif" }}>{this.props.userid}</small>
 							</div>
 
-							<h4 style={{ color: "black", fontFamily: "Varlera Round" }}> 프로필 수정하기 </h4>
+							<h4 style={{ color: "black", fontFamily: "'Nanum Gothic', sans-serif" }}> 프로필 수정하기 </h4>
 							<label className="switch">
 								<input type="checkbox" onChange={this.onToggleButtonChanged.bind(this)} />
 								<span className="slider round" />
@@ -146,7 +148,7 @@ export default class ProfileSection extends Component {
 					<li>
 						{this.state.edit_switch ? (
 							<>
-								<small className="text-muted">Change Image</small>
+								<small className="text-muted" style={{fontFamily: "'Nanum Gothic', sans-serif" }}>Change Image</small>
 								<p />
 								<input type="file" accept="image/jpg, image/jpeg, impge/png, image/gif, .jpg, .jpeg, .png, .gif" name="file_image" onChange={this.onFileChange.bind(this)} style={{ color: "black" }} />
 								<hr />
@@ -155,31 +157,32 @@ export default class ProfileSection extends Component {
 							<></>
 						)}
 
-						<small className="text-muted">Nickname</small>
+						<small className="text-muted" style={{fontFamily: "'Nanum Gothic', sans-serif" }}>Nickname</small>
 						<p />
 						{this.state.edit_switch ? (
 							<input name="nickname" type="text" className="form-control-join-email" placeholder="닉네임" style={{ color: "black" }} value={this.state.editables.nickname} onChange={this.onStatusChange.bind(this)} />
 						) : (
-							<p>{viewed.nickname}</p>
+							<p style={{fontFamily: "'Nanum Gothic', sans-serif" }}>{viewed.nickname}</p>
 						)}
 						<hr />
 
-						<small className="text-muted">Introduction</small>
+						<small className="text-muted" style={{fontFamily: "'Nanum Gothic', sans-serif" }}>Introduction</small>
 						<p />
 						{this.state.edit_switch ? (
 							<textarea name="profileContents" rows="4" cols="40" style={{ color: "black", resize: "none" }} value={this.state.editables.profileContents} onChange={this.onStatusChange.bind(this)} />
 						) : (
-							<p>{viewed.profileContents}</p>
+							<p style={{fontFamily: "'Nanum Gothic', sans-serif" }}>{viewed.profileContents}</p>
 						)}
 
 						<hr />
 						{this.state.edit_switch ? (
-							<button className="kafe-btn kafe-btn-mint form-group-join-btn" onClick={this.updateProfile.bind(this)}>
+							<button className="kafe-btn kafe-btn-mint form-group-join-btn" onClick={this.updateProfile.bind(this)} style={{marginBottom:"30px"}}>
 								수정
 							</button>
 						) : (
 							<br />
 						)}
+							<br />
 					</li>
 				</ul>
 			</aside>

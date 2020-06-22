@@ -46,7 +46,9 @@ export default class AccountSettingBeforeAuth extends Component {
 			<div className="form-signin">
 				<br />
 				<br />
-				<h1 style={{ color: "black", fontFamily: "Varlera Round" }}>재인증 필요</h1>
+				<br />
+				<br />
+				<h1 style={{ color: "black", fontFamily: "'Nanum Gothic', sans-serif" }}>계정 재인증</h1>
 				<br />
 				<br />
 				<br />
@@ -71,9 +73,22 @@ export default class AccountSettingBeforeAuth extends Component {
 					/>
 				</div>
 				<br />
-				<button className="kafe-btn kafe-btn-mint btn-block" name="reauth" onClick={this.doAuth}>
+				<button className="kafe-btn kafe-btn-mint btn-block" name="reauth" onClick={this.doAuth} style={{marginBottom:"15px"}}>
 					인증하기
 				</button>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 				<br />
 			</div>
 		);

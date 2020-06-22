@@ -77,11 +77,13 @@ class MyRepositoryListItem extends Component {
       marginBottom: "3px"
     }
     return (
-      <div className="cardbox" style={{boxShadow:"none"}}>
-        <div className="cardbox-headingss" style={{backgroundColor:"#F4F4F4", boxShadow:"none"}}>
-          {(sessionStorage.getItem("authUserNo") == this.props.userNo) && (
+      <div className="cardbox" style={{boxShadow:"none", marginBottom:"0px"}}>
+        <div className="cardbox-headingss" style={{backgroundColor:"#F4F4F4", boxShadow:"none", padding:"10px 0px 0px 0px"}}>
+          <div className="media m-0">
+            <div className="media-body">
+            {(sessionStorage.getItem("authUserNo") == this.props.userNo) && (
             <div className="dropdown pull-right">
-              <button className="btn btn-secondary btn-flat btn-flat-icon" type="button" style={{backgroundColor:"#DFDFDF"}} data-toggle="dropdown" aria-expanded="false">
+              <button className="btn btn-secondary btn-flat btn-flat-icon" type="button" style={{backgroundColor:"#DFDFDF", marginRight:"5px", outline:"none"}} data-toggle="dropdown" aria-expanded="false">
                 <em className="fa fa-ellipsis-h" style={{color:"#828282"}}></em>
            
               </button>
@@ -94,24 +96,19 @@ class MyRepositoryListItem extends Component {
               </div>
             </div>
           )}
-          <div className="media m-0">
-            <div className="media-body">
               <span style={k}></span>
  
-              <Link to={`/gitbook/my/${this.props.path}/repository/view/${this.props.gitName}`} className="text-muted" style={{ fontFamily: "'Nanum Gothic', sans-serif", fontSize: "1.9em", display: "inline-block", marginBottom: "10px", color:"#6E786E"}}>
+              <Link to={`/gitbook/my/${this.props.path}/repository/view/${this.props.gitName}`} className="text-muted" style={{ color:"#414141", fontFamily: "'Nanum Gothic', sans-serif", fontSize: "1.9em", display: "inline-block", marginBottom: "10px"}}>
                   {this.props.gitName}</Link>
         
-              
               {/* <pre style={{ overflowX: "hidden", wordBreak: "break-all", backgroundColor: "#FFFFFF", border: "none", fontFamily: " 'Varela Round', sans-serif" }}>{this.props.description}
               </pre> */}
 
               <br/>
-
-
-              <p style={{fontSize:"1em", textAlign:"right", fontFamily:"'Nanum Gothic', sans-serif"}}><span>{this.props.regDate}</span></p>
+              <p style={{fontSize:"1em", textAlign:"right", fontFamily:"'Nanum Gothic', sans-serif", marginTop:"15px"}}><span><i class="fas fa-clock"></i>&nbsp;{this.props.regDate}</span></p>
             </div>
           </div>
-          <hr style={{backgroundColor:"#DBDBDB", height:"1px"}}></hr>
+          <hr style={{backgroundColor:"#DBDBDB", height:"1px", margin:"0px"}}></hr>
         </div>
 
         <div>
