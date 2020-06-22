@@ -9,19 +9,21 @@ const iconList = {
 };
 
 const linkList = {
-	commit: `/gitbook/my/${sessionStorage.getItem("authUserId")}/repository`,
-	friend: "/gitbook/myfriend",
-	group: "/gitbook/mygroup",
-	chatting: "/gitbook/chatting",
+   commit: `/gitbook/my`,
+   friend: "/gitbook/myfriend",
+   group: "/gitbook/mygroup",
+   chatting: "/gitbook/chatting",
 };
 
 export default class AlarmItem extends Component {
-	constructor() {
-		super(...arguments);
-		this.state = {
-			gitAddr: "",
-		};
-	}
+   constructor() {
+      super(...arguments);
+      this.state = {
+        
+         gitAddr: "",
+      };
+   }
+
 
 	onClickRead = (event) => {
 		this.props.onAlarmRead(this.props.itemData.no);
@@ -40,7 +42,6 @@ export default class AlarmItem extends Component {
 	setTimeDifference = (originalTime) => {
 		let timeMills = new Date(originalTime.split(".")[0]);
 		let diffMills = Date.now() - timeMills;
-
 		let hour = Math.floor((diffMills % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // hour
 		let minute = Math.floor((diffMills % (1000 * 60 * 60)) / (1000 * 60)); // minute
 		let second = Math.floor((diffMills % (1000 * 60)) / 1000); // second

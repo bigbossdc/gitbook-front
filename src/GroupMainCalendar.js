@@ -149,11 +149,10 @@ export default class GroupMainCalendar extends Component {
         this.setState({
           getToDoList: json.data
         });
+      }).then( json => {
+        this.componentDidMount();
       })
       .catch(err => console.error(err))
-
-      this.componentDidMount();
-      this.renderDay();
   }
 
   deleteList(day, deleteTarget) {
@@ -166,11 +165,10 @@ export default class GroupMainCalendar extends Component {
         this.setState({
           getToDoList: json.data
         });
+      }).then( json => {
+        this.componentDidMount();
       })
       .catch(err => console.error(err))
-
-    this.componentDidMount();
-    this.renderDay();
   }
 
   //일 클릭

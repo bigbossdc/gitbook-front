@@ -12,19 +12,21 @@ export default class AlarmBox extends Component {
 		};
 	}
 
-	componentDidMount() {
-		fetch(`${global.API_URL}/gitbook/alarm/list`, {
-			method: "post",
-			headers: global.API_HEADERS,
-			body: null,
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				this.setState({
-					alarmList: json.data,
-				});
-			});
-	}
+
+   componentDidMount() {
+      fetch(`${global.API_URL}/gitbook/alarm/list`, {
+         method: "post",
+         headers: global.API_HEADERS,
+         body: null,
+      })
+         .then((response) => response.json())
+         .then((json) => {
+            this.setState({
+               alarmList: json.data,
+            });
+         });
+   }
+
 
 	componentWillUnmount() {
 		this._ismounted = false;
