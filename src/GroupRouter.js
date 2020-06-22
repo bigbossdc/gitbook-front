@@ -56,7 +56,7 @@ class GroupRouter extends Component {
   }
 
   render() {
-    console.log(this.props.groupno)
+ 
     return (
       <div className="AppGroup">
        {/* <Header></Header> */}

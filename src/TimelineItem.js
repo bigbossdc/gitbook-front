@@ -175,10 +175,13 @@ class TimeLineItem extends Component {
     window.location=window.location.pathname;
   }
   render() {
+
+    console.log(this.props.list.groupNo)
+
     let cardboxType;
     this.props.list.type && this.props.list.type === 'public' ? cardboxType = 'publicCardbox' : cardboxType = 'commitCardbox';
     return (
-      <div className="cardbox">
+      <div className="cardbox" id={cardboxType}>
 
       <div className={cardboxType}>
         <div className="cardbox-heading" >
@@ -218,8 +221,10 @@ class TimeLineItem extends Component {
             </div>
           </div>
         </div>
+       
         <div className="cardbox-item" style={{ padding: "30px" }}>
           {/**<a href="#myModal" data-toggle="modal"> */}
+          { this.props.list.type !== 'commit' ?
           <div className="row">
             {
               this.state.fileList && this.state.fileList.map((list) => 
@@ -229,7 +234,10 @@ class TimeLineItem extends Component {
               
               )
             }
-          </div>
+          </div>:''
+         }
+        { this.props.list.type !== 'commit' ?
+
           <div>
             <p style={{ color: "black", fontFamily: " 'Varela Round', sans-serif", marginTop: "15px", wordBreak: "break-all", fontSize: "1.2em" }}>
               {
@@ -242,6 +250,47 @@ class TimeLineItem extends Component {
               }
             </p>
           </div>
+
+                :  <div>
+                <p style={{ color: "black", fontFamily: " 'Varela Round', sans-serif", marginTop: "15px", wordBreak: "break-all", fontSize: "1.2em"}}>
+                  {
+                  this.props.list.contents.split(/\n/g).map((word,index)=>
+                  index==0 ?
+                  <div>
+
+                  
+                    <Link style={{color:"black"}}
+                       to={this.props.list.groupNo !== null ? `/gitbook/group/${this.props.list.groupNo}/${this.props.list.userNo}/${this.state.userInfo.id}/repository/view/${word.replace(".git", '').replace("[",'').replace("]",'')}`
+                     :
+                     `/gitbook/my/${this.state.userInfo.id}/repository/view/${word.replace(".git", '').replace("[",'').replace("]",'')}`}>
+
+                    <i className="fas fa-database fa-2x " ></i>
+                    {word.split(" ").map(nbsp=><div style={{display:"inline",margin:"10px",fontSize:"1.3em"}}>{nbsp.replace("[",'').replace("]",'') }&nbsp;</div>)
+                  }
+                  </Link>
+                  <br></br> <br></br>
+      
+                  </div>
+                  
+                  :   index==1? <div style={{height:"40px",display:"inline"}} >
+              
+              <i className="fas fa-edit" style={{fontSize:"1.2em"}}></i>
+               
+         
+                 <div style={{display:"inline"}}>
+                  {word.split(" ").map(nbsp=><div style={{display:"inline", marginLeft:"3px",fontSize:"1.3em"}}>
+                    {nbsp }&nbsp;</div>)
+                    
+                }</div>
+                
+               
+                <div style={{display:"inline",fontSize:"0.9em"}}>(를) 을 Commit 하셨습니다</div>
+                </div>:''
+                  )  
+                  }
+                </p>
+              </div>
+      }
         </div>
         <div className="cardbox-base" >
           <ul style={{ display: "inline-block", padding: "20px", width: "97%" }}>
