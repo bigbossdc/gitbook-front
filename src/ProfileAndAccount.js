@@ -17,20 +17,30 @@ export default class ProfileAndAccount extends Component {
 
 	render() {
 		return (
-			<div className="banner-content" style={{ marginTop: "0px" }}>
-				<div className="tab">
+			<div className="banner-content" style={{ marginTop: "0px", background:"#fff", boxShadow:"5px 5px 5px rgb(231, 230, 230)", borderRadius:"20px"}}>
+				<div className="tab" style={{ borderRadius:"20px 20px 20px 0px"}}>
 					<Link to={"/gitbook/my/" + sessionStorage.getItem("authUserId") + "/profile"}>
-						<button className="tablinks" name="profile">
-							Profile
-						</button>
+						{window.location.href.split("/").pop() === "profile" ? 
+							<button className="account-btn-clicked" name="profile">
+								Profile
+							</button>
+							:<button className="" name="profile">
+								Profile
+							</button>
+						}
+
 					</Link>
 					<Link to={"/gitbook/my/" + sessionStorage.getItem("authUserId") + "/account"}>
-						<button className="tablinks" name="account">
-							Account
-						</button>
+						{window.location.href.split("/").pop() === "account" ?
+							<button className="account-btn-clicked" name="account">
+								Account
+							</button>
+							:<button className="tablinks" name="account">
+								Account
+							</button>
+						}
 					</Link>
 				</div>
-				<br />
 				<br />
 
 				{window.location.href.split("/").pop() === "profile" ? <ProfileSection userid={this.props.match.params.userid} /> : <AccountSettingSection />}

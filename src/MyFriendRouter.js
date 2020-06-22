@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import Header from './Header';
 import Header2 from './Header2';
 import Navigation from './Navigation';
-import Navigation2 from './Navigation2';
+import MyFriendNavigation2 from './MyFriendNavigation2';
 import FriendList from './FriendList';
 
 
@@ -108,7 +108,7 @@ class MyFriendRouter extends Component {
                   </div>
               
                   {/** 세번째 섹션 */}
-                  <Navigation2 userid={sessionStorage.getItem("authUserId")} friendlist={this.state.userFriends}></Navigation2>
+                  <MyFriendNavigation2 userid={sessionStorage.getItem("authUserId")} friendlist={this.state.userFriends}></MyFriendNavigation2>
 
             </div>{/** row 종료 */}
           </div>{/** container-fluid 종료 */}

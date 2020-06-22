@@ -17,6 +17,18 @@
   font-size: 17px;
 }
 
+/* Change background color of buttons clicked */
+.gtab .tabclick {
+  background-color: #05cb95;
+  float: left;
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
 /* Change background color of buttons on hover */
 .gtab button:hover {
   background-color: #05cb95;

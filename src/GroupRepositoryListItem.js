@@ -77,37 +77,38 @@ class MyRepositoryListItem extends Component {
       marginBottom: "3px"
     }
     return (
-      <div className="cardbox">
-        <div className="cardbox-heading">
-          {(sessionStorage.getItem("authUserNo") == this.props.userNo) && (
-            <div className="dropdown pull-right">
-              <button className="btn btn-secondary btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false">
-                <em className="fa fa-ellipsis-h"></em>
-              </button>
-              <div className="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style={{ position: "absolute", transform: "translate3d(-136px, 28px, 0px)", top: "0px", left: "0px", willChange: "transform" }}>
-                {(this.props.visible == "public") ?
-                  <a className="dropdown-item" onClick={this.onOkhandler2.bind(this)} style={{ fontFamily: " 'Varela Round', sans-serif", cursor: "pointer" }}><strong>비공개 하기</strong></a> :
-                  <a className="dropdown-item" onClick={this.onOkhandler2.bind(this)} style={{ fontFamily: " 'Varela Round', sans-serif", cursor: "pointer" }}><strong>공개 하기</strong></a>}
+      <div className="cardbox" style={{boxShadow:"none", marginBottom:"0px"}}>
+        <div className="cardbox-heading" style={{backgroundColor:"#F4F4F4", boxShadow:"none", padding:"10px 0px 0px 0px"}}>
 
-                <a className="dropdown-item" href="#" onClick={this.onShow.bind(this)} style={{ fontFamily: " 'Varela Round', sans-serif" }}><strong>삭제 하기</strong></a>
-              </div>
-            </div>
-          )}
           <div className="media m-0">
             <div className="media-body">
+            {sessionStorage.getItem("authUserNo") == this.props.userNo ? (
+              <div className="dropdown pull-right">
+                <button className="btn btn-secondary btn-flat btn-flat-icon" type="button" style={{backgroundColor:"#DFDFDF", marginRight:"5px", outline:"none"}} data-toggle="dropdown" aria-expanded="false">
+                  <em className="fa fa-ellipsis-h"></em>
+                </button>
+                <div className="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style={{ position: "absolute", transform: "translate3d(-136px, 28px, 0px)", top: "0px", left: "0px", willChange: "transform" }}>
+                  {(this.props.visible == "public") ?
+                    <a className="dropdown-item" onClick={this.onOkhandler2.bind(this)} style={{ fontFamily: " 'Varela Round', sans-serif", cursor: "pointer" }}><strong>비공개 하기</strong></a> :
+                    <a className="dropdown-item" onClick={this.onOkhandler2.bind(this)} style={{ fontFamily: " 'Varela Round', sans-serif", cursor: "pointer" }}><strong>공개 하기</strong></a>}
+
+                  <a className="dropdown-item" href="#" onClick={this.onShow.bind(this)} style={{ fontFamily: " 'Varela Round', sans-serif" }}><strong>삭제 하기</strong></a>
+                </div>
+              </div>
+              ) : ""}
               <span style={k}></span>
       
-              <Link to={`/gitbook/group/${this.props.groupNo}/${this.props.userNo}/${this.props.userId}/repository/view/${this.props.gitName}`} className="text-muted" style={{ fontFamily: " 'Varela Round', sans-serif", fontSize: "1.9em", display: "inline-block", marginBottom: "10px" }}>
+              <Link to={`/gitbook/group/${this.props.groupNo}/${this.props.userNo}/${this.props.userId}/repository/view/${this.props.gitName}`} className="text-muted" style={{ color:"#414141", fontFamily:  "'Nanum Gothic', sans-serif", fontSize: "1.9em", display: "inline-block", marginBottom: "10px" }}>
                   {this.props.gitName}</Link>
               
-              <pre style={{ overflowX: "hidden", wordBreak: "break-all", backgroundColor: "#FFFFFF", border: "none", fontFamily: " 'Varela Round', sans-serif" }}>{this.props.description}
-              </pre>
+              {/* <pre style={{ overflowX: "hidden", wordBreak: "break-all", backgroundColor: "#FFFFFF", border: "none", fontFamily: " 'Varela Round', sans-serif" }}>{this.props.description}
+              </pre> */}
 
-
-              <small style={{ float: "right" }}><span>{this.props.regDate}</span></small>
+              <br/>
+              <p style={{fontSize:"1em", textAlign:"right", fontFamily:"'Nanum Gothic', sans-serif", marginTop:"15px"}}><span><i class="fas fa-user-edit"></i>&nbsp;{this.props.userId}</span><span>&nbsp;&nbsp;&nbsp;<i class="fas fa-clock"></i>&nbsp;{this.props.regDate}</span></p>
             </div>
           </div>
-          <hr></hr>
+          <hr style={{backgroundColor:"#DBDBDB", height:"1px", margin:"0px"}}></hr>
         </div>
 
         <div>

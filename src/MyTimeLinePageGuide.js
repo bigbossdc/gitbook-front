@@ -22,10 +22,10 @@ class MyTimeLinePageGuide extends Component {
         <div style={{textAlign:"center", margin:"20px 0px"}}>
         {(this.props.groupno && this.props.groupno !== undefined) ? 
             <Link to={`/gitbook/upload/${this.props.groupno}`}>
-             <p className="timeline-file-icon"><i className="fas fa-file-alt fa-6x"></i></p>
+             <p className="timeline-file-icon"><i class="fas fa-file-medical fa-6x"></i></p>
             </Link>
             : <Link to="/gitbook/upload">
-                <p className="timeline-file-icon"><i className="fas fa-file-alt fa-6x"></i></p>
+                <p className="timeline-file-icon"><i className="fas fa-file-medical fa-6x"></i></p>
               </Link>
         }
 
@@ -36,7 +36,7 @@ class MyTimeLinePageGuide extends Component {
         {
           (this.props.groupno && this.props.groupno !== undefined) ? 
             <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#606665"}}>팀원들에게 하고 싶은 이야기가 있나요? <br/> 아래 가이드를 보고 지금 업로드해보세요</p>
-            :<p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#606665"}}>깃북에 처음 방문하셨나요? <br/> 아래 가이드를 보고 "{sessionStorage.getItem("authUserNickName")}"님의 이야기를 업로드해보세요</p>
+            :<p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#606665"}}>깃북에 처음 방문하셨나요? <br/> 아래 가이드를 보고 "{this.props.userid}"님의 이야기를 업로드해보세요</p>
       
         }
       </div>

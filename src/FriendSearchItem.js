@@ -7,7 +7,7 @@ class FriendSearchItem extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      status: this.props.status
+      status: "팔로우"
     }
   }
 
@@ -60,24 +60,26 @@ class FriendSearchItem extends Component {
           {this.props.status === '친구' ? 
             <span style={{ marginTop: "10px" }}>
             <a className="friend-btn friend-btn-mint-small">
-              {this.props.status}
+              친구
             </a>
           </span> : this.props.status === '요청중' ? 
           <span style={{ marginTop: "10px" }}>
             <a className="friend-btn req-btn-mint-small">
-              {this.props.status}
-            </a>
-          </span> : this.state.status === '요청중'?  
-          <span style={{ marginTop: "10px" }}>
-            <a className="friend-btn req-btn-mint-small">
-              {this.state.status}
+              요청중
             </a>
           </span> :
           <span style={{ marginTop: "10px" }}>
-            <a className="friend-btn follow-btn-mint-small" onClick={this.reqFollow.bind(this)}>
-              {this.props.status}
-            </a>
-          </span> }
+            {this.state.status === "팔로우" ? 
+              <a className="friend-btn follow-btn-mint-small" onClick={this.reqFollow.bind(this)}>
+              {this.state.status}
+              </a>
+              : <a className="friend-btn req-btn-mint-small" onClick={this.reqFollow.bind(this)}>
+                  {this.state.status}
+                </a>
+            }
+
+          </span> 
+          }
 
         </div>
         <hr></hr>

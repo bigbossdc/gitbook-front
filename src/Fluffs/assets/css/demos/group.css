@@ -341,7 +341,7 @@
     outline: 0;
     border: none;
     text-decoration: none;
-    background: #0fc19e;
+    background: #fff;
     text-align: center;
     border-radius: 50%;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -350,13 +350,22 @@
     cursor: pointer;
 }
 .imges .btn-floating:hover {
-    background: #fff;
+    background: #0fc19e;
 }
 .imges .btn-floating div {
     font-size: 1.8em;
     padding: 0;
     margin: .22em 0 0 0;
 }
+
+.fa-pencil {
+    color: #0fc19e;
+}
+
+.fa-pencil:hover {
+    color: #fff;
+}
+
 
 #group-upload-icon {
     display: inline-block;

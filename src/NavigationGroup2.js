@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
 import './Fluffs/assets/css/demos/photo.css';
+import "./Fluffs/assets/css/demos/navi.css"
 
 
 class Navigation2 extends Component {
@@ -35,6 +36,7 @@ class Navigation2 extends Component {
                                     (index < 9 ?  <div className="col-lg-4" style={{paddingLeft:"5px", paddingRight:"5px"}}>
                                                     <Link to={`/gitbook/my/${list.id}`} ><img 
                                                     src={list.image} className="img-reponsive" alt="" width="130" height="130" style={{marginBottom:"5px", marginTop:"5px" , display:"block", maxWidth:"100%", maxheight:"70.1px"}}/></Link>
+                                                    <span className="tooltip-custom">{list.nickname}</span>
                                                     </div> : '')
                             )
                     }

@@ -79,7 +79,7 @@ callVisibleHandler(list){
                   }             
 
                 </div>
-                <hr style={{backgroundColor:"#DBDBDB",height:"1px",marginTop:"-0px"}}></hr>
+                <hr style={{backgroundColor:"#DBDBDB",height:"1px",margin:"0px"}}></hr>
                 {this.state.repositorylist && this.state.repositorylist
                 .filter((list) => list.gitName.indexOf(this.state.keyword ) != -1 && ((list.userNo == authUserNo ) ? 1 : list.visible == "public") ) 
                 .map((list) => <GroupRepositoryListItem

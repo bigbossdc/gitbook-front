@@ -54,3 +54,25 @@
     padding-top:5px; 
     padding-bottom:5px
 }
+
+span .tooltip-custom {
+    display: none;
+    position: relative;
+    top: 30px;
+    right: 0px;
+
+}
+
+strong:hover .tooltip-custom {
+    display: inline-block;
+    border-radius: 8px;
+    padding: 3px 8px 3px 8px;
+    background-color: #3C3C3C;
+    color: #fff;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 0.8em;
+    text-align: center;
+    position: absolute;
+    margin-top: 20px;
+
+}
