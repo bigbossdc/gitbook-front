@@ -133,15 +133,33 @@ class ChattingPage extends Component {
 		if(0 === scrollHeigth){
 			this.setState({
 			  num: this.state.num+5
-			})
-			if(this.state.msgList.length>this.state.num){
-				window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop(300)
-			}
+      })
+      let inviteFilter='';
+      inviteFilter = this.state.msgList && this.state.msgList.filter((list) =>
+      list.contents ==(sessionStorage.getItem("authUserNickName")+"(가)이 초대 되었습니다"))
+      if(inviteFilter !=''){
+       inviteFilter= inviteFilter.reverse().pop();
+      }
+
+      if(inviteFilter==''){
+        if(this.state.msgList.length>this.state.num){
+          window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop(300)
+        }
+      }else{
+          let msgLength=this.state.msgList && this.state.msgList
+          .filter((list)=> list.no >=inviteFilter.no).length
+          if(msgLength>this.state.num){
+            window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop(300)
+          }
+      }
+
+			
 		}
 		
 	   }
   render() {
-   
+    
+    
     return (
 
       <Fragment>
@@ -150,9 +168,6 @@ class ChattingPage extends Component {
 				url={`${global.API_URL}/gitbook/socket`}
 				topics={[`/topics/chatting/resetChatRoom/${sessionStorage.getItem("authUserNo")}`]}
 				onMessage={(msg) => {
-         let receivedObj = JSON.parse(msg);
-         console.log('reasdasdasdasd')
-         console.log(receivedObj);
          this.setState({
           chatRoomList:msg
          })
@@ -359,11 +374,9 @@ class ChattingPage extends Component {
 
         window.addEventListener('scroll',this._infiniteScroll,true);
   }
-
     componentWillUnmount(){
       window.removeEventListener('scroll',this._infiniteScroll,true);
     }
-
 
 }
 export default ChattingPage;

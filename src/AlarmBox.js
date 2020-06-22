@@ -3,6 +3,7 @@ import SockJsClient from "react-stomp";
 import AlarmList from "./AlarmList";
 import "./Fluffs/assets/css/AlarmBox.css";
 import {Motion, spring} from 'react-motion';
+import { motion } from "framer-motion";
 
 export default class AlarmBox extends Component {
    constructor() {
@@ -121,10 +122,10 @@ export default class AlarmBox extends Component {
 				<li className="dropdown notification-list" style={{ display: "block", padding: "0px auto", width: "70px" }}>
 					{/** 알림 버튼 아이콘*/}
 					<a className="nav-link dropdown-toggle" id="notiIcon" data-toggle="dropdown" aria-expanded="true" >
-                  <i className="fa fa-bell noti-icon" style={{ display: "inline-block", cursor: "pointer",position:"absolute",
+                  <motion.i className="fa fa-bell noti-icon" style={{ display: "inline-block", cursor: "pointer",position:"absolute",
                    paddingLeft:"20px" 
                    //this.state.alarmList === null || this.state.alarmList.length === 0 ? "20px" : "5px" 
-                   }}></i>	</a>
+                   }}></motion.i>	</a>
 						{this.state.alarmList === null || this.state.alarmList.length === 0 ? (
 							<></>
 						) : (
