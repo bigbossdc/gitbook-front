@@ -182,9 +182,9 @@ class Header extends Component {
                                  </span>
 
                                  <span className="hidden-xs" style={{ fontFamily: " 'Varela Round', sans-serif", marginLeft: "10px" }}>
-                                    <strong title={sessionStorage.getItem("authUserNickName")}>
+                                    <strong>
                                        {sessionStorage.getItem("authUserNickName") && sessionStorage.getItem("authUserNickName").length > 5 ? 
-                                          sessionStorage.getItem("authUserNickName").substring(0, 5) + ".."
+                                          <>{sessionStorage.getItem("authUserNickName").substring(0, 5) + ".."}<span className="tooltip-custom">{sessionStorage.getItem("authUserNickName")}</span></>
                                           : sessionStorage.getItem("authUserNickName")}
                                     </strong>
                                  </span>

@@ -132,7 +132,7 @@ export default class MyToDoGroupScheduleDialog extends Component {
                         <li>
                           <div>
                           {this.props.masterno === sessionStorage.getItem("authUserNo") ? 
-                            <a className='deleteButton' onClick={this.deleteClickHandler.bind(this)}><span id={list.no} style={{ fontWeight: "bold", color: 'red', fontFamily: " 'Varela Round', sans-serif" }}>삭제</span></a>
+                             <a className='deleteButton'><i id={list.no} className="fas fa-backspace" style={{color:"red"}}  onClick={this.deleteClickHandler.bind(this)}></i></a>
                             :
                             ""
                             }

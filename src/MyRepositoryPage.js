@@ -87,7 +87,7 @@ class MyRepositoryPage extends Component {
             </h2>
             <br></br>
             <div style={{marginTop:"20px"}}>
-              <pre className="repo-description" style={{}}>
+              <pre className="repo-description">
                 <text style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#414141"}}>
                   Description<hr style={{marginTop:"2px", marginBottom:"10px", borderColor:"#C3C3C3"}}/>
                 </text>

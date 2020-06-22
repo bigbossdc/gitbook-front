@@ -93,7 +93,7 @@ changeScheduleRepoValue(){
                   {/** 세번째 섹션 */}
                   <Navigation2 
                   key={this.props.match.params.userid+"1"}
-                  friendlist={this.state.friendlist}
+                  userid={this.props.match.params.userid}
                   />
 
             </div>{/** row 종료 */}
@@ -103,25 +103,6 @@ changeScheduleRepoValue(){
       
     );
   }
-  componentDidMount() {
-
-    fetch(`${global.API_URL}/gitbook/user/friend/list`, {
-
-      method: 'post',
-      headers: global.API_HEADERS,
-      body: JSON.stringify({
-        id : sessionStorage.getItem("authUserId"),
-        kind: "친구"
-      })
-  })
-  .then( response => response.json())
-  .then( json => {
-      this.setState({
-        friendlist: json.data    
-      });
-  })
-  .catch( err => console.error( err ));    
-}
 
 //   componentDidMount() {
 

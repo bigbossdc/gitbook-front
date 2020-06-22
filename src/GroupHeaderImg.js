@@ -12,7 +12,7 @@ class GroupHeaderImg extends Component {
          <div className="imges">
                 <img src={this.props.groupinfo.image} className="imges"/>
                 <div className="content">
-                    <h4>{this.props.groupinfo.groupTitle}</h4>
+                    <h3 style={{fontFamily:"'Nanum Gothic', sans-serif"}}>{this.props.groupinfo.groupTitle}</h3>
                 </div> 
                 <div className="img-cover"></div>
                 {this.props.groupinfo.grant !== 'user_req' ? <Link to={`/gitbook/upload/${this.props.groupinfo.no}`} className='btn-floating'><div><i className="fa fa-pencil fa-1x"></i></div></Link> : ''}

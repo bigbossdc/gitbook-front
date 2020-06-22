@@ -246,7 +246,8 @@
   padding: 0px 10px 30px 0px;
   margin-left: 10px;
   height: 390px !important;
-  overflow-y: scroll;	
+  overflow-y: auto;	
+
 }
 .img-comment-list li {
     margin-top: 5px 0px 10px 0px;
@@ -348,19 +349,6 @@
   cursor: pointer;
 }
 
-.deleteButton:hover{
-  font-size: 1.3em;
-  //transition-duration: 1.0s;
-    //transform: translateY(-5px);
-  // ~ .p1 {
-  //   transition-duration: 1.0s;
-  //   transform: translateX(5px);
-  // }
-  // ~ .p2 {
-  //   transition-duration: 1.0s;
-  //    transform: translateX(5px);
-  //  }
-}
 
 .img{
   width: 25px;
