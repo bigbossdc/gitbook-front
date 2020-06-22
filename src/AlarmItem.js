@@ -9,7 +9,7 @@ const iconList = {
 };
 
 const linkList = {
-   commit: `/gitbook/my/${sessionStorage.getItem("authUserId")}/repository`,
+   commit: `/gitbook/my`,
    friend: "/gitbook/myfriend",
    group: "/gitbook/mygroup",
    chatting: "/gitbook/chatting",
@@ -19,6 +19,7 @@ export default class AlarmItem extends Component {
    constructor() {
       super(...arguments);
       this.state = {
+        
          gitAddr: "",
       };
    }
@@ -36,6 +37,8 @@ export default class AlarmItem extends Component {
          });
       }
    }
+
+
 
    setTimeDifference = (originalTime) => {
       let timeMills = new Date(originalTime.split(".")[0]);
@@ -66,14 +69,15 @@ export default class AlarmItem extends Component {
    };
 
    render() {
+    
       return (
          <Fragment>
-            <Link to= {this.props.itemData.groupNo !== null && this.props.itemData.alarmType === 'commit' ?
-             `/gitbook/group/${this.props.itemData.groupNo}/${sessionStorage.getItem("authUserNo")}/${sessionStorage.getItem("authUserId")}/repository/view/${this.state.gitAddr}`
+            <a href= {this.props.itemData.groupNo !== null && this.props.itemData.alarmType === 'commit' ?
+             `/gitbook/group/${this.props.itemData.groupNo}/${this.props.itemData.userNo}/${this.props.itemData.userId}/repository/view/${this.state.gitAddr}`
 
              :
 
-              linkList[this.props.itemData.alarmType] + (this.props.itemData.alarmType === "commit" ? `/view/${this.state.gitAddr}` : "")}
+              linkList[this.props.itemData.alarmType] + (this.props.itemData.alarmType === "commit" ? `/${this.props.itemData.userId}/repository/view/${this.state.gitAddr}` : "")}
             className="dropdown-item notify-item">
                <input type="button" className="markAsRead" value="확인" onClick={this.onClickRead.bind(this)} />
                <div className="notify-icon bg-success">
@@ -83,7 +87,7 @@ export default class AlarmItem extends Component {
                   {this.props.itemData.alarmContents.length < 90 ? this.props.itemData.alarmContents : `${this.props.itemData.alarmContents.slice(0, 90)}...`}
                   <small className="text-muted">{this.state.message}</small>
                </p>
-            </Link>
+            </a>
             <hr style={{ margin: "0px" }} />
          </Fragment>
       );

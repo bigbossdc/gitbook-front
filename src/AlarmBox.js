@@ -12,7 +12,7 @@ export default class AlarmBox extends Component {
       };
    }
 
-   componentDidMount() {
+   componentWillMount() {
       fetch(`${global.API_URL}/gitbook/alarm/list`, {
          method: "post",
          headers: global.API_HEADERS,
@@ -99,7 +99,7 @@ export default class AlarmBox extends Component {
 
 
 	render() {
-    
+    console.log(this.state.alarmList);
 		return (
 			<Fragment>
 				<SockJsClient
