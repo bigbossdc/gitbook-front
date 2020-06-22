@@ -212,10 +212,7 @@ class MyRepositoryPage extends Component {
   
   }
 
-  componentWillUnmount(){
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-    
-  }
+ 
   
 }
 

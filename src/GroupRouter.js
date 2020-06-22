@@ -65,7 +65,11 @@ class GroupRouter extends Component {
           <div className="container-fluid">
             <div className="row">
               
-                  <NavigationGroup groupno={this.props.match.params.groupno} userno={this.props.match.params.userno} groupinfo={this.state.groupInfo}></NavigationGroup>  {/** 네비게이션 */}
+                  <NavigationGroup 
+                        key={this.props.match.params.groupno} 
+                        groupno={this.props.match.params.groupno} 
+                        userno={this.props.match.params.userno} 
+                        groupinfo={this.state.groupInfo}></NavigationGroup>  {/** 네비게이션 */}
                 
                   {/** 두번째 섹션 */}
                   <div className="col-lg-6" style={{background: "#F4F4F4",marginTop:"1px"}}>             
@@ -97,7 +101,10 @@ class GroupRouter extends Component {
                   </div>
               
                   {/** 세번째 섹션 */}
-                  <NavigationGroup2 joinlist={this.state.joinList} groupinfo={this.state.groupInfo}></NavigationGroup2>
+                  <NavigationGroup2 
+                  key={this.state.groupInfo}
+                  joinlist={this.state.joinList} 
+                  groupinfo={this.state.groupInfo}></NavigationGroup2>
 
             </div>{/** row 종료 */}
           </div>{/** container-fluid 종료 */}

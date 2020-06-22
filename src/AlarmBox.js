@@ -2,7 +2,9 @@ import React, { Component, Fragment } from "react";
 import SockJsClient from "react-stomp";
 import AlarmList from "./AlarmList";
 import "./Fluffs/assets/css/AlarmBox.css";
-import { Motion, spring } from "react-motion";
+
+import {Motion, spring} from 'react-motion';
+import { motion } from "framer-motion";
 
 export default class AlarmBox extends Component {
 	constructor() {
@@ -125,6 +127,7 @@ export default class AlarmBox extends Component {
 				/>
 				<li className="dropdown notification-list" style={{ display: "block", padding: "0px auto", width: "70px" }}>
 					{/** 알림 버튼 아이콘*/}
+
 					<a className="nav-link dropdown-toggle" id="notiIcon" data-toggle="dropdown" aria-expanded="true">
 						<i
 							className="fa fa-bell noti-icon"
@@ -144,6 +147,7 @@ export default class AlarmBox extends Component {
 							{this.state.alarmList.length > 99 ? "99+" : this.state.alarmList.length}
 						</span>
 					)}
+
 
 					{/** 알림 목록 보여줄 때*/}
 					<div className="dropdown-menu dropdown-menu-right dropdown-lg" style={{ width: "400px", left: "-400px", marginLeft: "10px" }}>

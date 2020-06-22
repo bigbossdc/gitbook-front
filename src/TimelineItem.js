@@ -228,10 +228,11 @@ class TimeLineItem extends Component {
           <div className="row">
             {
               this.state.fileList && this.state.fileList.map((list) => 
-             <ImageItem
+            <div>
+              <ImageItem
                url={list.fileContents}
              />
-              
+              </div>
               )
             }
           </div>:''
