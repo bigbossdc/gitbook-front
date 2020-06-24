@@ -65,8 +65,8 @@ class Header extends Component {
                      <div className="col-lg-3">
                         <div className="navbar-header" style={{width:"30%"}}>
                            <Link to="/gitbook/main" className="navbar-brand" href="index.html">
-                              {" "}
-                              GitBook
+                              <text className="gibook-title">{" "}
+                              GitBook</text>
                            </Link>
                         </div>{" "}
                      </div>

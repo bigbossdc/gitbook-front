@@ -13,7 +13,8 @@ class GroupList extends Component {
                 callback={this.props.callback}/>
             <hr/>
             <GroupListJoin
-                grouplist={this.props.grouplist}/>
+                grouplist={this.props.grouplist}
+                groupNum={this.props.groupNum}/>
         </div>
        );
     }

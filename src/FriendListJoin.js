@@ -26,7 +26,7 @@ class FriendListJoin extends Component {
                 ""
                 :<div className="group-search-area">   
                     <div className="group-input-field">
-                        <input placeholder="Search1" type="text" value={this.props.keyword} onChange={this.onInputChange.bind(this)}/>
+                        <input placeholder="Search" type="text" value={this.props.keyword} onChange={this.onInputChange.bind(this)}/>
                         <i className="fa fa-search"></i>  
                     </div>
                 </div>

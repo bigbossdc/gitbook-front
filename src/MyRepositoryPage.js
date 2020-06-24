@@ -51,7 +51,7 @@ class MyRepositoryPage extends Component {
   }
   
   render() {
-
+    console.log(this.state.gitInfo)
     const k={
       position: "relative",
       top: "1px",
@@ -59,7 +59,7 @@ class MyRepositoryPage extends Component {
       width: "12px",
       height: "12px",
       borderRadius: "50%",
-      backgroundColor: (this.state.gitInfo && this.state.gitInfo.visible === "public" ) ? "#0FC19E" : "red" ,
+      backgroundColor: (this.state.gitInfo && this.state.gitInfo.visible === "public" ) ? "#0FC19E" :  (this.state.gitInfo && this.state.gitInfo.visible === "private" )?"red":'' ,
       marginRight:"6px",
       marginBottom: "3px"
     }

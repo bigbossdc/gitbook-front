@@ -41,7 +41,8 @@ class FriendListJoinItem extends Component {
                             <Link to={`/gitbook/my/${this.props.id}`}><p><h4><b>{this.props.nickname}</b></h4></p></Link>
                             <h5>{this.props.name} ({this.props.id})</h5>
                             <div className="btn_group">
-                                <a className="kafe-btn kafe-btn-mint">메시지</a>
+                                <Link className="kafe-btn kafe-btn-mint" to={`/gitbook/my/${this.props.id}/repository`} style={{fontFamily:"'Nanum Gothic', sans-serif"}}>Repository</Link>
+                                {/* <a className="kafe-btn kafe-btn-mint">Repository</a> */}
                                 <a className="kafe-btn kafe-btn-mint btn-danger" onClick={this.onShow.bind(this)}>삭제</a>
                             </div>
                             <div>

@@ -81,20 +81,20 @@ onClose() {
                   {(sessionStorage.getItem("authUserId") === this.state.userinfo.id) ? 
                     <div className="image">
                       <Link to={`/gitbook/my/${this.state.userinfo.id}/profile`} style={{marginBottom:"20px"}}>
-                       <img src={this.state.userinfo.image} className="img-circle" alt="User" style={{width:"180px", height:"180px", marginRight:"15px"}}></img>
+                       <img src={this.state.userinfo.image} className="img-circle" alt="" style={{width:"180px", height:"180px", marginRight:"15px"}}></img>
                        <span className="online-status online" style={{marginLeft:"10px"}}/>
                       </Link>       
                     </div> : 
                     (this.state.userinfo.status === "기타") ?
                     <div className="image">
                       <Link style={{marginBottom:"20px"}}>
-                      <img src={this.state.userinfo.image} className="img-circle" onClick={this.onShow.bind(this)} alt="User" style={{width:"180px", height:"180px", marginRight:"15px"}}></img>
+                      <img src={this.state.userinfo.image} className="img-circle" onClick={this.onShow.bind(this)} alt="" style={{width:"180px", height:"180px", marginRight:"15px"}}></img>
                       <span className="online-status online" style={{background:"red"}}></span>
                       </Link>
                     </div> :
                     <div className="image">
                        <Link style={{marginBottom:"20px"}}>
-                      <img src={this.state.userinfo.image} className="img-circle" alt="User" style={{width:"180px", height:"180px", marginRight:"15px"}}></img>
+                      <img src={this.state.userinfo.image} className="img-circle" alt="" style={{width:"180px", height:"180px", marginRight:"15px"}}></img>
                       <span className="online-status online" style={{background:"blue"}}></span>
                       </Link>
                     </div>}
@@ -144,10 +144,9 @@ onClose() {
             <div className="modal-content" style={{margin:"15% auto",height:"130px" ,width:"300px"}}>
                 <div className="modal-header" style={{backgroundColor:"#0FC19E"}}>
                     <span className="close" onClick={this.onClose.bind(this)}>&times;</span>
-                    <h6 style={{color:"#ffff"}}>친구 팔로우</h6>
+                    <h6 style={{color:"#ffff", fontFamily:"'Nanum Gothic', sans-serif"}}>해당 맴버를 팔로우 하시겠습니까?</h6>
                 </div>      
-                <div className="modal-footer">
-                    <h6 style={{color:"gray",position:"absolute",marginLeft:"10px"}}>해당 맴버를 팔로우 하시겠습니까?</h6>            
+                <div className="modal-footer">           
                     <button 
                         style={{width:"70px",marginTop:"30px"}}
                         type="submit"
