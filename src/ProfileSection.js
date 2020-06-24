@@ -119,7 +119,7 @@ export default class ProfileSection extends Component {
 
 	render() {
 		return (
-			<aside id="leftsidebar" className="sidebar">
+			<aside id="leftsidebar" className="sidebar" style={{width: '400px'}}>
 				<ul className="list">
 					<li>
 						<div className="user-info">
