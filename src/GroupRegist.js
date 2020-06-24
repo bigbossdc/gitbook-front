@@ -6,10 +6,12 @@ import {Link} from "react-router-dom";
 const API_HEADERS2 = {
     'Content-Type': 'multipart/form-data; charset=UTF-8'
 }
+
 class GroupRegist extends Component {
     constructor(){
         super(...arguments);
         this.state={
+            groupno:'',
             groupTitle: '',
             groupIntro:'',
             file: null,
@@ -46,6 +48,7 @@ class GroupRegist extends Component {
             chk: !this.state.chk,
             imgurl: '/gitbook/assets/img/bg/basic.jpg'
         });
+        this.clickHandlerDelete();
     }
 
     clickHandlerDelete(e) {
@@ -59,7 +62,7 @@ class GroupRegist extends Component {
         console.log("imagechange");
         let reader = new FileReader();
         let file = event.target.files[0];
-        console.log("image click : " + file);
+        console.log("image click : " + this.state.previewURL);
 
         let formData = new FormData();
         formData.append('file', file);
@@ -97,8 +100,31 @@ class GroupRegist extends Component {
 
     } 
 
+    // 그룹 생성하기
+    handleSubmit(groupTitle, description, imgurl){
+        let formData = new FormData();
+        formData.append('imgurl', imgurl);
+        formData.append('groupTitle', groupTitle);
+        formData.append('description', description);
+
+        let path='';
+        fetch(`${global.API_URL}/gitbook/group/regist`, {
+            method: 'post',
+            headers: {
+                API_HEADERS2
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then( json => {
+            path=JSON.stringify(json.data);
+            window.location="/gitbook/group/"+path+"/"+sessionStorage.getItem("authUserNo")
+        })
+        .catch(err => console.log(err));
+    }
+
     onResult() {
-        this.props.handleSubmit(this.state.groupTitle, this.state.groupIntro, this.state.imgurl)
+        this.handleSubmit(this.state.groupTitle, this.state.groupIntro, this.state.imgurl)
     }
 
     render() {
@@ -106,15 +132,16 @@ class GroupRegist extends Component {
     let profile_preview = null;
     if(this.state.file !== ''){
         profile_preview = <img src={this.state.previewURL} style={{width: "450px", height: "150px", borderRadius: '10px', display: "block" }}></img>
+
     }
-    
+    console.log("aaaaa " + this.state.groupno)
     return (
-        <div className="group-req-setting">    
-            <h2 style={{fontFamily:"'Nanum Gothic', sans-serif"}}>그룹 등록</h2>
+        <div className="group-req-setting" style={{background:"#f4f4f4"}}>    
+            <h2 style={{fontFamily:"'Nanum Gothic', sans-serif"}} style={{marginTop:"0px"}}>그룹 등록</h2>
             <hr></hr>
             <div className="group-box">
                 <div className="suggestions-list">
-                    <form method="POST">
+                    <div>
                         <h4 style={{fontFamily:"'Nanum Gothic', sans-serif"}}>그룹 이름</h4>
                         <input type="text" 
                                className="form-control" 
@@ -195,13 +222,12 @@ class GroupRegist extends Component {
                                     disabled="true"
                                     style={{ float: "right ", margin: "10px", width: "70px" ,backgroundColor:"red" }}
                                     >등록 불가</button>:
-                        <Link to="/gitbook/mygroup">
                         <button 
                                     type="submit" 
                                     className="kafe-btn kafe-btn-mint-small"                                
                                     style={{ float: "right ", margin: "10px", width: "60px" }}
                                     onClick={this.onResult.bind(this)}
-                                    >등록</button></Link>
+                                    >등록</button>
                             ):  <button 
                             type="submit" 
                             className="kafe-btn kafe-btn-mint-small" 
@@ -209,7 +235,7 @@ class GroupRegist extends Component {
                             style={{ float: "right ", margin: "10px", width: "70px" ,backgroundColor:"red" }}
                             >등록 불가</button>
                         }
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -366,7 +366,6 @@
     color: #fff;
 }
 
-
 #group-upload-icon {
     display: inline-block;
     margin-bottom: 5px;
@@ -375,4 +374,8 @@
     color: #848484;
     position: relative;
     cursor: pointer;
+}
+
+.sidebar .list .user-info a i:hover{
+    color: #0fc19e;
 }

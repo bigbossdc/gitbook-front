@@ -10,43 +10,19 @@ import GroupRegist from './GroupRegist';
 
 {/*Group Navigation 사용하는 그룹 관련 페이지 - 그룹 타임라인, 그룹 관리*/}
 
-const API_HEADERS2 = {
-  'Content-Type': 'multipart/form-data; charset=UTF-8'
-}
+
 class MyGroupRouter extends Component {
   constructor(props) {
     super(props);
     this.state = {
       groupList:'',
-      groupMaster:''
+      groupMaster:'',
+      groupNum:''
     };
   }
 
 
-  // 그룹 생성하기
-  handleSubmit(groupTitle, description, imgurl){
-      //event.preventDefault();
-      console.log("handleSubmit123131" + imgurl);
 
-      let formData = new FormData();
-
-      formData.append('imgurl', imgurl);
-      formData.append('groupTitle', groupTitle);
-      formData.append('description', description);
-
-      fetch(`${global.API_URL}/gitbook/group/regist`, {
-          method: 'post',
-          headers: {
-              API_HEADERS2
-          },
-          body: formData
-      })
-      .then(response => response.json())
-      .then( json => {
-        this.componentDidMount();
-      })
-      .catch(err => console.log(err));
-  }
 
   // 그룹 요청 수락
   callbackAddGroup(groupno){
@@ -64,7 +40,8 @@ class MyGroupRouter extends Component {
     .then( response => response.json())
     .then( json => {
         this.setState({
-          groupList : json.data
+          groupList : json.data,
+          groupNum: Object(json.data).length
         });
         this.callbackReqGroup();
     })
@@ -127,6 +104,7 @@ class MyGroupRouter extends Component {
                                        groupno={this.props.match.params.groupno}
                                         grouplist={this.state.groupList} 
                                         myreqlist={this.state.myreqList}
+                                        groupNum={this.state.groupNum}
                                         callback={{
                                           add: this.callbackAddGroup.bind(this),
                                           delete: this.callbackRejectGroup.bind(this)}}
@@ -142,7 +120,7 @@ class MyGroupRouter extends Component {
                   <Route path="/gitbook/mygroup/regist" exact 
                          render={() => <GroupRegist 
                                           grouplist={this.state.groupList} 
-                                          handleSubmit={this.handleSubmit.bind(this)}/>}
+                                          />}
                   />
                   </div>
               
@@ -167,7 +145,8 @@ class MyGroupRouter extends Component {
       .then(response => response.json())
       .then(json => {
         this.setState({
-          groupList: json.data
+          groupList: json.data,
+          groupNum: Object(json.data).length
         });
       })
       .catch(err => console.error(err));

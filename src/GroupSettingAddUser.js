@@ -45,7 +45,7 @@ class GroupSettingAddUser extends Component {
   render() {
     
     return (
-      <div className="group-req-setting">
+      <div className="group-req-setting" style={{borderRadius:"0px 0px 20px 20px"}}>
         <div className="group-search-area">   
             <p><h4 className="group-req-title"><b>그룹 초대</b></h4></p>
             <div className="group-input-field">

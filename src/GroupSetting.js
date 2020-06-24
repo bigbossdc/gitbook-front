@@ -22,7 +22,7 @@ class GroupSetting extends Component {
         console.log("tab chk " + this.state.tabKind)
         return(  
             <div>
-                <div className="gtab">
+                <div className="gtab" style={{ boxShadow:"5px 5px 5px rgb(231, 230, 230)", borderRadius:"20px 20px 0px 0px"}}>
                     <button className={this.state.tabKind === "info" ? "tabclick" : "tablinks"} 
                             onClick={() => this.setState({currentTabObj : <GroupSettingInfo    
                                                                             userno={this.props.userno}
@@ -46,7 +46,7 @@ class GroupSetting extends Component {
                                                                            />,
                                                             tabKind:"delete"})}>맴버탈퇴관리</button>
                 </div>
-                <div>
+                <div style={{boxShadow:"5px 5px 5px rgb(231, 230, 230)", borderRadius:"0px 0px 20px 20px"}}>
                     {this.state.currentTabObj}
                 </div>
             </div>
