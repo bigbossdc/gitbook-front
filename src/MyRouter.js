@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import Header3 from './Header3';
 import Navigation from './Navigation';
 import Navigation2 from './Navigation2';
 import MyTimelinePage from './MyTimelinePage';

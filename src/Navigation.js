@@ -141,15 +141,15 @@ onClose() {
             </div>            
            </div>
            <div className="modal" style={{display: this.state.show}}>
-            <div className="modal-content" style={{margin:"15% auto",height:"130px" ,width:"300px"}}>
+            <div className="modal-content" style={{margin:"15% auto",height:"100px" ,width:"300px"}}>
                 <div className="modal-header" style={{backgroundColor:"#0FC19E"}}>
                     <span className="close" onClick={this.onClose.bind(this)}>&times;</span>
-                    <h6 style={{color:"#ffff"}}>친구 팔로우</h6>
+                    <h6 style={{color:"#ffff",wordBreak: "break-all",fontSize:"13px",fontFamily:"'Jeju Gothic', sans-serif" }}>해당 맴버를 팔로우 하시겠습니까?</h6>
                 </div>      
                 <div className="modal-footer">
-                    <h6 style={{color:"gray",position:"absolute",marginLeft:"10px"}}>해당 맴버를 팔로우 하시겠습니까?</h6>            
+                            
                     <button 
-                        style={{width:"70px",marginTop:"30px"}}
+                        style={{width:"70px",margin:"10px auto"}}
                         type="submit"
                         className="kafe-btn kafe-btn-mint-small" name="button-ok"
                         onClick={this.reqFollow.bind(this)}>

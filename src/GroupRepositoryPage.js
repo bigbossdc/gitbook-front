@@ -59,12 +59,14 @@ class GroupRepositoryPage extends Component {
       width: "12px",
       height: "12px",
       borderRadius: "50%",
-      backgroundColor: (this.state.gitInfo && this.state.gitInfo.visible === "public" ) ? "#0FC19E" : "red" ,
+      backgroundColor: (this.state.gitInfo && this.state.gitInfo.visible === "public" ) ? "#0FC19E" :  (this.state.gitInfo && this.state.gitInfo.visible === "private" )?"red":'' ,
       marginRight:"6px",
       marginBottom: "3px"
     }
     return (
       <div className="RepositoryPage">
+      { this.state.gitInfo && ((this.state.gitInfo.visible === "private")&& (sessionStorage.getItem("authUserId")===this.props.match.params.userid)) || this.state.gitInfo.visible==='public' ? 
+      
         <div
           className="cardbox"
           style={{ background: "#F4F4F4", marginTop: "1px", boxShadow: "none" }}
@@ -86,16 +88,29 @@ class GroupRepositoryPage extends Component {
             </h2>
             <br></br>
             <div style={{marginTop:"20px"}}>
-              <pre className="repo-description">
-                <text style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#333"}}>
-                  <strong>Description</strong><hr style={{marginTop:"2px", marginBottom:"10px", borderColor:"#C3C3C3"}}/>
+            <p className="repo-description" 
+                  style={{borderLeft:"10px solid #0FC19E",
+                          borderRight:"1px solid #717171",
+                          borderTop:"1px solid #717171",
+                          borderBottom:"1px solid #717171",
+                          marginLeft:"0px",
+
+                          padding:"10px"
+                          }}>
+                <text style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#414141"}}>
+                 <strong> Description</strong><hr style={{marginTop:"2px", marginBottom:"10px", borderColor:"#C3C3C3"}}/>
                 </text>
-                <text style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em"}}>
-                  {this.state.gitInfo && this.state.gitInfo.description}
+                <text style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.1em"}}>
+                  {this.state.gitInfo && this.state.gitInfo.description.split(/\n/g).map((word)=>
+              <div>
+              {word.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp }&nbsp;</div>)
+              }<br/>
+              </div>
+              )  }
                 </text>
-              </pre>
+              </p>
             </div>
-            <div >
+            <div style={{marginTop:"10px"}}>
               {document.queryCommandSupported("copy") && (
                 <div style={{ display: "inline" }}>
                   <button className="button1" onClick={this.copyToClipboard.bind(this)} style={{border:"0px", height:"26px", borderColor:"#0FC19E"}}>
@@ -162,7 +177,18 @@ class GroupRepositoryPage extends Component {
 
           </div>
           <br></br>
-        </div>
+        </div>: ((this.state.gitInfo.visible === "private")&& (sessionStorage.getItem("authUserId")!==this.props.match.params.userid))? 
+       
+       
+       <div style={{width:"600px",height:"300px",margin:"100px auto"}}>
+      
+        <i className="fas fa-user-shield fa-10x" style={{width:"auto",height:"auto", margin:"0px 200px"}} ></i>
+        <br/><br/><br/>
+        <h1  style={{width:"auto",height:"auto", margin:"0px 40px"}}>사용자가 비공개한 파일입니다</h1>
+        </div>:
+        
+        ''
+      }
       </div>
     );
   }

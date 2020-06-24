@@ -55,7 +55,7 @@ class CommentItem extends Component {
            <i id="deleteIcon"   onClick={this.onClickShow.bind(this)}className="fas fa-backspace fa-1.5x"/>:''
            }
           <p style={{paddingRight:"30px",fontFamily:"'Jeju Gothic', sans-serif"}}>{this.props.list.contents.split(" ")
-          .map(word=><div style={{display:"inline"}}>{word} &nbsp;</div>)}</p> <span className="date sub-text" style={{ marginBottom: "5px" }}>{this.props.list.regDate}</span>
+          .map(word=><div style={{display:"inline"}}>{word}&nbsp;</div>)}</p> <span className="date sub-text" style={{ marginBottom: "5px" }}>{this.props.list.regDate}</span>
         </li>
         <hr ></hr>
       </div>
@@ -65,6 +65,7 @@ class CommentItem extends Component {
               <div style={{marginLeft:"auto",marginRight:"auto",width:"200px"}}>
                 <h5 onClick={this.onDeleteComment.bind(this)} className="kafe-btn kafe-btn-mint">삭제</h5>
                 <h5 onClick={this.onClickShow.bind(this)} className="kafe-btn kafe-btn-mint btn-danger">취소</h5>
+               
               </div>
        
         <hr ></hr>
