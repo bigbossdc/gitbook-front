@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import './CommentItem.css';
 import { Link } from "react-router-dom";
 
+import './CommentItem.css';
+import './dialogBox.css';
 
 
 class CommentItem extends Component {
@@ -47,8 +48,8 @@ class CommentItem extends Component {
             <img src={this.props.list.userProfile} className="img-responsive img-circle" alt="Image" />
           </div>
           {this.props.list.userStatus==1 ? 
-           <strong><Link to={`/gitbook/my/${this.props.list.userId}`}>{this.props.list.uesrNickname}</Link></strong> 
-          : <a className="text-muted" onClick={this.onShowOutMember.bind(this)} style={{cursor:"pointer"}}>{this.props.list.uesrNickname}</a>
+           <strong><Link to={`/gitbook/my/${this.props.list.userId}`} style={{fontFamily:"'Jeju Gothic', sans-serif"}}>{this.props.list.uesrNickname}</Link></strong> 
+          : <a className="text-muted" onClick={this.onShowOutMember.bind(this)} style={{cursor:"pointer", fontFamily:"'Jeju Gothic', sans-serif"}}>{this.props.list.uesrNickname}</a>
           }
          
            {this.props.list.userId == sessionStorage.getItem("authUserId")?
@@ -72,7 +73,31 @@ class CommentItem extends Component {
       </div>
 
       {/* 탈퇴회원 알림 다이얼로그  */}
-<div>
+      <div>
+      <div className="modal" style={{ display: this.state.show4 }}>
+        <div className="modal-content" style={{ margin: "15% auto", height: "100px", width: "300px" }}>
+          <div className="modal-header" style={{
+            backgroundColor: "#0FC19E"
+          }}>
+            <text className="close" onClick={this.onClose.bind(this)}>&times;</text>
+            <h6 style={{ wordBreak: "break-all",fontSize:"13px",fontFamily:"'Jeju Gothic', sans-serif" }}>해당 사용자는 탈퇴한 회원입니다.</h6>
+          </div>
+          <div className="modal-footer">
+
+            <button
+              style={{ width: "70px", margin: "10px auto" }}
+              type="submit"
+              className="kafe-btn kafe-btn-mint-small" name="button-ok"
+              onClick={this.onClose.bind(this)}
+            >
+              ok
+                </button>
+
+          </div>
+        </div>
+      </div>
+      </div>
+{/* <div>
 
 <div className="modal" style={{ display: this.state.show4 }}>
   <div className="modal-content" style={{ margin: "15% auto", height: "130px", width: "300px" }}>
@@ -96,7 +121,7 @@ class CommentItem extends Component {
     </div>
   </div>
 </div>
-</div>
+</div> */}
 {/* 탈퇴회원 알림 다이얼로그 여기까지 */}
 
     </div>

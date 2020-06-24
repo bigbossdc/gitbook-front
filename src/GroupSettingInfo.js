@@ -105,7 +105,7 @@ class GroupSettingInfo extends Component {
   render() {
     console.log("please : " + this.state.title)
     return (
-      <div className="group-req-setting">
+      <div className="group-req-setting" style={{borderRadius:"0px 0px 20px 20px"}}>
         
       <p><h4 className="group-req-title"><b>정보 수정</b></h4></p>
       <hr></hr>

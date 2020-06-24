@@ -28,7 +28,7 @@ class GroupListJoin extends Component {
         return(   
          <div>
             <div className="group-req">
-            <p><h4 className="group-req-title"><b>참여중인 그룹</b></h4></p>
+            <p><h4 className="group-req-title"><b>참여중인 그룹 ({this.props.groupNum}개)</b></h4></p>
             {this.props.grouplist == "" ?
                 ""
                 :<div className="group-search-area">   

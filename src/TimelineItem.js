@@ -192,10 +192,10 @@ class TimeLineItem extends Component {
                 <em className="fa fa-ellipsis-h"></em>
               </button>
               <div className="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style={{ position: "absolute", transform: "translate3d(-136px, 28px, 0px)", top: "0px", left: "0px", willChange: "transform" }}>
-                <a className="dropdown-item" onClick={this.onShow2.bind(this)}  href="#" style={{ fontFamily: " 'Varela Round', sans-serif" }}><strong>삭제 하기</strong></a>
+                <a className="dropdown-item" onClick={this.onShow2.bind(this)}  href="#" ><strong style={{ fontFamily: " 'Nanum Gothic', sans-serif" }}>삭제 하기</strong></a>
 
                 {this.props.list.type && (this.props.list.type === 'public') ?
-                <a onClick ={this.onShow.bind(this)} className="dropdown-item"  style={{ fontFamily: " 'Varela Round', sans-serif",cursor:"pointer" }}><strong>수정 하기</strong></a>
+                <a onClick ={this.onShow.bind(this)} className="dropdown-item"  style={{cursor:"pointer" }}><strong style={{ fontFamily: " 'Nanum Gothic', sans-serif" }}>수정 하기</strong></a>
                 : ''}
 
               </div>
@@ -207,17 +207,17 @@ class TimeLineItem extends Component {
               <Link to={`/gitbook/my/${this.state.userInfo.id}`}><img className="img-responsive img-circle" src={this.state.userInfo.image} alt="User"></img></Link>
             </div>
             <div className="media-body">
-              <p className="m-0" style={{ fontFamily: " 'Varela Round', sans-serif", fontSize: "1.3em" }}>
+              <p className="m-0" style={{ fontFamily: " 'Nanum Gothic', sans-serif", fontSize: "1.3em" }}>
                 {(this.state.userInfo.userStatus == 1) ? 
                 <Link className="text-muted" to={`/gitbook/my/${this.state.userInfo.id}`}>{this.state.userInfo.nickname}</Link>
                 :<a className="text-muted" onClick={this.onShowOutMember.bind(this)} style={{cursor:"pointer"}}>{this.state.userInfo.nickname}</a>
                 }
                        
                 {(this.props.list.visible === 'private') ?
-                  <span style={{ color: "#E16A70" }}> [비공개 글입니다]</span> : ''
+                  <span style={{ color: "#E16A70", fontFamily:"'Nanum Gothic', sans-serif" }}> [비공개 글입니다]</span> : ''
                 }
               </p>
-              <small><span>{this.props.list.regDate}</span></small>
+              <small><span style={{fontFamily:"'Nanum Gothic', sans-serif"}}>{this.props.list.regDate}</span></small>
             </div>
           </div>
         </div>
@@ -240,7 +240,7 @@ class TimeLineItem extends Component {
         { this.props.list.type !== 'commit' ?
 
           <div>
-            <p style={{ color: "black", fontFamily: " 'Varela Round', sans-serif", marginTop: "15px", wordBreak: "break-all", fontSize: "1.2em" }}>
+            <p style={{ color: "black", fontFamily: " 'Nanum Gothic', sans-serif", marginTop: "15px", wordBreak: "break-all", fontSize: "1.2em" }}>
               {
               this.props.list.contents.split(/\n/g).map((word)=>
               <div>
@@ -394,37 +394,33 @@ class TimeLineItem extends Component {
 </div>
 {/* 삭제 다이얼로그 여기까지 */}
 
-{/* 탈퇴회원 알림 다이얼로그  */}
-<div>
+      {/* 탈퇴회원 알림 다이얼로그  */}
+      <div className="modal" style={{ display: this.state.show4 }}>
+        <div className="modal-content" style={{ margin: "15% auto", height: "100px", width: "300px" }}>
+          <div className="modal-header" style={{
+            backgroundColor: "#0FC19E"
+          }}>
+            <span className="close" onClick={this.onClose.bind(this)}>&times;</span>
+            <h6 style={{ wordBreak: "break-all",fontSize:"13px",fontFamily:"'Jeju Gothic', sans-serif" }}>해당 사용자는 탈퇴한 회원입니다.</h6>
+          </div>
+          <div className="modal-footer">
 
-<div className="modal" style={{ display: this.state.show4 }}>
-  <div className="modal-content" style={{ margin: "15% auto", height: "130px", width: "300px" }}>
-    <div className="modal-header" style={{
-      backgroundColor: "#0FC19E"
-    }}>
-      <span className="close" onClick={this.onClose.bind(this)}>&times;</span>
-      <h6 style={{ wordBreak: "break-all" }}>해당 사용자는 탈퇴한 회원입니다.</h6>
-    </div>
+            <button
+              style={{ width: "70px", margin: "10px auto" }}
+              type="submit"
+              className="kafe-btn kafe-btn-mint-small" name="button-ok"
+              onClick={this.onClose.bind(this)}
+            >
+              ok
+                </button>
 
-    <div className="modal-footer">
-     <button
-        style={{ width: "70px", marginTop: "30px" }}
-        type="submit"
-        className="kafe-btn kafe-btn-mint-small" name="button-ok"
-        onClick={this.onClose.bind(this)}
-      >
-        ok
-    </button>
+          </div>
+        </div>
+      </div>
+      {/* 탈퇴회원 알림 다이얼로그 여기까지 */}
 
     </div>
   </div>
-</div>
-</div>
-{/* 탈퇴회원 알림 다이얼로그 여기까지 */}
-
-
-</div>
-      </div>
     );
   }
   componentDidMount() {

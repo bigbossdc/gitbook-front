@@ -20,7 +20,7 @@ class Navigation2 extends Component {
                 <div className="trending-box">
                     <div className="row">
                         <div className="col-lg-4">
-                        <Link to="/gitbook/myfriend"> <h4><strong style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", color:"#606665"}}>친구 목록</strong></h4></Link>
+                        <Link to="/gitbook/myfriend"> <h4 className="navi-friendlist-title"><strong style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", color:"#606665"}}>친구 목록</strong></h4></Link>
                         </div>
                     </div>
                 </div>
