@@ -1,32 +1,29 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
 
 const iconList = {
 	commit: "fas fa-code-branch",
 	friend: "fa fa-user-plus",
-	group: "fa fa-user-plus",
+	group: "fas fa-users",
 	chatting: "fa fa-comment",
 };
 
 const linkList = {
-   commit: `/gitbook/my`,
-   friend: "/gitbook/myfriend",
-   group: "/gitbook/mygroup",
-   chatting: "/gitbook/chatting",
+	commit: `/gitbook/my`,
+	friend: "/gitbook/myfriend",
+	group: "/gitbook/mygroup",
+	chatting: "/gitbook/chatting",
 };
 
 export default class AlarmItem extends Component {
-   constructor() {
-      super(...arguments);
-      this.state = {
-        
-         gitAddr: "",
-      };
-   }
+	constructor() {
+		super(...arguments);
+		this.state = {
+			gitAddr: "",
+		};
+	}
 
-
-	onClickRead = (event) => {
-		this.props.onAlarmRead(this.props.itemData.no);
+	onClickDelete = (event) => {
+		this.props.onAlarmDelete(this.props.itemData.no);
 	};
 
 	componentDidMount() {
@@ -70,11 +67,11 @@ export default class AlarmItem extends Component {
 		console.log(this.props.itemData)
 		return (
 			<Fragment>
-				<div className="dropdown-item notify-item">
+				<div className="dropdown-item notify-item" id="alarmItemAnimation">
 					<i
-						className="fas fa-trash-alt markAsRead"
-						onClick={this.onClickRead.bind(this)}
-						style={{ width: "40px", height: "40px", fontSize: "18px", textAlign: "center", verticalAlign: "center", float: "right", padding: "5px 0px 0px 15px", cursor: "pointer" }}
+						className="fas fa-trash-alt markAsDelete"
+						onClick={this.onClickDelete.bind(this)}
+						style={{ width: "25px", height: "25px", fontSize: "18px", textAlign: "center", verticalAlign: "center", float: "center", padding: "0px", cursor: "pointer" }}
 					></i>
 					<div className="notify-icon bg-success">
 						<i className={iconList[this.props.itemData.alarmType]}></i>
@@ -86,7 +83,7 @@ export default class AlarmItem extends Component {
 									? `/gitbook/group/${this.props.itemData.groupNo}/${this.props.itemData.userNo}/${this.props.itemData.userId}/repository/view/${this.state.gitAddr}`
 									: linkList[this.props.itemData.alarmType] + (this.props.itemData.alarmType === "commit" ? `/${this.props.itemData.userId}/repository/view/${this.state.gitAddr}` : "")
 							}
-							style={{ fontFamily: "'Nanum Gothic', sans-serif" }}
+							style={{ fontFamily: "'Nanum Gothic', sans-serif", textTransform: 'none' }}
 						>
 							{this.props.itemData.alarmContents.length < 90 ? this.props.itemData.alarmContents : `${this.props.itemData.alarmContents.slice(0, 90)}...`}
 							<small className="text-muted">{this.state.message}</small>

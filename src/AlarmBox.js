@@ -3,40 +3,43 @@ import SockJsClient from "react-stomp";
 import AlarmList from "./AlarmList";
 import "./Fluffs/assets/css/AlarmBox.css";
 
-import {Motion, spring} from 'react-motion';
-import { motion } from "framer-motion";
-
 export default class AlarmBox extends Component {
 	constructor() {
 		super(...arguments);
 		this.state = {
 			alarmList: null,
+			counted: 0,
 		};
 	}
 
-
-   componentDidMount() {
-      fetch(`${global.API_URL}/gitbook/alarm/list`, {
-         method: "post",
-         headers: global.API_HEADERS,
-         body: null,
-      })
-         .then((response) => response.json())
-         .then((json) => {
-            this.setState({
-               alarmList: json.data,
-            });
-         });
-   }
-
+	componentDidMount() {
+		fetch(`${global.API_URL}/gitbook/alarm/list`, {
+			method: "post",
+			headers: global.API_HEADERS,
+			body: null,
+		})
+			.then((response) => response.json())
+			.then((json) => {
+				let count = 0;
+				json.data.forEach((element) => {
+					if (element.alarmCheck === "uncheck") {
+						count += 1;
+					}
+				});
+				this.setState({
+					alarmList: json.data,
+					counted: count,
+				});
+			});
+	}
 
 	componentWillUnmount() {
 		this._ismounted = false;
 	}
 
-	onAlarmRead = (no) => {
+	onAlarmDelete = (no) => {
 		//sql로 요청 보내기
-		fetch(`${global.API_URL}/gitbook/alarm/mark`, {
+		fetch(`${global.API_URL}/gitbook/alarm/markDelete`, {
 			headers: global.API_HEADERS,
 			method: "post",
 			body: JSON.stringify({ no: no, id: sessionStorage.getItem("authUserId") }),
@@ -60,13 +63,30 @@ export default class AlarmBox extends Component {
 			});
 	};
 
+	onAlarmRead = () => {
+		if(this.state.counted === 0){
+			return;
+		}
+		fetch(`${global.API_URL}/gitbook/alarm/markRead`, {
+			headers: global.API_HEADERS,
+			method: "post",
+			body: JSON.stringify({ id: sessionStorage.getItem("authUserId") }),
+		})
+			.then((response) => response.json())
+			.then((json) => {
+				this.setState({
+					counted: 0,
+				})
+			});
+	};
+
 	onClearAll = () => {
-		if (this.state.alarmList === null || this.state.alarmList <= 0) {
+		if (this.state.alarmList === null || this.state.alarmList.length <= 0 || this.state.counted <= 0) {
 			return;
 		}
 
 		//sql로 요청 보내기
-		fetch(`${global.API_URL}/gitbook/alarm/mark`, {
+		fetch(`${global.API_URL}/gitbook/alarm/markDelete`, {
 			headers: global.API_HEADERS,
 			method: "post",
 			body: JSON.stringify({ id: sessionStorage.getItem("authUserId") }),
@@ -91,20 +111,16 @@ export default class AlarmBox extends Component {
 	onReceiveAlarm = (newAlarmItem) => {
 		let original = this.state.alarmList;
 		original.unshift(newAlarmItem);
+		let updatedCount = this.state.counted + 1;
 		this.setState({
 			alarmList: original,
+			counted: updatedCount,
 		});
 	};
 
 	onReceiveChatting = (newChattingItem) => {
 		console.log(newChattingItem);
-   };
-   
-   onAlarmViewClicked = (event) => {
-      if(event.target.id === 'alarmButton'){
-         
-      }
-   }
+	};
 
 	render() {
 		console.log(this.state.alarmList)
@@ -132,6 +148,7 @@ export default class AlarmBox extends Component {
 					<a className="nav-link dropdown-toggle" id="notiIcon" data-toggle="dropdown" aria-expanded="true">
 						<i
 							className="fa fa-bell noti-icon"
+							onClick={this.onAlarmRead.bind(this)}
 							style={{
 								display: "inline-block",
 								cursor: "pointer",
@@ -141,31 +158,30 @@ export default class AlarmBox extends Component {
 							}}
 						></i>{" "}
 					</a>
-					{this.state.alarmList === null || this.state.alarmList.length === 0 ? (
+					{this.state.alarmList === null || this.state.counted === 0 ? (
 						<></>
 					) : (
 						<span className="badge badge-danger badge-pill noti-icon-badge" style={{ fontSize: "11px", position: "absolute", backgroundColor: "red", marginTop: "20px", zIndex: "1000000" }}>
-							{this.state.alarmList.length > 99 ? "99+" : this.state.alarmList.length}
+							{this.state.counted > 99 ? "99+" : this.state.counted}
 						</span>
 					)}
 
-
 					{/** 알림 목록 보여줄 때*/}
-					<div className="dropdown-menu dropdown-menu-right dropdown-lg" style={{ width: "400px", left: "-400px", marginLeft: "10px" }}>
+					<div className="dropdown-menu dropdown-menu-right dropdown-lg" id="alarmBoxAnimation" style={{ width: "400px", left: "-400px", marginLeft: "10px" }}>
 						<div className="dropdown-item noti-title" style={{ height: "40px" }}>
-							<h6 className="m-0" style={{ paddingTop: "5px" }}>
+							<h5 className="m-0" style={{ paddingTop: "5px", fontFamily: "'Nanum Gothic', sans-serif" }}>
 								<span className="pull-right">
-									<button className="text-dark" onClick={this.onClearAll} style={{ border: "none" }}>
-										<small>Clear All</small>
+									<button className="text-dark" onClick={this.onClearAll} style={{ border: "none", padding: "0px", margin:'0px', width:'50px', float:'center', backgroundColor: "#DDD" }}>
+										<small className="clearAllButton">Clear All</small>
 									</button>
 								</span>
 								Notification
-							</h6>
+							</h5>
 						</div>
 
 						<div className="alarmBoxScrollDiv">
 							<div className="alarmBoxScrollArea">
-								<AlarmList alarmList={this.state.alarmList} onAlarmRead={this.onAlarmRead.bind(this)} /> {/** 알림 메시지 목록 */}
+								<AlarmList alarmList={this.state.alarmList} onAlarmDelete={this.onAlarmDelete.bind(this)} /> {/** 알림 메시지 목록 */}
 							</div>
 						</div>
 					</div>
