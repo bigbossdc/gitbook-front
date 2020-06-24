@@ -5,6 +5,7 @@ import './dialogBox.css';
 import { Link } from "react-router-dom";
 import ImageItem from "./ImageItem"
 import UploadPageItem from "./UploadPageItem";
+import { motion } from "framer-motion";
 
 
 
@@ -176,7 +177,6 @@ class TimeLineItem extends Component {
   }
   render() {
 
-    console.log(this.props.list.groupNo)
 
     let cardboxType;
     this.props.list.type && this.props.list.type === 'public' ? cardboxType = 'publicCardbox' : cardboxType = 'commitCardbox';
@@ -264,10 +264,11 @@ class TimeLineItem extends Component {
                        to={this.props.list.groupNo !== null ? `/gitbook/group/${this.props.list.groupNo}/${this.props.list.userNo}/${this.state.userInfo.id}/repository/view/${word.replace(".git", '').replace("[",'').replace("]",'')}`
                      :
                      `/gitbook/my/${this.state.userInfo.id}/repository/view/${word.replace(".git", '').replace("[",'').replace("]",'')}`}>
-
-                    <i className="fas fa-database fa-2x " ></i>
+                    
+                  <i className="fab fa-github" style={{fontSize:"1.5em"}}></i>
                     {word.split(" ").map(nbsp=><div style={{display:"inline",margin:"10px",fontSize:"1.3em"}}>{nbsp.replace("[",'').replace("]",'') }&nbsp;</div>)
                   }
+          
                   </Link>
                   <br></br> <br></br>
       
@@ -345,50 +346,53 @@ class TimeLineItem extends Component {
         }
 
         
-      {/* 여기부터 */}
-      <div className="modal" style={{ display: this.state.show}}>
-        <UploadPageItem 
+    {/* 여기부터 */}
 
-          timelineInfo={this.props.list}
-          marchid={this.props.marchid}
-          filelist={this.state.fileList}
-          taglist={this.state.tagList}
-          close={{
-            close:this.onClose.bind(this)
-          }}
-        />
-      </div>
-      {/* 여기까지 */}
+    <div className="modal" style={{ display: this.state.show}}>
+      <UploadPageItem 
 
-      {/* 삭제 다이얼로그  */}
-      <div>
-      <div className="modal" style={{ display: this.state.show2 }}>
-        <div className="modal-content" style={{ margin: "15% auto", height: "130px", width: "300px" }}>
-          <div className="modal-header" style={{
-            backgroundColor: "#0FC19E"
-          }}>
-            <span className="close" onClick={this.onClose.bind(this)}>&times;</span>
-            <h6 style={{ wordBreak: "break-all" }}>현재 게시글을 삭제 하시겠습니까?</h6>
-          </div>
+        timelineInfo={this.props.list}
+        marchid={this.props.marchid}
+        filelist={this.state.fileList}
+        taglist={this.state.tagList}
+        close={{
+          close:this.onClose.bind(this)
+        }}
+      />
+     </div>
+{/* 여기까지 */}
 
-          <div className="modal-footer">
-            <h6 style={{ display: this.state.show3, color: "red", position: "absolute", marginLeft: "-130px" }}>비밀번호가 틀렸습니다</h6>
+{/* 삭제 다이얼로그  */}
+<div>
 
-            <input style={{ float: "left", marginLeft: "10px", marginTop: "30px", color: "black" }} placeholder="password 입력" value={this.state.deleteInput} type="text" name="deleteInput" onChange={this.handleChange.bind(this)}></input>
-            <button
-              style={{ width: "70px", marginTop: "30px" }}
-              type="submit"
-              className="kafe-btn kafe-btn-mint-small" name="button-ok"
-              onClick={this.onOkhandler.bind(this)}
-            >
-              ok
-          </button>
+<div className="modal" style={{ display: this.state.show2 }}>
+  <div className="modal-content" style={{ margin: "15% auto", height: "130px", width: "300px" }}>
+    <div className="modal-header" style={{
+      backgroundColor: "#0FC19E"
+    }}>
+      <span className="close" onClick={this.onClose.bind(this)}>&times;</span>
+      <h6 style={{ wordBreak: "break-all" }}>현재 게시글을 삭제 하시겠습니까?</h6>
+    </div>
 
-          </div>
-        </div>
-      </div>
-      </div>
-      {/* 삭제 다이얼로그 여기까지 */}
+    <div className="modal-footer">
+      <h6 style={{ display: this.state.show3, color: "red", position: "absolute", marginLeft: "-130px" }}>비밀번호가 틀렸습니다</h6>
+
+      <input style={{ float: "left", marginLeft: "10px", marginTop: "30px", color: "black" }} placeholder="password 입력"  value={this.state.deleteInput} type="password" name="deleteInput" onChange={this.handleChange.bind(this)}></input>
+      <button
+        style={{ width: "70px", marginTop: "30px" }}
+        type="submit"
+        className="kafe-btn kafe-btn-mint-small" name="button-ok"
+        onClick={this.onOkhandler.bind(this)}
+      >
+        ok
+    </button>
+
+    </div>
+  </div>
+
+</div>
+</div>
+{/* 삭제 다이얼로그 여기까지 */}
 
       {/* 탈퇴회원 알림 다이얼로그  */}
       <div className="modal" style={{ display: this.state.show4 }}>

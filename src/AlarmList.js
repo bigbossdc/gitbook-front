@@ -7,14 +7,14 @@ export default class AlarmList extends Component {
 		this.state = {};
 	}
 
-	onAlarmRead = (no) => {
-		this.props.onAlarmRead(no);
+	onAlarmDelete = (no) => {
+		this.props.onAlarmDelete(no);
 	};
 
 	render() {
 		let list = [];
 		if (this.props.alarmList !== null) {
-			this.props.alarmList.map((item) => list.push(<AlarmItem key={item.no} itemData={item} onAlarmRead={this.onAlarmRead.bind(this)} />));
+			this.props.alarmList.map((item) => list.push(<AlarmItem key={item.no} itemData={item} onAlarmDelete={this.onAlarmDelete.bind(this)} />));
 		}
 
 		return (

@@ -4,21 +4,24 @@ import DialogContent from '@material-ui/core/DialogContent';
 import './MainCalendar.scss'
 
 
-const blank_pattern = /^\s+|\s+$/g; 
+const blank_pattern = /^\s+|\s+$/g;
 
 
 export default class MyToDoGroupScheduleDialog extends Component {
 
+
+
   constructor() {
     super(...arguments);
+
     this.state = {
       content: '',
-      image:''
+      image: ''
     };
 
-     
+
   }
-  
+
   onClickHandler() {
     this.props.onClosehandler();
     this.setState({
@@ -27,7 +30,7 @@ export default class MyToDoGroupScheduleDialog extends Component {
   }
 
   keyChange(e) {
-    
+
     if (e.key === 'Enter') {
       const authUserNo = sessionStorage.getItem("authUserNo");
 
@@ -39,7 +42,6 @@ export default class MyToDoGroupScheduleDialog extends Component {
         scheduleContents: this.state.content,
         gourpNo: null,
       }
-     
 
       ///////// 텍스트 오류 처리
       if (this.state.content.length == 0) {
@@ -53,17 +55,16 @@ export default class MyToDoGroupScheduleDialog extends Component {
         })
         return;
       }
-      if( this.state.content.replace( blank_pattern, '' ) == "" ){
+      if (this.state.content.replace(blank_pattern, '') == "") {
         alert('공백만 입력되었습니다');
         this.setState({
           content: ''
         })
         return;
       }
-     /////////////
-    
+
       this.props.addlist(newToDo.checkDate, newToDo);
-       
+
       this.setState({
         content: ''
       });
@@ -81,13 +82,13 @@ export default class MyToDoGroupScheduleDialog extends Component {
       no: e.target.id,
       checkDate: this.props.year + "-" + this.props.month + "-" + this.props.day //ex) 2020-05-30
     }
-   
-      this.props.deletelist(deleteTarget.checkDate, deleteTarget);
+
+    this.props.deletelist(deleteTarget.checkDate, deleteTarget);
   }
 
   render() {
     return (
-      
+
       <Dialog open={this.props.openModal}>
 
         <DialogContent>
@@ -107,39 +108,34 @@ export default class MyToDoGroupScheduleDialog extends Component {
                     <br></br>
                     <br />
 
-                    {this.props.masterno === sessionStorage.getItem("authUserNo") ? 
-                    
-                    <input
-                      onChange={this.handleChange.bind(this)}
-                      onKeyPress={this.keyChange.bind(this)}
-                      value={this.state.content}
-                      className="form-control input-sm"
-                      type="text"
-                      placeholder="Enter..." ></input>
-                    : 
+                    {this.props.masterno === sessionStorage.getItem("authUserNo") ?
 
-                    <a style={{fontFamily: " 'Varela Round', sans-serif",fontWeight:"bold" }}>추가/삭제의 권한이 없습니다.</a>
+                      <input
+                        onChange={this.handleChange.bind(this)}
+                        onKeyPress={this.keyChange.bind(this)}
+                        value={this.state.content}
+                        className="form-control input-sm"
+                        type="text"
+                        placeholder="Enter..." ></input>
+                      :
+
+                      <a style={{ fontFamily: " 'Varela Round', sans-serif", fontWeight: "bold" }}>추가/삭제의 권한이 없습니다.</a>
 
                     }
-
-                    
                   </div>
 
                   <ul className="img-comment-list">
                     {
                       this.props.getToDoList && this.props.getToDoList.map((list) =>
-                        
-                        <li>
-                          <div>
-                          {this.props.masterno === sessionStorage.getItem("authUserNo") ? 
-                             <a className='deleteButton'><i id={list.no} className="fas fa-backspace" style={{color:"red"}}  onClick={this.deleteClickHandler.bind(this)}></i></a>
+
+                        <li style={{ width: "300px" }}>
+
+                          {this.props.masterno === sessionStorage.getItem("authUserNo") ?
+                            <a style={{ float: "right", marginLeft: "10px" }} className='deleteButton'><i id={list.no} className="fas fa-backspace" style={{ color: "red" }} onClick={this.deleteClickHandler.bind(this)}></i></a>
                             :
-                            ""
-                            }
-                            <br/>
-                           <p className='p1'>{list.scheduleContents.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp }&nbsp;</div>)}</p>
-                            <p className='p2' style={{fontSize:"0.8em"}}>on {this.props.monthName} {this.props.thisDay}th, {this.props.year}</p>
-                          </div>
+                            ''
+                          }
+                          <p style={{ width: "280px", wordBreak: "break-word", marginTop:"20px" }}>{list.scheduleContents.split(" ").map(nbsp => <div style={{ display: "inline" }}>{nbsp}&nbsp;</div>)}</p>
                         </li>
                       )
                     }
@@ -154,19 +150,25 @@ export default class MyToDoGroupScheduleDialog extends Component {
   }
 
   componentDidMount() {
+    const now = new Date();
+    console.log(now);
+    //this.setTimeDifference(now);
+
     fetch(`${global.API_URL}/gitbook/user/profile/info/${sessionStorage.getItem("authUserId")}`, {
-        method: 'post',
-        headers: global.API_HEADERS,
-     })
-    .then( response => response.json())
-    .then( json => {
-    
-        this.setState({
-            image: json.data.image
-        });
+      method: 'post',
+      headers: global.API_HEADERS,
     })
-    .catch( err => console.error( err ));
-}
+      .then(response => response.json())
+      .then(json => {
+
+        this.setState({
+          image: json.data.image
+        });
+      })
+      .catch(err => console.error(err));
+
+
+  }
 
 }
 

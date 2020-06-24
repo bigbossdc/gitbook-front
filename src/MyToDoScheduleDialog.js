@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import './MainCalendar.scss'
+import { motion } from "framer-motion";
 
-
-const blank_pattern = /^\s+|\s+$/g; 
+const blank_pattern = /^\s+|\s+$/g;
 
 
 export default class MyToDoScheduleDialog extends Component {
@@ -12,12 +12,12 @@ export default class MyToDoScheduleDialog extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      checkedToDoListDay:'',
+      checkedToDoListDay: '',
       content: '',
-      image:''
+      image: ''
     };
 
-     
+
   }
 
   onClickHandler() {
@@ -28,7 +28,7 @@ export default class MyToDoScheduleDialog extends Component {
   }
 
   keyChange(e) {
-    
+
     if (e.key === 'Enter') {
       const authUserNo = sessionStorage.getItem("authUserNo");
 
@@ -40,7 +40,7 @@ export default class MyToDoScheduleDialog extends Component {
         scheduleContents: this.state.content,
         gourpNo: null,
       }
-     
+
 
       ///////// 텍스트 오류 처리
       if (this.state.content.length == 0) {
@@ -54,17 +54,17 @@ export default class MyToDoScheduleDialog extends Component {
         })
         return;
       }
-      if( this.state.content.replace( blank_pattern, '' ) == "" ){
+      if (this.state.content.replace(blank_pattern, '') == "") {
         alert('공백만 입력되었습니다');
         this.setState({
           content: ''
         })
         return;
       }
-     /////////////
-    
+      /////////////
+
       this.props.addlist(newToDo.checkDate, newToDo);
-       
+
       this.setState({
         content: ''
       });
@@ -82,14 +82,14 @@ export default class MyToDoScheduleDialog extends Component {
       no: e.target.id,
       checkDate: this.props.year + "-" + this.props.month + "-" + this.props.day //ex) 2020-05-30
     }
-      this.props.deletelist(deleteTarget.checkDate, deleteTarget);
+    this.props.deletelist(deleteTarget.checkDate, deleteTarget);
   }
 
   render() {
-  
+
     return (
-      
-      
+
+
 
       <Dialog open={this.props.openModal}>
 
@@ -122,14 +122,13 @@ export default class MyToDoScheduleDialog extends Component {
                   <ul className="img-comment-list">
                     {
                       this.props.getToDoList && this.props.getToDoList.map((list) =>
+                        <li 
+                       
                         
-                        <li>
-                          <div>
-                          
-                          <a className='deleteButton'><i id={list.no} className="fas fa-backspace" style={{color:"red"}}  onClick={this.deleteClickHandler.bind(this)}></i></a>
-                           <p className='p1'>{list.scheduleContents.split(" ").map(nbsp=><a style={{display:"inline", fontSize:"20px"}}>{nbsp }&nbsp;</a>)}</p>
-                            <p className='p2' style={{fontSize:"0.8em"}}>on {this.props.monthName} {this.props.originDay}th, {this.props.year}</p>
-                          </div>
+                        style={{ width: "300px" }}>
+                          <a style={{ float: "right", marginLeft: "10px" }} className='deleteButton'><i id={list.no} className="fas fa-backspace" onClick={this.deleteClickHandler.bind(this)}></i></a>
+                          {list.scheduleContents.split(" ").map(nbsp =>
+                            <p style={{ width: "280px", wordBreak: "break-word", marginTop:"20px"}}>{nbsp}&nbsp;</p>)}
                         </li>
                       )
                     }
@@ -145,17 +144,17 @@ export default class MyToDoScheduleDialog extends Component {
 
   componentDidMount() {
     fetch(`${global.API_URL}/gitbook/user/profile/info/${sessionStorage.getItem("authUserId")}`, {
-        method: 'post',
-        headers: global.API_HEADERS,
-     })
-    .then( response => response.json())
-    .then( json => {
-    
-        this.setState({
-            image: json.data.image
-        });
+      method: 'post',
+      headers: global.API_HEADERS,
     })
-    .catch( err => console.error( err ));
+      .then(response => response.json())
+      .then(json => {
+
+        this.setState({
+          image: json.data.image
+        });
+      })
+      .catch(err => console.error(err));
 
     fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyToDoList`, {
       method: 'get',
@@ -168,6 +167,6 @@ export default class MyToDoScheduleDialog extends Component {
         });
       })
       .catch(err => console.error(err));
-}
+  }
 
 }

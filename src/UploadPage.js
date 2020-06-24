@@ -167,7 +167,7 @@ class UploadPage extends Component {
     return (
       <div className="App" style={{ height: "100vh" }}>
         {/* <Header2 name="Upload"></Header2> */}
-        <section className="profile-two" style={{ paddingTop: "100px", height: "100%", backgroundColor: "rgba(196, 196, 196, 0.171)" }}>
+        <section className="profile-two" style={{ paddingTop: "120px", height: "100%", backgroundColor: "rgba(196, 196, 196, 0.171)" }}>
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-8 col-lg-offset-2" style={{ background: "#F4F4F4", marginTop: "1px" }}>  {/** 두번째 섹션 */}

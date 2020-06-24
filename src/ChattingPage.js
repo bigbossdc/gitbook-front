@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import Header2 from './Header2';
 import ChattingListItem from './ChattingListItem';
 import ChattingRoom from './ChattingRoom';
 //import { Link } from "react-router-dom";
@@ -180,11 +179,11 @@ class ChattingPage extends Component {
 
       <div className="ChattingPage" style={{height:"100vh"}}>
         {/* <Header2 name="Chatting"></Header2> */}
-        <section className="profile-two" style={{ paddingTop: "100px", height:"100%", overflow: "hidden" }}>
+        <section className="profile-two" style={{ paddingTop: "120px", height:"100%", overflow: "hidden" }}>
 
           <div className="container" >
             <div className="row">
-              <div className="messages-box">
+              <div className="messages-box" >
                 <div className="row">
                   <div className="col-lg-4 col-md-12 no-pdd">
                     <div className="messages-container">
