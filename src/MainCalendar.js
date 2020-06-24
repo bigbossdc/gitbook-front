@@ -357,11 +357,9 @@ export default class MainCalendar extends Component {
           <MyToDoScheduleDialog
             key='todoschedule'
             userid={this.state.userid}
-            originDay={this.state.clickDay}
             day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
             month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
             year={this.state.year}
-            monthName={this.longMonthName(month)}
 
             getToDoList={this.state.getToDoList && this.state.getToDoList}
 
@@ -379,11 +377,9 @@ export default class MainCalendar extends Component {
 
           <MyRepoScheduleDialog
             userid={this.state.userid}
-            originDay={this.state.clickDay}
             day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
             month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
             year={this.state.year}
-            monthName={this.longMonthName(month)}
 
             getRepoList={this.state.getRepoList && this.state.getRepoList}
 

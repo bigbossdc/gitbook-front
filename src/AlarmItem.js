@@ -67,6 +67,7 @@ export default class AlarmItem extends Component {
 	};
 
 	render() {
+		console.log(this.props.itemData)
 		return (
 			<Fragment>
 				<div className="dropdown-item notify-item">

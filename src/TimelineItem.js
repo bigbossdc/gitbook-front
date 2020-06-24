@@ -5,6 +5,7 @@ import './dialogBox.css';
 import { Link } from "react-router-dom";
 import ImageItem from "./ImageItem"
 import UploadPageItem from "./UploadPageItem";
+import { motion } from "framer-motion";
 
 
 
@@ -176,8 +177,6 @@ class TimeLineItem extends Component {
   }
   render() {
 
-    console.log(this.props.list.groupNo)
-
     let cardboxType;
     this.props.list.type && this.props.list.type === 'public' ? cardboxType = 'publicCardbox' : cardboxType = 'commitCardbox';
     return (
@@ -264,10 +263,11 @@ class TimeLineItem extends Component {
                        to={this.props.list.groupNo !== null ? `/gitbook/group/${this.props.list.groupNo}/${this.props.list.userNo}/${this.state.userInfo.id}/repository/view/${word.replace(".git", '').replace("[",'').replace("]",'')}`
                      :
                      `/gitbook/my/${this.state.userInfo.id}/repository/view/${word.replace(".git", '').replace("[",'').replace("]",'')}`}>
-
-                    <i className="fas fa-database fa-2x " ></i>
+                    
+                  <i className="fab fa-github" style={{fontSize:"1.5em"}}></i>
                     {word.split(" ").map(nbsp=><div style={{display:"inline",margin:"10px",fontSize:"1.3em"}}>{nbsp.replace("[",'').replace("]",'') }&nbsp;</div>)
                   }
+          
                   </Link>
                   <br></br> <br></br>
       
