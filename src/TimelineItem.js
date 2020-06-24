@@ -177,6 +177,7 @@ class TimeLineItem extends Component {
   }
   render() {
 
+
     let cardboxType;
     this.props.list.type && this.props.list.type === 'public' ? cardboxType = 'publicCardbox' : cardboxType = 'commitCardbox';
     return (
@@ -376,7 +377,7 @@ class TimeLineItem extends Component {
     <div className="modal-footer">
       <h6 style={{ display: this.state.show3, color: "red", position: "absolute", marginLeft: "-130px" }}>비밀번호가 틀렸습니다</h6>
 
-      <input style={{ float: "left", marginLeft: "10px", marginTop: "30px", color: "black" }} placeholder="password 입력" value={this.state.deleteInput} type="text" name="deleteInput" onChange={this.handleChange.bind(this)}></input>
+      <input style={{ float: "left", marginLeft: "10px", marginTop: "30px", color: "black" }} placeholder="password 입력"  value={this.state.deleteInput} type="password" name="deleteInput" onChange={this.handleChange.bind(this)}></input>
       <button
         style={{ width: "70px", marginTop: "30px" }}
         type="submit"

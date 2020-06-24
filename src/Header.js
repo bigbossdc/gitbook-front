@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import AlarmBox from "./AlarmBox";
 import DropdownMenu from "./DropdownMenu";
 import "./Fluffs/assets/css/demos/header.css"
-import {Motion, spring} from 'react-motion';
+import { motion } from "framer-motion";
 
 
 
@@ -64,24 +64,21 @@ class Header extends Component {
                   <div className="row">
                      <div className="col-lg-3">
                         <div className="navbar-header" style={{width:"30%"}}>
-                           <Link to="/gitbook/main" className="navbar-brand" href="index.html">
+                           <Link to="/gitbook/main" className="navbar-brand" >
                               {" "}
-                              GitBook
+                             GitBook
                            </Link>
                         </div>{" "}
                      </div>
                      
                      <div className="col-lg-6" style={{paddingLeft:"150px"}}>
                         {contentsname === "my" ?
-                           <div className="select-contents">
+                           <motion.div 
+                           className="select-contents">
                               <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}`} className="nav-icon">
-                             
-                                 <em className="fa fa-home" > </em>
-                                
-
-                               
+                                 <em className="fa fa-home" > </em>      
                               </Link>
-                           </div>
+                           </motion.div>
                            : <div className="noselect-contents">
                               <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}`} className="nav-icon">
                                  <em className="fa fa-home"></em>

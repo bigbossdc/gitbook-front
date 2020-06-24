@@ -21,7 +21,7 @@ class RepositoryTable extends Component {
         return(
             <div id="RepositoryTable">
                 
-                <table className="table table-hover">
+                <table className="table table-hover" style={{tableLayout:"fixed"}}>
                         <thead>
                           <tr>
                             <th>File</th>
@@ -40,12 +40,12 @@ class RepositoryTable extends Component {
                               {
                                Object.keys(this.props.gitlist && this.props.gitlist.contents).map((key) => 
                         
-                               <tr>
-                                 <td >
+                               <tr style={{width:"100%"}}>
+                                 <td style={{width:"35%",textOverflow:"ellipsis",whiteSpace:"nowrap",overflow:"hidden"}}  >
                                   { (this.props.gitlist.contents[key].type=='folder') ? <i className="far fa-folder"/> : <i className="far fa-file-alt"/>}
                                       <a style={{cursor:"pointer"}} id={this.props.gitlist.contents[key].path} key={key} onClick={this.onClicklist.bind(this)}> {this.props.gitlist.contents[key].path.split('/').pop()}</a></td>
-                                      <td><a> {this.props.gitlist.contents[key].commit}</a></td>
-                                      <td>{this.props.gitlist.contents[key].date}</td>
+                                      <td style={{width:"45%",textOverflow:"ellipsis",whiteSpace:"nowrap",overflow:"hidden"}}><a> {this.props.gitlist.contents[key].commit}</a></td>
+                                      <td style={{width:"20%"}}>{this.props.gitlist.contents[key].date}</td>
                               </tr>
             
                                )}

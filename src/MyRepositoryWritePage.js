@@ -51,6 +51,11 @@ class MyRepositoryWritePage extends Component {
          headers: global.API_HEADERS,
          body: JSON.stringify(newRepo),
       }).catch((err) => console.error(err));
+     
+      setTimeout(() => {
+      window.location="/gitbook/my/" + sessionStorage.getItem("authUserId") + "/repository/view/" + this.state.gitName
+      },500);
+  
    };
 
    render() {
@@ -58,7 +63,7 @@ class MyRepositoryWritePage extends Component {
          <div className="RepositoryWritePage" >
             <h2 style={{ fontFamily: " 'Abhaya Libre' serif" }}>New Repository</h2>
             <hr></hr>
-            <form action={"/gitbook/my/" + sessionStorage.getItem("authUserId") + "/repository/view/" + this.state.gitName} method="POST">
+            <div >
                <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>Repository name</h4>
                <input type="hidden" name="userNo" required value={sessionStorage.getItem("authUserNo")} />
                <input
@@ -89,10 +94,13 @@ class MyRepositoryWritePage extends Component {
                         onChange={this.handleChange2.bind(this)} name="description" placeholder="상세 설명을 적어주세요.." />
                <hr></hr>
                <input type="radio" name="visible" value="public" checked={this.state.visible["public"]} onChange={this.handleRadio.bind(this)} />
-               <label>공개</label>
+             
+               <label style={{marginLeft:"5px",fontSize:"1.1em"}}>공개</label>
                <br></br>
+               
                <input type="radio" name="visible" value="private" checked={this.state.visible["private"]} onChange={this.handleRadio.bind(this)} />
-               <label>비공개</label>
+            
+               <label style={{marginLeft:"5px",fontSize:"1.1em"}}>비공개</label>
                <hr></hr>
 
                {this.state.gitName.trim() != "" ? (
@@ -110,14 +118,13 @@ class MyRepositoryWritePage extends Component {
                      생성 불가
                   </button>
                )}
-            </form>
+            </div>
          </div>
       );
    }
    componentDidMount() {
 
       fetch(`${global.API_URL}/gitbook/Repository/${this.props.userid}/check`, {
-  
           method: 'get',
           headers:global.API_HEADERS
       })
