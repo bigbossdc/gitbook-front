@@ -1,3 +1,7 @@
+.MuiDialogContent-root{
+  overflow-y: hidden;
+}
+
 .react-daypicker-root {
   height : 100%;
   width : 100%;
@@ -17,7 +21,7 @@
 
     .react-daypicker-root .tr{
       border-bottom: solid 3px #88898A;
-      font-family: "Varela Round", sans-serif;
+      font-family: "'Nanum Gothic', sans-serif";
       font-weight: bold;
       text-align: center;
     }
@@ -60,7 +64,7 @@
     flex: 2;
     font-weight: bold;
     text-align: center;
-    font-family: "Varela Round", sans-serif;
+    font-family: "'Nanum Gothic', sans-serif";
     font-size: x-large;
     background-color: #88898A;
     border-radius: 10px;
@@ -70,7 +74,7 @@
     padding-top: 30px;
     cursor: pointer;
     width: 112px;
-    font-family: "Varela Round", sans-serif;
+    font-family: "'Nanum Gothic', sans-serif";
     font-weight: bold;
    
     &:first-child{
@@ -96,7 +100,7 @@
     }
 
     .react-daypicker-root .total-table{
-      font-family: "Varela Round", sans-serif;
+      font-family: "'Nanum Gothic', sans-serif";
       height: 100%;
       width: 100%;
       
@@ -116,7 +120,7 @@
       font-weight: bold;
       border-radius: 7px;
       text-align:center;
-      font-family: "Varela Round", sans-serif;
+      font-family: "'Nanum Gothic', sans-serif";
       border:0;
       outline: 0;
       margin : auto;
@@ -130,7 +134,7 @@
       color:white;
       border-radius: 7px;
       text-align:center;
-      font-family: "Varela Round", sans-serif;
+      font-family: "'Nanum Gothic', sans-serif";
       border:1.5px solid #545654;
       outline: 0;
       margin : auto;
@@ -145,7 +149,7 @@
       color:white;
       border-radius: 7px;
       text-align:center;
-      font-family: "Varela Round", sans-serif;
+      font-family: "'Nanum Gothic', sans-serif";
       border:1.5px solid #545654;
       outline: 0;
       margin : auto;
@@ -159,7 +163,7 @@
     }
     
     .react-daypicker-root .index-todo-list:hover, .react-daypicker-root .index-repository:hover{
-      font-family: "Varela Round", sans-serif;
+      font-family: "'Nanum Gothic', sans-serif";
       font-size: 20px !important;
       background:#545654;
       border:1.5px solid #545654;
@@ -187,7 +191,7 @@
    }
 
 .dialog-title{
-  font-family: 'Abhaya Libre', serif;
+  font-family: "'Nanum Gothic', sans-serif";
   font-size: 1.2em;
   color: #88898a !important;
 }
@@ -219,17 +223,17 @@
   border: 4px solid #f4f4f4;
 }
 .modal-meta-top .img-poster a{
-  font-family: 'Abhaya Libre', serif;	
+  font-family: "'Nanum Gothic', sans-serif";	
   font-size: 14px;	
   color: #88898a !important;	
 }
 .modal-meta-top .img-poster span {
-  font-family: 'Abhaya Libre', serif;
+  font-family: "'Nanum Gothic', sans-serif";
   color: black;
   font-size: 12px;
 }
 .modal-meta-top .img-poster a.kafe-btn-mint-small {
-  font-family: 'Abhaya Libre', serif; 	
+  font-family: "'Nanum Gothic', sans-serif";	
   margin-left: 0px;
   color: #fff !important;
   border-radius: 3px;  
@@ -245,8 +249,10 @@
   list-style: none;  
   padding: 0px 10px 30px 0px;
   margin-left: 10px;
-  height: 390px !important;
-  overflow-y: auto;	
+  height: 400px !important;
+  width: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
 }
 .img-comment-list li {
@@ -265,18 +271,18 @@
   height: 22px;
 }
 .img-comment-list li a{
-  font-family: 'Abhaya Libre', serif;	
+  font-family: "'Nanum Gothic', sans-serif";
   font-size: 15px;	
   color: #88898a !important;	
 }
 .img-comment-list p {
-  font-family: 'Abhaya Libre', serif;
+  font-family: "'Nanum Gothic', sans-serif";
   margin: 0;
   font-size: 18px;
   color: #848484;
 }
 .img-comment-list span {
-  font-family: 'Abhaya Libre', serif;
+  font-family: "'Nanum Gothic', sans-serif";
   font-size: 0.8em; 
   color: #aaa;
 }
@@ -317,7 +323,7 @@
   color: #e16a70 !important;
 }
 .modal-meta-bottom li span{
-  font-family: 'Abhaya Libre', serif;	
+  font-family: "'Nanum Gothic', sans-serif";
   font-size: 14px !important;
   color: #848484;
 }
@@ -353,6 +359,15 @@
 .img{
   width: 25px;
   height: 25px;
+}
+
+.deleteButton .fa-backspace{
+  color:red;
+  font-size: 1.2em;
+}
+
+.deleteButton .fa-backspace:hover{
+  transform: scale(1.2);
 }
 
 

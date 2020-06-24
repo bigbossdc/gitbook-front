@@ -149,7 +149,7 @@ export default class GroupMainCalendar extends Component {
         this.setState({
           getToDoList: json.data
         });
-      }).then( json => {
+      }).then(json => {
         this.componentDidMount();
       })
       .catch(err => console.error(err))
@@ -165,7 +165,7 @@ export default class GroupMainCalendar extends Component {
         this.setState({
           getToDoList: json.data
         });
-      }).then( json => {
+      }).then(json => {
         this.componentDidMount();
       })
       .catch(err => console.error(err))
@@ -238,7 +238,7 @@ export default class GroupMainCalendar extends Component {
     (toCompareMonth < 10 ? toCompareMonth = ('0' + toCompareMonth) : toCompareMonth);
 
 
-     
+
     const formatDate = this.state.year + '-' + toCompareMonth + '-' + (
       day ? day.getDate() && (day.getDate() < 10 ? '0' + day.getDate() : day.getDate())
         : "")
@@ -256,16 +256,16 @@ export default class GroupMainCalendar extends Component {
         key={`${year}.${month}.day.${index}`}
         onClick={this.onDayClick(day)}
       >
-        
+
         {this.state.buttonClassName == 'todo' ?
 
           (day ? day.getDate() && (this.state.checkedToDoListDay.includes(formatDate) ?
-            <a className='day-a'>{day.getDate()}<br/><i class="fas fa-check" style={{color : '#0fc19e'}}></i></a>
+            <a className='day-a'>{day.getDate()}<br /><i class="fas fa-check" style={{ color: '#0fc19e' }}></i></a>
             : day.getDate()) : "")
           :
 
           (day ? day.getDate() && (this.state.checkedCommitListDay.includes(formatDate) ?
-            <a className='day-a'>{day.getDate()}<br /><i class="fas fa-check" style={{color : '#0fc19e'}}></i></a>
+            <a className='day-a'>{day.getDate()}<br /><i class="fas fa-check" style={{ color: '#0fc19e' }}></i></a>
             : day.getDate()) : "")
 
         }
@@ -318,12 +318,12 @@ export default class GroupMainCalendar extends Component {
   }
 
   render() {
-  
+
     const { month, year } = this.state;
     return (
       <div className="react-daypicker-root" >
 
-        <div className="button-div" style={{marginTop:"50px"}}>
+        <div className="button-div" style={{ marginTop: "50px" }}>
           <button className={`${this.state.buttonClassName === 'todo' ? 'index-todo-list-todo' : 'index-todo-list'}`} onClick={this.Todo}>TODO</button>
           <button style={{ marginLeft: "10px" }} className={`${this.state.buttonClassName === 'repo' ? 'index-repository-list' : 'index-repository'}`} onClick={this.Repo}>GIT</button>
         </div>
@@ -359,7 +359,7 @@ export default class GroupMainCalendar extends Component {
             month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
             year={this.state.year}
             monthName={this.longMonthName(month)}
-           
+
             getToDoList={this.state.getToDoList && this.state.getToDoList}
 
             addlist={this.newAddlist.bind(this)}
@@ -368,7 +368,7 @@ export default class GroupMainCalendar extends Component {
             openModal={this.state.openModal}
             onClosehandler={this.handleClose.bind(this)}
 
-            masterno = {this.props.masterno}
+            masterno={this.props.masterno}
           />
         ) :
 
