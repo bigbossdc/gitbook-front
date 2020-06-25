@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
 
-import "./Fluffs/assets/css/demos/navi.css"
+import "./Fluffs/assets/css/demos/navi.css";
 
 
-class Navigation2 extends Component {
+class MyFriendNavigation2 extends Component {
 
     render() {
+        console.log("friend navi " + this.props.randomlist)
         return(
             <div className="col-lg-3">
                 <div className="trending-box">
                     <div className="row">
-                        <div className="col-lg-4">
-                        <Link to="/gitbook/myfriend"> <h4><strong style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", color:"#606665"}}>친구 목록</strong></h4></Link>
+                        <div className="col-lg-4">                   
+                            <h4 className="navi-friendlist-title"><strong style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", color:"#606665"}}>친구 목록</strong></h4>
                         </div>
                     </div>
                 </div>
@@ -32,12 +33,16 @@ class Navigation2 extends Component {
    
                 :<div className="trending-box">                           
                     {this.props.friendlist && this.props.friendlist
-                        .map(list => <div className="col-lg-4" style={{paddingLeft:"5px", paddingRight:"5px"}}>
+                        .map((list, index) => 
+                                    this.props.randomlist.indexOf(index+1) > -1 ?
+                                    <div className="col-lg-4" style={{paddingLeft:"5px", paddingRight:"5px"}}>
                                         <Link to={`/gitbook/my/${list.id}`} >
                                             <img src={list.image} className="img-reponsive" alt="" width="130" height="130" style={{marginBottom:"5px", marginTop:"5px", display:"block", maxWidth:"100%", maxheight:"70.1px"}}></img>
                                             <span className="tooltip-custom">{list.nickname}</span>
                                         </Link>
-                                    </div>)} 
+                                    </div>:''
+                        )
+                     }
                 </div>     
                 }
             </div>
@@ -45,4 +50,4 @@ class Navigation2 extends Component {
     }
 }
 
-export default Navigation2;
+export default MyFriendNavigation2;

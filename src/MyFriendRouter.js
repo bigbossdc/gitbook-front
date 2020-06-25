@@ -14,7 +14,8 @@ class MyFriendRouter extends Component {
     this.state = {
       reqFriends: "",
       userFriends: "",
-      friendNum: ""
+      friendNum: "",
+      random:[]
     }
   }
   
@@ -32,6 +33,31 @@ class MyFriendRouter extends Component {
     })
     .then( response => response.json())
     .then( json => {
+      if(json.data.length > 0) {
+        let range = json.data.length;
+        let randomSize = range;
+        let arr = [];
+        var i = 0;
+
+        if(range > 9) {
+          randomSize = 9;
+        }
+
+        for( ; i < randomSize; i++) {
+          let n = Math.floor(Math.random() * range) + 1;
+          if(arr.every((e) => n !== e)) {
+              arr.push(n)
+              console.log("su plea..." + n)
+          } else {
+              i--;
+          }
+        }
+
+        this.setState({
+          random: arr
+        });
+
+      }
         this.setState({
             userFriends : json.data,
             friendNum: Object(json.data).length
@@ -55,6 +81,31 @@ class MyFriendRouter extends Component {
     })
     .then( response => response.json())
     .then( json => {
+      if(json.data.length > 0) {
+        let range = json.data.length;
+        let randomSize = range;
+        let arr = [];
+        var i = 0;
+
+        if(range > 9) {
+          randomSize = 9;
+        }
+
+        for( ; i < randomSize; i++) {
+          let n = Math.floor(Math.random() * range) + 1;
+          if(arr.every((e) => n !== e)) {
+              arr.push(n)
+              console.log("su plea..." + n)
+          } else {
+              i--;
+          }
+        }
+
+        this.setState({
+          random: arr
+        });
+
+      }
         this.setState({
           userFriends : json.data,
           friendNum: Object(json.data).length
@@ -108,7 +159,7 @@ class MyFriendRouter extends Component {
                   </div>
               
                   {/** 세번째 섹션 */}
-                  <MyFriendNavigation2 userid={sessionStorage.getItem("authUserId")} friendlist={this.state.userFriends}></MyFriendNavigation2>
+                  <MyFriendNavigation2 userid={sessionStorage.getItem("authUserId")} friendlist={this.state.userFriends} randomlist={this.state.random}></MyFriendNavigation2>
 
             </div>{/** row 종료 */}
           </div>{/** container-fluid 종료 */}
@@ -144,6 +195,31 @@ class MyFriendRouter extends Component {
     })
     .then( response => response.json())
     .then( json => {
+        if(json.data.length > 0) {
+            let range = json.data.length;
+            let randomSize = range;
+            let arr = [];
+            var i = 0;
+
+            if(range > 9) {
+                randomSize = 9;
+            }
+
+            for( ; i < randomSize; i++) {
+              let n = Math.floor(Math.random() * range) + 1;
+              if(arr.every((e) => n !== e)) {
+                  arr.push(n)
+                  console.log("plea..." + n)
+              } else {
+                  i--;
+              }
+          }
+
+          this.setState({
+              random: arr
+          });
+
+        }
         this.setState({
             userFriends: json.data,
             friendNum: Object(json.data).length

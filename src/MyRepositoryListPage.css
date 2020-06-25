@@ -1,3 +1,13 @@
 #searchInput:focus{
     outline: none;
 }
+
+.cardbox-headingss {
+    background-color: #F4F4F4;
+    box-shadow: none;
+    padding: 10px 0px 0px 0px;
+}
+
+.cardbox-headingss:hover {
+    background-color: #DFDFDF;
+}

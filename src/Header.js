@@ -66,19 +66,18 @@ class Header extends Component {
                         <div className="navbar-header" style={{width:"30%"}}>
                            <Link to="/gitbook/main" className="navbar-brand" >
                               {" "}
-                             GitBook
+                              GitBook
                            </Link>
                         </div>{" "}
                      </div>
                      
                      <div className="col-lg-6" style={{paddingLeft:"150px"}}>
                         {contentsname === "my" ?
-                           <motion.div 
-                           className="select-contents">
+                           <div className="select-contents">
                               <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}`} className="nav-icon">
                                  <em className="fa fa-home" > </em>      
                               </Link>
-                           </motion.div>
+                           </div>
                            : <div className="noselect-contents">
                               <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}`} className="nav-icon">
                                  <em className="fa fa-home"></em>

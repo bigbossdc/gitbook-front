@@ -43,7 +43,13 @@ class NavigationGroup extends Component {
                       )
 
                     } */}
-                    {this.props.groupinfo.groupIntro}
+                    {this.props.groupinfo && this.props.groupinfo.groupIntro.split(/\n/g).map((word)=>
+                    <div>
+                      {
+                        word.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp}&nbsp;</div>)
+                      }
+                    </div>
+                    )}
                   </p>                       
                 </div>
                 <div className="row">

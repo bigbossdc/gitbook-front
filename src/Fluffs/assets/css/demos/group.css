@@ -316,11 +316,11 @@
     border: none;
 }
 .group-req-setting {
-    max-height: 800px;
+    height: 650px;
     background-color: #fff;
     margin-bottom: 20px;
     padding: 20px;
-    min-height: 20px;
+    
 }
 .group-invite {
     margin-top: 10px;

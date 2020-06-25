@@ -66,7 +66,7 @@ export default class ProfileSection extends Component {
 		let name = event.target.name;
 		let newEditables = this.state.editables;
 		newEditables[name] = event.target.value;
-
+		
 		this.setState({
 			editables: newEditables,
 		});
@@ -166,12 +166,27 @@ export default class ProfileSection extends Component {
 						)}
 						<hr />
 
-						<small className="text-muted" style={{fontFamily: "'Nanum Gothic', sans-serif" }}>Introduction</small>
-						<p />
+
 						{this.state.edit_switch ? (
-							<textarea name="profileContents" rows="4" cols="40" style={{ color: "black", resize: "none" }} value={this.state.editables.profileContents} onChange={this.onStatusChange.bind(this)} />
+							<>
+							<small className="text-muted" style={{fontFamily: "'Nanum Gothic', sans-serif" }}>Introduction ({this.state.editables.profileContents.length}/40)</small>
+							<p />
+							<textarea name="profileContents" rows="4" cols="40" maxLength="39" style={{ color: "black", resize: "none" }} value={this.state.editables.profileContents} onChange={this.onStatusChange.bind(this)} />
+							</>
 						) : (
-							<p style={{fontFamily: "'Nanum Gothic', sans-serif" }}>{viewed.profileContents}</p>
+							<>
+							<small className="text-muted" style={{fontFamily: "'Nanum Gothic', sans-serif" }}>Introduction</small>
+							<p />
+							<p style={{fontFamily: "'Nanum Gothic', sans-serif" }}>
+								{viewed.profileContents && viewed.profileContents.split(/\n/g).map((word)=>
+								<div>
+									{
+										word.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp}&nbsp;</div>)
+									}
+								</div>
+								)}
+							</p>
+							</>
 						)}
 
 						<hr />

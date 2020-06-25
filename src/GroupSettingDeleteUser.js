@@ -8,7 +8,8 @@ class GroupSettingDeleteUser extends Component {
     super(...arguments);
     this.state = {
             joinList:'',
-            keyword: ''
+            keyword: '',
+            item:''
         };
   }
 
@@ -51,31 +52,39 @@ class GroupSettingDeleteUser extends Component {
 
     return (
       <div className="group-req-setting" style={{borderRadius:"0px 0px 20px 20px"}}>
-        <div className="group-search-area">   
-            <p><h4 className="group-req-title"><b>그룹 탈퇴</b></h4></p>
-            <div className="group-input-field">
-                <input placeholder="Search" type="text" value={this.state.keyword} onChange={this.onInputChange.bind(this)}/>
-                <i className="fa fa-search"></i>  
-            </div>
-        </div>
-        <div className="group-box">
-          <div className="suggestions-list">
-            {this.state.joinList && this.state.joinList
-              .filter((element) => element.nickname.indexOf(this.state.keyword) != -1 || element.name.indexOf(this.state.keyword) != -1 || element.id.indexOf(this.state.keyword) != -1)
-              .map(list =>  <GroupSettingDeleteUserItem
-                key={ list.id }
-                nickname={list.nickname}
-                name={list.name}
-                id={list.id}
-                image={list.image}
-                status={list.status}
-                no={list.no}
-                groupno={list.groupNo}
-                delete={this.callbackDeleteMember.bind(this)}
-              />)
-            }   
+          <p><h4 className="group-req-title"><b>그룹 탈퇴</b></h4></p>
+          <div className="group-search-area">   
+              <div className="group-input-field">
+                  <input placeholder="Search" type="text" value={this.state.keyword} onChange={this.onInputChange.bind(this)}/>
+                  <i className="fa fa-search"></i>  
+              </div>
           </div>
-        </div>
+        {this.state.item && this.state.item=='' ? '' : this.state.item=='noshow'?
+          <div className="col-lg-12">
+            <div className="navi-nocontents" style={{margin:"150px auto"}}>
+              <p style={{textAlign:"center", marginBottom:"30px", color:"#5b6160"}}><i class="fas fa-meh fa-4x fa-4x" style={{margin:"0 auto"}}></i></p>
+              <p className="navi-text" style={{fontSize:"1.5em"}}><b>참여중인 멤버가 없습니다.</b></p>
+            </div>
+          </div>
+        :<div className="group-box">
+            <div className="suggestions-list">
+              {this.state.joinList && this.state.joinList
+                .filter((element) => element.nickname.indexOf(this.state.keyword) != -1 || element.name.indexOf(this.state.keyword) != -1 || element.id.indexOf(this.state.keyword) != -1)
+                .map(list =>  <GroupSettingDeleteUserItem
+                  key={ list.id }
+                  nickname={list.nickname}
+                  name={list.name}
+                  id={list.id}
+                  image={list.image}
+                  status={list.status}
+                  no={list.no}
+                  groupno={list.groupNo}
+                  delete={this.callbackDeleteMember.bind(this)}
+                />)
+              }   
+            </div>
+          </div>
+        }
       </div>
     );
   }
@@ -90,9 +99,17 @@ class GroupSettingDeleteUser extends Component {
     })
     .then( response => response.json())
     .then( json => {
+      if(json.data.length > 0) {
         this.setState({
-        joinList: json.data    
-        });
+          joinList: json.data,
+          item: "show"
+          });
+      } else {
+        this.setState({
+          item: "noshow"     
+          });
+      }
+
     })
     .catch( err => console.error( err ));   
   }

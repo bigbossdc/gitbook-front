@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
+
 import "./Fluffs/assets/css/demos/navi.css";
 import Calendar from './Calendar'
 
@@ -8,14 +9,13 @@ import ErrorBoundary from './ErrorBoundary';
 class Navigation extends Component {
 
  constructor() {
-    super(...arguments);
-   
+    super(...arguments); 
     this.state = {
           userinfo:'',
-          show: "none"
-        
+          show: "none"   
     }
 }
+
 
 reqFollow() {
   console.log("friend request 확인" + this.state.userinfo.no + ":" + sessionStorage.getItem("authUserNo"));
@@ -103,7 +103,16 @@ onClose() {
                       <h4><strong style={{fontFamily:"'Nanum Gothic', sans-serif"}}>{this.state.userinfo && this.state.userinfo.nickname}</strong></h4>
                       <small style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", color:"#848484"}}>{this.state.userinfo && this.state.userinfo.name}&nbsp;({this.state.userinfo && this.state.userinfo.id})</small>  
                       <hr></hr>
-                      <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", margin:"10px"}}>{this.state.userinfo && this.state.userinfo.profileContents} </p>                       
+                      {/* <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", margin:"10px"}}>{this.state.userinfo && this.state.userinfo.profileContents} </p>                        */}
+                      <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", margin:"10px"}}>
+                        {this.state.userinfo && this.state.userinfo.profileContents.split(/\n/g).map((word)=>
+                        <div>
+                          {
+                            word.split(" ").map(nbsp=><div style={{display:"inline"}}>{nbsp}&nbsp;</div>)
+                          }<br/>
+                        </div>
+                        )} 
+                      </p>
                   </div>
                 <div className="row">
                  <div className="col-12"></div>                                
