@@ -260,9 +260,18 @@
     width: 100%;
     list-style: none outside;
     padding: 0;
-    overflow: auto;
-    
 }
+
+.suggestions-list::-webkit-scrollbar {
+    width: 10px;
+  }
+  .suggestions-list::-webkit-scrollbar-thumb {
+    background-color: #0FC19E;
+  }
+  .suggestions-list::-webkit-scrollbar-track {
+    background-color: #DBDBDB;
+  }
+
 .group-box .suggestion-body {
     float: left;
     width: 100%;
