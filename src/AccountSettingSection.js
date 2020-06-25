@@ -91,7 +91,6 @@ export default class AccountSettingSection extends Component {
 	}
 
 	render() {
-		console.log("called AccountSettingSection...");
 		return (
 			<Fragment>
 				{this.state.editable ? (
