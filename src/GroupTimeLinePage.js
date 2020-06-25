@@ -33,7 +33,6 @@ class GroupTimeLinePage extends Component {
    }
 
   render() {
-    console.log("!@#!#@!#!" + this.state.item)
     return (
       <div>
           { this.state.item && this.state.item == '' ? '' : this.state.item=='noshow'? <MyTimeLinePageGuide groupno={this.props.groupno}/>
