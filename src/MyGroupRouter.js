@@ -88,7 +88,7 @@ class MyGroupRouter extends Component {
   render() {
 
     return (
-      <div className="App">
+      <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
 
        {/* <Header2 name="Group"></Header2> */}
         <section className="profile-two" style={{paddingTop:"100px", minHeight:"100vh"}}>

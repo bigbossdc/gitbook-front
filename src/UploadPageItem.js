@@ -128,7 +128,7 @@ class UploadPageItem extends Component {
 
     render() {
       return (
-        <div>
+        <div className="react-transition fade-in" style={{animationDuration:'0.3s'}} > 
                 <div className="col-lg-8 col-lg-offset-2" style={{ background: "#929292", marginTop: "1px"}}>  {/** 두번째 섹션 */}
                   <div className="UploadPage" >
                   <DragAndDrop handleDrop={this.handleDrop} > 

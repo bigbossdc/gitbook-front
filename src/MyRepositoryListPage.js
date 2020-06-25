@@ -53,7 +53,10 @@ callVisibleHandler(list){
   render() {
     const authUserNo=sessionStorage.getItem("authUserNo");
     return (
-            <div>
+      <div 
+      className="fade-in" style={{animationDuration:'0.3s'}}
+      >
+
               { this.state.item && this.state.item == '' ? '' : this.state.item == 'noshow' ? 
                 <MyRepositoryListPageGuide userid={this.props.id}/>
                 :
