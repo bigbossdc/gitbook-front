@@ -65,7 +65,7 @@ class MyRepositoryPage extends Component {
     }
 
     return (
-     
+      <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
      <div className="RepositoryPage">
         { this.state.gitInfo && ((this.state.gitInfo.visible === "private")&& (sessionStorage.getItem("authUserId")===this.props.match.params.userid)) || this.state.gitInfo.visible==='public' ? 
         <div
@@ -189,6 +189,7 @@ class MyRepositoryPage extends Component {
         
         ''
       }
+      </div>
       </div>
     );
   }

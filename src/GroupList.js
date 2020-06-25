@@ -7,7 +7,7 @@ import GroupListJoin from "./GroupListJoin";
 class GroupList extends Component {
     render() {
         return(   
-         <div>
+            <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
             <GroupListRequest
                 myreqlist={this.props.myreqlist}
                 callback={this.props.callback}/>

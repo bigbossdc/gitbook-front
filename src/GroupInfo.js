@@ -21,7 +21,7 @@ class GroupInfo extends Component {
     render() {
         console.log("groupoinfo22 : " + this.props.groupno)
         return(  
-        <div> 
+            <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
             <GroupHeaderImg groupinfo={this.state.groupinfo} />
             <div className="group-req">
                 <div className="group-master-area">  

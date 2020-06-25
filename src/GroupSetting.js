@@ -19,9 +19,9 @@ class GroupSetting extends Component {
     }
 
     render() {
-        console.log("tab chk " + this.state.tabKind)
+       
         return(  
-            <div>
+            <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
                 <div className="gtab" style={{ boxShadow:"5px 5px 5px rgb(231, 230, 230)", borderRadius:"20px 20px 0px 0px"}}>
                     <button className={this.state.tabKind === "info" ? "tabclick" : "tablinks"} 
                             onClick={() => this.setState({currentTabObj : <GroupSettingInfo    

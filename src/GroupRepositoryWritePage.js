@@ -59,7 +59,7 @@ class MyRepositoryWritePage extends Component {
    render() {
      console.log("afdsafdas : " + this.props.groupno)
       return (
-         <div className="RepositoryWritePage" >
+         <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
             <h2 style={{ fontFamily: " 'Abhaya Libre' serif" }}>New Repository</h2>
             <hr></hr>
             <div >

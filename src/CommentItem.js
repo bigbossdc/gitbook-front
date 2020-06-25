@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import './CommentItem.css';
 import './dialogBox.css';
-
+import { motion } from "framer-motion";
 
 class CommentItem extends Component {
   constructor() {
@@ -43,7 +43,12 @@ class CommentItem extends Component {
     return (
       <div>
       <div className="CommentItem" style={{display:this.state.show2}}>
-        <li >
+        <motion.li 
+           positionTransition
+           initial={{ opacity: 0, y: 50}}
+           animate={{ opacity: 1, y: 0 ,transition:{duration: 0.3} }}
+         
+        >
           <div className="comment-img">
             <img src={this.props.list.userProfile} className="img-responsive img-circle" alt="Image" />
           </div>
@@ -57,7 +62,7 @@ class CommentItem extends Component {
            }
           <p style={{paddingRight:"30px",fontFamily:"'Jeju Gothic', sans-serif"}}>{this.props.list.contents.split(" ")
           .map(word=><div style={{display:"inline"}}>{word}&nbsp;</div>)}</p> <span className="date sub-text" style={{ marginBottom: "5px" }}>{this.props.list.regDate}</span>
-        </li>
+        </motion.li>
         <hr ></hr>
       </div>
       

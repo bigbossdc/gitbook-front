@@ -11,6 +11,8 @@ import UploadPage from './UploadPage';
 import ChattingPage from './ChattingPage'
 
 import ErrorBoundary from './ErrorBoundary';
+import './react-transitions.css';
+
 
 class App extends Component {
   constructor() {

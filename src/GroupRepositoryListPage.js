@@ -53,7 +53,7 @@ callVisibleHandler(list){
     console.log("chkkkkk :" + this.props.id + ":" + this.props.groupno)
     const authUserNo=sessionStorage.getItem("authUserNo");
     return (
-            <div>
+      <div className="fade-in" style={{animationDuration:'0.3s'}}>
               { this.state.item && this.state.item == '' ? '' : this.state.item=='noshow' ?   
                 <MyRepositoryListPageGuide groupno={this.props.groupno}/>
                 :
