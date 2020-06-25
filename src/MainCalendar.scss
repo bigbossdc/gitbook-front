@@ -34,6 +34,11 @@
     text-align: center;
   }
 
+  .react-daypicker-root td:hover{
+    border-radius: 15px;
+    background-color: #DFDFDF;
+  }
+
 .sunday{
   color: red;
   width:127px;
@@ -255,6 +260,20 @@
   overflow-x: hidden;
 
 }
+
+.img-comment-list::-webkit-scrollbar{
+	border-radius: 10px;
+	width: 5px;
+}
+.img-comment-list::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: #0FC19E;
+  }
+  .img-comment-list::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: #DBDBDB;
+  }
+
 .img-comment-list li {
     margin-top: 5px 0px 10px 0px;
 }
@@ -270,15 +289,10 @@
   width: 22px;
   height: 22px;
 }
-.img-comment-list li a{
-  font-family: "'Nanum Gothic', sans-serif";
-  font-size: 15px;	
-  color: #88898a !important;	
-}
 .img-comment-list p {
   font-family: "'Nanum Gothic', sans-serif";
   margin: 0;
-  font-size: 18px;
+  font-size: 13px;
   color: #848484;
 }
 .img-comment-list span {
@@ -355,7 +369,6 @@
   cursor: pointer;
 }
 
-
 .img{
   width: 25px;
   height: 25px;
@@ -364,12 +377,22 @@
 .deleteButton .fa-backspace{
   color:red;
   font-size: 1.2em;
+  margin-top: 25px;
 }
 
 .deleteButton .fa-backspace:hover{
   transform: scale(1.2);
 }
 
+.fa-github{
+  font-size: 1.2em;
+}
 
-    
+.fa-github:hover{
+  font-size:1.2em;
+}
+
+.linkToRepoContents:hover{
+  margin-left: 5px;
+}
     

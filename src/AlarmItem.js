@@ -79,13 +79,35 @@ export default class AlarmItem extends Component {
 					<p className="notify-details" style={{ whiteSpace: "normal", fontSize: "13px", lineHeight: "20px" }}>
 						<a
 							href={
-								this.props.itemData.groupNo !== null && this.props.itemData.alarmType === "commit"
-									? `/gitbook/group/${this.props.itemData.groupNo}/${this.props.itemData.userNo}/${this.props.itemData.userId}/repository/view/${this.state.gitAddr}`
-									: linkList[this.props.itemData.alarmType] + (this.props.itemData.alarmType === "commit" ? `/${this.props.itemData.userId}/repository/view/${this.state.gitAddr}` : "")
+								this.props.itemData.groupNo !== null && this.props.itemData.alarmType === "commit" ?
+
+									`/gitbook/group/${this.props.itemData.groupNo}/${this.props.itemData.userNo}/${this.props.itemData.userId}/repository/view/${this.state.gitAddr}`
+									:
+									linkList[this.props.itemData.alarmType] + (this.props.itemData.alarmType === "commit" ?
+										`/${this.props.itemData.userId}/repository/view/${this.state.gitAddr}`
+										:
+										""
+									)
 							}
+
 							style={{ fontFamily: "'Nanum Gothic', sans-serif", textTransform: 'none' }}
 						>
-							{this.props.itemData.alarmContents.length < 90 ? this.props.itemData.alarmContents : `${this.props.itemData.alarmContents.slice(0, 90)}...`}
+							{
+								this.props.itemData.groupNo === null ?
+									(this.props.itemData.alarmContents.length < 90 ?
+										this.props.itemData.alarmContents
+										:
+										`${this.props.itemData.alarmContents.slice(0, 90)}...`
+									)
+									:
+									(this.props.itemData.alarmContents.length < 90 ?
+										"'" + this.props.itemData.groupTitle+"' 그룹의 " + this.props.itemData.alarmContents
+										:
+										`${this.props.itemData.alarmContents.slice(0, 90)}...`
+									)
+
+							}
+
 							<small className="text-muted">{this.state.message}</small>
 						</a>
 					</p>
