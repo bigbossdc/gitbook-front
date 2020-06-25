@@ -41,29 +41,72 @@
 .notify-item .markAsDelete:hover {
 	color: #0fc19e;
 	cursor: pointer;
-    box-shadow: 0 0 0 rgba(88, 120, 243, 0.4);
-    -moz-animation: pulse 2s infinite;
-    -webkit-animation: pulse 2s infinite;
-    animation: pulse 2s infinite;
+	-webkit-animation-name: markAsDelete_animation;
+	-webkit-animation-duration: 0.5s;
+	animation-name: markAsDelete_animation;
+	animation-duration: 0.5s;
+	animation-direction: normal;
 }
 
-.text-dark .clearAllButton:hover {
-	box-shadow: 0 0 0 rgba(88, 120, 243, 0.4);
-    -moz-animation: pulse 2s infinite;
-    -webkit-animation: pulse 2s infinite;
-    animation: pulse 2s infinite;
+@-webkit-keyframes markAsDelete_animation {
+	from{
+		color: #666;
+	}
+	to{
+		color: #0fc19e;
+	}
+}
+
+@keyframes markAsDelete_animation {
+	from{
+		color: #666;
+	}
+	to{
+		color: #0fc19e;
+	}
+}
+
+#clearAllButton {
+	background-color: #efefef;
+}
+
+#clearAllButton:hover {
+	color: rgb(255, 100, 0);
+	-webkit-animation-name: clearAllButton_animation;
+	-webkit-animation-duration: 0.5s;
+	animation-name: clearAllButton_animation;
+	animation-duration: 0.5s;
+	animation-direction: normal;
+}
+
+@-webkit-keyframes clearAllButton_animation {
+	from{
+		color: #666;
+	}
+	to{
+		color: rgb(255, 100, 0);
+	}
+}
+
+@keyframes clearAllButton_animation {
+	from{
+		color: #666;
+	}
+	to{
+		color: rgb(255, 100, 0);
+	}
 }
 
 @keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(88, 120, 243, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(88, 120, 243, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(88, 120, 243, 0);
-    }
+	0% {
+		box-shadow: 0 0 0 0 rgba(88, 120, 243, 0.4);
+	}
+	70% {
+		box-shadow: 0 0 0 10px rgba(88, 120, 243, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(88, 120, 243, 0);
+	}
 }
 
 @keyframes noti {

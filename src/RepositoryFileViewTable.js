@@ -1,67 +1,59 @@
 import React, { Component } from "react";
-import './RepositoryPage.css';
+import "./RepositoryPage.css";
 import Highlight from "react-highlight.js";
 
+const codeFileExtentions = ["c", "cpp", "conf", "css", "classpath", "html", "htm", "ini", "java", "json", "js", "jsp", "jsx", "lock", "md", "NGINX", "php", "py", "sql", "scss", "txt"];
 
 class RepositoryFileViewTable extends Component {
-      onClicklist2(e){ 
-        let a = e.target.id.split("/");
-        a.splice(a.length-1,1);
-        this.props.clicklist.newList(a.join("/"))
-      }
-     
-    render() {
-      
-        let contents = "";
+	onClicklist2(e) {
+		let a = e.target.id.split("/");
+		a.splice(a.length - 1, 1);
+		this.props.clicklist.newList(a.join("/"));
+	}
 
-        let type = this.props.srcName.split(".")[1];
+	render() {
+		let contents = "";
+		let type = this.props.srcName.split(".")[1];
 
-        if(type === "txt") {
-            contents = this.props.contents.split('\n');
-        } else {
-            type = "normal";
-            contents = this.props.contents;
-        }
-        // if(type === "conf" || type === "sh" || type === "c" || type === "cpp" || type === "css"
-        //     || type === "coffee" || type === "diff" || type === "html" || type === "xml" || type === "http"
-        //     || type === "json" || type === "java" || type === "rb" || type === "ini" || type === "js"
-        //     || type === "php" || type === "py" || type === "sql" || type === "md" || type === "NGINX" || type === "m" || type === "project" || type === "classpath") {
-        //         type = "normal";
-        //         contents = this.props.contents;
-        // } else {
-        //     contents = this.props.contents.split('\n');
-        // }
-        console.log(type);
-        
-        return (
-            <div className='RepositoryFileViewTable'>
-                <div className='FileViewHeader'>
-                <i id={this.props.callPath} 
-                     onClick={this.onClicklist2.bind(this)} 
-                     className="fas fa-undo-alt"
-                    style={{cursor:"pointer",float:"left",paddingLeft:"10px"}}
-                ></i>
-                    {this.props.srcName}
-                </div>
-                <div className='FileViewContents' style={{backgroundColor:"#fff"}}>
-                    <table className='FileViewTable'>
-                        {type=="normal" ? 
-                            <Highlight className="repo-view">
-                                {contents}
-                            </Highlight >
-                            : <pre style={{border:"none", backgroundColor:"#fff", width:"875px", overflowX:"auto", margin:"0px auto"}}>
-                            {contents.map((list) =>
-                                <tr>
-                                    <td className='lineNumberContent'>{list === '' ? list.replace('', ' ') : list}</td>
-                                </tr>
-                            )}
-                            </pre>
-                        }
-                    </table>
-                </div>
-            </div>
-        );
-    }
+		if (codeFileExtentions.includes(type)) {
+			contents = this.props.contents;
+		} else {
+			type = "binary";
+		}
+		console.log(type);
+
+		return (
+			<div className="RepositoryFileViewTable">
+				<div className="FileViewHeader">
+					<i id={this.props.callPath} onClick={this.onClicklist2.bind(this)} className="fas fa-angle-double-left" style={{ cursor: "pointer", float: "left", paddingLeft: "10px" }}></i>
+					{this.props.srcName}
+				</div>
+				<div className="FileViewContents" style={{ backgroundColor: "#fff", marginTop: '10px' }}>
+					{type !== "binary" ? (
+						type !== "txt" ? (
+							<Highlight className="repo-view" style={{ margin: "0px auto", overflowX: "hidden", display: 'block', width: '99%' }}>
+								{contents}
+							</Highlight>
+						) : (
+							<pre style={{ border: "none", backgroundColor: "#fff", width: "99%", overflowX: "auto", margin: "0px auto", fontSize: '15px' }}>{contents}</pre>
+						)
+					) : (
+						<>
+							<br/>
+							<br/>
+							<i class="fas fa-exclamation-triangle fa-10x" style={{ textAlign: 'center', display: "block", float: "center" }} />
+							<br/>
+							<h4 style={{ textAlign: 'center', float: "center" }}>
+								<strong>미리보기가 불가능한 파일입니다</strong>
+							</h4>
+							<br/>
+							<br/>
+						</>
+					)}
+				</div>
+			</div>
+		);
+	}
 }
 
 export default RepositoryFileViewTable;
