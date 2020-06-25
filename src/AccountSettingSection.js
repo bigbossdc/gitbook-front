@@ -91,7 +91,6 @@ export default class AccountSettingSection extends Component {
 	}
 
 	render() {
-	
 		return (
 			<Fragment>
 				{this.state.editable ? (

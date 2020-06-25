@@ -80,7 +80,7 @@ export default class AlarmItem extends Component {
 							href={
 								this.props.itemData.groupNo !== null && this.props.itemData.alarmType === "commit" ?
 
-									`/gitbook/group/${this.props.itemData.groupNo}/${this.props.itemData.userNo}/${this.props.itemData.userId}/repository/view/${this.state.gitAddr}`
+									`/gitbook/group/${this.props.itemData.groupNo}/${this.props.itemData.userNo}/${this.props.itemData.groupMasterId}/repository/view/${this.state.gitAddr}`
 									:
 									linkList[this.props.itemData.alarmType] + (this.props.itemData.alarmType === "commit" ?
 										`/${this.props.itemData.userId}/repository/view/${this.state.gitAddr}`

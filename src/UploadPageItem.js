@@ -74,14 +74,21 @@ class UploadPageItem extends Component {
       })
     }
     handleKeyPress(e) {
-      if (e.key === 'Enter') {
-        if (this.state.tag != '')
-          this.setState({
-            tagList: this.state.tagList.concat({ tag: this.state.tag, tagid: this.state.tagid + 1 }),
-            tagid: this.state.tagid + 1,
-            tag: ''
-          })
+
+      if(/^([0-9a-zA-Zㄱ-ㅎ가-힣ㅏ-ㅣ]){0,}$/.test(e.target.value) === false){
+        alert("태그에 특수문자를 작성하지 못합니다");
+      }else{
+        if (e.key === 'Enter') {
+          if (this.state.tag != '')
+            this.setState({
+              tagList: this.state.tagList.concat({ tag: this.state.tag, tagid: this.state.tagid + 1 }),
+              tagid: this.state.tagid + 1,
+              tag: ''
+            })
+  
+  
       }
+    }
     }
     clickHandlerDelete(e) {
       this.setState({
