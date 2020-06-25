@@ -64,7 +64,7 @@ class GroupSettingAddUser extends Component {
               </div>
           </div>           
         :<div className="group-box">
-            <div className="suggestions-list">
+            <div className="suggestions-list" style={{overflowY:"auto", height:"500px"}}>
               {this.state.reqList && this.state.reqList
                 .filter((element) => element.nickname.indexOf(this.state.keyword) != -1 || element.name.indexOf(this.state.keyword) != -1 || element.id.indexOf(this.state.keyword) != -1)
                 .map(list =>  <GroupSettingAddUserItem

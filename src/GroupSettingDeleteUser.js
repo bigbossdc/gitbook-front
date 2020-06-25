@@ -67,7 +67,7 @@ class GroupSettingDeleteUser extends Component {
             </div>
           </div>
         :<div className="group-box">
-            <div className="suggestions-list">
+            <div className="suggestions-list" style={{overflowY:"auto", height:"500px"}}>
               {this.state.joinList && this.state.joinList
                 .filter((element) => element.nickname.indexOf(this.state.keyword) != -1 || element.name.indexOf(this.state.keyword) != -1 || element.id.indexOf(this.state.keyword) != -1)
                 .map(list =>  <GroupSettingDeleteUserItem
