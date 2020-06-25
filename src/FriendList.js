@@ -10,7 +10,7 @@ class FriendList extends Component {
         this.state = {
             keyword: ''
         }
-        console.log('EmailistApp:constructor()');
+        
     }
 
     onNotifyKeywordChange(keyword) {

@@ -47,7 +47,7 @@ export default class AlarmBox extends Component {
 			.then((response) => response.json())
 			.then((json) => {
 				if (json.result === "fail") {
-					console.log(json);
+				
 					return;
 				}
 				let original = this.state.alarmList;
@@ -94,7 +94,7 @@ export default class AlarmBox extends Component {
 			.then((response) => response.json())
 			.then((json) => {
 				if (json.result === "fail") {
-					console.log(json);
+				
 					return;
 				}
 				let original = this.state.alarmList;
@@ -119,7 +119,7 @@ export default class AlarmBox extends Component {
 	};
 
 	onReceiveChatting = (newChattingItem) => {
-		console.log(newChattingItem);
+	
 	};
 
 	render() {

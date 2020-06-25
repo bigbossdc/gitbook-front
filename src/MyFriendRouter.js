@@ -47,7 +47,7 @@ class MyFriendRouter extends Component {
           let n = Math.floor(Math.random() * range) + 1;
           if(arr.every((e) => n !== e)) {
               arr.push(n)
-              console.log("su plea..." + n)
+           
           } else {
               i--;
           }
@@ -95,7 +95,7 @@ class MyFriendRouter extends Component {
           let n = Math.floor(Math.random() * range) + 1;
           if(arr.every((e) => n !== e)) {
               arr.push(n)
-              console.log("su plea..." + n)
+           
           } else {
               i--;
           }
@@ -209,7 +209,7 @@ class MyFriendRouter extends Component {
               let n = Math.floor(Math.random() * range) + 1;
               if(arr.every((e) => n !== e)) {
                   arr.push(n)
-                  console.log("plea..." + n)
+                
               } else {
                   i--;
               }

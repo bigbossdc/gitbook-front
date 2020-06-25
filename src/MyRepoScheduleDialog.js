@@ -19,7 +19,7 @@ export default class MyToRepoScheduleDialog extends Component {
 
   render() {
 
-    console.log(this.props.getRepoList)
+
 
         return (
       <Dialog open={this.props.openModal}>
@@ -67,9 +67,7 @@ export default class MyToRepoScheduleDialog extends Component {
                             <p className="date sub-text" style={{fontWeight:"bold",wordBreak: "break-word",display:"inline",marginLeft:"3px"}}>
                               <i style={{paddingRight:"5px"}} className="fas fa-edit"></i>
                               
-                             {
-                               console.log(list.id)
-                             }
+                            
                               {list.scheduleContents.split(">>>>>")[1].length < 30 ? 
                                list.scheduleContents.split(">>>>>")[1]
                                 : 

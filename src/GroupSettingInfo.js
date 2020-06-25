@@ -42,7 +42,7 @@ class GroupSettingInfo extends Component {
   handleRadio=(event)=>{
     let obj = {}
     obj[event.target.value] = event.target.checked 
-    console.log("img chkkkkk : " + event.target.checked)
+  
     this.setState({
         visible: obj,
         previewURL: event.target.value === "basic" ? '/gitbook/assets/img/bg/basic.jpg' : '',
@@ -54,10 +54,10 @@ class GroupSettingInfo extends Component {
   }
 
   imageChange(event) {
-    console.log("imagechange");
+  
     let reader = new FileReader();
     let file = event.target.files[0];
-    console.log("image click : " + file);
+   
 
     let formData = new FormData();
     formData.append('file', file);
@@ -90,11 +90,11 @@ class GroupSettingInfo extends Component {
         })
     }
     reader.readAsDataURL(file);
-    console.log("imagechange : " + this.state.imgurl);
+  
   } 
 
   render() {
-    console.log("please : " + this.state.title)
+  
     return (
       <div className="group-req-setting" style={{borderRadius:"0px 0px 20px 20px"}}>
         

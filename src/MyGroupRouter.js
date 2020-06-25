@@ -26,8 +26,7 @@ class MyGroupRouter extends Component {
 
   // 그룹 요청 수락
   callbackAddGroup(groupno){
-    console.log("calledbackAddGroup Called2323")
-    console.log("그룹수락번호 " + groupno)
+
   
     fetch(`${global.API_URL}/gitbook/group/addgroup`, {
         method: 'post',
@@ -50,7 +49,7 @@ class MyGroupRouter extends Component {
 
     // 그룹 요청 거절
     callbackRejectGroup(groupno){
-      console.log("그룹수락번호 " + groupno)
+      
       fetch(`${global.API_URL}/gitbook/group/rejectgroup`, {
           method: 'post',
           headers: global.API_HEADERS,

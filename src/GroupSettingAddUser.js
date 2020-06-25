@@ -21,7 +21,7 @@ class GroupSettingAddUser extends Component {
 
   onInputChange(event) {
       this['onNotifyKeywordChange'](event.target.value);
-      console.log(event.target.value);
+     
   }
 
   // 그룹 멤버 추가 요청

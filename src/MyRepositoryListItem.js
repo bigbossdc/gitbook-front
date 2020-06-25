@@ -65,7 +65,7 @@ class MyRepositoryListItem extends Component {
   }
 
   render() {
-    console.log("aavbb : " + this.props.GroupNo)
+
     const k = {
       position: "relative",
       top: "1px",

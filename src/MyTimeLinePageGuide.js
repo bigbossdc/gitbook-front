@@ -15,7 +15,7 @@ class MyTimeLinePageGuide extends Component {
 
 
   render() {
-  console.log("!!!!!!! " + this.props.groupno)
+
     return (
       <div>
       <div className="guide-box">

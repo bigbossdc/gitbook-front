@@ -41,7 +41,7 @@ callVisibleHandler(list){
 })
 .then( response => response.json())
 .then( json => {
-    console.log("update:"+json.data)
+  
     this.setState({
       repositorylist: json.data
     });

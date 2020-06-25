@@ -40,7 +40,7 @@ callVisibleHandler(list){
 })
 .then( response => response.json())
 .then( json => {
-    console.log("update:"+json.data)
+ 
     this.setState({
       repositorylist: json.data
     });
@@ -50,7 +50,7 @@ callVisibleHandler(list){
 }
 
   render() {
-    console.log("chkkkkk :" + this.props.id + ":" + this.props.groupno)
+  
     const authUserNo=sessionStorage.getItem("authUserNo");
     return (
       <div className="fade-in" style={{animationDuration:'0.3s'}}>

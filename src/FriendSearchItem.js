@@ -12,7 +12,7 @@ class FriendSearchItem extends Component {
   }
 
   reqFollow() {
-    console.log("friend request 확인" + this.props.no + ":" + sessionStorage.getItem("authUserNo")); //this.props.no = friendNo
+ 
     fetch(`${global.API_URL}/gitbook/friend/request`, {
       method: 'post',
       headers: global.API_HEADERS,

@@ -7,7 +7,7 @@ class FriendListRequest extends Component {
  
     onInputChange(event) {
         this.props['onNotifyKeywordChange'](event.target.value);
-        console.log(event.target.value);
+       
     }
 
     render() {

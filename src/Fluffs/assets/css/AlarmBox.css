@@ -66,12 +66,13 @@
 	}
 }
 
-#clearAllButton {
-	background-color: #efefef;
+#clearAllButton, .text-dark {
+	background-color: #f4f4f4;
+	outline: none;
 }
 
 #clearAllButton:hover {
-	color: rgb(255, 100, 0);
+	color: #E16A70;
 	-webkit-animation-name: clearAllButton_animation;
 	-webkit-animation-duration: 0.5s;
 	animation-name: clearAllButton_animation;
@@ -84,7 +85,7 @@
 		color: #666;
 	}
 	to{
-		color: rgb(255, 100, 0);
+		color:#E16A70;
 	}
 }
 
@@ -93,7 +94,7 @@
 		color: #666;
 	}
 	to{
-		color: rgb(255, 100, 0);
+		color:#E16A70;
 	}
 }
 

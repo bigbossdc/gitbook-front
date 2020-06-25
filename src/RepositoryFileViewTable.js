@@ -20,15 +20,14 @@ class RepositoryFileViewTable extends Component {
 		} else {
 			type = "binary";
 		}
-		console.log(type);
-
+		
 		return (
 			<div className="RepositoryFileViewTable">
 				<div className="FileViewHeader">
 					<i id={this.props.callPath} onClick={this.onClicklist2.bind(this)} className="fas fa-angle-double-left" style={{ cursor: "pointer", float: "left", paddingLeft: "10px" }}></i>
 					{this.props.srcName}
 				</div>
-				<div className="FileViewContents" style={{ backgroundColor: "#fff", marginTop: '10px' }}>
+				<div className="FileViewContents" style={{ backgroundColor: "#fff"}}>
 					{type !== "binary" ? (
 						type !== "txt" ? (
 							<Highlight className="repo-view" style={{ margin: "0px auto", overflowX: "hidden", display: 'block', width: '99%' }}>

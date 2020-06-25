@@ -51,7 +51,7 @@ class MyRepositoryPage extends Component {
   }
   
   render() {
-    console.log(this.state.gitInfo)
+  
     const k={
       position: "relative",
       top: "1px",
