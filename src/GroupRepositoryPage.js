@@ -64,6 +64,7 @@ class GroupRepositoryPage extends Component {
       marginBottom: "3px"
     }
     return (
+      <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
       <div className="RepositoryPage">
       { this.state.gitInfo && ((this.state.gitInfo.visible === "private")&& (sessionStorage.getItem("authUserId")===this.props.match.params.userid)) || this.state.gitInfo.visible==='public' ? 
       
@@ -189,6 +190,7 @@ class GroupRepositoryPage extends Component {
         
         ''
       }
+      </div>
       </div>
     );
   }

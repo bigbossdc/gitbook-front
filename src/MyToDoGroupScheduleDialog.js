@@ -128,14 +128,19 @@ export default class MyToDoGroupScheduleDialog extends Component {
                     {
                       this.props.getToDoList && this.props.getToDoList.map((list) =>
 
-                        <li style={{ width: "300px" }}>
-
+                        <li style={{ width: "300px"}}>
                           {this.props.masterno === sessionStorage.getItem("authUserNo") ?
-                            <a style={{ float: "right", marginLeft: "10px" }} className='deleteButton'><i id={list.no} className="fas fa-backspace" style={{ color: "red" }} onClick={this.deleteClickHandler.bind(this)}></i></a>
+                            <a style={{ float: "right", marginLeft: "10px" }} className='deleteButton'>
+                              <i id={list.no} className="fas fa-backspace" style={{ color: "red" }} onClick={this.deleteClickHandler.bind(this)}></i></a>
                             :
                             ''
                           }
-                          <p style={{ width: "280px", wordBreak: "break-word", marginTop:"20px" }}>{list.scheduleContents.split(" ").map(nbsp => <div style={{ display: "inline" }}>{nbsp}&nbsp;</div>)}</p>
+                          <p style={{marginLeft:"5px", fontSize:"1.1em",fontWeight:"bold",whiteSpace: "pre-wrap", width: "280px", wordBreak: "break-word", marginTop:"20px" }}>
+                          <i style={{paddingRight:"5px"}} className="fas fa-edit"></i>
+                            {list.scheduleContents.split("/[\r\n]/").map(nbsp => <p>
+                              {nbsp}
+                              </p>)}
+                          </p>
                         </li>
                       )
                     }
@@ -150,10 +155,6 @@ export default class MyToDoGroupScheduleDialog extends Component {
   }
 
   componentDidMount() {
-    const now = new Date();
-    console.log(now);
-    //this.setTimeDifference(now);
-
     fetch(`${global.API_URL}/gitbook/user/profile/info/${sessionStorage.getItem("authUserId")}`, {
       method: 'post',
       headers: global.API_HEADERS,

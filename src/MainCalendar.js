@@ -324,6 +324,7 @@ export default class MainCalendar extends Component {
   render() {
     const { month, year } = this.state;
     return (
+      <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
       <div className="react-daypicker-root">
 
         <div className="button-div" >
@@ -409,6 +410,7 @@ export default class MainCalendar extends Component {
           </table>
         </div>
           
+      </div>
       </div>
     );
   }

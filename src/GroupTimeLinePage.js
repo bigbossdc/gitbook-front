@@ -33,9 +33,8 @@ class GroupTimeLinePage extends Component {
    }
 
   render() {
-    console.log("!@#!#@!#!" + this.state.item)
     return (
-      <div>
+      <div className="fade-in" style={{animationDuration:'0.3s'}}>
           { this.state.item && this.state.item == '' ? '' : this.state.item=='noshow'? <MyTimeLinePageGuide groupno={this.props.groupno}/>
 
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import './MainCalendar.scss';
+import { Link } from "react-router-dom";
 
 export default class MyToRepoScheduleDialog extends Component {
 
@@ -10,8 +11,6 @@ export default class MyToRepoScheduleDialog extends Component {
     this.state = {
       image:''
     };
-
-     
   }
 
   onClickHandler() {
@@ -19,7 +18,10 @@ export default class MyToRepoScheduleDialog extends Component {
   }
 
   render() {
-    return (
+
+    console.log(this.props.getRepoList)
+
+        return (
       <Dialog open={this.props.openModal}>
         <DialogContent>
           <div className="modal-body">
@@ -39,12 +41,43 @@ export default class MyToRepoScheduleDialog extends Component {
                   </div>
 
                   <ul  className="img-comment-list">
+                  <p className="date sub-text">COMMIT 기록은 삭제가 불가능합니다.</p> 
                     {
                       this.props.getRepoList && this.props.getRepoList.map((list) =>
-                        <li style={{marginTop:"10px"}}>
+                        <li style={{marginTop:"20px"}}>
                           <div className="comment-text">
-                            <p>{list.scheduleContents.split(">>>>>")[0]}.git</p>
-                            <span className="date sub-text" style={{fontSize:"1.1em"}}>"{list.scheduleContents.split(">>>>>")[1]}"</span>
+                          
+                          <Link style={{color:"black"}}
+                               to={ 
+                                  list.groupNo === null ?
+                                 `/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/view/${list.scheduleContents.split(">>>>>")[0].replace(".git", '').replace("[",'').replace("]",'')}`
+                                 :
+                                 `/gitbook/group/${list.groupNo}/${list.userNo}/${list.id}/repository/view/${list.scheduleContents.split(">>>>>")[0].replace(".git", '').replace("[",'').replace("]",'')}`
+                                }>
+                         <p className = 'linkToRepoContents' style={{fontWeight:"bold", fontSize:"1.1em", width:"350px"}}><i style={{paddingRight:"5px"}} className="fab fa-github"></i>
+
+                         {list.scheduleContents.split(">>>>>")[0].length < 30 ? 
+                          list.scheduleContents.split(">>>>>")[0]+'.git'
+                         :
+                         `${list.scheduleContents.split(">>>>>")[1].slice(0,30)}...`
+                         }
+                         </p>
+                        </Link>
+
+                            <p className="date sub-text" style={{fontWeight:"bold",wordBreak: "break-word",display:"inline",marginLeft:"3px"}}>
+                              <i style={{paddingRight:"5px"}} className="fas fa-edit"></i>
+                              
+                             {
+                               console.log(list.id)
+                             }
+                              {list.scheduleContents.split(">>>>>")[1].length < 30 ? 
+                               list.scheduleContents.split(">>>>>")[1]
+                                : 
+                               `${list.scheduleContents.split(">>>>>")[1].slice(0,30)}...`
+                            }
+                          
+                            </p>
+                           
                           </div>
                         </li>
                       )

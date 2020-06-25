@@ -3,6 +3,7 @@ import "./ChattingPage.css";
 import ChattingMsgItem from "./ChattingMsgItem";
 import SockJsClient from "react-stomp";
 import ChatFriendInviteItem from "./ChatFriendInviteItem";
+import { motion } from "framer-motion";
 
 class ChattingRoom extends Component {
 	constructor() {
@@ -168,13 +169,39 @@ class ChattingRoom extends Component {
 			inviteFilter= inviteFilter.reverse().pop();
 		 }
 		
+		
 		return (
+				
+
+
+
 			<div>
 				
 
 
 				{this.props.chatInfo && this.props.chatInfo ?
-					<div className="conversation-box">
+				<motion.div 
+				initial={true}
+				animate={(this.props.chatInfo && this.props.chatInfo)?{
+					clipPath: `circle(${1000 * 2 + 200}px at 40px 40px)`,
+					transition: {
+					  type: "spring",
+					  stiffness: 20,
+					  restDelta: 2
+					}
+				  }:{
+					clipPath: "circle(30px at 40px 40px)",
+					transition: {
+					  delay: 0.5,
+					  type: "spring",
+					  stiffness: 400,
+					  damping: 40
+					}
+				  }
+				}
+				custom={1000}
+				
+					className="conversation-box">
 						<SockJsClient
 					url={`${global.API_URL}/gitbook/socket`}
 					topics={[`/topics/chatting/test/${this.props.chatInfo.no}`]}
@@ -276,7 +303,7 @@ class ChattingRoom extends Component {
 							</div>
 						</div>
 
-					</div> :
+					</motion.div> :
 					<div className="conversation-box" style={{ height: "100%", width: "100%" }}>
 						<div className="conversation-header" style={{ height: "725px", width: "100%" }}>
 							<h2 style={{ fontFamily: "'Jeju Gothic', sans-serif", marginTop: "200px", marginLeft: "200px" }}><strong>채팅창을 선택해주세요!</strong></h2>

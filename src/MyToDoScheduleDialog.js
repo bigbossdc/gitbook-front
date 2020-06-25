@@ -122,13 +122,17 @@ export default class MyToDoScheduleDialog extends Component {
                   <ul className="img-comment-list">
                     {
                       this.props.getToDoList && this.props.getToDoList.map((list) =>
-                        <li 
-                       
-                        
-                        style={{ width: "300px" }}>
-                          <a style={{ float: "right", marginLeft: "10px" }} className='deleteButton'><i id={list.no} className="fas fa-backspace" onClick={this.deleteClickHandler.bind(this)}></i></a>
-                          {list.scheduleContents.split(" ").map(nbsp =>
-                            <p style={{ width: "280px", wordBreak: "break-word", marginTop:"20px"}}>{nbsp}&nbsp;</p>)}
+                        <li style={{ width: "300px", marginLeft:"-5px" }}>
+                          <a style={{ float: "right", marginLeft: "10px" }} className='deleteButton'>
+                            <i id={list.no} className="fas fa-backspace" onClick={this.deleteClickHandler.bind(this)}></i>
+                          </a>
+
+                          <p style={{marginLeft:"5px", fontSize:"1.1em",fontWeight:"bold",whiteSpace: "pre-wrap", width: "280px", wordBreak: "break-word", marginTop:"20px"}}>
+                          <i style={{paddingRight:"5px"}} className="fas fa-edit"></i>
+                            {list.scheduleContents.split("/[\r\n]/").map(nbsp => <p>
+                              {nbsp}
+                              </p>)}
+                          </p>
                         </li>
                       )
                     }

@@ -41,7 +41,7 @@ changeScheduleRepoValue(){
  
     return (
       
-      <div className="App">
+      <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
       {/* {(this.props.match.params.userid === sessionStorage.getItem("authUserId")) ? <Header2 name="MyTimeline"
         key="123"></Header2> : 
         <Header2

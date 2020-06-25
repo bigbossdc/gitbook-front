@@ -176,7 +176,7 @@ class ChattingPage extends Component {
 					this.clientRef = client;
 				}}
 			></SockJsClient>
-
+      <div className="fade-in" style={{animationDuration:'0.3s'}}>
       <div className="ChattingPage" style={{height:"100vh"}}>
         {/* <Header2 name="Chatting"></Header2> */}
         <section className="profile-two" style={{ paddingTop: "120px", height:"100%", overflow: "hidden" }}>
@@ -336,6 +336,7 @@ class ChattingPage extends Component {
           </div>
         </section>{/** profile-twd 종료 */}
 
+      </div>
       </div>
       </Fragment>
     );

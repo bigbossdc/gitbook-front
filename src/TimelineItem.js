@@ -318,9 +318,24 @@ class TimeLineItem extends Component {
           </ul>
         </div>
         {!this.state.showDetails ? null :
+
+          <motion.div
+          initial="collapsed"
+          animate="open"
+          exit="collapsed"
+          variants={{
+            open: { opacity: 1, height: "auto" },
+            collapsed: { opacity: 0, height: 0 }
+          }}
+          transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
           
-          <div>
-            <ul className="img1-comment-list" id="uploadDescription" >
+          
+          >
+            <motion.ul 
+            
+            
+            className="img1-comment-list" id="uploadDescription" >
+
               {this.state.commentList && this.state.commentList.map((list) =>
                 <CommentItem
                   key={list.no}
@@ -329,9 +344,14 @@ class TimeLineItem extends Component {
                     delete: this.onCommentDeleteHandler.bind(this)
                   }}
                 />)}
-            </ul>
-            <div className="comment-body">
-              <input
+            </motion.ul>
+            <motion.div 
+            
+            className="comment-body">
+              <motion.input
+                
+
+
                 className="form-control input-sm"
                 type="text"
                 placeholder="소중한 댓글을 적어주세요!"
@@ -340,8 +360,8 @@ class TimeLineItem extends Component {
                 onChange={this.handleChange.bind(this)}
                 onKeyPress={this.handleKeyPress.bind(this)}
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         }
 
         

@@ -123,7 +123,6 @@ export default class AlarmBox extends Component {
 	};
 
 	render() {
-		console.log(this.state.alarmList)
 		return (
 			<Fragment>
 				<SockJsClient

@@ -28,7 +28,11 @@ class MyTimelinePage extends Component {
   render() {
 
     return (
-      <div> 
+      <div 
+      // className="react-transition fade-in"
+      className="fade-in"
+       style={{animationDuration:'0.3s',zIndex:"100"}}
+      >
          { this.state.item && this.state.item == '' ? '' : this.state.item=='noshow'? <MyTimeLinePageGuide groupno={this.props.groupno} userid={this.props.userid}/>
   
           : ((sessionStorage.getItem("authUserId")===this.props.userid)?

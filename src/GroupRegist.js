@@ -127,6 +127,7 @@ class GroupRegist extends Component {
     }
    
     return (
+        <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
         <div className="group-req-setting" style={{background:"#f4f4f4"}}>    
             <h2 style={{fontFamily:"'Nanum Gothic', sans-serif"}} style={{marginTop:"0px"}}>그룹 등록</h2>
             <hr></hr>
@@ -229,6 +230,7 @@ class GroupRegist extends Component {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         );
     }

@@ -8,6 +8,7 @@ class Navigation2 extends Component {
 
     render() {
         return(
+            <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
             <div className="col-lg-3">
                  <div className="trending-box">
                     <div className="row">
@@ -43,6 +44,7 @@ class Navigation2 extends Component {
                 </div>	
                 
                 }
+            </div>
             </div>
        
         );

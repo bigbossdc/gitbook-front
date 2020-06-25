@@ -72,7 +72,7 @@ onClose() {
   render() {
         return(
           <ErrorBoundary>
-          <div>
+           <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
             <div className="col-lg-3">
             <aside id="leftsidebar" className="sidebar">		  
              <ul className="list">
