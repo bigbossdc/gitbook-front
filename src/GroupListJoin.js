@@ -21,7 +21,7 @@ class GroupListJoin extends Component {
 
     onInputChange(event) {
         this['onNotifyKeywordChange'](event.target.value);
-        console.log(event.target.value);
+      
     }
 
     render() {

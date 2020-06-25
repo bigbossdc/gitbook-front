@@ -77,7 +77,7 @@ class UploadPage extends Component {
 	}
 
   render() {
-    console.log("group chk :" + this.props.match.params.groupno)
+   
     return (
       <div className="out-box">
         <div className="out-container" style={{marginTop:"0px"}}>

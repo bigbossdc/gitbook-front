@@ -21,13 +21,13 @@ class GroupSettingDeleteUser extends Component {
 
   onInputChange(event) {
       this['onNotifyKeywordChange'](event.target.value);
-      console.log(event.target.value);
+   
   }
 
 
   // 그룹 멤버 탈퇴
   callbackDeleteMember(userno, groupno) {
-    console.log("group delte 확인" + groupno + ":" + userno);
+  
     fetch(`${global.API_URL}/gitbook/group/deleteMember`, {
             method: 'post',
             headers: global.API_HEADERS,

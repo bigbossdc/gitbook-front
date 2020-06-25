@@ -36,7 +36,7 @@ class MyRepositoryWritePage extends Component {
 
    handleSubmit = () => {
       const authUserNo = sessionStorage.getItem("authUserNo");
-      console.log(authUserNo + ":::" + this.props.groupno);
+    
       let newRepo = {
          no: null,
          userNo: authUserNo,
@@ -57,7 +57,7 @@ class MyRepositoryWritePage extends Component {
    };
 
    render() {
-     console.log("afdsafdas : " + this.props.groupno)
+     
       return (
          <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
             <h2 style={{ fontFamily: " 'Abhaya Libre' serif" }}>New Repository</h2>

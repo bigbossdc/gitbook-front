@@ -18,7 +18,7 @@ class Navigation extends Component {
 
 
 reqFollow() {
-  console.log("friend request 확인" + this.state.userinfo.no + ":" + sessionStorage.getItem("authUserNo"));
+
   fetch(`${global.API_URL}/gitbook/friend/request`, {
     method: 'post',
     headers: global.API_HEADERS,
@@ -94,7 +94,7 @@ onClose() {
                     </div> :
                     <div className="image">
                        <Link style={{marginBottom:"20px"}}>
-                      <img src={this.state.userinfo.image} className="img-circle" alt="" style={{width:"180px", height:"180px", marginRight:"15px"}}></img>
+                      <img src={this.state.userinfo.image} className="img-circle" alt="" style={{width:"180px", height:"180px", marginRight:"15px", cursor:"default"}}></img>
                       <span className="online-status online" style={{background:"blue"}}></span>
                       </Link>
                     </div>}

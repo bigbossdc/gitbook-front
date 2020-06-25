@@ -36,7 +36,7 @@ class MyRepositoryWritePage extends Component {
 
    handleSubmit = () => {
       const authUserNo = sessionStorage.getItem("authUserNo");
-      console.log(authUserNo);
+     
       let newRepo = {
          no: null,
          userNo: authUserNo,

@@ -8,7 +8,7 @@ import ProfileAndAccount from "./ProfileAndAccount"
 import ErrorBoundary from './ErrorBoundary';
 class MyProfilePage extends Component {
 	render() {
-		console.log("called MyProfilePage...");
+	
 		
 		return (
 			

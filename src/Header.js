@@ -37,11 +37,7 @@ class Header extends Component {
 
    render() {
       const { match, location, history } = this.props;
-      console.log({
-         match,
-         location,
-         history
-      });
+   
       
       let contentsname = location.pathname.split('/')[2];
    

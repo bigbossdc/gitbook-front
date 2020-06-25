@@ -55,7 +55,7 @@ export default class ProfileSection extends Component {
 				if (json.result === "success") {alert("프로필 수정을 성공했습니다.");
 					window.location.reload(true);
 				} else {
-					console.log(json);
+				
 					alert("프로필 수정 실패...");
 				}
 			})
@@ -83,7 +83,7 @@ export default class ProfileSection extends Component {
 		let reader = new FileReader();
 		let file_image_upload = event.target.files[0];
 		
-		console.log(event.target.files);
+		
 		if(['image/jpg', 'image/jpeg', 'image/png', 'image/gif'].includes(file_image_upload.type) === false){
 			alert("이미지 파일만 올려주세요!");
 			reader.abort();
@@ -108,7 +108,7 @@ export default class ProfileSection extends Component {
 							editables: newEditables,
 						});
 					} else {
-						console.log(json);
+					
 						alert("이미지 업로드 실패...");
 					}
 				})

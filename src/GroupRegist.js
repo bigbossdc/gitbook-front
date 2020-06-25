@@ -50,10 +50,10 @@ class GroupRegist extends Component {
     }
 
     imageChange(event) {
-        console.log("imagechange");
+     
         let reader = new FileReader();
         let file = event.target.files[0];
-        console.log("image click : " + this.state.previewURL);
+      
 
         let formData = new FormData();
         formData.append('file', file);
@@ -87,7 +87,7 @@ class GroupRegist extends Component {
         }
         reader.readAsDataURL(file);
 
-        console.log("imagechange : " + this.state.imgurl);
+    
 
     } 
 

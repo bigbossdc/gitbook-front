@@ -17,7 +17,7 @@ class Navigation2 extends Component {
 
 
     render() {
-        console.log("ran " + this.state.random)
+      
         return(
             <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
             <div className="col-lg-3" style={{zIndex:"0"}}>
@@ -91,7 +91,7 @@ class Navigation2 extends Component {
                 let n = Math.floor(Math.random() * range) + 1;
                 if(arr.every((e) => n !== e)) {
                     arr.push(n)
-                    console.log("plea..." + n)
+                  
                 } else {
                     i--;
                 }

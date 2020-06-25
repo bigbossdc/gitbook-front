@@ -14,12 +14,12 @@ class GroupInfo extends Component {
     }
 
     onClickAdd() {
-        console.log("group chk!!!!!!! " + this.props.groupno)
+     
         this.props.callback.add(this.props.groupno);
     }
 
     render() {
-        console.log("groupoinfo22 : " + this.props.groupno)
+    
         return(  
             <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
             <GroupHeaderImg groupinfo={this.state.groupinfo} />

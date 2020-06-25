@@ -10,8 +10,7 @@ class DialogDelete extends Component {
         check:false,
         show: this.props.showDialog
     };
-    console.log("dial 3 : " + this.props.showDialog);
-    console.log("dial 4 : " + this.state.show);
+   
   }
   
 	onClose() {
@@ -28,7 +27,7 @@ class DialogDelete extends Component {
   }
 
     render() {
-      console.log("dialogTest : " + this.state.show)
+     
         return(
           <div className="modal" style={{display: this.state.show}}>
            <div className="modal-content" style={{margin:"15% auto",height:"130px" ,width:"300px"}}>

@@ -28,7 +28,7 @@ export default class AccountSettingSection extends Component {
 					editable: true,
 				})
 			} else{
-				console.log(json);
+			
 				alert("사용자 인증에 실패했습니다.");
 			}
 		})
@@ -82,7 +82,7 @@ export default class AccountSettingSection extends Component {
 				alert("사용자 정보 변경하였습니다.");
 				window.location.reload(true);
 			} else{
-				console.log(json);
+			
 				alert("사용자 정보 변경에 실패했습니다.");
 			}
 		})

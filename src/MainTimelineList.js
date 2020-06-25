@@ -60,7 +60,7 @@ class MainTimelineList extends Component {
   })
   .then( response => response.json())
   .then( json => {
-    console.log(json.data)
+   
     if(json.data.length > 0){
       this.setState({
         timelineItemList: json.data

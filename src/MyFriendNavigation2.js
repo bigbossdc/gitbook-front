@@ -7,7 +7,7 @@ import "./Fluffs/assets/css/demos/navi.css";
 class MyFriendNavigation2 extends Component {
 
     render() {
-        console.log("friend navi " + this.props.randomlist)
+   
         return(
             <div className="col-lg-3">
                 <div className="trending-box">
