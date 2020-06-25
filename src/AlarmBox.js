@@ -81,7 +81,7 @@ export default class AlarmBox extends Component {
 	};
 
 	onClearAll = () => {
-		if (this.state.alarmList === null || this.state.alarmList.length <= 0 || this.state.counted <= 0) {
+		if (this.state.alarmList === null || this.state.alarmList.length <= 0) {
 			return;
 		}
 
@@ -123,7 +123,6 @@ export default class AlarmBox extends Component {
 	};
 
 	render() {
-		console.log(this.state.alarmList)
 		return (
 			<Fragment>
 				<SockJsClient
@@ -171,8 +170,8 @@ export default class AlarmBox extends Component {
 						<div className="dropdown-item noti-title" style={{ height: "40px" }}>
 							<h5 className="m-0" style={{ paddingTop: "5px", fontFamily: "'Nanum Gothic', sans-serif" }}>
 								<span className="pull-right">
-									<button className="text-dark" onClick={this.onClearAll} style={{ border: "none", padding: "0px", margin:'0px', width:'50px', float:'center', backgroundColor: "#DDD" }}>
-										<small className="clearAllButton">Clear All</small>
+									<button className="text-dark" onClick={this.onClearAll.bind(this)} style={{ border: "none", padding: "0px", margin:'0px', width:'50px', float:'center' }}>
+										<small id='clearAllButton' style={{ fontFamily: "'Nanum Gothic', sans-serif", fontSize: '12px' }}>Clear All</small>
 									</button>
 								</span>
 								Notification
