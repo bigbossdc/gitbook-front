@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import './Fluffs/assets/css/demos/photo.css';
 import './dialogBox.css';
+import './MyRepositoryListPage.css';
 
 
 class MyRepositoryListItem extends Component {
@@ -78,7 +79,7 @@ class MyRepositoryListItem extends Component {
     }
     return (
       <div className="cardbox" style={{boxShadow:"none", marginBottom:"0px"}}>
-        <div className="cardbox-headingss" style={{backgroundColor:"#F4F4F4", boxShadow:"none", padding:"10px 0px 0px 0px"}}>
+        <div className="cardbox-headingss">
           <div className="media m-0">
             <div className="media-body">
             {(sessionStorage.getItem("authUserNo") == this.props.userNo) && (
@@ -108,7 +109,7 @@ class MyRepositoryListItem extends Component {
               <p style={{fontSize:"1em", textAlign:"right", fontFamily:"'Nanum Gothic', sans-serif", marginTop:"15px"}}><span><i class="fas fa-clock"></i>&nbsp;{this.props.regDate}</span></p>
             </div>
           </div>
-          <hr style={{backgroundColor:"#DBDBDB", height:"1px", margin:"0px"}}></hr>
+          <hr style={{backgroundColor:"#DBDBDB", height:"1px", margin:"0px", border:"0px"}}></hr>
         </div>
 
         <div>

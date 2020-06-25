@@ -31,15 +31,6 @@ class GroupRegist extends Component {
         });
     }
 
-    handleLengthChk=(e)=>{
-        if(e.target.value.length > 100) {
-            alert("100자를 초과했습니다 (글자수: " + e.target.value.length + ")" )
-            this.setState({
-                groupIntro: e.target.value.substring(0, 100)
-            });
-        }
-    }
-
     handleRadio=(event)=>{
         let obj = {}
         obj[event.target.value] = event.target.checked 
@@ -134,7 +125,7 @@ class GroupRegist extends Component {
         profile_preview = <img src={this.state.previewURL} style={{width: "450px", height: "150px", borderRadius: '10px', display: "block" }}></img>
 
     }
-    console.log("aaaaa " + this.state.groupno)
+   
     return (
         <div className="group-req-setting" style={{background:"#f4f4f4"}}>    
             <h2 style={{fontFamily:"'Nanum Gothic', sans-serif"}} style={{marginTop:"0px"}}>그룹 등록</h2>
@@ -159,12 +150,12 @@ class GroupRegist extends Component {
                       
                         <br/>
                         <br/>
-                        <h4 style={{fontFamily:"'Nanum Gothic', sans-serif"}}>그룹 인사말 (100자 이내)</h4>
+                        <h4 style={{fontFamily:"'Nanum Gothic', sans-serif"}}>그룹 인사말 ({this.state.groupIntro.length}/100)</h4>
                         <textarea className="form-control no-border" 
                                   value={this.state.groupIntro} 
                                   name="groupIntro"
                                   onChange={this.handleChange.bind(this)}
-                                  onKeyUp={this.handleLengthChk.bind(this)}
+                                  maxLength="99"
                                   rows="3"></textarea>
                         <br/>
                         <br/>

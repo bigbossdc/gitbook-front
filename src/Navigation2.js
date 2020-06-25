@@ -10,17 +10,24 @@ class Navigation2 extends Component {
         super(...arguments);
         this.state = {
             friendlist:'',
-            item:''
+            item:'',
+            random:[]
         }
     }
 
+
     render() {
+        console.log("ran " + this.state.random)
         return(
             <div className="col-lg-3">
                 <div className="trending-box">
                     <div className="row">
                         <div className="col-lg-4">
-                        <Link to="/gitbook/myfriend"> <h4 className="navi-friendlist-title"><strong style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"17px", color:"#606665"}}>친구 목록</strong></h4></Link>
+                            <Link to="/gitbook/myfriend"> 
+                                <h4 id="navi-friendlist-title">
+                                    <strong>친구 목록 <em className="fa fa-angle-right pull-right"></em></strong>
+                                </h4>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -38,11 +45,15 @@ class Navigation2 extends Component {
                     </div>
                     :<div className="trending-box">                           
                         {this.state.friendlist && this.state.friendlist
-                            .map(list => <div className="col-lg-4" style={{paddingLeft:"5px", paddingRight:"5px"}}>
-                                        <Link to={`/gitbook/my/${list.id}`} ><img 
-                                        src={list.image} className="img-reponsive" alt="" width="130" height="130" style={{marginBottom:"5px", marginTop:"5px", display:"block", maxWidth:"100%", maxheight:"70.1px"}}/></Link>
-                                        <span className="tooltip-custom">{list.nickname}</span>
-                                        </div>)} 
+                            .map((list, index) => 
+                                       this.state.random.indexOf(index+1) > -1 ?
+                                        <div className="col-lg-4" style={{paddingLeft:"5px", paddingRight:"5px"}}>
+                                            <Link to={`/gitbook/my/${list.id}`} >
+                                                <img src={list.image} className="img-reponsive" alt="" width="130" height="130" style={{marginBottom:"5px", marginTop:"5px", display:"block", maxWidth:"100%", maxheight:"70.1px"}}/></Link>
+                                            <span className="tooltip-custom">{list.nickname}</span>
+                                        </div> : ''
+                            )
+                        } 
                     </div>     
                 }
             </div>
@@ -64,10 +75,32 @@ class Navigation2 extends Component {
     .then( response => response.json())
     .then( json => {
         if(json.data.length > 0) {
+
+            let range = json.data.length;
+            let randomSize = range;
+            let arr = [];
+            var i = 0;
+
+            if(range > 9) {
+                randomSize = 9;
+            }
+
+            for( ; i < randomSize; i++) {
+                let n = Math.floor(Math.random() * range) + 1;
+                if(arr.every((e) => n !== e)) {
+                    arr.push(n)
+                    console.log("plea..." + n)
+                } else {
+                    i--;
+                }
+            }
+
             this.setState({
                 friendlist: json.data,
-                item: "show"
+                item: "show",
+                random: arr
               });
+              
         } else {
             this.setState({
                 item: "noshow"

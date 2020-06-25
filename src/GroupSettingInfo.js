@@ -39,15 +39,6 @@ class GroupSettingInfo extends Component {
 
   }
 
-  handleLengthChk=(e)=>{
-    if(e.target.value.length > 100) {
-        alert("100자를 초과했습니다 (글자수: " + e.target.value.length + ")" )
-        this.setState({
-          groupIntro: e.target.value.substring(0, 100)
-        });
-    }
-}
-
   handleRadio=(event)=>{
     let obj = {}
     obj[event.target.value] = event.target.checked 
@@ -135,13 +126,14 @@ class GroupSettingInfo extends Component {
         <br/>
         <br/>
 
-        <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>그룹 인사말 (100자 이내)</h4>
+        <h4 style={{ fontFamily: " 'Abhaya Libre' serif" }}>그룹 인사말 ({this.state.groupIntro.length}/100)</h4>
         <textarea className="form-control no-border" 
                   rows="3" 
                   name="groupIntro"
                   value={this.state.groupIntro}
+                  maxLength="99"
                   onChange={this.handleChange.bind(this)}
-                  onKeyUp={this.handleLengthChk.bind(this)}/>
+                  />
         <br/>
         <br/>
       

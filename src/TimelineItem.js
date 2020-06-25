@@ -7,8 +7,6 @@ import ImageItem from "./ImageItem"
 import UploadPageItem from "./UploadPageItem";
 import { motion } from "framer-motion";
 
-
-
 class TimeLineItem extends Component {
 
   constructor() {
@@ -320,6 +318,7 @@ class TimeLineItem extends Component {
           </ul>
         </div>
         {!this.state.showDetails ? null :
+          
           <div>
             <ul className="img1-comment-list" id="uploadDescription" >
               {this.state.commentList && this.state.commentList.map((list) =>

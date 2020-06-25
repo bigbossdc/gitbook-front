@@ -1,7 +1,7 @@
 .sidebar .list li .navi{
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 20px;
-    color: #606665
+    color: #333333
 }
 
 .sidebar .list li .contents-div:hover{
@@ -83,3 +83,12 @@
     }
 }
 
+#navi-friendlist-title strong{
+    color: #333333;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 17px;
+}
+
+#navi-friendlist-title:hover strong{
+    color: #0fc19e;
+}
