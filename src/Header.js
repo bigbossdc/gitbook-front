@@ -66,7 +66,7 @@ class Header extends Component {
                         <div className="navbar-header" style={{width:"30%"}}>
                            <Link to="/gitbook/main" className="navbar-brand" >
                               {" "}
-                              <i class="fas fa-alien"></i>GitBook
+                              GitBook
                            </Link>
                         </div>{" "}
                      </div>
