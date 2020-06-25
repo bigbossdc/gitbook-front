@@ -5,7 +5,6 @@ import "./Fluffs/assets/css/demos/friend.css";
 class FriendSearchList extends Component {
 
   render() {
-    
     return (
             (this.props.result == "" || !this.props.result) ? 
              <div className="friend-wrapper">

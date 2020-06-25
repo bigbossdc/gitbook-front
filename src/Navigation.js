@@ -24,7 +24,9 @@ reqFollow() {
     headers: global.API_HEADERS,
     body:JSON.stringify({
       userno: sessionStorage.getItem("authUserNo"),
-      friendno: this.state.userinfo.no
+      friendno: this.state.userinfo.no,
+      userNickName: sessionStorage.getItem("authUserNickName"),
+      friendId: this.props.id
     })
   })
     .then(response => response.json())
