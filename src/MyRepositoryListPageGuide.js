@@ -25,9 +25,11 @@ class MyRepositoryListPageGuide extends Component {
                <Link to={`/gitbook/group/${this.props.groupno}/${sessionStorage.getItem("authUserId")}/repository/write`}>
                 <p className="timeline-file-icon"><i className="fas fa-database fa-6x"></i><i className="fas fa-plus fa-2x"></i></p>
               </Link>
-              :<Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`}>
+              :(this.props.userid === sessionStorage.getItem("authUserId")) ?
+                 <Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`}>
                   <p className="timeline-file-icon"><i className="fas fa-database fa-6x"></i><i className="fas fa-plus fa-2x"></i></p>
                 </Link>
+                : <p style={{color:"#5b6160"}}><i className="fas fa-database fa-6x"></i></p>
               
           }
       </div>
@@ -36,7 +38,9 @@ class MyRepositoryListPageGuide extends Component {
         {
            (this.props.groupno && this.props.groupno !== undefined) ?
            <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#606665"}}>깃 생성이 어렵나요? <br/> 아래 가이드를 보고 그룹의 소스코드를 관리해보세요</p>
-           :<p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#606665"}}>깃 생성이 어렵나요? <br/> 아래 가이드를 보고 "{this.props.userid}"님의 소스코드를 관리해보세요</p>
+           :(this.props.userid === sessionStorage.getItem("authUserId")) ? 
+            <p style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.2em", color:"#606665"}}>깃 생성이 어렵나요? <br/> 아래 가이드를 보고 "{sessionStorage.getItem("authUserId")}"님의 소스코드를 관리해보세요</p>
+            :<p><br/></p>
         }
         
       </div>

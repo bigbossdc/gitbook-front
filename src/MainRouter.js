@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import Header2 from "./Header2";
 import FriendSearchList from "./FriendSearchList";
 import MainTimelineList from "./MainTimelineList";
 import TagTimelineList from "./TagTimelineList";
@@ -18,7 +17,7 @@ class MainRouter extends Component {
   render() {
 
     return (
-      <div className="App" >
+      <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
         {/* <Header2></Header2> */}
         <section className="profile-two" style={{paddingTop:"100px", minHeight:"100vh"}}>
           <div className="container-fluid">

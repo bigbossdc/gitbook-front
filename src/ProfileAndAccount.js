@@ -17,6 +17,7 @@ export default class ProfileAndAccount extends Component {
 
 	render() {
 		return (
+			<div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
 			<div className="banner-content" style={{ marginTop: "0px", background:"#fff", boxShadow:"5px 5px 5px rgb(231, 230, 230)", borderRadius:"20px"}}>
 				<div className="tab" style={{ borderRadius:"20px 20px 20px 0px"}}>
 					<Link to={"/gitbook/my/" + sessionStorage.getItem("authUserId") + "/profile"}>
@@ -44,6 +45,7 @@ export default class ProfileAndAccount extends Component {
 				<br />
 
 				{window.location.href.split("/").pop() === "profile" ? <ProfileSection userid={this.props.match.params.userid} /> : <AccountSettingSection />}
+			</div>
 			</div>
 		);
 	}

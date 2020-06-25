@@ -165,7 +165,7 @@ class UploadPage extends Component {
       hover: { rotate: 360, transition: { duration: 0.4 } }
     };
     return (
-      <div className="App" style={{ height: "100vh" }}>
+      <div className="react-transition fade-in" style={{animationDuration:'0.3s',height:"100vh"}}>
         {/* <Header2 name="Upload"></Header2> */}
         <section className="profile-two" style={{ paddingTop: "120px", height: "100%", backgroundColor: "rgba(196, 196, 196, 0.171)" }}>
           <div className="container-fluid">

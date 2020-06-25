@@ -9,6 +9,7 @@ class NavigationGroup extends Component {
     render() {
 
         return(
+          <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
             <div className="col-lg-3">
             <aside id="leftsidebar" className="sidebar">        
             <ul className="list">
@@ -79,6 +80,7 @@ class NavigationGroup extends Component {
                 userno = {this.props.userno}
               />
               </div>   
+           </div>
            </div>
            
         );
