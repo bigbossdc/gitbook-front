@@ -8,12 +8,19 @@ class FriendListJoin extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            keyword: '',
             userFriends: null
         }
     }
 
+    onNotifyKeywordChange(keyword) {
+        this.setState({
+            keyword: keyword
+        })
+    }
+
     onInputChange(event) {
-        this.props['onNotifyKeywordChange'](event.target.value);
+        this['onNotifyKeywordChange'](event.target.value);
        
     }
 
@@ -39,7 +46,7 @@ class FriendListJoin extends Component {
                                 <p className="nocontents">친구가 없습니다. 친구를 추가해보세요 :)</p>
                             </div>
                             :this.props.userinfo && this.props.userinfo
-                            .filter((element) => element.nickname.indexOf(this.props.keyword) != -1 || element.name.indexOf(this.props.keyword) != -1 || element.id.indexOf(this.props.keyword) != -1)
+                            .filter((element) => element.nickname.indexOf(this.state.keyword) != -1 || element.name.indexOf(this.state.keyword) != -1 || element.id.indexOf(this.state.keyword) != -1)
                             .map( list => <FriendListJoinItem 
                                 key={ list.id }
                                 nickname={list.nickname}
