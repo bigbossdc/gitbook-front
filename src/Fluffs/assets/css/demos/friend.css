@@ -27,3 +27,8 @@
 .friend-contents {
     margin-top: 20px;
 }
+
+.friend-send-list:hover {
+    cursor: pointer;
+    color: #0fc19e;
+}

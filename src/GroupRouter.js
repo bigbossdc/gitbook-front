@@ -11,7 +11,7 @@ import GroupHeaderImg from './GroupHeaderImg';
 import GroupRepositoryListPage from './GroupRepositoryListPage';
 import GroupRepositoryWritePage from './GroupRepositoryWritePage';
 import GroupRepositoryPage from './GroupRepositoryPage';
-import MyRepositoryListPage from './MyRepositoryListPage';
+import GroupMemberList from './GroupMemberList';
 
 {/*Group Navigation 사용하는 그룹 관련 페이지 - 그룹 타임라인, 그룹 관리*/}
 
@@ -97,6 +97,8 @@ class GroupRouter extends Component {
                                                                                                  groupno={this.props.match.params.groupno}
                                                                                                  masterno={this.state.groupInfo.masterNo}
                                                                                                  />}/>
+                  <Route path="/gitbook/group/:groupno?/:userno?/member" exact render={() => <GroupMemberList
+                                                                                                groupno={this.props.match.params.groupno}/>}/>                                                                              
 
                   </div>
               

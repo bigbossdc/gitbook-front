@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./RepositoryPage.css";
 import Highlight from "react-highlight.js";
 
-const codeFileExtentions = ["c", "cpp", "conf", "css", "classpath", "html", "htm", "ini", "java", "json", "js", "jsp", "jsx", "lock", "md", "NGINX", "php", "py", "sql", "scss", "txt"];
+const codeFileExtentions = ["c", "cpp", "conf", "css", "classpath", "project", "gitignore", "html", "htm", "ini", "java", "json", "js", "jsp", "jsx", "lock", "md", "NGINX", "php", "py", "sql", "scss", "txt"];
 
 class RepositoryFileViewTable extends Component {
 	onClicklist2(e) {

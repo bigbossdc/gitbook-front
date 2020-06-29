@@ -45,50 +45,28 @@ class FriendListJoinItem extends Component {
                                 {/* <a className="kafe-btn kafe-btn-mint">Repository</a> */}
                                 <a className="kafe-btn kafe-btn-mint btn-danger" onClick={this.onShow.bind(this)}>삭제</a>
                             </div>
-                            <div>
-                            </div>
-                            {/* <div className="modal" style={{ display: this.state.show }}>
-                                <div className="modal-content" style={{ margin: "15% auto", height: "130px", width: "300px" }}>
-                                    <div className="modal-header" style={{ backgroundColor: "#0FC19E" }}>
-                                        <span className="close" onClick={this.onClose.bind(this)}>&times;</span>
-                                        <h6 style={{ color: "#ffff" }}>삭제 알림</h6>
-                                    </div>
-                                    <div className="modal-footer">
-                                        <h6 style={{ color: "gray", position: "absolute", marginLeft: "10px" }}>친구를 정말 삭제 하시겠습니까?</h6>
-                                        <button
-                                            style={{ width: "70px", marginTop: "30px" }}
-                                            type="submit"
-                                            className="kafe-btn kafe-btn-mint-small" name="button-ok"
-                                            onClick={this.onOkhandler.bind(this)}>
-                                            ok
+                                <div className="modal" style={{ display: this.state.show }}>
+                                    <div className="modal-content" style={{ margin: "15% auto", height: "100px", width: "300px" }}>
+                                        <div className="modal-header" style={{
+                                            backgroundColor: "#0FC19E"
+                                        }}>
+                                            <span className="close" onClick={this.onClose.bind(this)}>&times;</span>
+                                            <h6 style={{ wordBreak: "break-all",color:"#fff",fontFamily:"'Jeju Gothic', sans-serif",fontSize:"13px" }}>친구를 정말 삭제하시겠습니까?</h6>
+                                        </div>
+                                        <div className="modal-footer">
+
+                                            <button
+                                                style={{ width: "70px", margin: "10px auto" }}
+                                                type="submit"
+                                                className="kafe-btn kafe-btn-mint-small" name="button-ok"
+                                                onClick={this.onOkhandler.bind(this)}
+                                            >
+                                                ok
                                             </button>
+
+                                        </div>
                                     </div>
-                                </div>
-                            </div> */}
-                            	<div className="modal" style={{ display: this.state.show }}>
-						<div className="modal-content" style={{ margin: "15% auto", height: "100px", width: "300px" }}>
-							<div className="modal-header" style={{
-								backgroundColor: "#0FC19E"
-							}}>
-								<span className="close" onClick={this.onClose.bind(this)}>&times;</span>
-								<h6 style={{ wordBreak: "break-all",color:"#fff",fontFamily:"'Jeju Gothic', sans-serif",fontSize:"13px" }}>친구를 정말 삭제하시겠습니까?</h6>
-							</div>
-							<div className="modal-footer">
-
-								<button
-									style={{ width: "70px", margin: "10px auto" }}
-									type="submit"
-									className="kafe-btn kafe-btn-mint-small" name="button-ok"
-									onClick={this.onOkhandler.bind(this)}
-								>
-									ok
-   								 </button>
-
-							</div>
-						</div>
-					</div>	
-
-
+                                </div>	
                         </div>
                     </div>
                 </li>
