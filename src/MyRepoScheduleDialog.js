@@ -30,7 +30,7 @@ export default class MyToRepoScheduleDialog extends Component {
               <div className="col-md-4-modal-meta">
                 <div className="modal-meta-top">
                   <button onClick={this.onClickHandler.bind(this)} type="button" className="close" >
-                    <span className="closeButton" aria-hidden="true">(닫기)</span>
+                  <span className="closeButton" aria-hidden="true" style={{fontSize:"1.2em"}}>닫기</span>
                   </button>
 
                   <div className="img-poster clearfix">
