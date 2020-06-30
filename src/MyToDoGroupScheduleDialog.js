@@ -119,7 +119,7 @@ export default class MyToDoGroupScheduleDialog extends Component {
                         placeholder="Enter..." ></input>
                       :
 
-                      <p style={{ fontFamily: " 'Varela Round', sans-serif", fontWeight: "bold", fontSize:"1.2em", color:"red"}}><i class="fas fa-exclamation-triangle"></i> 추가/삭제의 권한이 없습니다.</p>
+                      <p style={{ fontFamily: " 'Varela Round', sans-serif", fontWeight: "bold", color:"red"}}><i class="fas fa-exclamation-triangle"></i> 추가/삭제의 권한이 없습니다.</p>
 
                     }
                   </div>
