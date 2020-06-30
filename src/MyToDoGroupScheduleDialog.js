@@ -98,7 +98,7 @@ export default class MyToDoGroupScheduleDialog extends Component {
               <div className="col-md-4-modal-meta">
                 <div className="modal-meta-top">
                   <button onClick={this.onClickHandler.bind(this)} type="button" className="close" >
-                    <span className="closeButton" aria-hidden="true">ToDo(닫기)</span>
+                  <span className="closeButton" aria-hidden="true" style={{fontSize:"1.2em"}}>닫기</span>
                   </button>
 
                   <div className="img-poster clearfix">
@@ -119,7 +119,7 @@ export default class MyToDoGroupScheduleDialog extends Component {
                         placeholder="Enter..." ></input>
                       :
 
-                      <a style={{ fontFamily: " 'Varela Round', sans-serif", fontWeight: "bold" }}>추가/삭제의 권한이 없습니다.</a>
+                      <p style={{ fontFamily: " 'Varela Round', sans-serif", fontWeight: "bold", fontSize:"1.2em", color:"red"}}><i class="fas fa-exclamation-triangle"></i> 추가/삭제의 권한이 없습니다.</p>
 
                     }
                   </div>
