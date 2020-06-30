@@ -89,14 +89,8 @@
       color:#90a4ae;
     }
   }
-
-    .react-daypicker-root .day.active {
-      
-      border-radius: 100%;
-     }
     .react-daypicker-root .day.empty {
-      border-radius: 100%;
-      cursor: default;
+          cursor: default;
     }
     .react-daypicker-root .day.today {
       font-weight:bold;
