@@ -3,6 +3,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import "./RepositoryPage.css";
 
+
 export default class GitDescriptionDialog extends Component {
 
 
@@ -15,18 +16,19 @@ export default class GitDescriptionDialog extends Component {
         return (
             <Dialog open={this.props.openModal} >
                 <DialogContent>
-                <button type="button" onClick={this.onClickHandler.bind(this)} className="close" >
-                    <p style={{color:"black", marginLeft:"-15px", fontSize: "1.1em", float:"right", position:"absolute"}}>X</p>
-                </button>   
                     <div className="modal-body" style={{width:"260px", height:"330px"}}>
+                  
                         <div className="row">
-
+                      
                             <div className="col-md-4-modal-meta">
+                            
                                 <div className="modal-meta-top" style={{width:"270px"}}>
-                                    
+                                <button onClick={this.onClickHandler.bind(this)} type="button" className="close" style={{marginTop:"-15px"}} >
+                    <span className="closeButton" aria-hidden="true">닫기</span>
+                  </button>
 
                                     <div className="img-poster clearfix">
-                                        <strong><a style={{ fontSize: 25 }}>파일추가 설명</a></strong>
+                                        <strong><a style={{ fontSize: 25 }}>파일추가 가이드</a></strong>
                                         <br/>
                                     </div>
 
