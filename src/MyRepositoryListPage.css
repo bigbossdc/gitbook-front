@@ -11,3 +11,16 @@
 .cardbox-headingss:hover {
     background-color: #DFDFDF;
 }
+
+.fa-question-circle{
+    position: relative;
+    float: right;
+    font-size: 1.5em;
+    margin-top: 2px;
+}
+
+.fa-question-circle:hover{
+    cursor: pointer;
+   color: #0FC19E;
+}
+

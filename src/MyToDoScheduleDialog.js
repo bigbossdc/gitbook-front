@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import './MainCalendar.scss'
-import { motion } from "framer-motion";
 
 const blank_pattern = /^\s+|\s+$/g;
 

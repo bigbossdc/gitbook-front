@@ -3,7 +3,7 @@ import "./RepositoryPage.css";
 import {Link} from "react-router-dom";
 import RepositoryTable from "./RepositoryTable";
 import RepositoryFileviewTable from "./RepositoryFileViewTable"
-
+import GitDescriptionDialog from "./GitDescriptionDialog";
 
 
 class GroupRepositoryPage extends Component {
@@ -14,7 +14,8 @@ class GroupRepositoryPage extends Component {
       callPath: '',
       gitlist: '',
       gitInfo: '',
-      loding: false
+      loding: false,
+      description: ''
     }
   }
 
@@ -25,6 +26,17 @@ class GroupRepositoryPage extends Component {
   };
   copyfuntion(textarea) {
     this.textArea = textarea
+  }
+
+  showInstructions(){
+    this.setState({
+      description:true
+    })
+  }
+  closeDescription(){
+    this.setState({
+      description:false
+    })
   }
 
   onClickHandler(path) {
@@ -122,13 +134,23 @@ class GroupRepositoryPage extends Component {
               <form style={{ display: "inline" }}>
                 <textarea
                   className="textarea1"
-                  style={{height:"26px", fontFamily:"'Nanum Gothic', sans-serif", borderColor:"#A2A2A2", width:"80%"}}
+                  style={{height:"26px", fontFamily:"'Nanum Gothic', sans-serif", borderColor:"#A2A2A2", width:"90%"}}
                   ref={(textarea) => (this.textArea = textarea)
                   
                   }
                   value={"http://192.168.1.15:7005/gitbook/" + this.props.match.params.userid + "/" + this.props.match.params.repoName + ".git"}
                 />
               </form>
+
+              <i onClick={this.showInstructions.bind(this)} className="fas fa-question-circle"></i>
+                  {this.state.description === true ?
+                  <GitDescriptionDialog
+                    openModal={this.state.description}
+                    onClosehandler={this.closeDescription.bind(this)}
+                  >
+                  </GitDescriptionDialog> : ""}
+
+
             </div>
             <p style={{ fontSize: "1em", fontFamily:"'Nanum Gothic', sans-serif" }}>경로: {this.props.match.params.repoName}/{this.state.callPath}</p>
                   <div style={{width:"100%",height:"100%"}}>

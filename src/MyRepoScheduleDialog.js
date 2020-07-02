@@ -41,7 +41,7 @@ export default class MyToRepoScheduleDialog extends Component {
                   </div>
 
                   <ul  className="img-comment-list">
-                  <p className="date sub-text">COMMIT 기록은 삭제가 불가능합니다.</p> 
+                  <p style={{ fontFamily: " 'Varela Round', sans-serif", fontWeight: "bold",color:"red"}}><i class="fas fa-exclamation-triangle"></i>COMMIT 기록은 삭제가 불가능합니다.</p> 
                     {
                       this.props.getRepoList && this.props.getRepoList.map((list) =>
                         <li style={{marginTop:"20px"}}>
