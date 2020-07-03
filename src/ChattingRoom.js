@@ -4,18 +4,20 @@ import ChattingMsgItem from "./ChattingMsgItem";
 import SockJsClient from "react-stomp";
 import ChatFriendInviteItem from "./ChatFriendInviteItem";
 import { motion } from "framer-motion";
+import ChatImageItem from "./ChatImageItem";
 
 class ChattingRoom extends Component {
 	constructor() {
 		super(...arguments);
 		this.state = {
 			sendMsg: '',
+			imageMsg:'',
 			show: "none",
 			show2:"none",
 			userFriends:'',
 			modalSearch:'',
 			inviteList:'',
-			changeInviteList:[],
+			changeInviteList:[]
 		}
 	}
 	handleChange(e) {
@@ -47,7 +49,7 @@ class ChattingRoom extends Component {
 			formData.append("inviteList", inviteUserNo);
 
 			
-			fetch(`${global.API_URL}/gitbook/chatting/api/sendMsg/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}`, {
+			fetch(`${global.API_URL}/gitbook/chatting/api/sendMsg/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}/text`, {
 				method: 'post',
 				headers: {},
 				body: formData
@@ -62,10 +64,25 @@ class ChattingRoom extends Component {
 
 		}
 	}
-	onChageMsgList(msg) {
+	handleSendImage(){
 
-		this.props.change.change(msg);
+		const formData = new FormData();
+			formData.append("contents", this.state.imageMsg);
+			let inviteUserNo = [];
+			this.props.inviteList.map((list) => inviteUserNo = inviteUserNo.concat(list.userNo))
+			formData.append("inviteList", inviteUserNo);
+
+			fetch(`${global.API_URL}/gitbook/chatting/api/sendMsg/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}/image`, {
+				method: 'post',
+				headers: {},
+				body: formData
+			}).catch(err => console.error(err));
+
+			this.resetImageBtn();
+
 	}
+
+
 
 
 	onChageinvite2List(inviteList2) {
@@ -151,13 +168,66 @@ class ChattingRoom extends Component {
 		  this.onClose();
 	}
 
-	resetAlarm() {
-		fetch(`${global.API_URL}/gitbook/chatting/api/resetAlarm/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}`, {
-		  method: 'post',
-		  headers: global.API_HEADERS
-	  
-		})
+	resetAlarm(msg) {
+		if(msg=='1'){
+			fetch(`${global.API_URL}/gitbook/chatting/api/resetAlarm/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}`, {
+			method: 'post',
+			headers: global.API_HEADERS
+		
+			})
+			.catch(err => console.error(err));
+		}	
 	}
+	onChageMsgList() {
+
+		fetch(`${global.API_URL}/gitbook/chatting/api/resetAlarm2/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}`, {
+			method: 'post',
+			headers: global.API_HEADERS
+		
+			})
+			.then(response => response.json())
+			.then(json => {
+				this.props.change.change(json.data);
+			
+				var scrollHeigth= window.jQuery(document.getElementsByClassName("conversation-container")).prop('scrollHeight')
+				window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop(scrollHeigth);
+			})
+			.catch(err => console.error(err));
+
+	
+	}
+
+	handleChangeFile = (e) => {
+		const formData = new FormData();
+		formData.append("file", e.target.files[0])
+		fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/fileupload`, {
+		  method: 'post',
+		  headers: {
+	
+		  },
+		  body: formData
+		})
+		  .then(response => response.json())
+		  .then(json => {
+			const check = json.data.split('.').pop()
+			if (check === 'png' || check === "jpg" || check === "gif" || check === "jpeg" || check === "PNG") {
+			  this.setState({
+				imageMsg: json.data
+			  });
+			}
+		  })
+		  .catch(err => console.error(err));
+		
+	
+	  }
+
+	  resetImageBtn(){
+		window.jQuery(document.getElementsByClassName("imagebutton")).val('');
+			this.setState({
+			  imageMsg:''
+		  })
+		
+	  }
 
 	render() {
 
@@ -170,15 +240,8 @@ class ChattingRoom extends Component {
 		 }
 		
 		
-		return (
-				
-
-
-
+		return (		
 			<div>
-				
-
-
 				{this.props.chatInfo && this.props.chatInfo ?
 				<motion.div 
 				initial={true}
@@ -206,15 +269,19 @@ class ChattingRoom extends Component {
 					url={`${global.API_URL}/gitbook/socket`}
 					topics={[`/topics/chatting/test/${this.props.chatInfo.no}`]}
 					onMessage={(msg) => {
-						this.onChageMsgList(msg);
-						this.resetAlarm();
-						var scrollHeigth= window.jQuery(document.getElementsByClassName("conversation-container")).prop('scrollHeight')
-						window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop(scrollHeigth);
+						if(msg=='1'){
+						this.resetAlarm(msg);
+						}else{
+							this.onChageMsgList();
+						}
+						
+						
 					}}
 					ref={(client) => {
 						this.clientRef = client;
 					}}
 				></SockJsClient>
+				
 				<SockJsClient
 					url={`${global.API_URL}/gitbook/socket`}
 					topics={[`/topics/chatting/changeInviteList/${this.props.chatInfo.no}`]}
@@ -227,6 +294,8 @@ class ChattingRoom extends Component {
 						this.clientRef = client;
 					}}
 				></SockJsClient>
+
+
 						<div className="conversation-header" style={{ height: "80px" }}>
 							<div className="user-message-details">
 
@@ -281,13 +350,22 @@ class ChattingRoom extends Component {
 								
 							}
 
-
+							{ this.state.imageMsg !=''?
+							<div className="modal" style={{ display:"block",position:"absolute",height:"30%",top:"61%",padding:"10px"}}>
+								 <span className="close" style={{ marginTop: "-5px",marginRight:"10px" }} onClick={this.resetImageBtn.bind(this)}>&times;</span>
+								<div style={{width:"200px",margin:"0px auto"}}>
+								<ChatImageItem
+                       				url={this.state.imageMsg}
+                    			/>
+								</div>
+							</div>:''
+							}
 
 						</div>
 						<div className="type_messages">
 							<div className="input-field">
 								<input
-									
+									disabled={this.state.imageMsg !== ''? true:false}
 									type="text"
 									className="kkk"
 									wrap="soft"
@@ -295,15 +373,31 @@ class ChattingRoom extends Component {
 									name="sendMsg"
 									value={this.state.sendMsg}
 									onChange={this.handleChange.bind(this)}
-									onKeyPress={this.handleKeyPress.bind(this)}></input>
+									onKeyPress={this.handleKeyPress.bind(this)}
+									></input>
 								<ul className="imoji">
-							
-									<li><a> <i style={{margin:"6px"}} className="fas fa-location-arrow"></i></a></li>
+								<li>
+								
+										
+								<label className="iconlabel"><input className="imagebutton" type="file" accept="image/gif,image/jpeg,image/png,image/jpg" name={this.state.imageMsg} style={{ display: "none" }}  onChange={this.handleChangeFile}/><i id="imagebutton" className="fa fa-image fa-2x"></i></label>			
+								</li>
+									<li><a > <i
+									id={this.state.imageMsg !== ''? "sendImage":''} 
+									onClick={this.state.imageMsg !==''? this.handleSendImage.bind(this):''}
+									style={{margin:"6px"}} className="fas fa-location-arrow"></i></a></li>
 								</ul>
 							</div>
 						</div>
 
-					</motion.div> :
+					
+
+					</motion.div> 
+					
+					
+					
+					
+					
+					:
 					<div className="conversation-box" style={{ height: "100%", width: "100%" }}>
 						<div className="conversation-header" style={{ height: "725px", width: "100%" }}>
 							<h2 style={{ fontFamily: "'Jeju Gothic', sans-serif", marginTop: "200px", marginLeft: "200px" }}><strong>채팅창을 선택해주세요!</strong></h2>
@@ -311,6 +405,8 @@ class ChattingRoom extends Component {
 						</div>
 					</div>
 				}
+
+				{/* <div style={{backgroundColor:"#fff", height:"500px",width:"300px",marginLeft:"759px"} }></div> */}
 
 				{/* 삭제 다이얼로그  */}
 				<div>
@@ -439,6 +535,8 @@ class ChattingRoom extends Component {
 		  })
 			.then(response => response.json())
 			.then(json => {
+
+		
 			  this.setState({
 				userFriends: json.data,
 				inviteList:json.data
