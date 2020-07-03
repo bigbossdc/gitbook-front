@@ -10,7 +10,8 @@
 
 # production
 /build
-yarn.lock
+/yarn.lock
+/package-lock.json
 /public/bundle.js
 # misc
 .DS_Store
