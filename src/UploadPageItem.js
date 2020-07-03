@@ -21,7 +21,24 @@ class UploadPageItem extends Component {
   
     }
     handleChangeFile = (e) => {
-      const formData = new FormData();
+      e.preventDefault();
+      let inputFile = e.target.files[0];
+      let typeBasic = inputFile.type.split("/")[0];
+  
+      if (["image", "video"].includes(typeBasic) === false) {
+        alert("이미지/비디오 파일만 업로드해주세요.");
+        return;
+      } else {
+        if (typeBasic === "image" && inputFile.size > 5000000) {
+          alert("이미지 파일 사이즈가 큽니다. 5MB 이하의 이미지를 업로드해주세요.");
+          return;
+        } else if (typeBasic === "video" && inputFile.size > 50000000) {
+          alert("비디오 파일 사이즈가 큽니다. 50MB 이하의 이미지를 업로드해주세요.");
+          return;
+        }
+      }
+
+      let formData = new FormData();
       formData.append("file", e.target.files[0])
       fetch(`${global.API_URL}/gitbook/timeline/${sessionStorage.getItem("authUserId")}/fileupload`, {
         method: 'post',
@@ -32,19 +49,38 @@ class UploadPageItem extends Component {
         .then(response => response.json())
         .then(json => {
           const check=json.data.split('.').pop()
-          if(check==='png'|| check==="jpg"|| check==="gif"||check==="jpeg"||check==="PNG"){
+          if(check==='png'|| check==="jpg"|| check==="gif"||check==="jpeg"||check==="PNG" || check==="mp4" || check === "mov" || check === "m4p" || check === "avi"){
           this.setState({
             imgList: this.state.imgList.concat(json.data)
           });
         }
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          console.error(err);
+          alert("파일 업로드에 실패했습니다.");
+        });
       e.target.value = ''
   
   
     }
 
     handleDrop = (files) => {
+      let inputFile = files[0];
+      let typeBasic = inputFile.type.split("/")[0];
+  
+      if (["image", "video"].includes(typeBasic) === false) {
+        alert("이미지/비디오 파일만 업로드해주세요.");
+        return;
+      } else {
+        if (typeBasic === "image" && inputFile.size > 5000000) {
+          alert("이미지 파일 사이즈가 큽니다. 50MB 이하의 이미지를 업로드해주세요.");
+          return;
+        } else if (typeBasic === "video" && inputFile.size > 50000000) {
+          alert("비디오 파일 사이즈가 큽니다. 50MB 이하의 이미지를 업로드해주세요.");
+          return;
+        }
+      }
+
       if(this.state.imgList.length<10){
       const formData = new FormData();
       formData.append("file", files[0])
@@ -58,38 +94,40 @@ class UploadPageItem extends Component {
         .then(response => response.json())
         .then(json => {
           const check = json.data.split('.').pop()
-          if (check === 'png' || check === "jpg" || check === "gif" || check === "jpeg" || check === "PNG") {
+          if (check === 'png' || check === "jpg" || check === "gif" || check === "jpeg" || check === "PNG" || check==="mp4" || check === "mov" || check === "m4p" || check === "avi") {
             this.setState({
               imgList: this.state.imgList.concat(json.data)
             });
           }
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          console.error(err);
+          alert("파일 업로드에 실패했습니다.");
+        });
       }
     }
   
     handleChange(e) {
-      this.setState({
-        [e.target.name]: e.target.value
-      })
-    }
-    handleKeyPress(e) {
-
-      if(/^([0-9a-zA-Zㄱ-ㅎ가-힣ㅏ-ㅣ]){0,}$/.test(e.target.value) === false){
-        alert("태그에 특수문자를 작성하지 못합니다");
-      }else{
-        if (e.key === 'Enter') {
-          if (this.state.tag != '')
-            this.setState({
-              tagList: this.state.tagList.concat({ tag: this.state.tag, tagid: this.state.tagid + 1 }),
-              tagid: this.state.tagid + 1,
-              tag: ''
-            })
-  
-  
+      if (/[~!@#$%^&*()_+|<>?:{}]/.test(e.target.value.charAt(0))) {
+         alert("태그의 첫 글자에는 특수문자를 사용할 수 없습니다.");
+         return;
       }
-    }
-    }
+      this.setState({
+         [e.target.name]: e.target.value,
+      });
+   }
+
+   handleKeyPress(e) {
+      if (e.key === "Enter") {
+         if (this.state.tag.trim() !== "")
+            this.setState({
+               tagList: this.state.tagList.concat({ tag: this.state.tag, tagid: this.state.tagid + 1 }),
+               tagid: this.state.tagid + 1,
+               tag: "",
+            });
+      }
+   }
+
     clickHandlerDelete(e) {
       this.setState({
         imgList: this.state.imgList.filter((list) => list != e.target.id),
@@ -149,14 +187,19 @@ class UploadPageItem extends Component {
                            <div className="imageFileDiv" >
                                 {<motion.img 
                                   animate={{scale:3}} transition={{duration:0.2}}
-                                style={{ width: "33.33%", height: "33.33%", borderRadius: '5px', display: "block",margin:"auto",marginTop:"45px"}} key={list} src={list}/>}
+                                style={{ width: "33.33%", height: "33.33%", borderRadius: '5px', display: "block",margin:"auto",marginTop:"45px"}} 
+                                key={list} 
+                                src={list.split('.').pop() === "png" || list.split('.').pop() === "jpg" || list.split('.').pop() === "jpeg" || list.split('.').pop() === "gif" || list.split('.').pop() === "PNG"
+                                      ? list :  "/gitbook/assets/img/main/play-button.png" }
+                                />
+                                }
                               </div>
                             </div>)}
                           {
                             (this.state.imgList.length < 10) ?
                               <div style={{ float: "left", widthMin: "20%", widthMax: "160px", margin: "0px 1.6%", display: "inline-block" }}>
                                 <div className="imageFileDiv" >
-                                  <label className="iconlabel"><input type="file" accept="image/gif,image/jpeg,image/png,image/jpg" name={this.state.imgFile} style={{ display: "none" }} onChange={this.handleChangeFile} /> <i className="fa fa-camera text-muted fa-4x" id="custom" /></label>
+                                  <label className="iconlabel"><input type="file" accept="image/gif,image/jpeg,image/png,image/jpg,video/mp4,video/m4p,video/mov,video/avi" name={this.state.imgFile} style={{ display: "none" }} onChange={this.handleChangeFile} /> <i className="fa fa-camera text-muted fa-4x" id="custom" /></label>
                                 </div>
                               </div> : ''}
                         </div>

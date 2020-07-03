@@ -39,6 +39,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-stomp": "^5.0.0",
+    "redux": "^4.0.5",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "sockjs-client": "^1.4.0",
