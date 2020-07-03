@@ -251,7 +251,7 @@
 
 }
 .kkk{
-	width: 90%;
+	width: 80%;
 	font-family:  'Jeju Gothic', sans-serif;
 	height: 50px;
 	border: none;
@@ -298,3 +298,17 @@
 	margin-bottom: 50px;
 }
 
+#imagebutton{
+	color: #0FC19E;
+	cursor: pointer;
+}
+
+#imagebutton:hover{
+	transform: scale(1.1);
+}
+#sendImage{
+	cursor: pointer;
+}
+#sendImage:hover{
+	transform: scale(1.1);
+}
