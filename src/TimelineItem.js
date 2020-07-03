@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
-import CommentItem from './CommentItem'
+
+import CommentItem from './CommentItem';
 import './TimelineItem.css'
 import './dialogBox.css';
 import { Link } from "react-router-dom";
@@ -225,14 +226,35 @@ class TimeLineItem extends Component {
           { this.props.list.type !== 'commit' ?
           <div className="row">
             {
-              this.state.fileList && this.state.fileList.map((list) => 
-            <div>
-              <ImageItem
-               url={list.fileContents}
-             />
+              this.state.fileList && this.state.fileList
+              .filter((element) => element.fileContents.split(".").pop() === "jpg" || 
+                                   element.fileContents.split(".").pop() === "gif" || 
+                                   element.fileContents.split(".").pop() === "jpeg" || 
+                                   element.fileContents.split(".").pop() === "png" || 
+                                   element.fileContents.split(".").pop() === "PNG")
+              .map((list) => 
+              <div>
+                  <ImageItem
+                  url={list.fileContents}/>
               </div>
               )
             }
+
+            {
+              this.state.fileList && this.state.fileList
+              .filter((element) => element.fileContents.split(".").pop() === "mp4" ||
+                                   element.fileContents.split(".").pop() === "mov" || 
+                                   element.fileContents.split(".").pop() === "m4p" ||
+                                   element.fileContents.split(".").pop() === "avi")
+              .map((list) => 
+              <>
+              <video muted controls style={{width:"100%", height:"500px", position:"relative", marginBottom:"20px", marginLeft:"20px", borderStyle:"solid", borderWidth:"1px", borderColor:"#E3E3E3"}}>
+                  <source src={list.fileContents} type="video/mp4"></source>
+              </video> 
+              </>
+              )
+            }
+
           </div>:''
          }
         { this.props.list.type !== 'commit' ?
