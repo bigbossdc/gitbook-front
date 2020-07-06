@@ -2,7 +2,50 @@ import React, { Component } from "react";
 import "./RepositoryPage.css";
 import Highlight from "react-highlight.js";
 
-const codeFileExtentions = ["c", "cpp", "conf", "css", "classpath", "project", "gitignore", "html", "htm", "ini", "java", "json", "js", "jsp", "jsx", "lock", "md", "NGINX", "php", "py", "sql", "scss", "txt"];
+const codeFileExtentions = [
+	"c",
+	"java",
+	"py",
+	"cpp",
+	"cs",
+	"js",
+	"r",
+	"php",
+	"swift",
+	"sql",
+	"go",
+	"asm",
+	"pl",
+	"m",
+	"mat",
+	"rb",
+	"sb",
+	"sb2",
+	"sprite",
+	"sprite2",
+	"rs",
+	"pls",
+	"vb",
+	"css",
+	"html",
+	"htm",
+	"json",
+	"jsp",
+	"asp",
+	"aspx",
+	"jsx",
+	"md",
+	"scss",
+	"ino",
+	"txt",
+	"conf",
+	"classpath",
+	"project",
+	"gitignore",
+	"ini",
+	"lock",
+	"NGINX",
+];
 
 class RepositoryFileViewTable extends Component {
 	onClicklist2(e) {
@@ -20,33 +63,33 @@ class RepositoryFileViewTable extends Component {
 		} else {
 			type = "binary";
 		}
-		
+
 		return (
 			<div className="RepositoryFileViewTable">
 				<div className="FileViewHeader">
 					<i id={this.props.callPath} onClick={this.onClicklist2.bind(this)} className="fas fa-angle-double-left" style={{ cursor: "pointer", float: "left", paddingLeft: "10px" }}></i>
 					{this.props.srcName}
 				</div>
-				<div className="FileViewContents" style={{ backgroundColor: "#fff"}}>
+				<div className="FileViewContents" style={{ backgroundColor: "#fff" }}>
 					{type !== "binary" ? (
 						type !== "txt" ? (
-							<Highlight className="repo-view" style={{ margin: "0px auto", overflowX: "hidden", display: 'block', width: '99%' }}>
+							<Highlight className="repo-view" style={{ margin: "0px auto", overflowX: "hidden", display: "block", width: "99%" }}>
 								{contents}
 							</Highlight>
 						) : (
-							<pre style={{ border: "none", backgroundColor: "#fff", width: "99%", overflowX: "auto", margin: "0px auto", fontSize: '15px' }}>{contents}</pre>
+							<pre style={{ border: "none", backgroundColor: "#fff", width: "99%", overflowX: "auto", margin: "0px auto", fontSize: "15px" }}>{contents}</pre>
 						)
 					) : (
 						<>
-							<br/>
-							<br/>
-							<i class="fas fa-exclamation-triangle fa-10x" style={{ textAlign: 'center', display: "block", float: "center" }} />
-							<br/>
-							<h4 style={{ textAlign: 'center', float: "center" }}>
+							<br />
+							<br />
+							<i class="fas fa-exclamation-triangle fa-10x" style={{ textAlign: "center", display: "block", float: "center" }} />
+							<br />
+							<h4 style={{ textAlign: "center", float: "center" }}>
 								<strong>미리보기가 불가능한 파일입니다</strong>
 							</h4>
-							<br/>
-							<br/>
+							<br />
+							<br />
 						</>
 					)}
 				</div>
