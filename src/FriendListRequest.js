@@ -112,7 +112,7 @@ class FriendListRequest extends Component {
                         <span className="close" onClick={this.onClose.bind(this)}>&times;</span>
                         <h6 style={{ wordBreak: "break-all",color:"#fff",fontFamily:"'Jeju Gothic', sans-serif",fontSize:"13px" }}>{sessionStorage.getItem("authUserNickName")}님이 전송한 요청 목록</h6>
                     </div>
-                    <div className="modal-footer">
+                    <div className="modal-footer" style={{paddingRight:"25px"}}>
                         {this.state.item && this.state.item == '' ? '' : this.state.item == 'noshow'?
                         <p className="navi-text" style={{fontSize:"1em", fontFamily:"'Nanum Gothic', sans-serif", color:"#5b6160", margin:"30% auto"}}><b>전송한 요청이 없습니다. <br/> 친구 요청을 보내면 여기에 표시됩니다.</b></p>
                          : <div className="group-search-area" style={{float:"right", marginTop:"20px", marginRight:"70px"}}>   
