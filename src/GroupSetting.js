@@ -19,9 +19,19 @@ class GroupSetting extends Component {
     }
 
     render() {
-       
-        return(  
+       console.log(this.props.groupinfo.masterNo)
+        return(
+            
             <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
+                {(sessionStorage.getItem("authUserNo") !== this.props.groupinfo.masterNo) ? 
+                <div className="friend-wrapper">
+                    <div className="friend-box">
+                    <i className="fas fa-cloud-showers-heavy fa-3x"></i>
+                    <h4 className="friend-contents" style={{fontFamily: "'Nanum Gothic', sans-serif"}}>권한 없음!! <br/><br/>그룹장만 접근할 수 있는 페이지입니다.</h4>
+                    </div>               
+                </div>
+                :
+                <>
                 <div className="gtab" style={{ boxShadow:"5px 5px 5px rgb(231, 230, 230)", borderRadius:"20px 20px 0px 0px"}}>
                     <button className={this.state.tabKind === "info" ? "tabclick" : "tablinks"} 
                             onClick={() => this.setState({currentTabObj : <GroupSettingInfo    
@@ -43,12 +53,15 @@ class GroupSetting extends Component {
                                                                             userno={this.props.userno}
                                                                             groupno={this.props.groupno}
                                                                             changeList={this.props.changeList}
-                                                                           />,
+                                                                        />,
                                                             tabKind:"delete"})}>맴버탈퇴관리</button>
                 </div>
                 <div style={{boxShadow:"5px 5px 5px rgb(231, 230, 230)", borderRadius:"0px 0px 20px 20px"}}>
                     {this.state.currentTabObj}
                 </div>
+                </>
+                }
+
             </div>
         );
     }
