@@ -27,7 +27,7 @@ class ChattingMsgItem extends Component {
               <div className="convo-area convo-right" style={{ maxWidth: "832px", float:"right" }}>
                 <div className="convo-message"  style={{  maxWidth:"832px"}} >
                   
-                  {this.props.msg.type !='image'?
+                  {this.props.msg.type =='text'?
                   <motion.p 
                
                   style={{  padding: "10px 15px ",wordBreak:"break-all",width:"auto"}} 
@@ -49,7 +49,7 @@ class ChattingMsgItem extends Component {
                     
                     </motion.p>
     
-                    :
+                    : this.props.msg.type=='image'?
                     <motion.p 
 
                           style={{  padding: "10px 15px ",wordBreak:"break-all",height:"215px",backgroundColor:"#FFFFFF"}} 
@@ -61,7 +61,20 @@ class ChattingMsgItem extends Component {
                     <ChatImageItem
                        url={this.props.msg.contents}
                     /></motion.p>
-             
+                        :
+
+                        <motion.p 
+
+                        style={{  padding: "10px 15px ",wordBreak:"break-all",height:"215px",backgroundColor:"#FFFFFF"}} 
+                        positionTransition
+                        initial={{ opacity: 0, y: 50, scale: 0.3 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+                        >
+                  <img
+                    style={{width:"auto",height:"100%"}}
+                     src={this.props.msg.contents}
+                  /></motion.p>
                     }
              
 
@@ -79,7 +92,7 @@ class ChattingMsgItem extends Component {
               <div className="convo-area convo-left" style={{ maxWidth: "832px" }}>
                 <div className="convo-message">
                  
-                {this.props.msg.type !='image'?
+                {this.props.msg.type =='text'?
                   <motion.p
                   positionTransition
                   initial={{ opacity: 0, y: 50, scale: 0.3 }}
@@ -93,7 +106,7 @@ class ChattingMsgItem extends Component {
                   )}</motion.p>
 
 
-              :
+              : this.props.msg.type  ==='image'?
                   <motion.p 
 
                   style={{  padding: "10px 15px ",wordBreak:"break-all",height:"215px",backgroundColor:"#FFFFFF",width:"60%"}} 
@@ -103,8 +116,22 @@ class ChattingMsgItem extends Component {
                   exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
                   >
                   <ChatImageItem
-                  url={this.props.msg.contents}
-                  /></motion.p>
+                    url={this.props.msg.contents}
+                  /></motion.p>: 
+                  <motion.p 
+
+
+                  style={{  padding: "10px 15px ",wordBreak:"break-all",height:"215px",backgroundColor:"#FFFFFF",width:"60%"}} 
+                  positionTransition
+                  initial={{ opacity: 0, y: 50, scale: 0.3 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+                  >
+                       <img
+                    style={{width:"auto",height:"100%"}}
+                     src={this.props.msg.contents}
+                  />
+                  </motion.p>
 
                     }
                 </div>

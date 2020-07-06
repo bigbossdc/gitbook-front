@@ -159,6 +159,24 @@
 	border-radius: 10px;
 	background-color: #DBDBDB;
   }
+
+  .emoticonbox::-webkit-scrollbar {
+	border-radius: 10px;
+	width: 5px;
+  }
+  .emoticonbox::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+
+	background-color: #0FC19E;
+  }
+  .emoticonbox::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: #DBDBDB;
+  }
+
+
+
+
   .friendList{
 	width: 35%;
 	height: 400px;
@@ -311,4 +329,15 @@
 }
 #sendImage:hover{
 	transform: scale(1.1);
+}
+
+.emoticonItem{
+	cursor: pointer;
+	width:100%;
+	height:100%;
+}
+
+.emoticonItem:hover{
+	
+	transform: scale(0.9);
 }

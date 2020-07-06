@@ -12,12 +12,15 @@ class ChattingRoom extends Component {
 		this.state = {
 			sendMsg: '',
 			imageMsg:'',
+			emoticonMsg:'',
 			show: "none",
 			show2:"none",
 			userFriends:'',
 			modalSearch:'',
 			inviteList:'',
-			changeInviteList:[]
+			changeInviteList:[],
+			emoticonShow:"none"
+
 		}
 	}
 	handleChange(e) {
@@ -65,8 +68,8 @@ class ChattingRoom extends Component {
 		}
 	}
 	handleSendImage(){
-
-		const formData = new FormData();
+		if(this.state.imageMsg !== ''){
+			const formData = new FormData();
 			formData.append("contents", this.state.imageMsg);
 			let inviteUserNo = [];
 			this.props.inviteList.map((list) => inviteUserNo = inviteUserNo.concat(list.userNo))
@@ -77,6 +80,21 @@ class ChattingRoom extends Component {
 				headers: {},
 				body: formData
 			}).catch(err => console.error(err));
+		}else if((this.state.imageMsg ==='')&&(this.state.emoticonMsg !=='')){
+			const formData = new FormData();
+			formData.append("contents", this.state.emoticonMsg);
+			let inviteUserNo = [];
+			this.props.inviteList.map((list) => inviteUserNo = inviteUserNo.concat(list.userNo))
+			formData.append("inviteList", inviteUserNo);
+
+			fetch(`${global.API_URL}/gitbook/chatting/api/sendMsg/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}/emoticon`, {
+				method: 'post',
+				headers: {},
+				body: formData
+			}).catch(err => console.error(err));
+
+		}
+
 
 			this.resetImageBtn();
 
@@ -212,21 +230,35 @@ class ChattingRoom extends Component {
 			const check = json.data.split('.').pop()
 			if (check === 'png' || check === "jpg" || check === "gif" || check === "jpeg" || check === "PNG") {
 			  this.setState({
-				imageMsg: json.data
+				imageMsg: json.data,
+				emoticonMsg:''
 			  });
 			}
 		  })
 		  .catch(err => console.error(err));
 		
-	
 	  }
 
 	  resetImageBtn(){
 		window.jQuery(document.getElementsByClassName("imagebutton")).val('');
 			this.setState({
-			  imageMsg:''
+			  imageMsg:'',
+			  emoticonMsg:''
 		  })
 		
+	  }
+
+	  onClickEmoticonShow(){
+		  this.setState({
+			  emoticonShow: this.state.emoticonShow==='none'?'block':"none"
+		  })
+	  }
+	  onClickEmoticon(e){
+		 
+		this.setState({
+			imageMsg:'',
+			emoticonMsg:e.target.src
+		})
 	  }
 
 	render() {
@@ -238,7 +270,10 @@ class ChattingRoom extends Component {
 		 if(inviteFilter !=''){
 			inviteFilter= inviteFilter.reverse().pop();
 		 }
-		
+		 var emoticonCount=[];
+		for(var i=1; i<=10; i++){
+			emoticonCount= emoticonCount.concat(i);
+		}
 		
 		return (		
 			<div>
@@ -360,12 +395,22 @@ class ChattingRoom extends Component {
 								</div>
 							</div>:''
 							}
+							{ this.state.emoticonMsg !=''?
+							<div className="modal" style={{ display:"block",position:"absolute",height:"30%",top:"61%",padding:"10px"}}>
+								 <span className="close" style={{ marginTop: "-5px",marginRight:"10px" }} onClick={this.resetImageBtn.bind(this)}>&times;</span>
+								<div style={{width:"200px",margin:"0px auto"}}>
+								<img style={{width:"160px",height:"160px",marginTop:"20px"}}
+                       				src={this.state.emoticonMsg}
+                    			/>
+								</div>
+							</div>:''
+							}
 
 						</div>
 						<div className="type_messages">
 							<div className="input-field">
 								<input
-									disabled={this.state.imageMsg !== ''? true:false}
+									disabled={ (this.state.imageMsg !== '')|| (this.state.emoticonMsg !=='')? true:false}
 									type="text"
 									className="kkk"
 									wrap="soft"
@@ -378,12 +423,12 @@ class ChattingRoom extends Component {
 								<ul className="imoji">
 								<li>
 								
-										
+								<li  id="imagebutton" style={{marginRight:"20px"}}><i onClick={this.onClickEmoticonShow.bind(this)} className="fa fa-smile fa-2x"></i></li>		
 								<label className="iconlabel"><input className="imagebutton" type="file" accept="image/gif,image/jpeg,image/png,image/jpg" name={this.state.imageMsg} style={{ display: "none" }}  onChange={this.handleChangeFile}/><i id="imagebutton" className="fa fa-image fa-2x"></i></label>			
 								</li>
 									<li><a > <i
-									id={this.state.imageMsg !== ''? "sendImage":''} 
-									onClick={this.state.imageMsg !==''? this.handleSendImage.bind(this):''}
+									id={(this.state.imageMsg !== '')||(this.state.emoticonMsg !== '')? "sendImage":''} 
+									onClick={(this.state.imageMsg !== '')||(this.state.emoticonMsg !== '')? this.handleSendImage.bind(this):''}
 									style={{margin:"6px"}} className="fas fa-location-arrow"></i></a></li>
 								</ul>
 							</div>
@@ -401,12 +446,52 @@ class ChattingRoom extends Component {
 					<div className="conversation-box" style={{ height: "100%", width: "100%" }}>
 						<div className="conversation-header" style={{ height: "725px", width: "100%" }}>
 							<h2 style={{ fontFamily: "'Jeju Gothic', sans-serif", marginTop: "200px", marginLeft: "200px" }}><strong>채팅창을 선택해주세요!</strong></h2>
-							<i class="far fa-comment-dots fa-10x" style={{ marginLeft: "270px" }}></i>
+							<i className="far fa-comment-dots fa-10x" style={{ marginLeft: "270px" }}></i>
 						</div>
 					</div>
 				}
 
-				{/* <div style={{backgroundColor:"#fff", height:"500px",width:"300px",marginLeft:"759px"} }></div> */}
+				<div className="emoticonbox" style={{backgroundColor:"#fff", height:"500px",width:"300px",marginLeft:"759px",display:this.state.emoticonShow,overflow:"auto",position:"absolute"} }>
+					{ emoticonCount.map((list)=> 
+					
+					<div style={{display:"flex"}}>
+						<div className="col-lg-4"  
+							
+						style={{backgroundColor:"#FFF",height:"120px",flex:"1",padding:"5px"}}>
+							<img className="emoticonItem" 
+							onClick={this.onClickEmoticon.bind(this)} 
+							src={`/gitbook/assets/img/emoticon/emoticon(${(3*list)-2}).png`} 
+							/>
+						</div>
+						<div className="col-lg-4"  
+						
+						style={{backgroundColor:"#FFF",height:"120px",flex:"1",padding:"5px"}}>
+							<img 
+						onClick={this.onClickEmoticon.bind(this)} 
+							className="emoticonItem" 
+							src={`/gitbook/assets/img/emoticon/emoticon(${(3*list)-1}).png`} 
+							/>
+
+						</div>
+						<div className="col-lg-4" 
+							
+						style={{backgroundColor:"#FFF",height:"120px",flex:"1",padding:"5px"}}>
+							<img 
+							onClick={this.onClickEmoticon.bind(this)} 
+							className="emoticonItem"  
+							src={`/gitbook/assets/img/emoticon/emoticon(${(3*list)}).png`} 
+							/>
+						</div>
+					</div>
+					
+					
+					
+					)
+					
+					}
+					
+					
+				</div>
 
 				{/* 삭제 다이얼로그  */}
 				<div>
