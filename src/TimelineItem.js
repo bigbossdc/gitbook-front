@@ -318,7 +318,7 @@ class TimeLineItem extends Component {
           <ul style={{ display: "inline-block", padding: "20px", width: "97%" }}>
             {this.state.tagList && this.state.tagList
               .map((list) =>
-                <li style={{ float: "left" }}><Link to={`/gitbook/main/tag/${list.tagContents}`}><h6 className="tagword" style={{ fontFamily: " 'Varela Round', sans-serif" }}>{list.tagContents}</h6></Link></li>)
+                <li style={{ float: "left" }}><a href={`/gitbook/main/tag/${list.tagContents}`}><h6 className="tagword" style={{ fontFamily: " 'Varela Round', sans-serif" }}>{list.tagContents}</h6></a></li>)
             }
           </ul>
         </div>
