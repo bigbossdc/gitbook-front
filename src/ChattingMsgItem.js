@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import "./ChattingPage.css";
 import { motion } from "framer-motion";
-import ChatImageItem from "./ChatImageItem"
+
+import './TimelineItem.css';
+import './dialogBox.css';
 
 
 
 class ChattingMsgItem extends Component {
-  constructor() {
-    super(...arguments);
-    this.state = {
 
-    }
+  onShow(){
+    this.props.onshow.show(this.props.msg.contents);
   }
 
   render() {
+   
+
     return (
       <div>
         {this.props.msg && this.props.msg.userNo == 1004 ?
@@ -58,9 +60,10 @@ class ChattingMsgItem extends Component {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
                           >
-                    <ChatImageItem
-                       url={this.props.msg.contents}
-                    /></motion.p>
+                    <img
+                        style={{marginTop:"15px",height:"160px",width:"auto"}}
+                        onClick={this.onShow.bind(this)}
+                        id="fileimage" src={this.props.msg.contents} alt="MaterialImg" /></motion.p>
                         :
 
                         <motion.p 
@@ -115,9 +118,10 @@ class ChattingMsgItem extends Component {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
                   >
-                  <ChatImageItem
-                    url={this.props.msg.contents}
-                  /></motion.p>: 
+                  <img
+                      style={{marginTop:"15px",height:"160px",width:"auto"}}
+                      onClick={this.onShow.bind(this)}
+                      id="fileimage" src={this.props.msg.contents} alt="MaterialImg" /></motion.p>: 
                   <motion.p 
 
 
