@@ -9,19 +9,19 @@ class ImageItem extends Component {
     super(...arguments);
     this.state = {
       image:false,
-      show: "none"
+   
     }
   }
   onShow() {
     this.setState({
-      show: "block",
+    
       image: true
     });
   }
 
   onClose() {
     this.setState({
-      // show: "none",
+   
       image: false
     });
   }
@@ -43,16 +43,16 @@ class ImageItem extends Component {
     return (
       <div >
         
-
+      <div>
           <img
             style={{marginTop:"15px",height:"160px",width:"auto"}}
             onClick={this.onShow.bind(this)}
             id="fileimage" src={this.props.url} alt="MaterialImg" />
-
+        </div>
         
 
       { this.state.image?
-        <div className="modal" style={{ display: this.state.show }}>
+        <div className="modal" style={{display:"block"}}>
           <div>
             <div className="col-lg-8 col-lg-offset-2" style={{ background: " rgba( 255, 255, 255, 0 )", marginTop: "1px" }}>  {/** 두번째 섹션 */}
               <motion.div

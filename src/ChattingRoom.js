@@ -4,7 +4,9 @@ import ChattingMsgItem from "./ChattingMsgItem";
 import SockJsClient from "react-stomp";
 import ChatFriendInviteItem from "./ChatFriendInviteItem";
 import { motion } from "framer-motion";
-import ChatImageItem from "./ChatImageItem";
+
+import './TimelineItem.css'
+import './dialogBox.css';
 
 class ChattingRoom extends Component {
 	constructor() {
@@ -15,6 +17,9 @@ class ChattingRoom extends Component {
 			emoticonMsg:'',
 			show: "none",
 			show2:"none",
+			imageShow:false,
+			imageShow2:false,
+			imageShow2View:'',
 			userFriends:'',
 			modalSearch:'',
 			inviteList:'',
@@ -261,6 +266,19 @@ class ChattingRoom extends Component {
 		})
 	  }
 
+	  onImageShow(){
+		  this.setState({
+			  imageShow:this.state.imageShow? false: true
+		  })
+	  }
+
+	  onImageShow2(list){
+		this.setState({
+			imageShow2:this.state.imageShow2? false: true,
+			imageShow2View:list
+		})
+	}
+	
 	render() {
 
 		const admin = this.props.inviteList && this.props.inviteList.filter((item) => item.grant === "admin")
@@ -274,7 +292,10 @@ class ChattingRoom extends Component {
 		for(var i=1; i<=10; i++){
 			emoticonCount= emoticonCount.concat(i);
 		}
-		
+		const transition = {
+			duration: 1,
+			ease: [0.43, 0.13, 0.23, 0.96]
+		  };
 		return (		
 			<div>
 				{this.props.chatInfo && this.props.chatInfo ?
@@ -371,6 +392,10 @@ class ChattingRoom extends Component {
 										<ChattingMsgItem
 											key={list.no}
 											msg={list}
+											onshow={{
+												show:this.onImageShow2.bind(this)
+											}}
+											
 										/>:''
 									).reverse():
 									this.props.msgList && this.props.msgList
@@ -380,6 +405,9 @@ class ChattingRoom extends Component {
 										<ChattingMsgItem
 											key={list.no}
 											msg={list}
+											onshow={{
+												show:this.onImageShow2.bind(this)
+											}}
 										/>:''
 									).reverse()
 								
@@ -389,9 +417,10 @@ class ChattingRoom extends Component {
 							<div className="modal" style={{ display:"block",position:"absolute",height:"30%",top:"61%",padding:"10px"}}>
 								 <span className="close" style={{ marginTop: "-5px",marginRight:"10px" }} onClick={this.resetImageBtn.bind(this)}>&times;</span>
 								<div style={{width:"200px",margin:"0px auto"}}>
-								<ChatImageItem
-                       				url={this.state.imageMsg}
-                    			/>
+								<img
+									style={{marginTop:"15px",height:"160px",width:"auto"}}
+									onClick={this.onImageShow.bind(this)}
+									id="fileimage" src={this.state.imageMsg} alt="MaterialImg" />
 								</div>
 							</div>:''
 							}
@@ -399,6 +428,7 @@ class ChattingRoom extends Component {
 							<div className="modal" style={{ display:"block",position:"absolute",height:"30%",top:"61%",padding:"10px"}}>
 								 <span className="close" style={{ marginTop: "-5px",marginRight:"10px" }} onClick={this.resetImageBtn.bind(this)}>&times;</span>
 								<div style={{width:"200px",margin:"0px auto"}}>
+								
 								<img style={{width:"160px",height:"160px",marginTop:"20px"}}
                        				src={this.state.emoticonMsg}
                     			/>
@@ -451,7 +481,17 @@ class ChattingRoom extends Component {
 					</div>
 				}
 
-				<div className="emoticonbox" style={{backgroundColor:"#fff", height:"500px",width:"300px",marginLeft:"759px",display:this.state.emoticonShow,overflow:"auto",position:"absolute"} }>
+				<div className="emoticonbox" 
+					style={{backgroundColor:"#FFF", 
+							height:"500px",
+							width:"300px",
+							marginLeft:"760px",
+							display:this.state.emoticonShow,
+							overflow:"auto",
+							position:"absolute",
+							zIndex:"1",
+							
+							} }>
 					{ emoticonCount.map((list)=> 
 					
 					<div style={{display:"flex"}}>
@@ -493,6 +533,91 @@ class ChattingRoom extends Component {
 					
 				</div>
 
+
+				{ this.state.imageShow?
+        <div className="modal" style={{display:"block"}}>
+          <div>
+            <div className="col-lg-8 col-lg-offset-2" style={{ background: " rgba( 255, 255, 255, 0 )", marginTop: "1px" }}>  {/** 두번째 섹션 */}
+              <motion.div
+                initial={{ y: "50%", opacity: 0, transition }} 
+                animate={ {
+                  y: "0%",
+                  opacity: 1,
+                  transition
+                }} exit={{ y: "50%", opacity: 0, transition }}
+                className="UploadPage" style={{ height: "100%", width: "100%" }} >
+                {/* <div className="box" style={{ boxShadow: "1px 1px 4px 2px #FFFFFF", padding: "10px", minWidth: "250px",Height:"600px",overflow:"auto" }}> */}
+
+                <motion.img
+                  initial={{ y: "50%", opacity: 0, transition }} 
+                  animate={ {
+                    y: "0%",
+                    opacity: 1,
+                    transition
+                  }} 
+                  exit={{ y: "50%", opacity: 0, transition }}
+                  
+				  className="img-responsive" 
+				  style={{ maxHeight: "900px", maxWidth: "900px", marginTop: "100px" }} 
+				  onClick={this.onImageShow.bind(this)} 
+				  id="fileimage" src={this.state.imageMsg} alt="MaterialImg" />
+                 
+                {/* </div> */}
+              </motion.div>
+            </div>
+          </div>{/** 두번째 섹션 */}
+
+
+        </div>:''
+      }
+
+
+{ this.state.imageShow2?
+        <div className="modal" style={{display:"block"}}>
+          <div>
+            <div className="col-lg-8 col-lg-offset-2" style={{ background: " rgba( 255, 255, 255, 0 )", marginTop: "1px" }}>  {/** 두번째 섹션 */}
+              <motion.div
+                initial={{ y: "50%", opacity: 0, transition }} 
+                animate={ {
+                  y: "0%",
+                  opacity: 1,
+                  transition
+                }} exit={{ y: "50%", opacity: 0, transition }}
+                className="UploadPage" style={{ height: "100%", width: "100%" }} >
+                {/* <div className="box" style={{ boxShadow: "1px 1px 4px 2px #FFFFFF", padding: "10px", minWidth: "250px",Height:"600px",overflow:"auto" }}> */}
+
+                <motion.img
+                  initial={{ y: "50%", opacity: 0, transition }} 
+                  animate={ {
+                    y: "0%",
+                    opacity: 1,
+                    transition
+                  }} 
+                  exit={{ y: "50%", opacity: 0, transition }}
+                  
+				  className="img-responsive" 
+				  style={{ maxHeight: "900px", maxWidth: "900px", marginTop: "100px" }} 
+				  onClick={this.onImageShow2.bind(this)} 
+				  id="fileimage" src={this.state.imageShow2View} alt="MaterialImg" />
+                 
+                {/* </div> */}
+              </motion.div>
+            </div>
+          </div>{/** 두번째 섹션 */}
+
+
+        </div>:''
+      }
+
+
+
+
+
+
+
+
+
+
 				{/* 삭제 다이얼로그  */}
 				<div>
 
@@ -501,7 +626,7 @@ class ChattingRoom extends Component {
 							<div className="modal-header" style={{
 								backgroundColor: "#0FC19E"
 							}}>
-								<span className="close" onClick={this.onClose.bind(this)}>&times;</span>
+								<span className="close" onClick={this.onImageShow.bind(this)}>&times;</span>
 								<h6 style={{ wordBreak: "break-all",fontSize:"13px",fontFamily:"'Jeju Gothic', sans-serif" }}>현재 채팅방을 나가시겠습니까?</h6>
 							</div>
 							<div className="modal-footer">
