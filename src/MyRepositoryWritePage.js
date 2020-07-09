@@ -57,10 +57,17 @@ class MyRepositoryWritePage extends Component {
       },500);
   
    };
+   
+   resetMain(){
+      window.location="/gitbook/main"
+   }
 
    render() {
       return (
+         <div>
+         {this.props.userid == sessionStorage.getItem("authUserId") ? 
          <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
+         
             <h2 style={{ fontFamily: " 'Abhaya Libre' serif" }}>New Repository</h2>
             <hr></hr>
             <div >
@@ -119,7 +126,15 @@ class MyRepositoryWritePage extends Component {
                   </button>
                )}
             </div>
+
+             
+               </div> : <div>{
+                  
+                  this.resetMain()
+                  }</div>
+         }
          </div>
+
       );
    }
    componentDidMount() {
