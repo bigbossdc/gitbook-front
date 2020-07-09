@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import './MainCalendar.scss';
 import MyToDoScheduleDialog from './MyToDoScheduleDialog';
 import MyRepoScheduleDialog from './MyRepoScheduleDialog';
-
+import ErrorPage from './ErrorPage';
 
 const MONTHS = [
   "January",
@@ -247,6 +247,7 @@ export default class MainCalendar extends Component {
       day ? day.getDate() && (day.getDate() < 10 ? '0' + day.getDate() : day.getDate())
         : "")
 
+  
     return (
       <td
         className={[
@@ -263,12 +264,16 @@ export default class MainCalendar extends Component {
         
         {this.state.buttonClassName == 'todo' ?
 
-          (day ? day.getDate() && (this.state.checkedToDoListDay.includes(formatDate) ?
+          (day ?
+             day.getDate() && (this.state.checkedToDoListDay.includes(formatDate+" 00:00:00.0") ?
             <a className='day-a'>{day.getDate()}<br/><i class="fas fa-check" style={{color : '#0fc19e'}}></i></a>
-            : day.getDate()) : "")
+            : 
+            day.getDate()) :
+             "")
+
           :
 
-          (day ? day.getDate() && (this.state.checkedCommitListDay.includes(formatDate) ?
+          (day ? day.getDate() && (this.state.checkedCommitListDay.includes(formatDate+" 00:00:00.0") ?
             <a className='day-a'>{day.getDate()}<br /><i class="fas fa-check" style={{color : '#0fc19e'}}></i></a>
             : day.getDate()) : "")
 
@@ -322,8 +327,16 @@ export default class MainCalendar extends Component {
   }
 
   render() {
+
     const { month, year } = this.state;
     return (
+
+      this.state.userid !== sessionStorage.getItem("authUserId") ?
+        
+      window.location="/gitbook/main"
+        
+      :
+
       <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
       <div className="react-daypicker-root">
 

@@ -19,8 +19,6 @@ export default class MyToRepoScheduleDialog extends Component {
 
   render() {
 
-
-
         return (
       <Dialog open={this.props.openModal}>
         <DialogContent>
