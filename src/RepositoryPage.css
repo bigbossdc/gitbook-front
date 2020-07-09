@@ -38,6 +38,10 @@
     outline: none;
 }
 
+.RepositoryPage .button1:hover{
+  background-color:#1ea88d;
+}
+
 .textarea1{
    width: 80%;
    height: 24px;

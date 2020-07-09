@@ -10,7 +10,6 @@ import MyRepositoryWritePage from './MyRepositoryWritePage';
 import ProfileAndAccount from './ProfileAndAccount';
 
 
-
 class MyRouter extends Component {
   constructor(props){
     super(props);
@@ -18,7 +17,8 @@ class MyRouter extends Component {
       repositorylist: '',
       userid: this.props.match.params.userid,
       scheduleValue : 'todo',
-      friendlist:''
+      friendlist:'',
+      userstatus:''
     }
   }
 
@@ -46,9 +46,11 @@ changeScheduleRepoValue(){
         key="123"></Header2> : 
         <Header2
          />} */}
-         {/* <Header3/> */}
 
         <section className="profile-two" style={{paddingTop:"100px", minHeight:"100vh"}}>
+        {this.state.userstatus === "0" ?          
+          window.location="/gitbook/main"
+        :
           <div className="container-fluid">
             <div className="row">
                   <Navigation                   
@@ -96,28 +98,29 @@ changeScheduleRepoValue(){
                   />
 
             </div>{/** row 종료 */}
-          </div>{/** container-fluid 종료 */}
-        </section>{/** profile-twd 종료 */}
+          </div>
+         }
+        </section>
+
       </div>
       
     );
   }
 
-//   componentDidMount() {
+    componentDidMount() {
 
-//     fetch(`${global.API_URL}/gitbook/Repository/${this.props.match.params.userid}/list`, {
-
-//         method: 'get',
-//         headers:global.API_HEADERS
-//     })
-//     .then( response => response.json())
-//     .then( json => {
-//         this.setState({
-//           repositorylist: json.data
-//         });
-//     })
-//     .catch( err => console.error( err ));      
-// }
+      fetch(`${global.API_URL}/gitbook/user/${this.props.match.params.userid}/checkstatus`, {
+          method: 'post',
+          headers:global.API_HEADERS
+      })
+      .then( response => response.json())
+      .then( json => {
+          this.setState({
+            userstatus: json.data
+          });
+      })
+      .catch( err => console.error( err ));      
+  }
 }
 
 export default MyRouter;
