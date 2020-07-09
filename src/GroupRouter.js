@@ -57,7 +57,7 @@ class GroupRouter extends Component {
   }
 
   render() {
-    console.log("aaa " + this.state.memberchk);
+    
     return (
       <div className="AppGroup">
        {/* <Header></Header> */}
