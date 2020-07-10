@@ -161,16 +161,16 @@
   }
 
   
-  .emoticonbox::-webkit-scrollbar {
+  .emoticonbox2::-webkit-scrollbar {
 	border-radius: 10px;
 	width: 5px;
   }
-  .emoticonbox::-webkit-scrollbar-thumb {
+  .emoticonbox2::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 
 	background-color: #0FC19E;
   }
-  .emoticonbox::-webkit-scrollbar-track {
+  .emoticonbox2::-webkit-scrollbar-track {
 	border-radius: 10px;
 	background-color: #DBDBDB;
   }
@@ -270,7 +270,7 @@
 
 }
 .kkk{
-	width: 80%;
+	width: 70%;
 	font-family:  'Jeju Gothic', sans-serif;
 	height: 50px;
 	border: none;
@@ -318,11 +318,12 @@
 }
 
 #imagebutton{
-	color: #0FC19E;
+	color: #757575;
 	cursor: pointer;
 }
 
 #imagebutton:hover{
+	color: #0FC19E;
 	transform: scale(1.1);
 }
 #sendImage{
@@ -341,4 +342,22 @@
 .emoticonItem:hover{
 	
 	transform: scale(0.9);
+}
+.gitItem{
+	cursor: pointer;
+}
+
+.gitItem:hover{
+	background-color:#DBDBDB;
+}
+.gitMsg{
+	width:auto;
+	display:inline; 
+	font-size:20px;
+	margin-top:30px;
+	color:black;
+}
+
+.gitMsg:hover{
+	color:#0FC19E ;
 }
