@@ -52,7 +52,6 @@ export default class MainCalendar extends Component {
       deleteInfo: '',
       clickDay: 0,
     };
-
   }
 
   handler(list) {
@@ -140,7 +139,7 @@ export default class MainCalendar extends Component {
   };
 
   newAddlist(day, newToDo) {
-    
+
     fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/addToDo/${day}`, {
       method: 'post',
       headers: global.API_HEADERS,
@@ -150,12 +149,12 @@ export default class MainCalendar extends Component {
         this.setState({
           getToDoList: json.data
         });
-      }).then( json => {
+      }).then(json => {
         this.componentDidMount();
       })
       .catch(err => console.error(err))
 
-      this.renderDay();
+    this.renderDay();
   }
 
   deleteList(day, deleteTarget) {
@@ -168,7 +167,7 @@ export default class MainCalendar extends Component {
         this.setState({
           getToDoList: json.data
         });
-      }).then( json => {
+      }).then(json => {
         this.componentDidMount();
       })
       .catch(err => console.error(err))
@@ -242,12 +241,12 @@ export default class MainCalendar extends Component {
     let toCompareMonth = this.state.month + 1;
 
     (toCompareMonth < 10 ? toCompareMonth = ('0' + toCompareMonth) : toCompareMonth);
-     
+
     const formatDate = this.state.year + '-' + toCompareMonth + '-' + (
       day ? day.getDate() && (day.getDate() < 10 ? '0' + day.getDate() : day.getDate())
         : "")
 
-  
+
     return (
       <td
         className={[
@@ -261,20 +260,20 @@ export default class MainCalendar extends Component {
         key={`${year}.${month}.day.${index}`}
         onClick={this.onDayClick(day)}
       >
-        
+
         {this.state.buttonClassName == 'todo' ?
 
           (day ?
-             day.getDate() && (this.state.checkedToDoListDay.includes(formatDate+" 00:00:00.0") ?
-            <a className='day-a'>{day.getDate()}<br/><i class="fas fa-check" style={{color : '#0fc19e'}}></i></a>
-            : 
-            day.getDate()) :
-             "")
+            day.getDate() && (this.state.checkedToDoListDay.includes(formatDate) || (this.state.checkedToDoListDay.includes(formatDate + " 00:00:00.0")) ?
+              <a className='day-a'>{day.getDate()}<br /><i class="fas fa-check" style={{ color: '#0fc19e' }}></i></a>
+              :
+              day.getDate()) :
+            "")
 
           :
 
-          (day ? day.getDate() && (this.state.checkedCommitListDay.includes(formatDate+" 00:00:00.0") ?
-            <a className='day-a'>{day.getDate()}<br /><i class="fas fa-check" style={{color : '#0fc19e'}}></i></a>
+          (day ? day.getDate() && (this.state.checkedCommitListDay.includes(formatDate) || (this.state.checkedCommitListDay.includes(formatDate + " 00:00:00.0")) ?
+            <a className='day-a'>{day.getDate()}<br /><i class="fas fa-check" style={{ color: '#0fc19e' }}></i></a>
             : day.getDate()) : "")
 
         }
@@ -332,104 +331,104 @@ export default class MainCalendar extends Component {
     return (
 
       this.state.userid !== sessionStorage.getItem("authUserId") ?
-        
-      window.location="/gitbook/main"
-        
-      :
 
-      <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>
-      <div className="react-daypicker-root">
+        window.location = "/gitbook/main"
 
-        <div className="button-div" >
-          <button className={`${this.state.buttonClassName === 'todo' ? 'index-todo-list-todo' : 'index-todo-list'}`} onClick={this.Todo}>TODO</button>
-          <button style={{ marginLeft: "10px" }} className={`${this.state.buttonClassName === 'repo' ? 'index-repository-list' : 'index-repository'}`} onClick={this.Repo}>GIT</button>
-        </div>
+        :
 
-        <div className="header">
+        <div className="react-transition fade-in" style={{ animationDuration: '0.3s' }}>
+          <div className="react-daypicker-root">
 
-          <div className="previous-month" onClick={this.previousMonth.bind(this)}>
-            ◀
+            <div className="button-div" >
+              <button className={`${this.state.buttonClassName === 'todo' ? 'index-todo-list-todo' : 'index-todo-list'}`} onClick={this.Todo}>TODO</button>
+              <button style={{ marginLeft: "10px" }} className={`${this.state.buttonClassName === 'repo' ? 'index-repository-list' : 'index-repository'}`} onClick={this.Repo}>GIT</button>
+            </div>
+
+            <div className="header">
+
+              <div className="previous-month" onClick={this.previousMonth.bind(this)}>
+                ◀
           </div>
 
-          <div className="month-year">
-            {this.longMonthName(month)} {year}
+              <div className="month-year">
+                {this.longMonthName(month)} {year}
+              </div>
+
+              <div className="next-month" onClick={this.nextMonth.bind(this)}>
+                ▶
           </div>
 
-          <div className="next-month" onClick={this.nextMonth.bind(this)}>
-            ▶
+            </div>
+
+            <div style={{ padding: 20 }}>
+            </div>
+
+
+
+            {!this.state.scheduleOption ? (
+              //개인스케줄 다이얼로그
+              <MyToDoScheduleDialog
+                key='todoschedule'
+                userid={this.state.userid}
+                day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
+                month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
+                year={this.state.year}
+
+                getToDoList={this.state.getToDoList && this.state.getToDoList}
+
+                addlist={this.newAddlist.bind(this)}
+                deletelist={this.deleteList.bind(this)}
+
+                openModal={this.state.openModal}
+                onClosehandler={this.handleClose.bind(this)}
+
+                test={this.state.today}
+              />
+            ) :
+
+              //commit 기록들 다이얼로그
+
+              <MyRepoScheduleDialog
+                userid={this.state.userid}
+                day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
+                month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
+                year={this.state.year}
+
+                getRepoList={this.state.getRepoList && this.state.getRepoList}
+
+                openModal={this.state.openModal}
+                onClosehandler={this.handleClose.bind(this)}
+              />
+            }
+
+
+
+
+            <div className='table-border'>
+
+              <table className='total-table'>
+                <thead style={{ textAlign: "center" }}>
+                  <tr className='tr'>
+                    <td className='sunday'>{this.renderDayHeader(0)}</td>
+                    <td>{this.renderDayHeader(1)}</td>
+                    <td>{this.renderDayHeader(2)}</td>
+                    <td>{this.renderDayHeader(3)}</td>
+                    <td>{this.renderDayHeader(4)}</td>
+                    <td> {this.renderDayHeader(5)}</td>
+                    <td className='saturday'> {this.renderDayHeader(6)}</td>
+                  </tr>
+                </thead>
+                <tbody>{this.weeks.map(this.renderWeek)}</tbody>
+              </table>
+            </div>
+
           </div>
-
         </div>
-
-        <div style={{ padding: 20 }}>
-        </div>
-
-
-
-        {!this.state.scheduleOption ? (
-          //개인스케줄 다이얼로그
-          <MyToDoScheduleDialog
-            key='todoschedule'
-            userid={this.state.userid}
-            day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
-            month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
-            year={this.state.year}
-
-            getToDoList={this.state.getToDoList && this.state.getToDoList}
-
-            addlist={this.newAddlist.bind(this)}
-            deletelist={this.deleteList.bind(this)}
-
-            openModal={this.state.openModal}
-            onClosehandler={this.handleClose.bind(this)}
-
-            test={this.state.today}
-          />
-        ) :
-
-          //commit 기록들 다이얼로그
-
-          <MyRepoScheduleDialog
-            userid={this.state.userid}
-            day={(this.state.clickDay) < 10 ? ('0' + this.state.clickDay) : (this.state.clickDay)}
-            month={(this.state.month + 1) < 10 ? ('0' + (this.state.month + 1)) : (this.state.month) + 1}
-            year={this.state.year}
-
-            getRepoList={this.state.getRepoList && this.state.getRepoList}
-
-            openModal={this.state.openModal}
-            onClosehandler={this.handleClose.bind(this)}
-          />
-        }
-
-
-        
-
-        <div className='table-border'>
-    
-          <table className='total-table'>
-            <thead style={{ textAlign: "center" }}>
-              <tr className='tr'>
-                <td className='sunday'>{this.renderDayHeader(0)}</td>
-                <td>{this.renderDayHeader(1)}</td>
-                <td>{this.renderDayHeader(2)}</td>
-                <td>{this.renderDayHeader(3)}</td>
-                <td>{this.renderDayHeader(4)}</td>
-                <td> {this.renderDayHeader(5)}</td>
-                <td className='saturday'> {this.renderDayHeader(6)}</td>
-              </tr>
-            </thead>
-            <tbody>{this.weeks.map(this.renderWeek)}</tbody>
-          </table>
-        </div>
-          
-      </div>
-      </div>
     );
   }
 
   componentDidMount() {
-    
+
     fetch(`${global.API_URL}/gitbook/Schedule/${this.state.userid}/notEmptyToDoList`, {
       method: 'get',
       headers: global.API_HEADERS
