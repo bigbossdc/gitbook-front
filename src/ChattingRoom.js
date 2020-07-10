@@ -617,7 +617,13 @@ class ChattingRoom extends Component {
 									</div>
 									<div style={{width:"100%",paddingBottom:"5px",paddingLeft:"50px",paddingTop:"5px"}}>
 											<h5 
-											onClick={this.handleSendGit.bind(this)}
+											style={{backgroundColor: (this.state.gitSelect !==''?'':'#B6B6B6'),
+													 cursor:  (this.state.gitSelect !==''? 'pointer':'auto')
+													
+										}}
+										
+										
+											onClick={this.state.gitSelect!==''?this.handleSendGit.bind(this):''}
 											className="kafe-btn kafe-btn-mint">공유</h5>
 											<h5 
 											onClick={this.onClickGitShow.bind(this)}
