@@ -37,7 +37,7 @@ class ChattingListItem extends Component {
 							</div>
 							<div class="user-message-info" style={{ width: "250px" }}>
 								<h4 style={{ textOverflow: "ellipsis", fontFamily: "'Jeju Gothic', sans-serif", marginBottom: "15px" }} className="txt_post2">{this.props.list.chatRoomListItem.title}</h4>
-								<p className="txt_post" style={{ fontFamily: "'Jeju Gothic', sans-serif" }}>{this.props.list.lastMsg && this.props.list.lastMsg.type=='image'?'사진': this.props.list.lastMsg.type=='emoticon'?'이모티콘':this.props.list.lastMsg.contents}</p>
+								<p className="txt_post" style={{ fontFamily: "'Jeju Gothic', sans-serif" }}>{this.props.list.lastMsg && this.props.list.lastMsg.type=='image'?'사진': this.props.list.lastMsg.type=='emoticon'?'이모티콘':this.props.list.lastMsg.type=="git"?'레포지토리':this.props.list.lastMsg.contents}</p>
 								<span className="time-posted">{this.props.list && this.props.list.lastMsg.sendDate}</span>
 							</div>
 							{/* <i class="fas fa-comment-alt fa-2x" style={{color:"#0FC19E",margin:"4px"}}/> */}

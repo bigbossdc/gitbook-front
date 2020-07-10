@@ -4,9 +4,11 @@ import ChattingMsgItem from "./ChattingMsgItem";
 import SockJsClient from "react-stomp";
 import ChatFriendInviteItem from "./ChatFriendInviteItem";
 import { motion } from "framer-motion";
-
+import {Link} from "react-router-dom";
 import './TimelineItem.css'
 import './dialogBox.css';
+import ChatGitListItem from './ChatGitListItem';
+
 
 class ChattingRoom extends Component {
 	constructor() {
@@ -24,10 +26,19 @@ class ChattingRoom extends Component {
 			modalSearch:'',
 			inviteList:'',
 			changeInviteList:[],
-			emoticonShow:"none"
+			emoticonShow:"none",
+			gitShow:"none",
+			gitList:'',
+			gitSelect:''
 
 		}
 	}
+	onGitSelecthandler(item){
+		this.setState({
+			gitSelect:item
+		})
+	}
+
 	handleChange(e) {
 		this.setState({
 			[e.target.name]: e.target.value
@@ -72,6 +83,25 @@ class ChattingRoom extends Component {
 
 		}
 	}
+	handleSendGit(){
+		const formData = new FormData();
+		const url="/gitbook/my/"+sessionStorage.getItem("authUserId")+"/repository/view/"+this.state.gitSelect
+		formData.append("contents",url );
+		let inviteUserNo = [];
+		this.props.inviteList.map((list) => inviteUserNo = inviteUserNo.concat(list.userNo))
+		formData.append("inviteList", inviteUserNo);
+
+		fetch(`${global.API_URL}/gitbook/chatting/api/sendMsg/${sessionStorage.getItem("authUserNo")}/${this.props.chatInfo.no}/git`, {
+			method: 'post',
+			headers: {},
+			body: formData
+		}).catch(err => console.error(err));
+
+		this.setState({
+			gitSelect:''
+		})
+	}
+
 	handleSendImage(){
 		if(this.state.imageMsg !== ''){
 			const formData = new FormData();
@@ -255,14 +285,24 @@ class ChattingRoom extends Component {
 
 	  onClickEmoticonShow(){
 		  this.setState({
-			  emoticonShow: this.state.emoticonShow==='none'?'block':"none"
+			  emoticonShow: this.state.emoticonShow==='none'?'block':"none",
+			  gitShow:"none"
 		  })
 	  }
+	  onClickGitShow(){
+		this.setState({
+			gitShow: this.state.gitShow==='none'?'block':"none",
+			emoticonShow:"none",
+			gitSelect:''
+
+		})
+	}
 	  onClickEmoticon(e){
 		 
 		this.setState({
 			imageMsg:'',
-			emoticonMsg:e.target.src
+			emoticonMsg:e.target.src,
+			gitSelect:''
 		})
 	  }
 
@@ -280,7 +320,7 @@ class ChattingRoom extends Component {
 	}
 	
 	render() {
-
+	
 		const admin = this.props.inviteList && this.props.inviteList.filter((item) => item.grant === "admin")
 		let inviteFilter='';
 		inviteFilter = this.props.msgList && this.props.msgList.filter((list) =>
@@ -452,7 +492,8 @@ class ChattingRoom extends Component {
 									></input>
 								<ul className="imoji">
 								<li>
-								
+									
+								<li  id="imagebutton" style={{marginRight:"5px",fontSize:"23px"}}><i onClick={this.onClickGitShow.bind(this)} className="fab fa-github fa-2x"></i></li>
 								<li  id="imagebutton" style={{marginRight:"20px"}}><i onClick={this.onClickEmoticonShow.bind(this)} className="fa fa-smile fa-2x"></i></li>		
 								<label className="iconlabel"><input className="imagebutton" type="file" accept="image/gif,image/jpeg,image/png,image/jpg" name={this.state.imageMsg} style={{ display: "none" }}  onChange={this.handleChangeFile}/><i id="imagebutton" className="fa fa-image fa-2x"></i></label>			
 								</li>
@@ -481,20 +522,28 @@ class ChattingRoom extends Component {
 					</div>
 				}
 
+					{/* 이모티콘 */}
 				<div className="emoticonbox" 
 					style={{backgroundColor:"#FFF", 
 							height:"500px",
 							width:"300px",
 							marginLeft:"760px",
 							display:this.state.emoticonShow,
-							overflow:"auto",
+						
 							position:"absolute",
 							zIndex:"1",
 							
 							} }>
+
+
+				<div style={{width:"100%",height:"30px",backgroundColor:"#0FC19E",margin:"0px",marginTop:"0px",paddingTop:"4px",paddingBottom:"4px"}}>
+									<h4 style={{textAlign:"center",color:"#FFF",marginTop:"2px",fontFamily:"'Jeju Gothic', sans-serif"}}>Emoticon</h4>
+
+								</div>
+								<div className="emoticonbox2" style={{height :"100%",overflow:"auto"}}>
 					{ emoticonCount.map((list)=> 
 					
-					<div style={{display:"flex"}}>
+					<div style={{display:"flex"}} >
 						<div className="col-lg-4"  
 							
 						style={{backgroundColor:"#FFF",height:"120px",flex:"1",padding:"5px"}}>
@@ -525,12 +574,76 @@ class ChattingRoom extends Component {
 					</div>
 					
 					
-					
 					)
 					
 					}
+					</div>
 					
-					
+				</div>
+
+				{/* git List */}
+
+				<div className="emoticonbox" 
+					style={{backgroundColor:"#FFF", 
+							height:"500px",
+							width:"300px",
+							marginLeft:"760px",
+							display:this.state.gitShow,
+							overflow:"auto",
+							position:"absolute",
+							zIndex:"1",
+							
+							} }>	
+								<div style={{width:"100%",height:"40px",backgroundColor:"#0FC19E",margin:"0px",marginTop:"-10px",paddingTop:"5px",paddingBottom:"4px"}}>
+									<h4 style={{textAlign:"center",color:"#FFF",fontFamily:"'Jeju Gothic', sans-serif"}}>My Repository</h4>
+
+								</div>
+
+								{ this.state.gitList !==''?<div>
+									<div className="emoticonbox2" style={{height:"370px",backgroundColor:"#fff",marginTop:"20px",overflow:"auto"}}>
+										{/* git List Itme */}
+
+								{this.state.gitList&& this.state.gitList.filter((list)=>list.visible=="public").map((list)=> 
+								<ChatGitListItem
+									gitItem={list}
+									gitSelect={this.state.gitSelect}
+									gitFuntion={{
+										select:this.onGitSelecthandler.bind(this)
+									}}
+								/>
+								)								
+                        		
+								}
+									</div>
+									<div style={{width:"100%",paddingBottom:"5px",paddingLeft:"50px",paddingTop:"5px"}}>
+											<h5 
+											onClick={this.handleSendGit.bind(this)}
+											className="kafe-btn kafe-btn-mint">공유</h5>
+											<h5 
+											onClick={this.onClickGitShow.bind(this)}
+											className="kafe-btn kafe-btn-mint btn-danger">취소</h5>
+               
+             								 </div>
+
+								</div>
+								:
+								
+								
+								<div  className="emoticonbox2" style={{overflow:"auto",height:"80%",width:"100%"}}>
+									
+								<div  style={{ width:"100px",height:"200px",margin:"100px auto"}}>
+									<Link to={`/gitbook/my/${sessionStorage.getItem("authUserId")}/repository/write`}>
+                  							<p className="timeline-file-icon"
+											 
+											  ><i className="fas fa-database fa-6x"></i><i className="fas fa-plus fa-2x"></i></p>
+              						  </Link>
+										</div>
+										<p><h5 className="group-req-title" style={{fontFamily:"'Nanum Gothic', sans-serif", fontSize:"1.5em", color:"#606665",marginTop:"-170px",marginLeft:"7px"}}><b>생성한 레포지토리가 없습니다</b></h5></p>
+								</div>
+								}
+
+
+
 				</div>
 
 
@@ -754,7 +867,18 @@ class ChattingRoom extends Component {
 			})
 			.catch(err => console.error(err));
 			
-		
+			
+			fetch(`${global.API_URL}/gitbook/Repository/${sessionStorage.getItem("authUserId")}/list`, {
+				method: 'get',
+				headers: global.API_HEADERS
+			  })
+				.then(response => response.json())
+				.then(json => {
+				  this.setState({
+					gitList:json.data
+				  });
+				})
+				.catch(err => console.error(err));
 	
 
 		if (this.props.chatInfo && this.props.chatInfo) {

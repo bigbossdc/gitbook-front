@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./ChattingPage.css";
 import { motion } from "framer-motion";
-
+import {Link} from "react-router-dom";
 import './TimelineItem.css';
 import './dialogBox.css';
 
@@ -64,7 +64,8 @@ class ChattingMsgItem extends Component {
                         style={{marginTop:"15px",height:"160px",width:"auto"}}
                         onClick={this.onShow.bind(this)}
                         id="fileimage" src={this.props.msg.contents} alt="MaterialImg" /></motion.p>
-                        :
+                        : 
+                         this.props.msg.type==='emoticon'?
 
                         <motion.p 
 
@@ -77,7 +78,34 @@ class ChattingMsgItem extends Component {
                   <img
                     style={{width:"auto",height:"100%"}}
                      src={this.props.msg.contents}
-                  /></motion.p>
+                  /></motion.p>: 
+
+                  <motion.p 
+               
+                  style={{  padding: "10px 15px ",
+                            wordBreak:"break-all",
+                            width:"auto",
+                            borderLeft:"10px solid #0FC19E",
+                            borderTop: "1px solid #0FC19E",
+                            borderRight: "1px solid #0FC19E",
+                            borderBottom: "1px solid #0FC19E",
+                            borderRadius:"5px",backgroundColor:"#FFFFFF"}} 
+                  positionTransition
+                  initial={{ opacity: 0, y: 50, scale: 0.3 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+                  >
+                    <i className="fab fa-git-alt " style={{display:"inline-block",float:"left",marginRight:"4px",fontSize:"23px",color:"black"}}/>                
+                  
+                  <Link to={`${this.props.msg.contents}`}> <h4 className="gitMsg"> {this.props.msg.contents.split('/').pop()}</h4></Link>
+                   
+             
+            
+      
+                    </motion.p>
+
+
+
                     }
              
 
@@ -122,7 +150,9 @@ class ChattingMsgItem extends Component {
                       style={{marginTop:"15px",height:"160px",width:"auto"}}
                       onClick={this.onShow.bind(this)}
                       id="fileimage" src={this.props.msg.contents} alt="MaterialImg" /></motion.p>: 
-                  <motion.p 
+                      this.props.msg.type==='emoticon'?
+                 
+                      <motion.p 
 
 
                   style={{  padding: "10px 15px ",wordBreak:"break-all",height:"215px",backgroundColor:"#FFFFFF",width:"60%"}} 
@@ -135,7 +165,28 @@ class ChattingMsgItem extends Component {
                     style={{width:"auto",height:"100%"}}
                      src={this.props.msg.contents}
                   />
-                  </motion.p>
+                  </motion.p>:
+
+                      <motion.p
+                      positionTransition
+                      initial={{ opacity: 0, y: 50, scale: 0.3 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+                      style={{  borderLeft:"10px solid #0FC19E",
+                      borderTop: "1px solid #0FC19E",
+                      borderRight: "1px solid #0FC19E",
+                      borderBottom: "1px solid #0FC19E",
+                      borderRadius:"5px",backgroundColor:"#FFFFFF"}}
+                      >   
+                      
+                      <i className="fab fa-git-alt " style={{display:"inline-block",float:"left",marginRight:"4px",fontSize:"23px",color:"black"}}/>                
+                  
+                      <Link to={`${this.props.msg.contents}`}> <h4 className="gitMsg"> {this.props.msg.contents.split('/').pop()}</h4></Link>
+                       
+                 
+                
+          
+                        </motion.p>
 
                     }
                 </div>
