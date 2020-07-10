@@ -884,6 +884,8 @@ class ChattingRoom extends Component {
 
 		if (this.props.chatInfo && this.props.chatInfo) {
 			
+
+			
 			var scrollHeigth= window.jQuery(document.getElementsByClassName("conversation-container")).prop('scrollHeight')
 			window.jQuery(document.getElementsByClassName("conversation-container")).scrollTop(scrollHeigth);
 
