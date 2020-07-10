@@ -563,7 +563,6 @@ class ChattingRoom extends Component {
 
 						</div>
 						<div className="col-lg-4" 
-							
 						style={{backgroundColor:"#FFF",height:"120px",flex:"1",padding:"5px"}}>
 							<img 
 							onClick={this.onClickEmoticon.bind(this)} 
@@ -572,10 +571,8 @@ class ChattingRoom extends Component {
 							/>
 						</div>
 					</div>
-					
-					
 					)
-					
+			
 					}
 					</div>
 					
@@ -632,7 +629,6 @@ class ChattingRoom extends Component {
 
 								</div>
 								:
-								
 								
 								<div  className="emoticonbox2" style={{overflow:"auto",height:"80%",width:"100%"}}>
 									
