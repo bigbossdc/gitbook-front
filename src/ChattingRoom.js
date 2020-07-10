@@ -628,7 +628,6 @@ class ChattingRoom extends Component {
 											<h5 
 											onClick={this.onClickGitShow.bind(this)}
 											className="kafe-btn kafe-btn-mint btn-danger">취소</h5>
-               
              								 </div>
 
 								</div>
