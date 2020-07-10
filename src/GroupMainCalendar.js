@@ -259,12 +259,12 @@ export default class GroupMainCalendar extends Component {
 
         {this.state.buttonClassName == 'todo' ?
 
-          (day ? day.getDate() && (this.state.checkedToDoListDay.includes(formatDate+" 00:00:00.0") ?
+          (day ? day.getDate() && (this.state.checkedToDoListDay.includes(formatDate) || (this.state.checkedToDoListDay.includes(formatDate + " 00:00:00.0"))  ?
             <a className='day-a'>{day.getDate()}<br /><i class="fas fa-check" style={{ color: '#0fc19e' }}></i></a>
             : day.getDate()) : "")
           :
 
-          (day ? day.getDate() && (this.state.checkedCommitListDay.includes(formatDate+" 00:00:00.0") ?
+          (day ? day.getDate() && (this.state.checkedCommitListDay.includes(formatDate) || (this.state.checkedCommitListDay.includes(formatDate + " 00:00:00.0")) ?
             <a className='day-a'>{day.getDate()}<br /><i class="fas fa-check" style={{ color: '#0fc19e' }}></i></a>
             : day.getDate()) : "")
 
@@ -318,9 +318,7 @@ export default class GroupMainCalendar extends Component {
   }
 
   render() {
-    console.log("#########################")
-    console.log(this.state.getRepoList)
-    console.log("#######################")
+ 
     const { month, year } = this.state;
     return (
       <div className="react-transition fade-in" style={{animationDuration:'0.3s'}}>

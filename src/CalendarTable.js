@@ -7,7 +7,7 @@ import moment from 'moment';
 class CalendarTable extends Component {
 
     render() {
-        
+
         const today = moment();
         const startWeek = today.clone().startOf('month').week();
         const endWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
@@ -15,8 +15,9 @@ class CalendarTable extends Component {
         let calendar = [];
 
         let commitDays = []
+
         for (let i = 0; i < this.props.commitList.length; i++) {
-            commitDays.push(this.props.commitList[i].split('-')[2]);
+            commitDays.push(this.props.commitList[i].slice(this.props.commitList[i].lastIndexOf("-") + 1, this.props.commitList[i].lastIndexOf(' ')));
         }
 
         for (let week = startWeek; week <= endWeek; week++) {
@@ -28,16 +29,16 @@ class CalendarTable extends Component {
                             let current = today.clone().week(week).startOf('week').add(n + i, 'day')
                             let isSelected = today.format('YYYYMMDD') === current.format('YYYYMMDD') ? 'selected' : ''; //오늘 날짜
                             let isGrayed = current.format('MM') === today.format('MM') ? '' : 'grayed';  //해당 달의 일이 아닌 날짜
-                            
+
                             let formatDay = current.format('D') < 10 ? '0' + current.format('D') : current.format('D')
-                            
-                            if(isGrayed === 'grayed'){
+
+                            if (isGrayed === 'grayed') {
                                 formatDay = ''
                             }
-                            
+
                             return (
                                 <div className={`box  ${isSelected} ${isGrayed}`} key={i}>
-                                    {commitDays.includes(formatDay) ? <span className={'textRepo'}>{formatDay}</span>
+                                    {(formatDay !== '' && commitDays.includes(formatDay)) ? <span className={'textRepo'}>{formatDay}</span>
                                         :
                                         <span className={'text'} >{formatDay}</span>
                                     }
