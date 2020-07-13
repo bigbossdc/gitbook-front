@@ -320,7 +320,7 @@ class ChattingRoom extends Component {
    }
    
    render() {
-   
+      console.log("나와랑"+this.state.gitList)
       const admin = this.props.inviteList && this.props.inviteList.filter((item) => item.grant === "admin")
       let inviteFilter='';
       inviteFilter = this.props.msgList && this.props.msgList.filter((list) =>
@@ -596,7 +596,7 @@ class ChattingRoom extends Component {
 
                         </div>
 
-                        { this.state.gitList !==''?<div>
+                        { this.state.gitList != '' ?<div>
                            <div className="emoticonbox2" style={{height:"370px",backgroundColor:"#fff",marginTop:"20px",overflow:"auto"}}>
                               {/* git List Itme */}
 
