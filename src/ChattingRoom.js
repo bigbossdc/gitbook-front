@@ -45,7 +45,7 @@ class ChattingRoom extends Component {
 		})
 	}
 	inviteListadd(list) {
-		if (this.state.inviteList.length +this.state.changeInviteList.length<=10 ) {
+		if (this.state.inviteList.length +this.state.changeInviteList.length<10 ) {
 		  this.setState({
 			changeInviteList: this.state.changeInviteList.concat(list)
 		  })
@@ -834,6 +834,7 @@ class ChattingRoom extends Component {
                           </div>
 
                         </div>
+						<br></br>
 							{this.state.changeInviteList && this.state.changeInviteList.length>0 ?
                             <button onClick={this.onClickinviteBtn.bind(this)} className="chatButton" >초대하기</button>:''
 								}
